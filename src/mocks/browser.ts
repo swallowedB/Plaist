@@ -1,4 +1,7 @@
 import { setupWorker } from "msw/browser";
-import { handlers } from "./handlers";
+import { ChannelHandlers } from "./handlers/ChannelHandler";
+import { AuthHandlers } from "./handlers/AuthHandlers";
+import { UserHandlers } from "./handlers/UserHandler";
 
-export const worker = setupWorker(...handlers);
+const allHandlers = [...ChannelHandlers, ...AuthHandlers, ...UserHandlers];
+export const worker = setupWorker(...allHandlers);
