@@ -13,6 +13,18 @@ async function enableMocking() {
   return worker.start();
 }
 
+<<<<<<< HEAD
+=======
+// 개발 환경에서만 MSW 활성화
+async function enableMocking() {
+  if (process.env.NODE_ENV !== "development") {
+    return;
+  }
+  const { worker } = await import("./mocks/browser");
+  return worker.start();
+}
+
+>>>>>>> Sebin
 // Mocking 활성화 후 React 애플리케이션 렌더링
 enableMocking().then(() => {
   const rootElement = document.getElementById("root");
@@ -27,4 +39,8 @@ enableMocking().then(() => {
       </BrowserRouter>
     </StrictMode>
   );
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> Sebin

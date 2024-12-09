@@ -304,4 +304,8 @@ async function respondWithMock(response) {
   })
 
   return mockedResponse
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Sebin
