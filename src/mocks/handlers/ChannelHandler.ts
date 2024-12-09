@@ -39,9 +39,6 @@ export const ChannelHandlers = [
   }),
 ];
 
-// (Auth)
-// (User)
-//(Channel)
 // (Post, Like, Comment)
 
 // (Notification, Follow)
