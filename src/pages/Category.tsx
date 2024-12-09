@@ -1,5 +1,6 @@
+import { getChannelList } from "../api/api";
+
 export default function Category() {
-  return (
-    <div>Category</div>
-  )
+  console.log(getChannelList());
+  return <div>Category</div>;
 }
