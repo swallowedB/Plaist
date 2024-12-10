@@ -75,6 +75,14 @@ export default function RootLayout() {
         >
           test-유저
         </NavLink>
+        <NavLink
+          to="/searchTest"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+        >
+          test-검색
+        </NavLink>
       </nav>
       <div className="p-4">
         <Outlet />
