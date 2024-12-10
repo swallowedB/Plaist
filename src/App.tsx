@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router";
-import Main from "./pages/Main";
 import RootLayout from "./layouts/RootLayout";
 import Category from "./pages/Category";
 import CreateCourse from "./pages/CreateCourse";
+import Main from "./pages/Main";
 import MyPage from "./pages/MyPage";
-// Test Pages
+import AuthTest from "./pages/test/AuthTest";
 import ChannelTest from "./pages/test/ChannelTest";
 import UserTest from "./pages/test/UserTest";
-import AuthTest from "./pages/test/UserTest";
+import SearchTest from "./pages/test/SearchTest";
 
 export default function App() {
   return (
@@ -21,6 +21,7 @@ export default function App() {
           <Route path="/channelTest" element={<ChannelTest />} />
           <Route path="/userTest" element={<UserTest />} />
           <Route path="/authTest" element={<AuthTest />} />
+          <Route path="/searchTest" element={<SearchTest />} />
         </Route>
       </Routes>
     </>
