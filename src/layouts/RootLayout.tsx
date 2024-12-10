@@ -48,6 +48,33 @@ export default function RootLayout() {
         >
           마이페이지
         </NavLink>
+        {/* test */}
+        {/* test */}
+        {/* test */}
+        <NavLink
+          to="/channelTest"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+        >
+          test-채널
+        </NavLink>
+        <NavLink
+          to="/authTest"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+        >
+          test-권한
+        </NavLink>
+        <NavLink
+          to="/userTest"
+          className={({ isActive }) =>
+            isActive ? "text-blue-500 font-bold" : "text-gray-700"
+          }
+        >
+          test-유저
+        </NavLink>
       </nav>
       <div className="p-4">
         <Outlet />
