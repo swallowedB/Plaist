@@ -1,9 +1,9 @@
-import { useState, ReactNode } from "react"; // ReactNode를 import
+import { useState, ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import FooterNavLink from "../components/FooterNavLink";
 
 interface RootLayoutProps {
-  children: ReactNode; // children을 ReactNode 타입으로 정의
+  children: ReactNode;
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
