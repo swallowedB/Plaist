@@ -1,11 +1,11 @@
+import { Outlet } from "react-router";
 import Blur from "./Blur";
-import { Outlet } from "react-router-dom";
 
 export default function BackgroundLayout() {
   return (
     <div
       id="background"
-      className="relative flex justify-center items-center h-screen bg-white overflow-hidden"
+      className="relative flex items-center justify-center h-screen overflow-hidden bg-white"
     >
       <Blur />
       <section
