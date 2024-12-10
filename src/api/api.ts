@@ -59,3 +59,26 @@ export const getSearchByUser = async (searchQuery: string) => {
     throw error; // 오류를 호출자에게 전달
   }
 };
+
+// follow
+// 특정 사용자를 팔로우합니다.
+export const postCreateFollow = async (userId: string) => {
+  try {
+    const response = await axios.post(`/follow/create`, { userId: userId });
+    return response.data;
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+  }
+};
+
+// 특정 사용자를 언팔합니다.
+export const deleteFollow = async (userId: string) => {
+  try {
+    const response = await axios.delete(`follow/delete`, {
+      params: { userId }, // 데이터 전달 방식을 params로 변경
+    });
+    return response.data;
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+  }
+};

@@ -10,7 +10,9 @@ async function enableMocking() {
     return;
   }
   const { worker } = await import("./mocks/handlers/browser.ts");
-  return worker.start();
+  return worker.start({
+    onUnhandledRequest: "bypass",
+  });
 }
 
 // Mocking 활성화 후 React 애플리케이션 렌더링
