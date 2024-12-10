@@ -12,18 +12,16 @@ import ChannelTest from "./pages/test/ChannelTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 
-
 export default function App() {
   return (
     <RootLayout>
       <Routes>
-        {/* 각 경로에 따른 페이지 매핑 */}
-        <Route path="/" element={<Main />} /> 
+        <Route path="/" element={<Main />} />
         <Route path="/category" element={<Category />} />
-        <Route path="/createCourse" element={<CreateCourse />} 
-        <Route path="/my-page" element={<MyPage />} /> 
-        <Route path="/login" element={<Login />} /> 
-        <Route path="/signup" element={<Signup />} /> 
+        <Route path="/createCourse" element={<CreateCourse />} />
+        <Route path="/my-page" element={<MyPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/channelTest" element={<ChannelTest />} />
         <Route path="/userTest" element={<UserTest />} />
         <Route path="/authTest" element={<AuthTest />} />
