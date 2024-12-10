@@ -1,18 +1,15 @@
-import { useState, ReactNode } from "react"; // ReactNode를 import
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import FooterNavLink from "../components/FooterNavLink";
 
-interface RootLayoutProps {
-  children: ReactNode; // children을 ReactNode 타입으로 정의
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div className="w-screen h-screen bg-blue-100 flex flex-col overflow-hidden">
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto">
-        {children} {/* 자식 컴포넌트를 렌더링 */}
+        <Outlet /> {/* 중첩된 라우트가 렌더링될 위치 */}
       </main>
       {/* Footer */}
       <footer className="w-full h-20 bg-white shadow-[0_-4px_10px_0_rgba(0,0,0,0.1)] border-t border-zinc-100">
