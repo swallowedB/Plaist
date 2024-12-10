@@ -1,3 +1,3 @@
 import { http, HttpResponse } from "msw";
 
-export const AuthHandlers = [];
+export const authHandlers = [];

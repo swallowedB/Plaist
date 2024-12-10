@@ -1,19 +1,14 @@
 import { setupWorker } from "msw/browser";
-<<<<<<< HEAD
-import { handlers } from "./handlers";
-
-export const worker = setupWorker(...handlers);
-=======
-import { ChannelHandlers } from "./handlers/ChannelHandler";
-import { AuthHandlers } from "./handlers/AuthHandlers";
-import { UserHandlers } from "./handlers/UserHandler";
-import { SearchHandlers } from "./handlers/SearchHandlers";
+import { authHandlers } from "./handlers/authHandlers";
+import { userHandlers } from "./handlers/userHandler";
+import { searchHandlers } from "./handlers/searchHandlers";
+import { channelHandlers } from "./handlers/channelHandler";
 
 const allHandlers = [
-  ...ChannelHandlers,
-  ...AuthHandlers,
-  ...UserHandlers,
-  ...SearchHandlers,
+  ...channelHandlers,
+  ...authHandlers,
+  ...userHandlers,
+  ...searchHandlers,
 ];
+
 export const worker = setupWorker(...allHandlers);
->>>>>>> Sebin

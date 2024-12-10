@@ -1,46 +1,97 @@
 import { http, HttpResponse } from "msw";
 
-export const ChannelHandlers = [
+let channels = [
+  {
+    authRequired: false,
+    posts: [
+      "string", // postId
+    ],
+    _id: "001",
+    name: "서울",
+    description: "지역",
+    createdAt: "24-01-01",
+    updatedAt: "24-01-02",
+  },
+  {
+    authRequired: false,
+    posts: [
+      "string", // postId
+    ],
+    _id: "002",
+    name: "경기",
+    description: "지역",
+    createdAt: "24-01-01",
+    updatedAt: "24-01-02",
+  },
+  {
+    authRequired: false,
+    posts: [
+      "string", // postId
+    ],
+    _id: "003",
+    name: "음식점",
+    description: "스팟",
+    createdAt: "24-01-01",
+    updatedAt: "24-01-02",
+  },
+  {
+    authRequired: false,
+    posts: [
+      "string", // postId
+    ],
+    _id: "004",
+    name: "기본",
+    description: "지역",
+    createdAt: "24-01-01",
+    updatedAt: "24-01-02",
+  },
+];
+
+export const channelHandlers = [
   // 전체 채널 목록 핸들러
   http.get("/channels", () => {
-    return HttpResponse.json({
-      area: [
-        "서울",
-        "경기",
-        "인천",
-        "강원",
-        "충남",
-        "충북",
-        "세종",
-        "부산",
-        "울산",
-        "대구",
-        "경북",
-        "경남",
-        "전남",
-        "광주",
-        "전북",
-        "제주",
-        "전국",
-      ],
-      spot: [],
-    });
+    return HttpResponse.json(channels);
   }),
 
   // 특정 채널 핸들러
   http.get("/channels/:channelName", ({ params }) => {
     const { channelName } = params;
-    return HttpResponse.json(channelName);
+    const DEFAULT_CHANNEL = channels.filter(
+      (channel) => (channel.name = "기본")
+    );
+    for (let item of channels) {
+      if (item.name === channelName) return HttpResponse.json(item);
+    }
+    return HttpResponse.json(DEFAULT_CHANNEL);
   }),
 
   // 새로운 채널 생성 핸들러
-  http.post("/channels/create", () => {
-    return HttpResponse.json({ message: "New channel created!" });
+  http.post("/channels/create", async ({ request }) => {
+    interface ChannelRequest {
+      authRequired: boolean;
+      name: string;
+      description: string;
+    }
+
+    const requestBody: ChannelRequest =
+      (await request.json()) as ChannelRequest;
+    if (!requestBody.name || !requestBody.description)
+      return new HttpResponse(null, {
+        status: 404,
+        statusText:
+          "Need a valid request form {authRequired: Boolean, name: string, description: string}",
+      });
+
+    const newChannel = {
+      authRequired: requestBody.authRequired || false,
+      posts: [],
+      _id: `channel_${Date.now()}`,
+      name: requestBody.name,
+      description: requestBody.description,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+    channels.push(newChannel);
+    return HttpResponse.json(newChannel);
   }),
 ];
-
-// (Post, Like, Comment)
-
-// (Notification, Follow)
-// (Message)
-// Search

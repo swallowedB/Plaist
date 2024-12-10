@@ -1,3 +1,3 @@
 import { http, HttpResponse } from "msw";
 
-export const SearchHandlers = [];
+export const searchHandlers = [];
