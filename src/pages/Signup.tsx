@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import BackgroundLayout from "../layouts/BackgroundLayout";
 import InputField from "../components/InputField";
 import { NavLink } from "react-router";
 import "../css/font.css";
+import passwordIcon from "../assets/images/passwordIcon.svg";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -69,21 +69,20 @@ export default function Signup() {
   }, [form]);
 
   return (
-    <div className="w-72 h-96 relative ">
+    <div className="w-72 h-96 relative mb-[80px]">
       <div className="text-center">
-        <h1 className="text-sky-700 text-4xl font-normal rubik-bubbles mb-4">
+        <h1 className="text-primary-600 text-[40px] font-normal font-rubik ">
           Welcome
         </h1>
-        <p className="text-blue-900 text-xs">
+        <p className="text-primary-700 text-[12px] font-pretendard">
           Please fill the details and create account
         </p>
       </div>
-      <form className="mt-10 space-y-4">
+      <form className="mt-10">
         <InputField
           id="nickname"
-          label="Nickname"
           name="nickname"
-          placeholder="Enter your nickname"
+          placeholder="Nickname"
           value={form.nickname}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -91,40 +90,48 @@ export default function Signup() {
         />
         <InputField
           id="email"
-          label="Email"
           type="email"
           name="email"
-          placeholder="Enter your email"
+          placeholder="Email"
           value={form.email}
           onChange={handleChange}
           onBlur={handleBlur}
           error={touched.email && formErrors.email}
         />
-        <InputField
-          id="password"
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          value={form.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.password && formErrors.password}
-        />
+        <div className="relative">
+          <InputField
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.password && formErrors.password}
+            className="relative z-10"
+            />
+          <img 
+            src={passwordIcon}
+            className="absolute -mt-[58px] ml-[250px] z-50 -px-10"
+            />
+        </div>
         <button
           type="submit"
-          className={`w-full h-14 ${
-            isFormValid ? "bg-blue-500" : "bg-blue-300"
-          } text-white rounded-3xl font-bold`}
+          className={`
+            w-full h-14 mt-[18px] font-pretendard
+            rounded-[50px]
+            ${
+            isFormValid ? "bg-primary-500" : "bg-primary-400"
+            } text-white`}
           disabled={!isFormValid}
         >
           회원가입
         </button>
       </form>
-      <div className="text-center mt-4">
-        <p className="text-gray-500 text-xs">
+      <div className="text-center mt-[22px]">
+        <p className="text-custom-gray text-xs font-pretendard text-[13px]">
           Already have an account?{" "}
-          <NavLink to="/login" className="text-sky-700 font-medium">
+          <NavLink to="/login" className="text-primary-600 font-pretendard text-[13px]">
             Sign in
           </NavLink>
         </p>

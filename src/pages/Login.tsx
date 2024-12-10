@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import BackgroundLayout from "../layouts/BlurGlassLayout";
 import InputField from "../components/InputField";
 import { NavLink } from "react-router";
 import "../css/tailwind.css";
+import passwordIcon from "../assets/images/passwordIcon.svg";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -69,55 +69,60 @@ export default function Signup() {
   }, [form]);
 
   return (
-    <BackgroundLayout>
       <div className="w-72 h-96 relative ">
         <div className="text-center">
-          <h1 className="text-sky-700 text-4xl font-rubik mb-4">Login</h1>
+          <h1 className="text-primary-600 text-[40px] font-rubik mb-[52px]">Login</h1>
         </div>
-        <form className="mt-10 space-y-4">
+        <form className="mt-10">
           <InputField
             id="email"
-            label="Email"
             type="email"
             name="email"
-            placeholder="Enter your email"
+            placeholder="Email"
             value={form.email}
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.email && formErrors.email}
-            className={`"text-pretendard"`}
           />
-          <InputField
-            id="password"
-            label="Password"
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            value={form.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.password && formErrors.password}
-            className="text-pretendard"
-          />
+          <div className="relative">
+            <InputField
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={form.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.password && formErrors.password}
+              className="relative z-10"
+              />
+            <img 
+              src={passwordIcon}
+              className="absolute -mt-[58px] ml-[250px] z-50 -px-10"
+              />
+          </div>
           <button
             type="submit"
-            className={`w-full h-14 ${
-              isFormValid ? "bg-blue-500" : "bg-blue-300"
-            } text-white rounded-3xl font-pretendard`}
+            className={`
+              w-full h-14 mt-[18px]
+              rounded-[50px] font-pretendard
+              ${
+              isFormValid ? "bg-primary-500" : "bg-primary-400"
+            } text-white`}
             disabled={!isFormValid}
           >
             회원가입
           </button>
+          
         </form>
-        <div className="text-center mt-4">
-          <p className="text-gray-500 text-xs font-pretendard">
+        <div className="text-center mt-[22px]">
+          <p className="text-custom-gray text-xs font-pretendard text-[13px]">
             Don’t have an account?{" "}
-            <NavLink to="/signup" className="text-sky-700 font-pretendard">
+            <NavLink to="/signup" className="text-primary-600 font-pretendard text-[13px]">
               Sign up
             </NavLink>
           </p>
         </div>
       </div>
-    </BackgroundLayout>
   );
 }
