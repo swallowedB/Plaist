@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BackgroundLayout from "../layouts/BlurGlassLayout";
 import InputField from "../components/InputField";
 import { NavLink } from "react-router";
-import "../css/font.css";
+import "../css/tailwind.css";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -69,53 +69,57 @@ export default function Signup() {
   }, [form]);
 
   return (
-    <div className="w-72 h-96 relative ">
-      <div className="text-center">
-        <h1 className="text-sky-700 text-4xl font-normal rubik-bubbles mb-4">
-          Login
-        </h1>
+    <BackgroundLayout>
+      <div className="w-72 h-96 relative ">
+        <div className="text-center">
+          <h1 className="text-sky-700 text-4xl font-rubik mb-4">
+            Login
+          </h1>
+        </div>
+        <form className="mt-10 space-y-4">
+          <InputField
+            id="email"
+            label="Email"
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            value={form.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.email && formErrors.email}
+            className={`"text-pretendard"`}
+          />
+          <InputField
+            id="password"
+            label="Password"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            value={form.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.password && formErrors.password}
+            className="text-pretendard"
+          />
+          <button
+            type="submit"
+            className={`w-full h-14 ${
+              isFormValid ? "bg-blue-500" : "bg-blue-300"
+            } text-white rounded-3xl font-pretendard`}
+            disabled={!isFormValid}
+          >
+            회원가입
+          </button>
+        </form>
+        <div className="text-center mt-4">
+          <p className="text-gray-500 text-xs font-pretendard">
+            Don’t have an account?{" "}
+            <NavLink to="/signup" className="text-sky-700 font-pretendard">
+              Sign up
+            </NavLink>
+          </p>
+        </div>
       </div>
-      <form className="mt-10 space-y-4">
-        <InputField
-          id="email"
-          label="Email"
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          value={form.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.email && formErrors.email}
-        />
-        <InputField
-          id="password"
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          value={form.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.password && formErrors.password}
-        />
-        <button
-          type="submit"
-          className={`w-full h-14 ${
-            isFormValid ? "bg-blue-500" : "bg-blue-300"
-          } text-white rounded-3xl font-bold`}
-          disabled={!isFormValid}
-        >
-          회원가입
-        </button>
-      </form>
-      <div className="text-center mt-4">
-        <p className="text-gray-500 text-xs">
-          Don’t have an account?{" "}
-          <NavLink to="/signup" className="text-sky-700 font-medium">
-            Signup
-          </NavLink>
-        </p>
-      </div>
-    </div>
+    </BackgroundLayout>
   );
 }

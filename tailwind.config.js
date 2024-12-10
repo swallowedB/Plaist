@@ -8,6 +8,13 @@ export default {
         pretendard: ['Pretendard', 'san-serif'],
         rubik: ['"Rubik Bubbles"', 'cursive'],
       },
+      fontWeight: {
+        regular: 400,
+        medium: 500,
+        semiBold: 600,
+        bold: 700,
+        extraBold: 800,
+      },
       // 커스텀 컬러
       colors: {
         primary: {
@@ -26,7 +33,8 @@ export default {
           gray: '#7d848d',
           black: '#2e2e2e',
           graylight: '#D7D7D7',
-          input: '#FEFEFE'
+          input: '#FEFEFE',
+          icon: '#6E6776',
         }
       },
       // 커스텀 그림자

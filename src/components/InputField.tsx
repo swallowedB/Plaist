@@ -8,6 +8,7 @@ interface InputFieldProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void; // onBlur 속성 추가
   error?: string | false;
+  className: string;
 }
 
 export default function InputField({
