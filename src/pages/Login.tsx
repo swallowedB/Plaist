@@ -72,9 +72,7 @@ export default function Signup() {
     <BackgroundLayout>
       <div className="w-72 h-96 relative ">
         <div className="text-center">
-          <h1 className="text-sky-700 text-4xl font-rubik mb-4">
-            Login
-          </h1>
+          <h1 className="text-sky-700 text-4xl font-rubik mb-4">Login</h1>
         </div>
         <form className="mt-10 space-y-4">
           <InputField
