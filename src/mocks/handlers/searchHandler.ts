@@ -1,10 +1,10 @@
 import { http, HttpResponse } from "msw";
 
 export const searchHandlers = [
-  
   // 사용자 혹은 게시물을 검색합니다.
   http.get(`/search/all/:searchQuery`, ({ params }) => {
     const { searchQuery } = params;
+    console.log(searchQuery);
     if (searchQuery === "안녕") {
       return HttpResponse.json([
         {
