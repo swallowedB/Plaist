@@ -1,0 +1,38 @@
+/* bg  */
+@layer base {
+  .custom-blue-100 {
+    background-color: #d8e7f9;
+  }
+  .custom-blue-200 {
+    background-color: #b1d0f4;
+  }
+  .custom-blue-300 {
+    background-color: #8ab8ee;
+  }
+  .custom-blue-400 {
+    background-color: #63a1e8;
+  }
+  .custom-blue-500 {
+    background-color: #3b89e2;
+  }
+  .custom-blue-600 {
+    background-color: #3b89e2;
+  }
+  .custom-blue-700 {
+    background-color: #245288;
+  }
+  .custom-blue-800 {
+    background-color: #18375b;
+  }
+  .custom-blue-800 {
+    background-color: #0c1b2d;
+  }
+  /* text */
+  .custom-text-gray {
+    color: #7d848d;
+  }
+
+  .custom-text-black {
+    color: #2e2e2e;
+  }
+}
