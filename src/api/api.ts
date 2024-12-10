@@ -41,15 +41,6 @@ export const postChannel = async () => {
 // 사용자 혹은 게시물을 검색합니다.
 export const getSearchByUserAndPost = async (searchQuery: string) => {
   try {
-<<<<<<< HEAD
-    const response = await axiosInstance.get(`/search/all/${searchQuery}`);
-    console.log(searchQuery)
-    return response.data;
-  } catch (error) {
-    console.error("API 호출 중 오류 발생:", error);
-  }
-};
-=======
     const response = await axios.get(`/search/all/${searchQuery}`);
     return response.data;
   } catch (error) {
@@ -68,4 +59,3 @@ export const getSearchByUser = async (searchQuery: string) => {
     throw error; // 오류를 호출자에게 전달
   }
 };
->>>>>>> 4979338ef4270f385792cdbe5d0cd76ab70cfc9c
