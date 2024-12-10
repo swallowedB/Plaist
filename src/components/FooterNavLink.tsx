@@ -13,8 +13,8 @@ export default function FooterNavLink({ to, icon, label }: FooterNavLinkProps) {
       to={to}
       className={({ isActive }) =>
         isActive
-          ? "text-xs text-blue-600 font-bold"
-          : "text-xs text-zinc-800 font-medium"
+          ? "text-xs text-primary-600 font-pretendard font-medium"
+          : "text-xs text-custom-icon font-pretendard font-medium"
       }
     >
       <figure className="flex flex-col items-center justify-center">
