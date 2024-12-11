@@ -13,8 +13,17 @@ import ChannelTest from "./pages/test/ChannelTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 import MainLayout from "./layouts/MainLayout";
+import { useEffect } from "react";
+import { useAuthStore } from "./stores/authStore";
+import secureLocalStorage from "react-secure-storage";
 
 export default function App() {
+  const login = useAuthStore((state) => state.login);
+  useEffect(() => {
+    if (secureLocalStorage.getItem("token")) {
+      login(secureLocalStorage.getItem("token"));
+    }
+  }, []);
   return (
     <Routes>
       {/* Root Layout */}

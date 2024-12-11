@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import InputField from "../components/InputField";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import "../css/font.css";
 import passwordIcon from "../assets/images/passwordIcon.svg";
+import { postSingUp } from "../api/api";
 
 export default function Signup() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     nickname: "",
     email: "",
@@ -122,6 +124,10 @@ export default function Signup() {
             rounded-[50px]
             ${isFormValid ? "bg-primary-500" : "bg-primary-400"} text-white`}
           disabled={!isFormValid}
+          onClick={(e) => {
+            e.preventDefault();
+            postSingUp(form.email, form.nickname, form.password, navigate);
+          }}
         >
           회원가입
         </button>

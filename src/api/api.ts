@@ -1,5 +1,7 @@
 import axios from "axios";
 import { axiosInstance } from "./axios";
+import { useAuthStore } from "../stores/authStore";
+import secureLocalStorage from "react-secure-storage";
 
 // 전체 채널 목록을 불러옵니다.
 export const getChannelList = async () => {
@@ -78,6 +80,73 @@ export const deleteFollow = async (userId: string) => {
       params: { userId }, // 데이터 전달 방식을 params로 변경
     });
     return response.data;
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+  }
+};
+
+// 새로운 사용자를 생성합니다.
+export const postSingUp = async (
+  email: string,
+  fullName: string,
+  password: string,
+  navigate: NavigateFunction
+) => {
+  try {
+    const { status, data } = await axiosInstance.post(`/signup`, {
+      email,
+      fullName,
+      password,
+    });
+
+    if (status === 200) {
+      navigate("/login");
+      console.log(data);
+    } else {
+      console.log("failed");
+    }
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+  }
+};
+
+// 로그인
+export const postLogin = async (
+  email: string,
+  password: string,
+  navigate: NavigateFunction
+) => {
+  try {
+    const { status, data } = await axiosInstance.post(`/login`, {
+      email,
+      password,
+    });
+    if (status === 200) {
+      console.log(data);
+      useAuthStore.setState({
+        accessToken: data.token,
+        isLoggedIn: true,
+      });
+      secureLocalStorage.setItem("token", data.token);
+      navigate("/");
+    }
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+  }
+};
+
+// 로그아웃
+export const postLogout = async (navigate: NavigateFunction) => {
+  try {
+    const { status } = await axiosInstance.post(`/logout`);
+    if (status === 200) {
+      secureLocalStorage.removeItem("token");
+      navigate("/login");
+      useAuthStore.setState({
+        accessToken: null,
+        isLoggedIn: false,
+      });
+    }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
   }

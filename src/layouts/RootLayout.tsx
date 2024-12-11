@@ -1,7 +1,10 @@
 import { Outlet } from "react-router";
 import Nav from "../components/Root/Nav";
+import { useAuthStore } from "../stores/authStore";
 
 export default function RootLayout() {
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
   return (
     <div className="flex flex-col w-screen h-screen overflow-hidden bg-white">
       {/* Main Content */}
