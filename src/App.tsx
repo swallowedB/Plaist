@@ -35,14 +35,13 @@ export default function App() {
         </Route>
         {/* Blur 적용하지 않은 페이지 */}
 
-        <Route path="category" element={<Category />} />
-
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
         </Route>
 
         <Route path="createCourse" element={<CreateCourse />} />
-        <Route path="/my-page" element={<MyPage />} />
+        <Route path="my-page" element={<MyPage />} />
+        <Route path="category" element={<Category />} />
 
         <Route path="channelTest" element={<ChannelTest />} />
         <Route path="userTest" element={<UserTest />} />

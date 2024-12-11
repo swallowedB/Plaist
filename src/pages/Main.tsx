@@ -23,12 +23,14 @@ export default function Main() {
   }
   return (
     <>
-      <div className="flex flex-col justify-between">
-        <MainTitle />
-        <MainBestCourse />
-        <TestCard />
+      <div className="flex flex-col bg-blue-400 min-w-[767px]">
+        <div className="h-[47px] bg-red-400"></div>
+        <div className="px-[60px] mt-[59px]">
+          <MainTitle />
+          <MainBestCourse />
+          <TestCard />
+        </div>
       </div>
-      <div>Main token: {token}</div>
     </>
   );
 }

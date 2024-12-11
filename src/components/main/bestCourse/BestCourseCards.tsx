@@ -1,5 +1,7 @@
+import BestCourseCardItem from "./BestCourseCardItem";
+
 export default function BestCourseCards() {
   return (
-    <div>BestCourseCards</div>
+    <div><BestCourseCardItem /></div>
   )
 }
