@@ -43,6 +43,10 @@ export default {
         'backblue': '0px 4px 10px 0px rgba(49, 78, 141, 0.25);',
         'blue': '0px 4px 10px 0px rgba(180, 184, 201, 0.40)',
         'nav': '0px -6px 10px 0px rgba(168, 178, 198, 0.45);'
+      },
+      backgroundImage: {
+        'custom-radial1': 'radial-gradient(circle, #3b89e2, #62a1e8)',
+        'custom-radial2' : 'radial-gradient(circle, #62A1E8, #B1D0F3)'
       }
 
     },
