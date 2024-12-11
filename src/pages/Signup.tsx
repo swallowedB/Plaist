@@ -109,20 +109,18 @@ export default function Signup() {
             onBlur={handleBlur}
             error={touched.password && formErrors.password}
             className="relative z-10"
-            />
-          <img 
+          />
+          <img
             src={passwordIcon}
             className="absolute -mt-[58px] ml-[250px] z-50 -px-10"
-            />
+          />
         </div>
         <button
           type="submit"
           className={`
             w-full h-14 mt-[18px] font-pretendard
             rounded-[50px]
-            ${
-            isFormValid ? "bg-primary-500" : "bg-primary-400"
-            } text-white`}
+            ${isFormValid ? "bg-primary-500" : "bg-primary-400"} text-white`}
           disabled={!isFormValid}
         >
           회원가입
@@ -131,7 +129,10 @@ export default function Signup() {
       <div className="text-center mt-[22px]">
         <p className="text-custom-gray text-xs font-pretendard text-[13px]">
           Already have an account?{" "}
-          <NavLink to="/login" className="text-primary-600 font-pretendard text-[13px]">
+          <NavLink
+            to="/login"
+            className="text-primary-600 font-pretendard text-[13px]"
+          >
             Sign in
           </NavLink>
         </p>

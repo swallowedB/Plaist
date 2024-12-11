@@ -1,14 +1,14 @@
 export default function CreateCourse() {
   return (
     <>
-      <h1 className="left-[226px] top-[166px] absolute text-white text-6xl font-normal font-['Rubik Bubbles'] leading-10">
+      <h1 className="relative text-white text-6xl font-normal font-['Rubik Bubbles'] leading-10">
         My Course
       </h1>
-      <button className="w-72 h-12 left-[241px] top-[263px] absolute bg-blue-500 rounded-3xl shadow border-2 border-white/50 flex items-center justify-center text-center text-white text-xl font-semibold font-['Pretendard'] leading-7">
+      <button className="relative w-72 h-12  bg-blue-500 rounded-3xl shadow border-2 border-white/50 flex items-center justify-center text-center text-white text-xl font-semibold font-['Pretendard'] leading-7">
         나만의 코스 만들기
       </button>
 
-      <div className="w-96 h-20 left-[176px] top-[385px] absolute">
+      <div className="w-96 h-20 relative">
         <div className="left-[126px] top-0 absolute text-center text-white text-lg font-semibold font-['Pretendard'] leading-7">
           마이 코스를 검색하세요
         </div>
