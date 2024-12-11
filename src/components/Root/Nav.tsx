@@ -10,7 +10,7 @@ export default function Nav() {
           <FooterNavLink to="/category" icon="category_icon" label="카테고리" />
           <FooterNavLink to="/" icon="feed_icon" label="피드" />
           <FooterNavLink
-            to="/createCourse"
+            to="/create-course/view-my-course"
             icon="create_icon"
             label="코스생성"
           />
