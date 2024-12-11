@@ -151,3 +151,14 @@ export const postLogout = async (navigate: NavigateFunction) => {
     console.error("API 호출 중 오류 발생:", error);
   }
 };
+
+// 알림창
+export const getNotification = async () => {
+  try {
+    const response = await axios.get(`/notifications`);
+    return Array.isArray(response.data) ? response.data : [];
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+    return []; // 오류 시 빈 배열 반환
+  }
+};
