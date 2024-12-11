@@ -41,7 +41,7 @@ const Notification = () => {
   }
 
   return (
-    <div className="font-pretendard absolute inset-0 flex items-center justify-center">
+    <div className="font-pretendard absolute inset-0 flex items-center justify-center pointer-events-none">
       <div className="w-[647px] h-auto p-8 bg-opacity-80 backdrop-blur-md rounded-3xl shadow-lg flex flex-col">
         <div className="sticky top-0 bg-opacity-80 backdrop-blur-md z-10">
           <div className="flex justify-between items-center mb-6">
