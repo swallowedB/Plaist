@@ -69,60 +69,53 @@ export default function Signup() {
   }, [form]);
 
   return (
-      <div className="w-72 h-96 relative ">
-        <div className="text-center">
-          <h1 className="text-primary-600 text-[40px] font-rubik mb-[52px]">Login</h1>
-        </div>
-        <form className="mt-10">
-          <InputField
-            id="email"
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.email && formErrors.email}
-          />
-          <div className="relative">
-            <InputField
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={form.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.password && formErrors.password}
-              className="relative z-10"
-              />
-            <img 
-              src={passwordIcon}
-              className="absolute -mt-[58px] ml-[250px] z-50 -px-10"
-              />
-          </div>
-          <button
-            type="submit"
-            className={`
-              w-full h-14 mt-[18px]
-              rounded-[50px] font-pretendard
-              ${
-              isFormValid ? "bg-primary-500" : "bg-primary-400"
-            } text-white`}
-            disabled={!isFormValid}
-          >
-            회원가입
-          </button>
-          
-        </form>
-        <div className="text-center mt-[22px]">
-          <p className="text-custom-gray text-xs font-pretendard text-[13px]">
-            Don’t have an account?{" "}
-            <NavLink to="/signup" className="text-primary-600 font-pretendard text-[13px]">
-              Sign up
-            </NavLink>
-          </p>
-        </div>
+    <div className="relative w-72 h-96 ">
+      <div className="text-center">
+        <h1 className="mb-4 text-4xl font-normal text-sky-700 rubik-bubbles">
+          Login
+        </h1>
       </div>
+      <form className="mt-10 space-y-4">
+        <InputField
+          id="email"
+          label="Email"
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          value={form.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.email && formErrors.email}
+        />
+        <InputField
+          id="password"
+          label="Password"
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          value={form.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.password && formErrors.password}
+        />
+        <button
+          type="submit"
+          className={`w-full h-14 ${
+            isFormValid ? "bg-blue-500" : "bg-blue-300"
+          } text-white rounded-3xl font-bold`}
+          disabled={!isFormValid}
+        >
+          회원가입
+        </button>
+      </form>
+      <div className="mt-4 text-center">
+        <p className="text-xs text-gray-500">
+          Don’t have an account?{" "}
+          <NavLink to="/signup" className="font-medium text-sky-700">
+            Signup
+          </NavLink>
+        </p>
+      </div>
+    </div>
   );
 }
