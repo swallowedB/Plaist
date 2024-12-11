@@ -1,4 +1,4 @@
-import images from "../../../utils/importImages";
+import images from "../../../assets/images/importImages";
 
 export default function BestCourseCardItem({
   title,

@@ -1,4 +1,4 @@
-import images from "../../../utils/importImages";
+import images from "../../../assets/images/importImages";
 import AllCourseSortToggle from "./AllCourseSortToggle";
 
 export default function SearchInputFeild() {
@@ -18,7 +18,6 @@ export default function SearchInputFeild() {
           name="search"
         />
       </label>
-  
     </>
   );
 }

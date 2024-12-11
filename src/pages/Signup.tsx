@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router";
 import "../css/font.css";
 import passwordIcon from "../assets/images/passwordIcon.svg";
 import { postSingUp } from "../api/api";
+import "../css/blur.css";
 
 export default function Signup() {
   const navigate = useNavigate();

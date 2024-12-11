@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router";
 
 import RootLayout from "./layouts/RootLayout";
-import BlurGlassLayout from "./layouts/BlurGlassLayout";
+import BlurGlassLayout from "./layouts/LoginLayout";
 import Category from "./pages/Category";
-import CreateCourse from "./pages/CreateCourse";
+
 import Main from "./pages/Main";
 import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
@@ -13,6 +13,12 @@ import ChannelTest from "./pages/test/ChannelTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 import MainLayout from "./layouts/MainLayout";
+
+import CreateCourseLayout from "./layouts/CreateCourseLayout";
+import ViewMycourse from "./pages/createcourse/ViewMycourse";
+import SelectStyle from "./pages/createcourse/SelectStyle";
+import SelectCourseMain from "./pages/createcourse/SelectCourseMain";
+import MapView from "./pages/createcourse/MapView";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/authStore";
 import secureLocalStorage from "react-secure-storage";
@@ -38,8 +44,21 @@ export default function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
         </Route>
+        <Route element={<CreateCourseLayout />}>
+          {/* create-course 경로 */}
+          <Route path="create-course">
+            {/* view-my-course 경로 */}
+            <Route path="view-my-course" element={<ViewMycourse />} />
 
-        <Route path="createCourse" element={<CreateCourse />} />
+            {/* create-my-course 하위 경로 */}
+            <Route path="flow1-select-style" element={<SelectStyle />} />
+            <Route path="flow2-select-course">
+              <Route path="" element={<SelectCourseMain />} />
+              <Route path="map-view" element={<MapView />} />
+            </Route>
+          </Route>
+        </Route>
+
         <Route path="my-page" element={<MyPage />} />
         <Route path="category" element={<Category />} />
 
