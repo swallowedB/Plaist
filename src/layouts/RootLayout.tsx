@@ -9,7 +9,7 @@ export default function RootLayout() {
       <HeaderIcon />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto no-scrollbar">
+      <main className="flex-1 overflow-y-auto min-w-[767px] no-scrollbar">
         <Outlet />
       </main>
       <Nav />
