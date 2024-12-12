@@ -1,8 +1,7 @@
 import axios from "axios";
 import { axiosInstance } from "./axios";
-import { useAuthStore } from "../stores/authStore";
-import secureLocalStorage from "react-secure-storage";
 import { setCookie } from "../utills/Auth/setCookie";
+import { deleteCookie } from "../utills/Auth/deleteCookie";
 
 // 전체 채널 목록을 불러옵니다.
 export const getChannelList = async () => {
@@ -124,10 +123,6 @@ export const postLogin = async (
     });
     if (status === 200) {
       setCookie("token", data.token);
-      useAuthStore.setState({
-        accessToken: data.token,
-        isLoggedIn: true,
-      });
       navigate("/");
     }
   } catch (error) {
@@ -140,12 +135,8 @@ export const postLogout = async (navigate: NavigateFunction) => {
   try {
     const { status } = await axiosInstance.post(`/logout`);
     if (status === 200) {
-      secureLocalStorage.removeItem("token");
+      deleteCookie("token");
       navigate("/login");
-      useAuthStore.setState({
-        accessToken: null,
-        isLoggedIn: false,
-      });
     }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);

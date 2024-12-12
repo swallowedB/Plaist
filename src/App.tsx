@@ -25,22 +25,12 @@ import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 // 권한 관련
-import { useEffect } from "react";
-import { useAuthStore } from "./stores/authStore";
+
 import UserInfo from "./components/main/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
 import SucessMyPost from "./pages/createcourse/SucessMyPost";
-import { getCookie } from "./utills/Auth/getCookie";
 
 export default function App() {
-  const login = useAuthStore((state) => state.login);
-  useEffect(() => {
-    const token = getCookie("token");
-    if (token) {
-      login(token);
-    }
-  }, [login]);
-
   return (
     <Routes>
       {/* Root Layout */}
