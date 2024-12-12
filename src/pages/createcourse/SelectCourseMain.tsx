@@ -1,31 +1,22 @@
-import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
-import CreateNewMy from "./../../components/createMyCourseMain/CreateNewMy";
+import CreateNewMy from "../../components/createMyCourseMain/CreatNewCoursebox";
+import CreatedCoursebox from "./../../components/createMyCourseMain/CreatedCoursebox";
 
 export default function MapView() {
-  const [step, setStep] = useState(2);
-
-  useEffect(() => {
-    console.log("Step changed: ", step);
-  }, [step]);
-
-  const progressImage = images[`progress_bar${step}`] || images.progress_bar1;
-
   return (
     <div>
       <aside>
         <figure>
           {/* 이미지 렌더링 */}
-          <img src={progressImage} alt={`Progress bar step ${step}`} />
+          <img src={images.progress_bar2} alt="Progress bar-select-course" />
         </figure>
       </aside>
       <section>
         <CreateNewMy />
+        <CreatedCoursebox />
       </section>
       {/* 단계 변경 버튼 예시 */}
-      <button onClick={() => setStep((prevStep) => Math.min(prevStep + 1, 4))}>
-        다음
-      </button>
+      <button>다음</button>
     </div>
   );
 }

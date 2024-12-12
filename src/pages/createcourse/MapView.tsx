@@ -1,21 +1,11 @@
-import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
 
 export default function SelectCourseMain() {
-  const [step, setStep] = useState(2);
-
-  useEffect(() => {
-    console.log("Step changed: ", step);
-  }, [step]);
-
-  const progressImage = images[`progress_bar${step}`] || images.progress_bar1;
-
   return (
     <div>
       <aside>
         <figure>
-          {/* 이미지 렌더링 */}
-          <img src={progressImage} alt={`Progress bar step ${step}`} />
+          <img src={images.progress_bar2} alt="Progress bar-select-course2" />
         </figure>
       </aside>
       <section>
@@ -24,14 +14,12 @@ export default function SelectCourseMain() {
           <div className="w-96 h-80 rounded-tl-2xl rounded-tr-2xl">
             지도 뷰 들어갈 위치
           </div>
-          서치바 <SearchBar />
+          서치바
           <div>검색 결과 렌더링될 위치</div>
         </section>
       </section>
       {/* 단계 변경 버튼 예시 */}
-      <button onClick={() => setStep((prevStep) => Math.min(prevStep + 1, 4))}>
-        다음
-      </button>
+      <button>다음</button>
     </div>
   );
 }
