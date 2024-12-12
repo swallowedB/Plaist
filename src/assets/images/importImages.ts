@@ -22,6 +22,9 @@ import dropdown_icon_up from "../images/dropdowm_icon_down.svg";
 import dropdown_icon_down from "../images/dropdowm_icon_up.svg";
 import start_create_button from "../images/start_to_create_button.svg";
 import plus_icon from "../images/plus_icon.svg";
+import course_selected_icon from "../images/course_selected_icon.svg";
+import course_delete_icon from "../images/course_delete_icon.svg";
+
 const images: {
   [key: string]: string;
 } = {
@@ -49,6 +52,8 @@ const images: {
   dropdown_icon_down,
   start_create_button,
   plus_icon,
+  course_selected_icon,
+  course_delete_icon,
 };
 
 export default images;

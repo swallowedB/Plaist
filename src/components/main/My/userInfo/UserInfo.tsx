@@ -1,17 +1,17 @@
-import "../css/index.css";
-import MypageContents from "../components/main/My/MypageContents";
+import MypageUserInfo from "../MypageUserInfo";
 
-export default function MyPage() {
+export default function UserInfo() {
   return (
-    <>
+    <div>
       <div className="relative w-[767px] flex flex-col items-center h-screen mx-auto">
         {/* blur blue*/}
         <div className="absolute blur-bg-center"/>
 
           {/*glass 창 */}
-          <MypageContents />
+          <MypageUserInfo />
           
       </div>
-    </>
-  );
+
+    </div>
+  )
 }

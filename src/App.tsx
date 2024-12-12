@@ -28,6 +28,9 @@ import SearchTest from "./pages/test/SearchTest";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/authStore";
 import secureLocalStorage from "react-secure-storage";
+import UserInfo from "./components/main/My/userInfo/UserInfo";
+import ExpainCourse from "./pages/createcourse/ExpainCourse";
+import SucessMyPost from "./pages/createcourse/SucessMyPost";
 
 export default function App() {
   const login = useAuthStore((state) => state.login);
@@ -64,10 +67,13 @@ export default function App() {
               <Route path="" element={<SelectCourseMain />} />
               <Route path="map-view" element={<MapView />} />
             </Route>
+            <Route path="flow3-explain-course" element={<ExpainCourse />} />
+            <Route path="flow4-sucesss-post" element={<SucessMyPost />} />
           </Route>
         </Route>
 
         <Route path="my-page" element={<MyPage />} />
+        <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />
         <Route path="userTest" element={<UserTest />} />
         <Route path="authTest" element={<AuthTest />} />
