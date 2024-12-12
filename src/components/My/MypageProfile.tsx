@@ -20,5 +20,5 @@ export default function MypageProfile() {
       <p className="text-primary-700 text-[24px] font-bold font-pretendard mt-[8px]">Timmy</p>
       <p className="text-primary-600 text-[14px] font-regular font-pretendard">Timmy2@gmail.com</p>    
     </>
-  )
+  );
 }

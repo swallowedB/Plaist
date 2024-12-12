@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
 
 export default function BestCourseCardItem({
@@ -5,6 +6,7 @@ export default function BestCourseCardItem({
   rating,
   location,
   imageUrl,
+  contentId,
 }: ICourseCardItemProps) {
   return (
     <div className="w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
@@ -20,7 +22,7 @@ export default function BestCourseCardItem({
           <img
             src={images.like_icon}
             alt="Like Icon"
-            className='h-[13px] w-[14px]'
+            className="h-[13px] w-[14px]"
           />
         </div>
       </div>
@@ -29,7 +31,11 @@ export default function BestCourseCardItem({
       <div className="w-full px-4 mt-2">
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-custom-black font-pretendard">{title}</p>
+          <NavLink to={`/view-course-content/${contentId}`}>
+            <p className="text-sm font-medium text-custom-black font-pretendard">
+              {title}
+            </p>
+          </NavLink>
           <div className="flex flex-row items-center">
             {/* 하트 아이콘 */}
             <div className="flex flex-row items-center">
@@ -51,7 +57,9 @@ export default function BestCourseCardItem({
             alt="Location Icon"
             className="w-4 h-4 mr-1"
           />
-          <p className="font-pretendard text-[13px] text-custom-gray">{location}</p>
+          <p className="font-pretendard text-[13px] text-custom-gray">
+            {location}
+          </p>
         </div>
       </div>
     </div>
