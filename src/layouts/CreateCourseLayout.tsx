@@ -1,14 +1,17 @@
 import { Outlet } from "react-router";
+import Blur from "./Blur";
 
 export default function MainLayout() {
   return (
     <div
       id="background"
-      className="relative flex items-center justify-center h-screen overflow-hidden bg-white"
+      className="flex flex-col justify-center overflow-hidden bg-primary-400 "
     >
+      <Blur />
       <section
         id="main-content-box"
-        className="relative flex justify-center w-[100vw] h-[100vh]  bg-transparent"
+        className="flex justify-center mx-auto 
+         overflow-auto scrollbar-hide bg-transparent"
       >
         <Outlet />
       </section>

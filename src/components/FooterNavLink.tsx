@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import images from "../utils/importImages";
+import images from "../assets/images/importImages";
 
 interface FooterNavLinkProps {
   to: string;
