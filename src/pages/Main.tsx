@@ -23,8 +23,7 @@ export default function Main() {
   }
   return (
     <>
-      <div className="flex flex-col bg-primary-200 min-w-[767px]">
-        <div className="h-[47px] bg-red-400"></div>
+      <div className="flex flex-col bg-primary-200 min-w-[767px] ">
         <div className="px-[60px] mt-[59px]">
           <MainTitle />
           <MainBestCourse />

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function AllCourseSortToggle({ activeSort, onSortChange }) {
   return (
     <div className="flex justify-end w-full mt-[18px] gap-3 ">
