@@ -6,7 +6,7 @@ import LoginLayout from "./layouts/LoginLayout";
 import Category from "./pages/Category";
 // 메인
 import MainLayout from "./layouts/MainLayout";
-import Main from "./pages/Main";
+import Main from "./pages/MainFeed";
 // 코스 생성 관련
 import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
