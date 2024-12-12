@@ -9,7 +9,6 @@ import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import AuthTest from "./pages/test/AuthTest";
-import ChannelTest from "./pages/test/ChannelTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 import MainLayout from "./layouts/MainLayout";
@@ -34,17 +33,13 @@ export default function App() {
           <Route path="signup" element={<Signup />} />
         </Route>
         {/* Blur 적용하지 않은 페이지 */}
-
         <Route path="category" element={<Category />} />
-
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
         </Route>
 
         <Route path="createCourse" element={<CreateCourse />} />
         <Route path="/my-page" element={<MyPage />} />
-
-        <Route path="channelTest" element={<ChannelTest />} />
         <Route path="userTest" element={<UserTest />} />
         <Route path="authTest" element={<AuthTest />} />
         <Route path="searchTest" element={<SearchTest />} />

@@ -67,19 +67,19 @@ export default function Menu() {
   };
 
   return (
-    <section className="menubox flex w-[509px] h-[47px] bg-white rounded-[30px] mt-[32px] z-20 font-pretendard text-[#3B89E2] justify-center items-center z-100 shadow-default relative">
+    <section className="menubox flex w-[509px] h-[47px] bg-white rounded-[30px] mt-[32px] z-20 font-pretendard text-[#3B89E2] justify-center items-center z-100 shadow-blue relative px-[28px]">
       {/* Location Menu */}
       <div
-        className="w-[200px] h-[24px] flex justify-between"
+        className="h-[24px] flex"
         role="menuItem"
         onClick={() => menuClicked("location")}
       >
-        <img src={positionIcon} alt="position icon" />
-        <p>{location}</p>
+        <img src={positionIcon} alt="position icon" className=" mr-[69px]" />
+        <p className="mr-[75px]">{location}</p>
         <img
           src={arrowIcon}
           alt="arrow icon"
-          className={`w-[10px] h-[24px] transform transition-transform duration-300 ${
+          className={`w-[10px] h-[24px] transform transition-transform duration-300 mx-[12px] ${
             isMenuClicked.location ? "rotate-180" : ""
           }`}
         />
@@ -87,7 +87,7 @@ export default function Menu() {
 
       {/* Spot Menu */}
       <div
-        className="w-[200px] h-[24px] flex justify-between"
+        className="w-[222px] h-[24px] flex justify-between"
         role="menuItem"
         onClick={() => menuClicked("spot")}
       >
