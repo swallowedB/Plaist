@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import MyAllCourse from "../../components/viewMycourse/MyAllCourse";
 
 export default function ViewMycourse() {
   return (
@@ -21,9 +22,11 @@ export default function ViewMycourse() {
             <h2 className="text-white font-pretendard text-[18px] leading-7 font-semiBold mb-[11px]">
               마이코스를 검색하세요
             </h2>
-            <div className="mb-[42px]">검색바 위치</div>
+
           </div>
-          <div id="viewmycourse-gridbox--mainarea" className=""></div>
+          {/* 메인 에리어 */}
+          <MyAllCourse />
+
           <nav>
             {/* 상대 경로로 이동 */}
             <NavLink to="../flow1-select-style">생성 버튼</NavLink>
