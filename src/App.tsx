@@ -28,7 +28,7 @@ import SearchTest from "./pages/test/SearchTest";
 import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
 
-import UserInfo from "./components/main/My/userInfo/UserInfo";
+import UserInfo from "./components/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
 import SucessMyPost from "./pages/createcourse/SucessMyPost";
 

@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router";
 import { postLogout } from "../../api/api";
-import profileImg_N from "../../../assets/images/profileImg_N_icon.svg";
-import exprofilImg from "../../../assets/images/exProfileImg.svg";
-import profile_arrow from "../../../assets/images/profile_arrow.svg";
+import profileImg_N from "../../assets/images/profileImg_N_icon.svg";
+import exprofilImg from "../../assets/images/exProfileImg.svg";
+import profile_arrow from "../../assets/images/profile_arrow.svg";
 import UserInfoForm from "./userInfo/UserInfoForm";
 
 export default function MypageUserInfo() {
@@ -44,7 +44,7 @@ export default function MypageUserInfo() {
 
             {/* 사용자 정보 */}
             <div className="my-[58px]">
-              <UserInfoForm  
+              <UserInfoForm
                 nicknameLabel="닉네임"
                 emailLabel="이메일"
                 regionLabel="지역"
