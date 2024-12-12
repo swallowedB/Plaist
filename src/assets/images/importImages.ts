@@ -24,6 +24,8 @@ import start_create_button from "../images/start_to_create_button.svg";
 import plus_icon from "../images/plus_icon.svg";
 import course_selected_icon from "../images/course_selected_icon.svg";
 import course_delete_icon from "../images/course_delete_icon.svg";
+import course_background_img from "../images/course_background_img.svg";
+import like_not_filled_border_icon from "../images/like_not_filled_border_icon.svg";
 
 const images: {
   [key: string]: string;
@@ -54,6 +56,8 @@ const images: {
   plus_icon,
   course_selected_icon,
   course_delete_icon,
+  course_background_img,
+  like_not_filled_border_icon,
 };
 
 export default images;
