@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
-import SearchBar from "../../components/SearchBar.test";
 
-export default function MapView() {
+export default function SelectCourseMain() {
   const [step, setStep] = useState(2);
 
   useEffect(() => {
     console.log("Step changed: ", step);
   }, [step]);
 
-  // 안전하게 처리하는 방법
-  const progressImage = images[`progress_bar${step}`] || images.progress_bar1; // step에 맞는 이미지가 없으면 기본 이미지 사용
+  const progressImage = images[`progress_bar${step}`] || images.progress_bar1;
 
   return (
     <div>

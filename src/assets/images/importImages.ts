@@ -14,6 +14,7 @@ import progress_bar4 from "../images/progress_bar4.svg";
 import dropdown_icon_up from "../images/dropdowm_icon_down.svg";
 import dropdown_icon_down from "../images/dropdowm_icon_up.svg";
 import start_create_button from "../images/start_to_create_button.svg";
+import plus_icon from "../images/plus_icon.svg";
 const images: {
   [key: string]: string;
 } = {
@@ -33,6 +34,7 @@ const images: {
   dropdown_icon_up,
   dropdown_icon_down,
   start_create_button,
+  plus_icon,
 };
 
 export default images;
