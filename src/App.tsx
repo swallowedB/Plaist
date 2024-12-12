@@ -31,12 +31,16 @@ import secureLocalStorage from "react-secure-storage";
 import UserInfo from "./components/main/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
 import SucessMyPost from "./pages/createcourse/SucessMyPost";
+import { getCookie } from "./utills/Auth/getCookie";
 
 export default function App() {
   const login = useAuthStore((state) => state.login);
   useEffect(() => {
-    if (secureLocalStorage.getItem("token")) {
-      login(secureLocalStorage.getItem("token"));
+    alert(123);
+    if (getCookie("token")) {
+      alert(123);
+      login(getCookie("token"));
+      alert(123);
     }
   }, []);
   return (

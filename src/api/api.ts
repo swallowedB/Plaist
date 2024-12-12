@@ -2,6 +2,7 @@ import axios from "axios";
 import { axiosInstance } from "./axios";
 import { useAuthStore } from "../stores/authStore";
 import secureLocalStorage from "react-secure-storage";
+import { setCookie } from "../utills/Auth/setCookie";
 
 // 전체 채널 목록을 불러옵니다.
 export const getChannelList = async () => {
@@ -122,12 +123,8 @@ export const postLogin = async (
       password,
     });
     if (status === 200) {
-      console.log(data);
-      useAuthStore.setState({
-        accessToken: data.token,
-        isLoggedIn: true,
-      });
-      secureLocalStorage.setItem("token", data.token);
+      setCookie("token", data.token);
+
       navigate("/");
     }
   } catch (error) {
