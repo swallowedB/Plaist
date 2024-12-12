@@ -5,10 +5,10 @@ import HeaderIcon from "../components/HeaderIcon";
 export default function RootLayout() {
   return (
     <div className="flex flex-col w-screen h-screen overflow-hidden bg-white mx-auto">
-<!--     <div className="flex flex-col w-screen h-screen overflow-hidden"> -->
+      {/*     <div className="flex flex-col w-screen h-screen overflow-hidden"> */}
       {/* Header */}
       <HeaderIcon />
-      
+
       {/* Main Content */}
       <main className="flex-1 overflow-y-auto no-scrollbar">
         <Outlet />
