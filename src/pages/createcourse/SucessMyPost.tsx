@@ -13,11 +13,18 @@ export default function ExplainCourse() {
         </figure>
       </aside>
 
-      <section className="flex flex-col items-center justify-center">
-        <h1 className="text-[36px] font-bold text-primary-800 mb-[60px]">
-          코스생성이 완료되었습니다
+      <section className="flex flex-col items-center justify-center mt-[99px] font-pretendard">
+        <p className="text-[36px] mb-[50px]">🎉</p>
+        <h1 className="text-[36px] leading-0 font-bold text-primary-800 text-center mb-[13px]">
+          코스생성이 <br />
+          완료되었습니다
         </h1>
-        <p>주변에 공유해서 베스트 코스러가 되어보세요</p>
+        <p className="text-[16px] text-custom-gray mb-[100px]">
+          주변에 공유해서 베스트 코스러가 되어보세요
+        </p>
+        <figure className="mb-[194px]">
+          <img src={images.big_logo_after_posting} alt="logo" />
+        </figure>
         <CreateMyCourseFlowButton
           to="/"
           isCompleteThisPage={isCompletedThisPage}
