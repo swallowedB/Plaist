@@ -6,7 +6,7 @@ import LoginLayout from "./layouts/LoginLayout";
 import Category from "./pages/Category";
 // 메인
 import MainLayout from "./layouts/MainLayout";
-import Main from "./pages/Main";
+import Main from "./pages/MainFeed";
 // 코스 생성 관련
 import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
@@ -25,6 +25,8 @@ import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 // 권한 관련
+import CourseContent from "./pages/CourseContent";
+import CourseContentLayout from "./layouts/CourseContentLayout";
 
 import UserInfo from "./components/main/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
@@ -43,6 +45,13 @@ export default function App() {
         {/* Blur 적용하지 않은 페이지 */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
+          <Route element={<CourseContentLayout />}>
+            <Route
+              path="/view-course-content/:contentId"
+              element={<CourseContent />}
+            />
+          </Route>
+
           <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
