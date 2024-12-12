@@ -1,38 +1,23 @@
-import { NavLink } from "react-router";
-import MyAllCourse from "../../components/viewMycourse/MyAllCourse";
+import ViewMyAllCourse from "../../components/viewMycourse/ViewMyAllCourse";
+import FixedCreateButton from "./../../components/viewMycourse/FixedCreateButton";
+import ViewMyCourseHeader from "./../../components/viewMycourse/ViewMyCourseHeader";
 
 export default function ViewMycourse() {
   return (
     <>
-      <>
-        <div
-          id="content-area-container"
-          className=" bg-primary-200 min-w-[767px]"
-        >
-          <div
-            id="viewmycourse-flexbox--toparea"
-            className="flex flex-col justify-center items-center"
-          >
-            <h1 className="text-[60px] font-rubik text-white mt-[166px] mb-[37px]">
-              Mycourse
-            </h1>
-            <button className="w-[285px] h-[47px] bg-primary-500 text-white font-pretendard text-[20px] font-semiBold rounded-[30px] shadow-backblue border-white mb-[64px]">
-              나만의 코스 만들기
-            </button>
-            <h2 className="text-white font-pretendard text-[18px] leading-7 font-semiBold mb-[11px]">
-              마이코스를 검색하세요
-            </h2>
+      {/* <div className="relative flex flex-col items-center h-screen bg-white min-w-[767px] "> */}
+      {/* 백그라운드 블러 */}
 
-          </div>
-          {/* 메인 에리어 */}
-          <MyAllCourse />
-
-          <nav>
-            {/* 상대 경로로 이동 */}
-            <NavLink to="../flow1-select-style">생성 버튼</NavLink>
-          </nav>
+      <div
+        id="relative content-area-container"
+        className=" relative flex flex-col items-center h-screen min-w-[767px] blur-bg-center"
+      >
+        <div className="z-10">
+          <ViewMyCourseHeader />
+          <ViewMyAllCourse />
+          <FixedCreateButton />
         </div>
-      </>
+      </div>
     </>
   );
 }

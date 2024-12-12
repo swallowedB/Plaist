@@ -5,7 +5,6 @@ import HeaderIcon from "../components/HeaderIcon";
 export default function RootLayout() {
   return (
     <div className="flex flex-col w-screen h-screen overflow-hidden mx-auto">
-      {/*     <div className="flex flex-col w-screen h-screen overflow-hidden"> */}
       {/* Header */}
       <HeaderIcon />
 
