@@ -1,9 +1,11 @@
 import BestCourseCards from "./bestCourse/BestCourseCards";
 
-export default function MainBestCourse() {
+export default function MainBestCourse({className}) {
   return (
     <div>
-      <div className="text-white text-2xl font-extrabold font-['Pretendard'] leading-7 mb-[15px]">
+      <div className={`
+        ${className}
+        text-white text-2xl font-extrabold font-pretendard leading-7 mb-[15px]`}>
         Best Course
       </div>
       <div>

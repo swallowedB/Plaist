@@ -23,11 +23,14 @@ export default function Main() {
   }
   return (
     <>
-      <div className="flex flex-col bg-primary-200 min-w-[767px]">
-        <div className="h-[47px] bg-red-400"></div>
+    
+      <div className="relative flex flex-col items-center h-screen bg-white min-w-[767px] ">
+        {/* 백그라운드 블러 */}
+        <div className="absolute blur-bg-left z-[0]"/>
+
         <div className="px-[60px] mt-[59px]">
-          <MainTitle />
-          <MainBestCourse />
+          <MainTitle className={`relative z-100`} />
+          <MainBestCourse className={`relative z-100`} />
           <MainAllCourse />
         </div>
       </div>

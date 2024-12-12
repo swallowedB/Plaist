@@ -1,5 +1,4 @@
 import images from "../../../assets/images/importImages";
-import AllCourseSortToggle from "./AllCourseSortToggle";
 
 export default function SearchInputFeild() {
   return (

@@ -1,7 +1,7 @@
 import { useCreateCourseStore } from "../../stores/createCourseStore";
 import searchIcon from "../../assets/images/search_icon.svg";
 
-export default function Search() {
+export default function MyCourseSearch() {
   const searchInput = useCreateCourseStore((state) => state.searchInput);
   const setSearchInput = useCreateCourseStore((state) => state.setSearchInput);
 
@@ -12,7 +12,7 @@ export default function Search() {
     <form
       action="submit"
       onSubmit={(e) => formSubmit(e)}
-      className="z-10 text-center relative"
+      className="z-10 text-center relative mb-[42px]"
     >
       <label
         htmlFor="search"

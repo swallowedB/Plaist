@@ -8,7 +8,7 @@ import Category from "./pages/Category";
 import MainLayout from "./layouts/MainLayout";
 import Main from "./pages/Main";
 // 코스 생성 관련
-import CreateCourseLayout from "./layouts/CreateCourseLayout";
+import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
 import SelectStyle from "./pages/createcourse/SelectStyle";
 import SelectCourseMain from "./pages/createcourse/SelectCourseMain";
@@ -51,19 +51,18 @@ export default function App() {
           <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
-        <Route element={<CreateCourseLayout />}>
-          <Route element={<CreateCourseLayout />}>
-            {/* create-course 경로 */}
-            <Route path="create-course">
-              {/* view-my-course 경로 */}
-              <Route path="view-my-course" element={<ViewMycourse />} />
 
-              {/* create-my-course 하위 경로 */}
-              <Route path="flow1-select-style" element={<SelectStyle />} />
-              <Route path="flow2-select-course">
-                <Route path="" element={<SelectCourseMain />} />
-                <Route path="map-view" element={<MapView />} />
-              </Route>
+        {/* create-course 경로 */}
+        <Route path="create-course">
+          {/* view-my-course 경로 */}
+          <Route element={<ViewMyCourseLayout />}>
+            <Route path="view-my-course" element={<ViewMycourse />} />
+
+            {/* create-my-course 하위 경로 */}
+            <Route path="flow1-select-style" element={<SelectStyle />} />
+            <Route path="flow2-select-course">
+              <Route path="" element={<SelectCourseMain />} />
+              <Route path="map-view" element={<MapView />} />
             </Route>
           </Route>
         </Route>
