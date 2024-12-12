@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Nav from "../components/Root/Nav";
-import HeaderIcon from "../components/HeaderIcon";
+import HeaderIcon from "../components/Root/HeaderIcon";
 
 export default function RootLayout() {
   return (
@@ -9,7 +9,7 @@ export default function RootLayout() {
       <HeaderIcon />
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto no-scrollbar">
+      <main className="flex-1 overflow-y-auto min-w-[767px] no-scrollbar">
         <Outlet />
       </main>
       <Nav />

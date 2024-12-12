@@ -19,7 +19,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 // 상단바
 import Notification from "./pages/Notification";
-import HamburgerMenu from "./pages/HamburgerMenu";
+// import HamburgerMenu from "./pages/HamburgerMenu";
 // 테스트
 import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
@@ -28,6 +28,7 @@ import SearchTest from "./pages/test/SearchTest";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/authStore";
 import secureLocalStorage from "react-secure-storage";
+import UserInfo from "./components/main/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
 import SucessMyPost from "./pages/createcourse/SucessMyPost";
 
@@ -48,11 +49,10 @@ export default function App() {
           <Route path="signup" element={<Signup />} />
         </Route>
         {/* Blur 적용하지 않은 페이지 */}
-
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/hamburger-meuu" element={<HamburgerMenu />} />
+          {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
 
         {/* create-course 경로 */}
@@ -73,6 +73,7 @@ export default function App() {
         </Route>
 
         <Route path="my-page" element={<MyPage />} />
+        <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />
         <Route path="userTest" element={<UserTest />} />
         <Route path="authTest" element={<AuthTest />} />

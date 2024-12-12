@@ -5,12 +5,12 @@ export default function Category() {
   return (
     <section className="blurTop grid place-items-center bg-white">
       <header className="text-white grid place-items-center mt-[103px] z-10">
-        <p className="font-pretendard font-regular text-[21px] leading-[21px] block">
+        <h2 className="font-pretendard font-regular text-[21px] leading-[21px]">
           Your Shortcut to Great Days
-        </p>
-        <p className="font-rubik font-normal text-6xl leading-[80px] block">
+        </h2>
+        <h1 className="font-rubik font-normal text-6xl leading-[80px]">
           Plaist
-        </p>
+        </h1>
       </header>
       <Menu />
       <section className="category--glassbox mt-[32px] px-[30px] py-[30px] overflow-hidden relative">

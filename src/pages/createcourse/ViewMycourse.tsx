@@ -1,8 +1,8 @@
+import ViewMyCourseHeader from "../../components/viewMycourse/ViewMyCourseHeader";
 import ViewMyAllCourse from "../../components/viewMycourse/ViewMyAllCourse";
-import FixedCreateButton from "./../../components/viewMycourse/FixedCreateButton";
-import ViewMyCourseHeader from "./../../components/viewMycourse/ViewMyCourseHeader";
+import FixedCreateButton from "../../components/viewMycourse/FixedCreateButton";
 
-export default function ViewMycourse() {
+export default function CreateCourse() {
   return (
     <>
       {/* <div className="relative flex flex-col items-center h-screen bg-white min-w-[767px] "> */}
