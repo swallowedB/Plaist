@@ -29,29 +29,29 @@ export default function BestCourseCardItem({
       <div className="w-full px-4 mt-2">
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-900">{title}</span>
-          <span className="flex text-sm leading-5 text-center text-gray-700">
+          <p className="text-sm font-medium text-custom-black font-pretendard">{title}</p>
+          <div className="flex flex-row items-center">
             {/* 하트 아이콘 */}
-            <div className="relative flex items-center justify-center mr-0 right-[2.42px]">
+            <div className="flex flex-row items-center">
               <img
                 src={images.like_filled_icon}
                 alt="Like Filled Icon"
                 className="h-[9px] w-[10px]"
               />
+              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-[2px]">{`${rating}k`}</p>
             </div>
-            {`${rating}k`}
-          </span>
+          </div>
         </div>
 
         {/* 위치 */}
-        <div className="flex items-center mt-1 text-xs text-gray-500">
+        <div className="flex items-center mt-1">
           {/* 주소 아이콘 */}
           <img
             src={images.location_icon}
             alt="Location Icon"
             className="w-4 h-4 mr-1"
           />
-          <p>{location}</p>
+          <p className="font-pretendard text-[13px] text-custom-gray">{location}</p>
         </div>
       </div>
     </div>
