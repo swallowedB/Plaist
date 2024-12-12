@@ -124,7 +124,10 @@ export const postLogin = async (
     });
     if (status === 200) {
       setCookie("token", data.token);
-
+      useAuthStore.setState({
+        accessToken: data.token,
+        isLoggedIn: true,
+      });
       navigate("/");
     }
   } catch (error) {
