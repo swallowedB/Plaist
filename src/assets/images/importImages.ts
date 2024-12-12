@@ -1,7 +1,14 @@
 import category_icon from "../images/catetgory_icon.svg";
+import clickcategory_icon from "../images/clickcategory_icon.svg";
 import create_icon from "../images/create_icon.svg";
+import clickcreate_icon from "../images/clickcreate_icon.svg";
 import feed_icon from "../images/feed_icon.svg";
+import clickfeed_icon from "../images/clickfeed_icon.svg";
 import mypage_icon from "../images/mypage_icon.svg";
+import clickmypage_icon from "../images/clickmypage_icon.svg";
+import playlist_logo from "../images/playlist-logo.svg";
+import notification_icon from "../images/notification-icon.svg";
+import hamburger_icon from "../images/hamburger-icon.svg";
 import like_icon from "../images/like_icon.svg";
 import course_img from "../images/course_img.svg";
 import like_filled_icon from "../images/like_filled_icon.svg";
@@ -19,9 +26,16 @@ const images: {
   [key: string]: string;
 } = {
   category_icon,
+  clickcategory_icon,
   create_icon,
+  clickcreate_icon,
   feed_icon,
+  clickfeed_icon,
   mypage_icon,
+  clickmypage_icon,
+  playlist_logo,
+  notification_icon,
+  hamburger_icon,
   like_icon,
   course_img,
   like_filled_icon,
