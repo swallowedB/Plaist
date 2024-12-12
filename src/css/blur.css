@@ -7,10 +7,10 @@
     content: "";
     flex-shrink: 0;
     border-radius: 500px;
-    background: radial-gradient(50% 50% at 50% 50%, #3B89E2 0%, #B1D0F3 100%);
+    background: radial-gradient(50% 50% at 50% 50%, #3b89e2 0%, #b1d0f3 100%);
     filter: blur(100px);
     width: 500px;
-    height: 500px;;
+    height: 500px;
     position: absolute;
     border: red;
     top: 50%;
@@ -22,7 +22,7 @@
     content: "";
     flex-shrink: 0;
     border-radius: 407px;
-    background: radial-gradient(50% 50% at 50% 50%, #62A1E8 0%, #B1D0F3 100%);
+    background: radial-gradient(50% 50% at 50% 50%, #62a1e8 0%, #b1d0f3 100%);
     filter: blur(100px);
     width: 407px;
     height: 407px;
@@ -43,7 +43,7 @@
     content: "";
     flex-shrink: 0;
     border-radius: 462px;
-    background: radial-gradient(50% 50% at 50% 50%, #3B89E2 0%, #B1D0F3 100%);
+    background: radial-gradient(50% 50% at 50% 50%, #3b89e2 0%, #b1d0f3 100%);
     filter: blur(100px);
     width: 462px;
     height: 462px;
@@ -56,7 +56,7 @@
     content: "";
     flex-shrink: 0;
     border-radius: 407px;
-    background: radial-gradient(50% 50% at 50% 50%, #62A1E8 0%, #B1D0F3 100%);
+    background: radial-gradient(50% 50% at 50% 50%, #62a1e8 0%, #b1d0f3 100%);
     filter: blur(150px);
     width: 407px;
     height: 407px;
@@ -81,7 +81,7 @@
   }
   &:after {
     content: "";
-    background-image: radial-gradient(circle, #62A1E8, #B1D0F3);
+    background-image: radial-gradient(circle, #62a1e8, #b1d0f3);
     width: 250px;
     height: 250px;
     filter: blur(100px);
