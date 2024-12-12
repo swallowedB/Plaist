@@ -10,13 +10,15 @@ type ChannelType = {
   updatedAt: string;
 };
 
-interface ChannelStore {
+interface State {
   isMenuClicked: { location: boolean; spot: boolean };
   location: string;
   spot: string;
   channelList: ChannelType[];
   locationList: ChannelType[];
   spotList: ChannelType[];
+}
+interface Action {
   toggleMenu: (menu: "location" | "spot") => void;
   setLocation: (location: string) => void;
   setSpot: (spot: string) => void;
@@ -24,8 +26,7 @@ interface ChannelStore {
   setLocationList: (channels: ChannelType[]) => void;
   setSpotList: (channels: ChannelType[]) => void;
 }
-
-export const useChannelStore = create<ChannelStore>((set) => ({
+export const useChannelStore = create<State & Action>((set) => ({
   isMenuClicked: { location: false, spot: false },
   location: "서울",
   spot: "전체",
