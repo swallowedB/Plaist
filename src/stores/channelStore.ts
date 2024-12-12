@@ -28,7 +28,7 @@ interface Action {
 }
 export const useChannelStore = create<State & Action>((set) => ({
   isMenuClicked: { location: false, spot: false },
-  location: "서울",
+  location: "전체",
   spot: "전체",
   channelList: [],
   locationList: [],
