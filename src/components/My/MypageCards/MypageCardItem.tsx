@@ -1,5 +1,5 @@
 import img from "../../../../assets/images/tryImg.png"
-import images from "../../../../assets/images/importImages"
+import images from "../../../assets/images/importImages"
 
 export default function MypageCardItem() {
   return (
