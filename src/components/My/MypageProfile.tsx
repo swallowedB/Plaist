@@ -1,6 +1,6 @@
 import { Link } from "react-router"
-import profileICon from "../../../assets/images/profile_icon.svg";
-import exprofileImg from "../../../assets/images/exProfileImg.svg";
+import profileICon from "../../assets/images/profile_icon.svg";
+import exprofileImg from "../../assets/images/exProfileImg.svg";
 
 export default function MypageProfile() {
   return (

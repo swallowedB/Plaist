@@ -31,7 +31,7 @@ export default function Nav() {
               "create_icon",
               "clickcreate_icon"
             )}
-            label="코스생성"
+            label="마이 코스"
           />
           <FooterNavLink
             to={isLoggedIn ? "/my-page" : "/login"}
