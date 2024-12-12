@@ -1,5 +1,5 @@
 import "../css/index.css";
-import MypageContents from "../components/main/My/MypageContents";
+import MypageContents from "../components/My/MypageContents";
 
 export default function MyPage() {
   return (

@@ -5,13 +5,11 @@ export default function UserInfo() {
     <div>
       <div className="relative w-[767px] flex flex-col items-center h-screen mx-auto">
         {/* blur blue*/}
-        <div className="absolute blur-bg-center"/>
+        <div className="absolute blur-bg-center" />
 
-          {/*glass 창 */}
-          <MypageUserInfo />
-          
+        {/*glass 창 */}
+        <MypageUserInfo />
       </div>
-
     </div>
-  )
+  );
 }

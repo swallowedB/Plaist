@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 export default function RangeSlider() {
-  const [value, setValue] = useState(50);
+  const [value, setValue] = useState<number>(50); // 초기값을 number로 지정
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(Number(e.target.value)); // 문자열을 숫자로 변환
   };
 
   return (
