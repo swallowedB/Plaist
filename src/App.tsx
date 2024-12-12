@@ -28,6 +28,8 @@ import SearchTest from "./pages/test/SearchTest";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/authStore";
 import secureLocalStorage from "react-secure-storage";
+import CourseContent from "./pages/CourseContent";
+import CourseContentLayout from "./layouts/CourseContentLayout";
 
 export default function App() {
   const login = useAuthStore((state) => state.login);
@@ -48,6 +50,13 @@ export default function App() {
         {/* Blur 적용하지 않은 페이지 */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
+          <Route element={<CourseContentLayout />}>
+            <Route
+              path="/view-course-content/:contentId"
+              element={<CourseContent />}
+            />
+          </Route>
+
           <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>

@@ -23,10 +23,9 @@ export default function Main() {
   }
   return (
     <>
-    
       <div className="relative flex flex-col items-center h-screen bg-white min-w-[767px] ">
         {/* 백그라운드 블러 */}
-        <div className="absolute blur-bg-left z-[0]"/>
+        <div className="absolute blur-bg-left z-[0]" />
 
         <div className="px-[60px] mt-[59px]">
           <MainTitle className={`relative z-100`} />

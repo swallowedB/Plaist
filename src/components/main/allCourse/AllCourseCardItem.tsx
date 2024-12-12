@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
 
 export default function AllCourseCardItem({
@@ -5,6 +6,7 @@ export default function AllCourseCardItem({
   rating,
   location,
   imageUrl,
+  contentId,
 }) {
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
@@ -29,7 +31,11 @@ export default function AllCourseCardItem({
       <div className="w-full px-4 mt-3">
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-custom-black font-pretendard">{title}</span>
+          <NavLink to={`/view-course-content/${contentId}`}>
+            <span className="text-sm font-medium text-custom-black font-pretendard">
+              {title}
+            </span>
+          </NavLink>
           <div className="flex flex-row items-center">
             {/* 하트 아이콘 */}
             <div className="flex flex-row items-center">
@@ -51,7 +57,9 @@ export default function AllCourseCardItem({
             alt="Location Icon"
             className="w-4 h-4 mr-1"
           />
-          <p className="font-pretendard text-[13px] text-custom-gray">{location}</p>
+          <p className="font-pretendard text-[13px] text-custom-gray">
+            {location}
+          </p>
         </div>
       </div>
     </div>

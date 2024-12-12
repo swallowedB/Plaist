@@ -9,18 +9,21 @@ export default function BestCourseCards() {
         rating={4.7}
         location={"Seoul, GangNam"}
         imageUrl={images.course_img}
+        contentId={"10"}
       />
       <BestCourseCardItem
         title={"✨ 2025 새해 모임"}
         rating={4.7}
         location={"Seoul, GangNam"}
         imageUrl={images.course_img}
+        contentId={"20"}
       />
       <BestCourseCardItem
         title={"✨ 2025 새해 모임"}
         rating={4.7}
         location={"Seoul, GangNam"}
         imageUrl={images.course_img}
+        contentId={"30"}
       />
     </div>
   );
