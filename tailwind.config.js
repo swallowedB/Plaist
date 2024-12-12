@@ -44,6 +44,7 @@ export default {
         'blue': '0px 4px 10px 0px rgba(180, 184, 201, 0.40)',
         'nav': '0px -6px 10px 0px rgba(168, 178, 198, 0.45);',
         'strong': '0px 8px 20px 0px rgba(132, 150, 185, 0.45)',
+        'blurback': '0px 20px 10px 0px rgba(216, 231, 249, 0.25)',
       },
     },
   },
