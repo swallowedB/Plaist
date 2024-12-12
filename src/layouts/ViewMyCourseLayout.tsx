@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-export default function MainLayout() {
+export default function ViewMycourse() {
   return (
     <div
       id="background"

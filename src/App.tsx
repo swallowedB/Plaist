@@ -58,12 +58,13 @@ export default function App() {
           {/* view-my-course 경로 */}
           <Route element={<ViewMyCourseLayout />}>
             <Route path="view-my-course" element={<ViewMycourse />} />
-          </Route>
-          {/* create-my-course 하위 경로 */}
-          <Route path="flow1-select-style" element={<SelectStyle />} />
-          <Route path="flow2-select-course">
-            <Route path="" element={<SelectCourseMain />} />
-            <Route path="map-view" element={<MapView />} />
+
+            {/* create-my-course 하위 경로 */}
+            <Route path="flow1-select-style" element={<SelectStyle />} />
+            <Route path="flow2-select-course">
+              <Route path="" element={<SelectCourseMain />} />
+              <Route path="map-view" element={<MapView />} />
+            </Route>
           </Route>
         </Route>
 
