@@ -60,11 +60,7 @@ export default function SelectTag() {
       <aside>
         <figure>
           {/* 이미지 렌더링 */}
-          <img
-            src={images.progress_bar1}
-            alt="Progress bar-select-course"
-            className="mt-[84px]"
-          />
+          <img src={images.progress_bar1} alt="Progress bar-select-course" />
         </figure>
       </aside>
       <h1 className="font-pretendard text-[36px] font-bold mt-[80px] mb-[120px]">
