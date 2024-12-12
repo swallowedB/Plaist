@@ -12,10 +12,9 @@
     width: 500px;
     height: 500px;
     position: absolute;
-    border: red;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     z-index: 1;
   }
   &:before {
@@ -24,12 +23,12 @@
     border-radius: 407px;
     background: radial-gradient(50% 50% at 50% 50%, #62a1e8 0%, #b1d0f3 100%);
     filter: blur(100px);
-    width: 407px;
-    height: 407px;
+    width: 357px;
+    height: 357px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 50%);
+    transform: translate(-50%, 100%);
     z-index: 2;
   }
 }

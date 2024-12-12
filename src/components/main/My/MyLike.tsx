@@ -1,6 +1,6 @@
 import MypageCards from "./MypageCards/MypageCards";
 
-export default function MypageMyCourse() {
+export default function MyLike() {
   return (
     <div>
       <MypageCards />
