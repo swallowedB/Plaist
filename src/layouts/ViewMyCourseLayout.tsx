@@ -4,7 +4,7 @@ export default function ViewMycourse() {
   return (
     <div
       id="background"
-      className="relative flex items-center justify-center h-screen overflow-hidden bg-white"
+      className="relative flex items-center justify-center h-screen overflow-hidden bg-white mt-[95px]"
     >
       <section
         id="main-content-box"

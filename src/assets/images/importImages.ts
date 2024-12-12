@@ -24,6 +24,8 @@ import start_create_button from "../images/start_to_create_button.svg";
 import plus_icon from "../images/plus_icon.svg";
 import course_selected_icon from "../images/course_selected_icon.svg";
 import course_delete_icon from "../images/course_delete_icon.svg";
+import congratulation_icon from "../images/congratulation_icon.svg";
+import big_logo_after_posting from "../images/big_logo_after_posting.svg";
 
 const images: {
   [key: string]: string;
@@ -54,6 +56,8 @@ const images: {
   plus_icon,
   course_selected_icon,
   course_delete_icon,
+  congratulation_icon,
+  big_logo_after_posting,
 };
 
 export default images;
