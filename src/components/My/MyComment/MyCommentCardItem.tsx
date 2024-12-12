@@ -1,18 +1,18 @@
-import images from "../../../../assets/images/importImages"
+import images from "../../../assets/images/importImages"
 
 export default function MyCommentCardItem() {
   return (
     <div>
       <div className={`
-        w-[542px] h-[122px] rounded-2xl bg-white shadow-strong
-        relative flex flex-col items-center justify-center p-2
+        w-[542px] h-[128px] rounded-2xl bg-white shadow-strong
+        relative flex flex-col items-center justify-center py-2 px-4
         `}>
 
         {/* card */}
-        <div className="flex flex-col items-center justify-between gap-[10px] w-[506px] h-[93px]">
+        <div className="flex flex-col items-center justify-between gap-[10px] w-[480px] h-[93px]">
           
           {/* contents #1 */}
-          <div className="flex flex-row items-center justify-between w-[506px]">
+          <div className="flex flex-row items-center justify-between w-full">
 
             {/* 게시글 제목 */}
             <p className="font-pretendard text-[16px] font-medium text-custom-black">✨ 2025 새해 모임</p>
@@ -22,7 +22,7 @@ export default function MyCommentCardItem() {
               <button
                 className="font-pretendard font-regular text-xs text-primary-600"
               >수정</button>
-              <p className="font-pretendard font-regular text-xs">|</p>
+              <p className="font-pretendard font-regular text-xs text-custom-gray">|</p>
               <button
                 className="font-pretendard font-regular text-xs text-primary-600"
               >삭제</button>
@@ -30,7 +30,7 @@ export default function MyCommentCardItem() {
           </div>
 
           {/* contents #2 */}
-          <div className="flex items-start w-[506px]">
+          <div className="flex items-start w-full">
             {/* 댓글 본문 미리보기 */}
             <p className="w-[419px] font-pretendard font-regular text-xs text-custom-gray">
               4~5명이 모여서 즐기기 딱 좋은 코스였습니다👍 좋은 정보 공유 감사합니다😇
@@ -38,7 +38,7 @@ export default function MyCommentCardItem() {
           </div>
 
           {/* contents #3 */}
-          <div className="flex flex-row items-center justify-between w-[506px]">
+          <div className="flex flex-row items-center justify-between w-full">
             
             {/* 주소 및 작성일 */}
             <div className="flex flex-row items-center mt-[3px] ">

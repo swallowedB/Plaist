@@ -12,8 +12,8 @@ export default function MypageContents() {
       flex justify-center items-center`}
     >
       <div
-        className={`w-[647px] h-full bg-white/25 rounded-[25px] 
-            border-2 border-white z-10 shadow-default mt-[250px]`}
+        className={`w-[647px] h-full bg-primary-300/15 rounded-[25px] 
+            border-2 border-white z-10 shadow-default mt-[180px]`}
       >
         {/*창 안의 요소*/}
         <div className="flex flex-col items-center mt-[117px] h-full">
