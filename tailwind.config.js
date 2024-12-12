@@ -42,7 +42,8 @@ export default {
         'default': '0px 8px 18px 0px rgba(168, 178, 198, 0.45)',
         'backblue': '0px 4px 10px 0px rgba(49, 78, 141, 0.25);',
         'blue': '0px 4px 10px 0px rgba(180, 184, 201, 0.40)',
-        'nav': '0px -6px 10px 0px rgba(168, 178, 198, 0.45);'
+        'nav': '0px -6px 10px 0px rgba(168, 178, 198, 0.45);',
+        'strong': '0px 8px 20px 0px rgba(132, 150, 185, 0.45)',
       },
     },
   },

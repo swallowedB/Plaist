@@ -28,6 +28,7 @@ import SearchTest from "./pages/test/SearchTest";
 import { useEffect } from "react";
 import { useAuthStore } from "./stores/authStore";
 import secureLocalStorage from "react-secure-storage";
+import UserInfo from "./components/main/My/userInfo/UserInfo";
 
 export default function App() {
   const login = useAuthStore((state) => state.login);
@@ -68,6 +69,7 @@ export default function App() {
         </Route>
 
         <Route path="my-page" element={<MyPage />} />
+        <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />
         <Route path="userTest" element={<UserTest />} />
         <Route path="authTest" element={<AuthTest />} />
