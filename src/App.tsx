@@ -19,7 +19,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 // 상단바
 import Notification from "./pages/Notification";
-import HamburgerMenu from "./pages/HamburgerMenu";
+// import HamburgerMenu from "./pages/HamburgerMenu";
 // 테스트
 import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
@@ -49,7 +49,7 @@ export default function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
           <Route path="/notification" element={<Notification />} />
-          <Route path="/hamburger-meuu" element={<HamburgerMenu />} />
+          {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
         <Route element={<CreateCourseLayout />}>
           <Route element={<CreateCourseLayout />}>
