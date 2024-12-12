@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 import { deleteFollow } from "../api/api";
-import { useAuthStore } from "../stores/authStore";
 import MainBestCourse from "../components/main/MainBestCourse";
 import MainTitle from "../components/main/MainTitle";
 import MainAllCourse from "../components/main/MainAllCourse";
 
 export default function Main() {
-  let token = useAuthStore((state) => state.accessToken);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,9 +16,7 @@ export default function Main() {
     };
     // fetchData();
   }, []);
-  if (typeof token === "object") {
-    token = token?.toString();
-  }
+
   return (
     <>
       <div className="relative flex flex-col items-center h-screen bg-white min-w-[767px] ">

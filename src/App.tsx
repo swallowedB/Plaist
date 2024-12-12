@@ -25,22 +25,14 @@ import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 // 권한 관련
-import { useEffect } from "react";
-import { useAuthStore } from "./stores/authStore";
-import secureLocalStorage from "react-secure-storage";
 import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
+
 import UserInfo from "./components/main/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
 import SucessMyPost from "./pages/createcourse/SucessMyPost";
 
 export default function App() {
-  const login = useAuthStore((state) => state.login);
-  useEffect(() => {
-    if (secureLocalStorage.getItem("token")) {
-      login(secureLocalStorage.getItem("token"));
-    }
-  }, []);
   return (
     <Routes>
       {/* Root Layout */}
