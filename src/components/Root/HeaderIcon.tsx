@@ -1,8 +1,14 @@
+import { useEffect, useState } from "react";
 import { useCookie } from "../../hooks/useCookie";
 import HeaderIconLink from "../HeaderNavLink";
+import { useLocation } from "react-router";
 
 export default function HeaderIcon() {
-  const isLoggedIn = useCookie();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+  useEffect(() => {
+    setIsLoggedIn(useCookie());
+  }, [location]);
   return (
     // 상단바 블러 backdrop-blur-sm
     <header className="fixed top-0 left-0 z-50 w-full h-16 backdrop-blur-sm">
