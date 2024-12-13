@@ -1,4 +1,4 @@
-import images from "../../../assets/images/importImages";
+import images from "../../../../assets/images/importImages";
 import CourseLocationCardItem from "./CourseLocationCardItem";
 
 export default function CourseLocationCards() {

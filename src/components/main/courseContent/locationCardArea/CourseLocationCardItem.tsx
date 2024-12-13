@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import images from "../../../assets/images/importImages";
+import images from "../../../../assets/images/importImages";
 
 export default function CourseLocationCardItem({
   title,
