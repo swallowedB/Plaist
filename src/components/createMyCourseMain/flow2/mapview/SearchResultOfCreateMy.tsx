@@ -1,6 +1,6 @@
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
-import SearchBar from "./../utills/SearchBar";
-import CreateMyCourseFlowButton from "./CreateMyCourseFlowButton";
+import SearchBar from "../../../utills/SearchBar";
+import CreateMyCourseFlowButton from "../../CreateMyCourseFlowButton";
 import { useState } from "react";
 
 export default function SearchResultOfCreateMy() {

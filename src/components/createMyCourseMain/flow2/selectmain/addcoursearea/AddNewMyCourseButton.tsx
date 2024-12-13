@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import images from "../../assets/images/importImages";
+import images from "../../../../../assets/images/importImages";
 
 export default function AddNewMyCourseButton() {
   const navigate = useNavigate();

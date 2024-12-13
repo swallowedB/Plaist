@@ -1,5 +1,5 @@
 import { useState } from "react";
-import images from "../../assets/images/importImages";
+import images from "../../../../../assets/images/importImages";
 
 interface AddedCourseboxProps {
   id: number;
