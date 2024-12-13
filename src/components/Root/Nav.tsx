@@ -6,12 +6,24 @@ export default function Nav() {
   const isLoggedIn = useCookie();
   const location = useLocation();
 
+  const hiddenPaths = [
+    "/create-course/flow1-select-style",
+    "/create-course/flow2-select-course",
+    "/create-course/flow3-explain-course",
+    "/create-course/flow4-success-post",
+  ];
+  const shouldHideFooter = hiddenPaths.includes(location.pathname);
+
   const getIcon = (path: string, defaultIcon: string, activeIcon: string) => {
     return location.pathname === path ? activeIcon : defaultIcon;
   };
 
   return (
-    <footer className="relative w-full h-20 bg-transparent border-t shadow-lg backdrop-blur-md border-zinc-200">
+    <footer
+      className={`relative w-full h-20 bg-transparent border-t shadow-lg backdrop-blur-md border-zinc-200 ${
+        shouldHideFooter ? "hidden" : ""
+      }`}
+    >
       <div className="absolute inset-0 flex items-center justify-center">
         <nav className="relative flex items-center justify-around w-full h-full max-w-3xl px-4">
           <FooterNavLink
