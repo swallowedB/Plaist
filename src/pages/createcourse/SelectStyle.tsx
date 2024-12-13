@@ -1,7 +1,9 @@
-import { NavLink } from "react-router";
+import { useState } from "react";
 import images from "../../assets/images/importImages";
+import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
 export default function StartCourse() {
+  const [isCompletedThisPage, setisCompletedThisPage] = useState(true);
   const withWhomList = [
     "친구",
     "연인",
@@ -68,9 +70,14 @@ export default function StartCourse() {
           })}
         </ul>
       </fieldset>
-      <nav className="w-[364px] h-[58px] leading-[55px] font-pretendard font-semibold rounded-[30px] bg-[#8AB8EE] text-center text-white">
-        <NavLink to="../flow2-select-course">다음</NavLink>
-      </nav>
+      <div className="flex flex-col items-center justify-center mb-[100px] mt-[146px]">
+        <CreateMyCourseFlowButton
+          to="/create-course/flow2-select-course"
+          isCompleteThisPage={isCompletedThisPage}
+        >
+          다음
+        </CreateMyCourseFlowButton>
+      </div>
     </div>
   );
 }
