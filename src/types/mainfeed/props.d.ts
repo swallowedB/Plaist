@@ -4,4 +4,5 @@ interface ICourseCardItemProps {
   location: string;
   imageUrl: string;
   contentId: string;
+  contact: string;
 }
