@@ -32,7 +32,7 @@ export default function AllCourseCardItem({
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
           <NavLink to={`/view-course-content/${contentId}`}>
-            <span className="text-sm font-medium text-custom-black font-pretendard">
+            <span className="text-sm font-medium text-custom-black font-pretendard max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap flex-grow">
               {title}
             </span>
           </NavLink>
@@ -50,14 +50,14 @@ export default function AllCourseCardItem({
         </div>
 
         {/* 위치 */}
-        <div className="flex items-center mt-1">
+        <div className="flex items-center mt-1 max-w-[275px]">
           {/* 주소 아이콘 */}
           <img
             src={images.location_icon}
             alt="Location Icon"
             className="w-4 h-4 mr-1"
           />
-          <p className="font-pretendard text-[13px] text-custom-gray">
+          <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
             {location}
           </p>
         </div>

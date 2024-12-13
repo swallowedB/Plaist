@@ -44,7 +44,7 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.form--button {
+.menu--button {
   height: 28px;
   padding: 0px 17px;
   border-width: 1.5px;
@@ -57,6 +57,6 @@
   line-height: 28px;
 }
 
-.form--button:hover {
+.menu--button:hover {
   background-color: #d8e7f9;
 }
