@@ -11,9 +11,9 @@ export default function MypageProfile() {
       <nav>
         <Link to="/user-info">
           <img
-            className="absolute top-[280px] left-[400px] shadow-backblue" 
+            className="absolute top-[190px] left-[340px]" 
             src={profileICon} 
-            alt="프로필 수정 아이콘" />
+            alt="회원 정보 변경" />
         
         </Link>
       </nav>
