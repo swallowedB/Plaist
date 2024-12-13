@@ -5,7 +5,7 @@ interface InputFieldProps {
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void; // onBlur 속성 추가
+  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   error?: string | false;
   className?: string;
 }
@@ -17,6 +17,7 @@ export default function InputField({
   placeholder = "",
   value,
   onChange,
+  onFocus,
   error,
 }: InputFieldProps) {
   return (
@@ -27,15 +28,18 @@ export default function InputField({
         type={type}
         value={value}
         onChange={onChange}
+        onFocus={onFocus}
         placeholder={placeholder}
         className={`
           w-full h-12 rounded-[18px] px-[25px] font-pretendard
           text-[16px] text-custom-black focus:outline-none 
           placeholder: font-medium placeholder: custom-gray ${
-          value && value.trim() !== "" ? "bg-custom-input" : "bg-custom-input/50"
-        }`}
+            value && value.trim() !== ""
+              ? "bg-custom-input"
+              : "bg-custom-input/50"
+          }`}
       />
-      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+      {<p className="mt-1 text-xs text-red-400">{error}</p>}
     </div>
   );
 }
