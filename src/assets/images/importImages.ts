@@ -1,11 +1,11 @@
 import category_icon from "../images/catetgory_icon.svg";
 import clickcategory_icon from "../images/clickcategory_icon.svg";
 import create_icon from "../images/create_icon.svg";
-import clickcreate_icon from "../images/clickcreate_icon.svg";
 import feed_icon from "../images/feed_icon.svg";
 import clickfeed_icon from "../images/clickfeed_icon.svg";
 import mypage_icon from "../images/mypage_icon.svg";
 import clickmypage_icon from "../images/clickmypage_icon.svg";
+import clickcreate_icon from "../images/clickcreate_icon.svg";
 import playlist_logo from "../images/playlist-logo.svg";
 import notification_icon from "../images/notification-icon.svg";
 import hamburger_icon from "../images/hamburger-icon.svg";
@@ -33,6 +33,8 @@ import course_budget_icon from "../images/course/course_budget.svg";
 import course_comment_icon from "../images/course/course_comment_icon.svg";
 import course_comment_like_filled_icon from "../images/course/course_comment_like_filled.svg";
 import course_comment_like_not_filled from "../images/course/course_comment_like_not_filled.svg";
+import course_phone_num_icon from "../images/course/course_phone_num_icon.svg";
+
 
 const images: {
   [key: string]: string;
@@ -72,6 +74,7 @@ const images: {
   course_comment_icon,
   course_comment_like_not_filled,
   course_comment_like_filled_icon,
+  course_phone_num_icon,
 };
 
 export default images;
