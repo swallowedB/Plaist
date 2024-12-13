@@ -1,21 +1,22 @@
-/* 전체 컨테이너 스타일 */
 .courseEditorContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative; /* 세로줄을 위치시키기 위해 필요 */
+  position: relative;
   width: 100%;
-  z-index: 1; /* 부모 요소에 z-index 설정 */
+  z-index: 1;
+  box-sizing: content-box;
+  margin-top: 38px;
 }
 
-/* 세로줄을 감싸는 스타일 */
 .courseEditorContainer::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 38px; /* 첫 번째 요소에서 38px 떨어진 곳에서 시작 */
   left: 50%;
-  transform: translateX(-50%) translateY(30%);
-  height: 70%;
-  border-left: 2px dashed #007bff; /* 세로줄 색상 */
-  z-index: -1; /* 세로줄이 박스들 뒤에 위치하도록 설정 */
+  transform: translateX(-50%); /* 수평 중앙 정렬 */
+  height: calc(100% - 76px); /* 전체 높이에서 상단,하단의 38,38 제외 */
+  border-left: 2px dashed #007bff;
+  z-index: -1;
+  width: 0;
 }

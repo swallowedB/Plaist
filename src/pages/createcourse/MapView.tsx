@@ -1,7 +1,14 @@
 import images from "../../assets/images/importImages";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
+import MapDisplay from "./../../components/createMyCourseMain/MapDisplay";
+import SearchResultOfCreateMy from "./../../components/createMyCourseMain/SearchResultOfCreateMy";
+import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+
+import { useState } from "react";
 
 export default function SelectCourseMain() {
+  const [isCompleteThisPage, setisCompleteThisPage] = useState(true);
+  
   return (
     <div>
       <aside>
@@ -13,18 +20,12 @@ export default function SelectCourseMain() {
         <PostingGuideTitle
           alignClass="flex justify-center"
           titleText="첫번째 코스를 선택"
-          mt={71}
+          mt={80}
         />
-        <section>
-          <div className="w-96 h-80 rounded-tl-2xl rounded-tr-2xl">
-            지도 뷰 들어갈 위치
-          </div>
-          서치바
-          <div>검색 결과 렌더링될 위치</div>
-        </section>
+        <MapDisplay />
+        <SearchResultOfCreateMy/>
+
       </section>
-      {/* 단계 변경 버튼 예시 */}
-      <button>다음</button>
     </div>
   );
 }

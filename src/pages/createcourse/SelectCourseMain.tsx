@@ -52,11 +52,11 @@ export default function SelectCourseMain() {
           <img src={images.progress_bar2} alt="Progress bar-select-course" />
         </figure>
       </aside>
-      <PostingGuideTitle titleText="나만의 코스를 생성" mt={81} />
+      <PostingGuideTitle titleText="나만의 코스를 생성" />
 
       <section
         id="course-editor"
-        className={twMerge(styles.courseEditorContainer, "pt-[65px]")}
+        className={twMerge(styles.courseEditorContainer)}
       >
         {courseBoxes.map((box) => (
           <AddedCoursebox
