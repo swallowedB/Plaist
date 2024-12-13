@@ -62,7 +62,7 @@ export default function SelectCourseMain() {
             title={box.title}
             address={box.address}
             category={box.category}
-            onDelete={handleDelete} // 삭제 함수 전달
+            onDelete={handleDelete}
           />
         ))}
         <AddNewMyCourseButton />

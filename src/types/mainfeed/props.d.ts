@@ -17,3 +17,14 @@ interface ICourseLocationCardItemProps {
   contact: string;
   category: string;
 }
+
+interface ICourseSortToggleProps {
+  activeSort: "latest" | "popular"; // 특정 문자열만 허용
+  onSortChange: (sortType: "latest" | "popular") => void; // 콜백 함수 타입
+}
+
+interface ICommentListItemProps {
+  userName: string;
+  createdAt: string;
+  comment: string;
+}

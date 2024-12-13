@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-
-type ChannelType = {
-  authRequired: boolean;
-  posts: string[];
-  _id: string;
-  name: string;
-  description: "스팟" | "지역";
-  createdAt: string;
-  updatedAt: string;
-};
+import { getChannelList, setChannel } from "../api/channelApi";
 
 const CreateChannel = () => {
   const [channelList, setChannelList] = useState<ChannelType[]>([]);
@@ -28,7 +19,7 @@ const CreateChannel = () => {
       setCreateClicked((state) => !state);
     } else if (action === "channel") {
       setChannelClicked((state) => !state);
-      if (channelClicked === true) fetchChannelList();
+      if (channelClicked === true) getChannelList();
     }
   };
 
@@ -43,15 +34,8 @@ const CreateChannel = () => {
   const onSubmitCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("/channels/create", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to create channel");
-      }
-      const data = await response.json();
+      const response = await setChannel(formData);
+      const data = response.data;
       alert(`Channel created: ${JSON.stringify(data, null, 2)}`);
       setFormData({
         authRequired: false,
@@ -64,27 +48,13 @@ const CreateChannel = () => {
     }
   };
 
-  const fetchChannelList = async () => {
-    try {
-      const response = await fetch("/channels/");
-      if (!response.ok) {
-        throw new Error("Error: Unable to fetch mock data");
-      }
-      const data: ChannelType[] = await response.json();
-      setChannelList(data);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to fetch channels. Please try again.");
-    }
-  };
-
   const onClickChannelName = (channelName: string) => {
     const channel = channelList.find((ch) => ch.name === channelName) || null;
     setSelectedChannel(channel);
   };
 
   return (
-    <div>
+    <div className="mt-[140px]">
       {/* Create Channel */}
       <button
         onClick={() => onClickButton("create")}

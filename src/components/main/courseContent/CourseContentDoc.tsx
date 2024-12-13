@@ -1,11 +1,17 @@
 import images from "../../../assets/images/importImages";
-import CourseLocationCards from "./CourseLocationCards";
+import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
+
+import CourseLocationCards from "./locationCardArea/CourseLocationCards";
 
 export default function CourseContentDoc() {
   return (
-    <div className="font-pretendard text-custom-black">
+    <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex items-center gap-[11px] font-pretendard">
-        <div className="w-10 h-10 bg-[#FFEADF] rounded-full" />
+        <img
+          src={images.course_user_profile_img}
+          alt=""
+          className="w-10 h-10 rounded-full bg-primary-200"
+        />
         <div className="flex flex-col gap-1">
           <p className="text-xs font-semibold text-primary-900">Timmy</p>
           <p className="text-xs text-custom-gray">2024.10.09</p>
@@ -83,6 +89,7 @@ export default function CourseContentDoc() {
       </div>
 
       <CourseLocationCards />
+      <CourseContentCommentArea />
     </div>
   );
 }

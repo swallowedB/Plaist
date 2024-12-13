@@ -25,6 +25,7 @@ import plus_icon from "../images/plus_icon.svg";
 import congratulation_icon from "../images/congratulation_icon.svg";
 import big_logo_after_posting from "../images/big_logo_after_posting.svg";
 import like_not_filled_border_icon from "../images/like_not_filled_border_icon.svg";
+import course_selected_img from "../images/course/course_selected_img.svg";
 import course_selected_icon from "../images/course/course_selected_icon.svg";
 import course_delete_icon from "../images/course/course_delete_icon.svg";
 import course_background_img from "../images/course/course_background_img.svg";
@@ -34,7 +35,19 @@ import course_comment_icon from "../images/course/course_comment_icon.svg";
 import course_comment_like_filled_icon from "../images/course/course_comment_like_filled.svg";
 import course_comment_like_not_filled from "../images/course/course_comment_like_not_filled.svg";
 import course_phone_num_icon from "../images/course/course_phone_num_icon.svg";
+import course_comment_line_img from "../images/course/course_comment_line_img.svg";
+import course_user_profile_img from "../images/course/course_user_profile_img.svg";
 
+import location_convenience_store_icon from "../images/course/location/location_convenience_store_icon.svg";
+import location_accommodation_icon from "../images/course/location/location_accommodation_icon.svg";
+import location_tourist_attraction_icon from "../images/course/location/location_tourist_attraction_icon.svg";
+import location_cultural_facility_icon from "../images/course/location/location_cultural_facility_icon.svg";
+import location_parking_lot_icon from "../images/course/location/location_parking_lot_icon.svg";
+import location_restaurant_icon from "../images/course/location/location_restaurant_icon.svg";
+import location_cafe_icon from "../images/course/location/location_cafe_icon.svg";
+
+import white_heart_filled_icon from "../images/course/white_heart_filled_icon.svg";
+import white_heart_not_filled_icon from "../images/course/white_heart_not_filled_icon.svg";
 
 const images: {
   [key: string]: string;
@@ -63,6 +76,7 @@ const images: {
   dropdown_icon_down,
   start_create_button,
   plus_icon,
+  course_selected_img,
   course_selected_icon,
   course_delete_icon,
   congratulation_icon,
@@ -75,6 +89,17 @@ const images: {
   course_comment_like_not_filled,
   course_comment_like_filled_icon,
   course_phone_num_icon,
+  course_comment_line_img,
+  course_user_profile_img,
+  location_restaurant_icon,
+  location_convenience_store_icon,
+  location_accommodation_icon,
+  location_tourist_attraction_icon,
+  location_cultural_facility_icon,
+  location_parking_lot_icon,
+  location_cafe_icon,
+  white_heart_filled_icon,
+  white_heart_not_filled_icon,
 };
 
 export default images;

@@ -1,4 +1,4 @@
-import { useCreateCourseStore } from "../../stores/createCourseStore";
+import { useCreateCourseStore } from "../../stores/viewMyCourseStore";
 import searchIcon from "../../assets/images/search_icon.svg";
 
 export default function MyCourseSearch() {

@@ -20,3 +20,25 @@
   z-index: -1;
   width: 0;
 }
+
+/* 전체 컨테이너 스타일 */
+.courseLocationCardsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* 세로줄을 위치시키기 위해 필요 */
+  width: 100%;
+  z-index: 1; /* 부모 요소에 z-index 설정 */
+}
+
+/* 세로줄을 감싸는 스타일 */
+.courseLocationCardsContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 56%;
+  transform: translateX(-50%) translateY(30%);
+  height: 70%;
+  border-left: 2px dashed #007bff; /* 세로줄 색상 */
+  z-index: -1; /* 세로줄이 박스들 뒤에 위치하도록 설정 */
+}
