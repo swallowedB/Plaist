@@ -1,9 +1,9 @@
-import images from "../../../assets/images/importImages";
+import images from "../../../../assets/images/importImages";
 import CourseLocationCardItem from "./CourseLocationCardItem";
 
 export default function CourseLocationCards() {
   return (
-    <div className="mx-[45px] mt-[60px] mb-[97px] flex flex-col gap-10">
+    <div className="mx-[45px] mt-[60px] mb-[97px] flex flex-col gap-10 ml-[90px]">
       <CourseLocationCardItem
         title={`명륜진사갈비 서울자양점`}
         rating={433}
