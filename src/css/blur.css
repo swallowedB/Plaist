@@ -14,7 +14,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -38%);
     z-index: 1;
   }
   &:before {
@@ -28,7 +28,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, 100%);
+    transform: translate(-50%, 40%);
     z-index: 2;
   }
 }

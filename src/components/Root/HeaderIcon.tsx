@@ -11,7 +11,7 @@ export default function HeaderIcon() {
   }, [location]);
   return (
     // 상단바 블러 backdrop-blur-sm
-    <header className="fixed top-0 left-0 z-50 w-full h-16 backdrop-blur-sm">
+    <header className="w-full h-16 fixed top-0 left-0 z-[999] backdrop-blur-sm">
       <div className="absolute inset-0 flex items-center justify-center">
         <nav className="relative flex items-center justify-between w-full h-full max-w-3xl px-4">
           <HeaderIconLink
