@@ -10,7 +10,7 @@ import Main from "./pages/MainFeed";
 // 코스 생성 관련
 import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
-import SelectStyle from "./pages/createcourse/SelectStyle";
+import SelectTag from "./pages/createcourse/SelectTag";
 import SelectCourseMain from "./pages/createcourse/SelectCourseMain";
 import MapView from "./pages/createcourse/MapView";
 // 그외
@@ -24,6 +24,8 @@ import Notification from "./pages/Notification";
 import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
+import CreateChannel from "./pages/CreateChannel";
+
 // 권한 관련
 import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
@@ -69,7 +71,7 @@ export default function App() {
             <Route path="view-my-course" element={<ViewMycourse />} />
 
             {/* create-my-course 하위 경로 */}
-            <Route path="flow1-select-style" element={<SelectStyle />} />
+            <Route path="flow1-select-style" element={<SelectTag />} />
             <Route path="flow2-select-course">
               <Route path="" element={<SelectCourseMain />} />
               <Route path="map-view" element={<MapView />} />
@@ -85,6 +87,7 @@ export default function App() {
         <Route path="userTest" element={<UserTest />} />
         <Route path="authTest" element={<AuthTest />} />
         <Route path="searchTest" element={<SearchTest />} />
+        <Route path="createChannel" element={<CreateChannel />} />
       </Route>
     </Routes>
   );

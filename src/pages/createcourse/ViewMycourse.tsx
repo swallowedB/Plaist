@@ -10,7 +10,7 @@ export default function CreateCourse() {
 
       <div
         id="relative content-area-container"
-        className=" relative flex flex-col items-center h-screen min-w-[767px] blur-bg-center"
+        className="relative flex flex-col items-center h-screen min-w-[767px] blurTop"
       >
         <div className="z-10">
           <ViewMyCourseHeader />

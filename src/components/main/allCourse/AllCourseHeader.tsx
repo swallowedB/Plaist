@@ -1,4 +1,4 @@
-import AllCourseSortToggle from "./AllCourseSortToggle";
+import AllCourseSortToggle from "../utils/CourseSortToggle";
 import SearchInputFeild from "./SearchInputFeild";
 
 export default function AllCourseHeader() {
@@ -8,7 +8,9 @@ export default function AllCourseHeader() {
         All Course
       </p>
       <SearchInputFeild />
-      <AllCourseSortToggle activeSort={"latest"} onSortChange={"false"} />
+      <div className="flex justify-end w-full mt-[18px] mb-[19px]">
+        <AllCourseSortToggle />
+      </div>
     </>
   );
 }
