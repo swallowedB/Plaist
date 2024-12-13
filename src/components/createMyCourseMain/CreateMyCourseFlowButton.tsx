@@ -16,7 +16,7 @@ export default function CreateMyCourseFlowButton({
   return (
     <button
       onClick={() => isCompleteThisPage && navigate(to)}
-      className={`w-[364px] h-[58px] rounded-[21px] border-primary-500 font-pretendard text-white ${
+      className={`w-[364px] h-[58px] rounded-[30px] border-primary-500 font-pretendard text-white ${
         isCompleteThisPage ? "bg-primary-500" : "bg-primary-300"
       }`}
     >
