@@ -1,7 +1,8 @@
 import images from "../../../../assets/images/importImages";
 import CourseSortToggle from "../../utils/CourseSortToggle";
+import CommentList from "./CommentList";
 
-export default function courseContentCommentArea() {
+export default function CourseContentCommentArea() {
   return (
     <div className="flex mx-[45px] mb-[90px] flex-col gap-[45px] text-custom-black font-pretendard">
       <div className="flex flex-col gap-[23px]">
@@ -9,8 +10,12 @@ export default function courseContentCommentArea() {
         <div className="flex items-center justify-between">
           {/* 네임카드 */}
           <div className="flex items-center gap-[10px]">
-            <div className="w-10 h-10 rounded-full bg-primary-200" />
-            <div>imaria0218</div>
+            <img
+              src={images.course_user_profile_img}
+              alt=""
+              className="w-10 h-10 rounded-full bg-primary-200"
+            />
+            <div className="text-base font-bold text-primary-800">imaria0218</div>
           </div>
           {/* 코맨트 개수 */}
           <div className="flex items-center gap-1 px-[9px]">
@@ -34,11 +39,14 @@ export default function courseContentCommentArea() {
         </div>
       </div>
       <img src={images.course_comment_line_img} alt="" />
-      <div className={``}>
+      <div>
+        {/* 댓글 헤더 */}
         <div className="flex justify-between">
-          <p className="text-[21px] font-semibold">댓글</p>
+          <p className="text-[21px] font-semibold text-primary-600">댓글</p>
           <CourseSortToggle />
         </div>
+        {/* 댓글 바디 */}
+        <CommentList />
       </div>
     </div>
   );

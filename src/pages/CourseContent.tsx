@@ -11,7 +11,7 @@ export default function CourseContent() {
           className="object-cover w-full"
         />
       </div>
-      <div className="absolute bottom-0 left-0 w-full  py-[38px] bg-white rounded-t-[40px] top-[419px] shadow-[0_-8px_10px_0_rgba(48,72,100,0.25)] h-auto min-h-[1800px]">
+      <div className="absolute bottom-0 left-0 w-full  py-[38px] bg-[#F9FBFE] rounded-t-[40px] top-[419px] shadow-[0_-8px_10px_0_rgba(48,72,100,0.25)] h-auto min-h-[1800px]">
         <div className="px-[61px] h-auto overflow-y-auto ">
         <CourseContentDoc />  
         </div>

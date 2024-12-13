@@ -35,6 +35,7 @@ import course_comment_like_filled_icon from "../images/course/course_comment_lik
 import course_comment_like_not_filled from "../images/course/course_comment_like_not_filled.svg";
 import course_phone_num_icon from "../images/course/course_phone_num_icon.svg";
 import course_comment_line_img from "../images/course/course_comment_line_img.svg";
+import course_user_profile_img from "../images/course/course_user_profile_img.svg"
 
 
 const images: {
@@ -77,6 +78,7 @@ const images: {
   course_comment_like_filled_icon,
   course_phone_num_icon,
   course_comment_line_img,
+  course_user_profile_img,
 };
 
 export default images;
