@@ -1,4 +1,4 @@
-import { getCookie } from "../../utills/Auth/getCookie";
+import { getCookie } from "../utills/Auth/getCookie";
 
 export const useCookie = () => {
   if (getCookie("token")) return true;
