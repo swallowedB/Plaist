@@ -31,8 +31,14 @@ import CourseContentLayout from "./layouts/CourseContentLayout";
 import UserInfo from "./components/My/userInfo/UserInfo";
 import ExpainCourse from "./pages/createcourse/ExpainCourse";
 import SucessMyPost from "./pages/createcourse/SucessMyPost";
+import { useCookie } from "./hooks/useCookie";
+import { useEffect } from "react";
 
 export default function App() {
+  let isLoggedin = useCookie();
+  useEffect(() => {
+    isLoggedin = useCookie();
+  }, [isLoggedin]);
   return (
     <Routes>
       {/* Root Layout */}

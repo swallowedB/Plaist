@@ -8,68 +8,100 @@ import "../css/blur.css";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
-    nickname: "",
-    email: "",
-    password: "",
-  });
 
-  const [formErrors, setFormErrors] = useState({
-    nickname: "",
-    email: "",
-    password: "",
-  });
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [nicknameError, setNicknameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const [isFormValid, setIsFormValid] = useState(false);
-  const [touched, setTouched] = useState({
-    nickname: false,
-    email: false,
-    password: false,
-  });
+
+  const [nicknameTouched, setNicknameTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm((prevForm) => ({ ...prevForm, [name]: value }));
+    switch (name) {
+      case "nickname":
+        setNickname(value);
+
+        if (nickname.length < 3) {
+          setNicknameError("Nickname must be at least 3 characters long");
+        } else {
+          setNicknameError("");
+        }
+        break;
+      case "email":
+        setEmail(value);
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(email)) {
+          setEmailError("Please enter a valid email address");
+        } else {
+          setEmailError("");
+        }
+        break;
+      case "password":
+        setPassword(value);
+        if (password.length < 8) {
+          setPasswordError("Password must be at least 8 characters long");
+        } else if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+          setPasswordError("Password must contain both letters and numbers");
+        } else {
+          setPasswordError("");
+        }
+        break;
+    }
   };
 
-  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
-    setTouched((prevTouched) => ({ ...prevTouched, [name]: true }));
+    switch (name) {
+      case "nickname":
+        setNicknameTouched(true);
+        break;
+
+      case "email":
+        setEmailTouched(true);
+        break;
+
+      case "password":
+        setPasswordTouched(true);
+        break;
+    }
   };
 
   const validateForm = () => {
-    const errors = { nickname: "", email: "", password: "" };
     let valid = true;
 
-    if (form.nickname.length < 3) {
-      errors.nickname = "Nickname must be at least 3 characters long";
+    if (nickname.length < 3) {
+      setNicknameError("Nickname must be at least 3 characters long");
       valid = false;
     }
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!emailRegex.test(form.email)) {
-      errors.email = "Please enter a valid email address";
+    if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email address");
       valid = false;
     }
 
-    if (form.password.length < 8) {
-      errors.password = "Password must be at least 8 characters long";
+    if (password.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
       valid = false;
-    } else if (
-      !/[A-Za-z]/.test(form.password) ||
-      !/[0-9]/.test(form.password)
-    ) {
-      errors.password = "Password must contain both letters and numbers";
+    } else if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+      setPasswordError("Password must contain both letters and numbers");
       valid = false;
     }
 
-    setFormErrors(errors);
     setIsFormValid(valid);
   };
 
   useEffect(() => {
     validateForm();
-  }, [form]);
+  }, [nickname, email, password]);
 
   return (
     <div className="w-72 h-96 relative mb-[80px]">
@@ -86,20 +118,20 @@ export default function Signup() {
           id="nickname"
           name="nickname"
           placeholder="Nickname"
-          value={form.nickname}
+          value={nickname}
           onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.nickname && formErrors.nickname}
+          onFocus={handleFocus}
+          error={nicknameTouched ? nicknameError : ""}
         />
         <InputField
           id="email"
           type="email"
           name="email"
           placeholder="Email"
-          value={form.email}
+          value={email}
           onChange={handleChange}
-          onBlur={handleBlur}
-          error={touched.email && formErrors.email}
+          onFocus={handleFocus}
+          error={emailTouched ? emailError : ""}
         />
         <div className="relative">
           <InputField
@@ -107,10 +139,10 @@ export default function Signup() {
             type="password"
             name="password"
             placeholder="Password"
-            value={form.password}
+            value={password}
             onChange={handleChange}
-            onBlur={handleBlur}
-            error={touched.password && formErrors.password}
+            onFocus={handleFocus}
+            error={passwordTouched ? passwordError : ""}
             className="relative z-10"
           />
           <img
@@ -127,7 +159,7 @@ export default function Signup() {
           disabled={!isFormValid}
           onClick={(e) => {
             e.preventDefault();
-            postSingUp(form.email, form.nickname, form.password, navigate);
+            postSingUp(email, nickname, password, navigate);
           }}
         >
           회원가입
