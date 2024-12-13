@@ -27,5 +27,5 @@
 }
 
 #myRange::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 12px rgba(0, 123, 255, 0.7);
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.4);
 }

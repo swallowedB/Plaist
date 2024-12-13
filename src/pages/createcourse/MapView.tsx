@@ -1,4 +1,5 @@
 import images from "../../assets/images/importImages";
+import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 
 export default function SelectCourseMain() {
   return (
@@ -9,7 +10,11 @@ export default function SelectCourseMain() {
         </figure>
       </aside>
       <section>
-        <h1>첫번째 코스 선택</h1>
+        <PostingGuideTitle
+          alignClass="flex justify-center"
+          titleText="첫번째 코스를 선택"
+          mt={71}
+        />
         <section>
           <div className="w-96 h-80 rounded-tl-2xl rounded-tr-2xl">
             지도 뷰 들어갈 위치
