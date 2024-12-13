@@ -33,9 +33,7 @@ export default function Feed() {
       }
     } else if (location.name === "전국") {
       try {
-        const spotData = await Promise.all(
-          channelList.spot.map(async (ch) => await getChannelPostList(ch._id))
-        );
+        const spotData = await getChannelPostList(spot.id);
         allPostList.push(...spotData.flat());
         uniquePostList = uniquePostById(allPostList);
       } catch (error) {
@@ -43,11 +41,7 @@ export default function Feed() {
       }
     } else if (spot.name === "전체") {
       try {
-        const locationData = await Promise.all(
-          channelList.location.map(
-            async (ch) => await getChannelPostList(ch._id)
-          )
-        );
+        const locationData = await getChannelPostList(location.id);
         allPostList.push(...locationData.flat());
         uniquePostList = uniquePostById(allPostList);
       } catch (error) {
