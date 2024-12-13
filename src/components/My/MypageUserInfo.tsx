@@ -8,13 +8,10 @@ import UserInfoForm from "./userInfo/UserInfoForm";
 export default function MypageUserInfo() {
   const navigate = useNavigate();
   return (
-    <div
-      className={`
-      flex items-center`}
-    >
+    <div className={`absolute z-[100] top-[117px]`}>
       <div
-        className={`w-[647px] bg-primary-400/25 rounded-[25px] 
-            border-2 border-white z-10 shadow-default mt-[95px] h-[900px]`}
+        className={`flex flex-col items-center w-[647px] bg-primary-400/25 rounded-[25px] 
+            border-2 border-white z-10 shadow-default h-[900px]`}
       >
         {/*창 안의 요소*/}
         <div className="flex flex-col items-center mt-[43px] h-full">
@@ -35,11 +32,11 @@ export default function MypageUserInfo() {
                 style={{backgroundImage: `url(${exprofilImg})`}} 
                 className="w-[96px] h-[96px] bg-[#f3d0d9] rounded-full shadow-backblue "/>
                 <img
-                  className="absolute top-[347px] left-[400px] shadow-backblue" 
+                  className="absolute top-[254px] left-[340px]" 
                   src={profileImg_N} 
                   alt="프로필 수정 아이콘" />
 
-              <p className="text-white text-[24px] font-bold font-pretendard mt-[8px]">Timmy</p> 
+              <p className="text-primary-700 text-[24px] font-bold font-pretendard mt-[8px]">Timmy</p> 
             </div>
 
             {/* 사용자 정보 */}
