@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import "./RangeSider.css";
 type RangeSliderProps = {
-  value: number; // 현재 슬라이더 값
-  onChange: (value: number) => void; // 값 변경 핸들러
-  max: number; // 최대값을 동적으로 받음
-  step: number; // 슬라이더의 step 값을 외부에서 받음
+  value: number;
+  onChange: (value: number) => void;
+  max: number;
+  step: number;
 };
 
 const RangeSlider = ({ value, onChange, max, step }: RangeSliderProps) => {
@@ -12,8 +12,7 @@ const RangeSlider = ({ value, onChange, max, step }: RangeSliderProps) => {
 
   useEffect(() => {
     if (rangeRef.current) {
-      // 현재 슬라이더 값을 기준으로 백분율 계산
-      const percentage = (value / max) * 100; // 최대값을 동적으로 적용
+      const percentage = (value / max) * 100;
       rangeRef.current.style.setProperty("--slider-value", `${percentage}%`);
     }
   }, [value, max]);
@@ -27,11 +26,11 @@ const RangeSlider = ({ value, onChange, max, step }: RangeSliderProps) => {
       <input
         type="range"
         min="0"
-        max={max} // 동적으로 max 값 적용
+        max={max}
         value={value}
-        onChange={handleChange} // 값 변경 핸들러
-        step={step} // step을 외부에서 전달받아 처리
-        ref={rangeRef} // 커스텀 스타일 적용을 위해 ref 연결
+        onChange={handleChange}
+        step={step}
+        ref={rangeRef}
         className="w-full h-2 rounded-lg focus:outline-none"
         id="myRange"
       />

@@ -4,14 +4,12 @@ import images from "../../assets/images/importImages";
 // Editbox
 import AddedCoursebox from "../../components/createMyCourseMain/AddedCoursebox";
 import AddNewMyCourseButton from "../../components/createMyCourseMain/AddNewMyCourseButton";
-// 나만의 코스 세부 정보
-import TotalPriceSelector from "./../../components/createMyCourseMain/TotalPriceSelector";
-import TotalDurationSelector from "../../components/createMyCourseMain/TotalDurationSelector";
 // 이동 버튼
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 // 모듈 스타일
 import styles from "./CourseEditor.module.css";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
+import SliderBox from "./../../components/createMyCourseMain/SliderBox";
 
 export default function SelectCourseMain() {
   // AddedCoursebox 관리 상태
@@ -65,7 +63,7 @@ export default function SelectCourseMain() {
             title={box.title}
             address={box.address}
             category={box.category}
-            onDelete={handleDelete} // 삭제 함수 전달
+            onDelete={handleDelete}
           />
         ))}
         <AddNewMyCourseButton />
@@ -74,8 +72,7 @@ export default function SelectCourseMain() {
         id="course-data-selector"
         className="flex flex-col items-center mb-[149px]"
       >
-        <TotalPriceSelector />
-        <TotalDurationSelector />
+        <SliderBox />
       </div>
       <div className="flex flex-col items-center justify-center mb-[100px]">
         <CreateMyCourseFlowButton

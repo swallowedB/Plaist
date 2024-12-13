@@ -2,13 +2,8 @@ import images from "../../assets/images/importImages";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/MapDisplay";
 import SearchResultOfCreateMy from "./../../components/createMyCourseMain/SearchResultOfCreateMy";
-import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
-
-import { useState } from "react";
 
 export default function SelectCourseMain() {
-  const [isCompleteThisPage, setisCompleteThisPage] = useState(true);
-  
   return (
     <div>
       <aside>
@@ -23,8 +18,7 @@ export default function SelectCourseMain() {
           mt={80}
         />
         <MapDisplay />
-        <SearchResultOfCreateMy/>
-
+        <SearchResultOfCreateMy />
       </section>
     </div>
   );

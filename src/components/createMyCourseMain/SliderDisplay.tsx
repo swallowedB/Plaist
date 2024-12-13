@@ -1,3 +1,5 @@
+// import CourseDataInput from "./CourseDataInput";
+
 type SliderDisplayProps = {
   question: string;
   calculatedValue: string;
@@ -9,7 +11,10 @@ const SliderDisplay = ({ question, calculatedValue }: SliderDisplayProps) => {
       <p className="leading-[10px]   mr-[9px] text-[#7D848D] font-semiBold text-[21px]">
         {question}
       </p>
-      <p className="leading-[10px] font-medium text-[16px] text-primary-500">
+      <p
+        id="input-transformer"
+        className="leading-[10px] font-medium text-[16px] text-primary-500"
+      >
         {calculatedValue}
       </p>
     </div>
