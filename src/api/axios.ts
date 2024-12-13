@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: "https://5th.fe.dev-cos.com:5002",
   headers: {
     Authorization: "Bearer your-token-here",
     "Content-Type": "application/json",
