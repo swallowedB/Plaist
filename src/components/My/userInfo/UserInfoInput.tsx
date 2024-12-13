@@ -5,15 +5,17 @@ interface UserInfoInputProps {
   label: string;
   id: string;
   defaultValue?: string;
+  onChange?: (value: string) => void;
 }
 
-export default function UserInfoInput({label, id, defaultValue}:UserInfoInputProps) {
+export default function UserInfoInput({label, id, defaultValue, onChange}:UserInfoInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="flex flex-col items-center">
       <label 
         className="w-[409px] font-pretendard font-medium text-base text-custom-black mb-1 px-[31px]"
         htmlFor={id}>{label}</label>
+
       {/* input field */}
       <div className="relative">
         <img src={checkIcon} alt="Ischecked?" className="absolute top-5 left-[370px]" />
@@ -30,8 +32,10 @@ export default function UserInfoInput({label, id, defaultValue}:UserInfoInputPro
             onFocus={()=> setIsFocused(true)}
             onBlur={()=> setIsFocused(false)}
             placeholder={defaultValue}
+            defaultValue={defaultValue}
+            onChange={(e) => onChange?.(e.target.value)}
         />
-          </div>
+      </div>
     </div>
   )
 }
