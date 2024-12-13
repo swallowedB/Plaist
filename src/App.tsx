@@ -24,6 +24,8 @@ import Notification from "./pages/Notification";
 import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
+import CreateChannel from "./pages/CreateChannel";
+
 // 권한 관련
 import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
@@ -85,6 +87,7 @@ export default function App() {
         <Route path="userTest" element={<UserTest />} />
         <Route path="authTest" element={<AuthTest />} />
         <Route path="searchTest" element={<SearchTest />} />
+        <Route path="createChannel" element={<CreateChannel />} />
       </Route>
     </Routes>
   );

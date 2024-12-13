@@ -1,6 +1,6 @@
-import { NavLink } from "react-router";
 import images from "../../assets/images/importImages";
 import { usePostStore } from "../../stores/postStore";
+import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
 export default function SelectTag() {
   const withWhomList = [
@@ -60,7 +60,7 @@ export default function SelectTag() {
       <aside>
         <figure>
           {/* 이미지 렌더링 */}
-          <img src={images.progress_bar1} alt="Progress bar-select-course"/>
+          <img src={images.progress_bar1} alt="Progress bar-select-course" />
         </figure>
       </aside>
       <h1 className="font-pretendard text-[36px] font-bold mt-[80px] mb-[120px]">
@@ -112,11 +112,13 @@ export default function SelectTag() {
           })}
         </ul>
       </fieldset>
-      {/*  mt-[140px] */}
-      <div className="flex justify-center items-center">
-        <nav className="w-[364px] h-[58px] leading-[55px] font-pretendard font-semibold rounded-[30px] bg-[#8AB8EE] text-center text-white">
-          <NavLink to="../flow2-select-course">다음</NavLink>
-        </nav>
+      <div className="flex justify-center items-center mt-[140px]">
+        <CreateMyCourseFlowButton
+          to="../flow2-select-course"
+          isCompleteThisPage={Boolean(style.length && withWhom.length)}
+        >
+          다음
+        </CreateMyCourseFlowButton>
       </div>
     </div>
   );

@@ -1,69 +1,52 @@
 import arrowIcon from "../../assets/images/uparrow_icon.svg";
 import positionIcon from "../../assets/images/position_icon.svg";
 import { useChannelStore } from "../../stores/channelStore";
+import { getChannelList } from "../../api/channelApi";
 import { useState } from "react";
 
 export default function Menu() {
-  // Zustand store hooks
-  const isMenuClicked = useChannelStore((state) => state.isMenuClicked);
+  // local state
+  const [isMenuClicked, setIsMenuClicked] = useState({
+    location: false,
+    spot: false,
+  });
+  // global state
   const location = useChannelStore((state) => state.location);
   const spot = useChannelStore((state) => state.spot);
-  const locationList = useChannelStore((state) => state.locationList);
-  const spotList = useChannelStore((state) => state.spotList);
-  const toggleMenu = useChannelStore((state) => state.toggleMenu);
-  const setLocation = useChannelStore((state) => state.setLocation);
-  const setSpot = useChannelStore((state) => state.setSpot);
-  const setLocationList = useChannelStore((state) => state.setLocationList);
-  const setSpotList = useChannelStore((state) => state.setSpotList);
+  const channelList = useChannelStore((state) => state.channelList);
   const setChannelList = useChannelStore((state) => state.setChannelList);
 
-  const [loading, setLoading] = useState(false);
+  const setLocation = useChannelStore((state) => state.setLocation);
+  const setSpot = useChannelStore((state) => state.setSpot);
+
+  const toggleMenu = (menu: "location" | "spot") => {
+    setIsMenuClicked((state) => ({
+      location: menu === "location" ? !state.location : false,
+      spot: menu === "spot" ? !state.spot : false,
+    }));
+  };
 
   const menuClicked = async (menu: "location" | "spot") => {
-    if (menu === "location" && !isMenuClicked.location) {
-      setLoading(true);
-      try {
-        const channels = await fetchChannelList();
-        setLocationList(channels);
-        toggleMenu(menu);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    } else if (menu === "spot" && !isMenuClicked.spot) {
-      setLoading(true);
-      try {
-        const channels = await fetchChannelList();
-        setSpotList(channels);
-        toggleMenu(menu);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      toggleMenu(menu);
-    }
-  };
-
-  const formClick = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
-  const fetchChannelList = async () => {
     try {
-      const response = await fetch("/channels");
-      if (!response.ok) {
-        throw new Error("Error: Unable to fetch data");
-      }
-      const data = await response.json();
-      setChannelList(data);
-      return data;
+      const channels = await getChannelList();
+      setChannelList(channels);
+      toggleMenu(menu);
     } catch (error) {
-      console.error(error);
-      alert("Failed to fetch channels. Please try again.");
+      console.log(error);
     }
+  };
+
+  const onMenuButtonClick = (
+    type: "지역" | "스팟",
+    channelId: string,
+    channelName: string
+  ) => {
+    setIsMenuClicked({
+      location: false,
+      spot: false,
+    });
+    if (type === "지역") setLocation(channelId, channelName);
+    else if (type === "스팟") setSpot(channelId, channelName);
   };
 
   return (
@@ -75,7 +58,7 @@ export default function Menu() {
         onClick={() => menuClicked("location")}
       >
         <img src={positionIcon} alt="position icon" className="mr-[69px]" />
-        <p className="mr-[75px]">{location}</p>
+        <p className="mr-[75px]">{location.name}</p>
         <img
           src={arrowIcon}
           alt="arrow icon"
@@ -91,7 +74,7 @@ export default function Menu() {
         role="menuItem"
         onClick={() => menuClicked("spot")}
       >
-        <p className="ml-[100px]">{spot}</p>
+        <p className="ml-[100px]">{spot.name}</p>
         <img
           src={arrowIcon}
           alt="arrow icon"
@@ -102,79 +85,63 @@ export default function Menu() {
       </div>
 
       {isMenuClicked.location && (
-        <form
-          action="submit"
-          onSubmit={(e) => formClick(e)}
-          className="w-[509px] bg-[rgba(255,255,255,0.86)] border-white border-2 -z-10 rounded-[20px] absolute top-[5px] left-0 justify-items-end pt-[63px] pb-[30px] px-[79px] flex flex-wrap gap-2"
-        >
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <>
-              <button
-                className={`form--button ${
-                  location === "전체"
-                    ? "bg-[#306EB5] text-white"
-                    : "bg-white/70 text-black"
-                }`}
-                onClick={() => setLocation("전체")}
-              >
-                전체
-              </button>
-              {locationList.map((channel) => (
-                <button
-                  key={channel._id}
-                  className={`form--button ${
-                    location === channel.name
-                      ? "bg-[#306EB5] text-white"
-                      : "bg-white/70 text-black"
-                  }`}
-                  onClick={() => setLocation(channel.name)}
-                >
-                  {channel.name}
-                </button>
-              ))}
-            </>
-          )}
-        </form>
+        <ul className="list-none p-0 m-0 w-[509px] bg-[rgba(255,255,255,0.86)] border-white border-2 -z-10 rounded-[20px] absolute top-[5px] left-0 justify-items-end pt-[63px] pb-[30px] px-[70px] flex flex-wrap gap-2">
+          <li
+            className={`menu--button ${
+              location.name === "전국"
+                ? "bg-[#306EB5] text-white"
+                : "bg-white/70 text-black"
+            }`}
+            onClick={() => onMenuButtonClick("지역", "전국", "전국")}
+          >
+            전국
+          </li>
+          {channelList.location.map((channel) => (
+            <li
+              key={channel._id}
+              className={`menu--button ${
+                location.name === channel.name
+                  ? "bg-[#306EB5] text-white"
+                  : "bg-white/70 text-black"
+              }`}
+              onClick={() =>
+                onMenuButtonClick("지역", channel._id, channel.name)
+              }
+            >
+              {channel.name}
+            </li>
+          ))}
+        </ul>
       )}
 
       {isMenuClicked.spot && (
-        <form
-          action="submit"
-          onSubmit={(e) => formClick(e)}
-          className="w-[509px] bg-[rgba(255,255,255,0.86)] border-white border-2 -z-10 rounded-[20px] absolute top-[5px] left-0 justify-items-end pt-[63px] pb-[30px] px-[79px] flex flex-wrap gap-2"
-        >
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            <>
-              <button
-                className={`form--button ${
-                  spot === "전체"
-                    ? "bg-[#306EB5] text-white"
-                    : "bg-white/70 text-black"
-                }`}
-                onClick={() => setSpot("전체")}
-              >
-                전체
-              </button>
-              {spotList.map((channel) => (
-                <button
-                  key={channel._id}
-                  className={`form--button ${
-                    spot === channel.name
-                      ? "bg-[#306EB5] text-white"
-                      : "bg-white/70 text-black"
-                  }`}
-                  onClick={() => setSpot(channel.name)}
-                >
-                  {channel.name}
-                </button>
-              ))}
-            </>
-          )}
-        </form>
+        <ul className="list-none p-0 m-0 w-[509px] bg-[rgba(255,255,255,0.86)] border-white border-2 -z-10 rounded-[20px] absolute top-[5px] left-0 justify-items-end pt-[63px] pb-[30px] px-[79px] flex flex-wrap gap-2">
+          <li
+            className={`menu--button ${
+              spot.name === "전체"
+                ? "bg-[#306EB5] text-white"
+                : "bg-white/70 text-black"
+            }`}
+            onClick={() => onMenuButtonClick("스팟", "전체", "전체")}
+          >
+            전체
+          </li>
+          {channelList.spot.map((channel) => (
+            <li
+              key={channel._id}
+              className={`menu--button ${
+                spot.name === channel.name
+                  ? "bg-[#306EB5] text-white"
+                  : "bg-white/70 text-black"
+              }`}
+              onClick={() =>
+                onMenuButtonClick("스팟", channel._id, channel.name)
+              }
+            >
+              {channel.name}
+            </li>
+          ))}
+        </ul>
       )}
     </section>
   );
