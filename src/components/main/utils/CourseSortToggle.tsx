@@ -1,17 +1,20 @@
 import { useState } from "react";
 
 export default function CourseSortToggle() {
-  const [activeSort, setActiveSort] = useState(true);
-  const onSortChange = () => {
-    setActiveSort((prev) => !prev);
+  const [activeSort, setActiveSort] = useState<"latest" | "popular">("latest");
+
+  const onSortChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const state = e.currentTarget.innerText;
+    if (state === activeSort) return;
+    setActiveSort(state === "최신순" ? "latest" : "popular");
   };
 
   return (
-    <div className="flex justify-end w-full mt-[18px] gap-3 mb-[19px] ">
+    <div className="flex gap-3" >
       <button
         className={`py-2 text-[14px] font-pretendard font-regular ${
-          activeSort === true
-            ? "text-primary-600 leading-5 "
+          activeSort === "latest"
+            ? "text-primary-600 leading-5"
             : "text-custom-gray"
         }`}
         onClick={onSortChange}
@@ -20,7 +23,7 @@ export default function CourseSortToggle() {
       </button>
       <button
         className={`py-2 text-[14px] font-pretendard font-regular ${
-          activeSort === false
+          activeSort === "popular"
             ? "text-primary-600 leading-5"
             : "text-custom-gray"
         }`}

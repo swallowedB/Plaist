@@ -19,7 +19,9 @@ export default function courseContentCommentArea() {
               alt=""
               className="w-[14px] h-[15px]"
             />
-            <p className="text-[13px] font-regular leading-5 text-primary-700">213</p>
+            <p className="text-[13px] font-regular leading-5 text-primary-700">
+              213
+            </p>
           </div>
         </div>
         <div>
@@ -32,10 +34,11 @@ export default function courseContentCommentArea() {
         </div>
       </div>
       <img src={images.course_comment_line_img} alt="" />
-      <div>
-        <p>댓글</p>
-      <CourseSortToggle />
-        
+      <div className={``}>
+        <div className="flex justify-between">
+          <p className="text-[21px] font-semibold">댓글</p>
+          <CourseSortToggle />
+        </div>
       </div>
     </div>
   );

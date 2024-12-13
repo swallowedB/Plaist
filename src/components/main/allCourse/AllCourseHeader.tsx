@@ -8,7 +8,9 @@ export default function AllCourseHeader() {
         All Course
       </p>
       <SearchInputFeild />
-      <AllCourseSortToggle />
+      <div className="flex justify-end w-full mt-[18px] mb-[19px]">
+        <AllCourseSortToggle />
+      </div>
     </>
   );
 }
