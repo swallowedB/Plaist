@@ -1,16 +1,16 @@
 import category_icon from "../images/catetgory_icon.svg";
 import clickcategory_icon from "../images/clickcategory_icon.svg";
 import create_icon from "../images/create_icon.svg";
-import clickcreate_icon from "../images/clickcreate_icon.svg";
 import feed_icon from "../images/feed_icon.svg";
 import clickfeed_icon from "../images/clickfeed_icon.svg";
 import mypage_icon from "../images/mypage_icon.svg";
 import clickmypage_icon from "../images/clickmypage_icon.svg";
+import clickcreate_icon from "../images/clickcreate_icon.svg";
 import playlist_logo from "../images/playlist-logo.svg";
 import notification_icon from "../images/notification-icon.svg";
 import hamburger_icon from "../images/hamburger-icon.svg";
 import like_icon from "../images/like_icon.svg";
-import course_img from "../images/course_img.svg";
+import course_img from "../images/course/course_img.svg";
 import like_filled_icon from "../images/like_filled_icon.svg";
 import location_icon from "../images/location_icon.svg";
 import search_icon from "../images/search_icon.svg";
@@ -22,12 +22,19 @@ import dropdown_icon_up from "../images/dropdowm_icon_down.svg";
 import dropdown_icon_down from "../images/dropdowm_icon_up.svg";
 import start_create_button from "../images/start_to_create_button.svg";
 import plus_icon from "../images/plus_icon.svg";
-import course_selected_icon from "../images/course_selected_icon.svg";
-import course_delete_icon from "../images/course_delete_icon.svg";
 import congratulation_icon from "../images/congratulation_icon.svg";
 import big_logo_after_posting from "../images/big_logo_after_posting.svg";
-import course_background_img from "../images/course_background_img.svg";
 import like_not_filled_border_icon from "../images/like_not_filled_border_icon.svg";
+import course_selected_icon from "../images/course/course_selected_icon.svg";
+import course_delete_icon from "../images/course/course_delete_icon.svg";
+import course_background_img from "../images/course/course_background_img.svg";
+import course_estimated_time_icon from "../images/course/course_estimated_time_icon.svg";
+import course_budget_icon from "../images/course/course_budget.svg";
+import course_comment_icon from "../images/course/course_comment_icon.svg";
+import course_comment_like_filled_icon from "../images/course/course_comment_like_filled.svg";
+import course_comment_like_not_filled from "../images/course/course_comment_like_not_filled.svg";
+import course_phone_num_icon from "../images/course/course_phone_num_icon.svg";
+
 
 const images: {
   [key: string]: string;
@@ -62,6 +69,12 @@ const images: {
   big_logo_after_posting,
   course_background_img,
   like_not_filled_border_icon,
+  course_budget_icon,
+  course_estimated_time_icon,
+  course_comment_icon,
+  course_comment_like_not_filled,
+  course_comment_like_filled_icon,
+  course_phone_num_icon,
 };
 
 export default images;

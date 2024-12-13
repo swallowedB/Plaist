@@ -1,6 +1,6 @@
+import { useCookie } from "../../hooks/useCookie";
 import FooterNavLink from "../FooterNavLink";
 import { useLocation } from "react-router";
-import { useCookie } from "../hooks/useCookie";
 
 export default function Nav() {
   const isLoggedIn = useCookie();
