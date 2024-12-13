@@ -10,7 +10,7 @@ export default function CourseLocationCardItem({
   category,
 }: ICourseLocationCardItemProps) {
   return (
-    <div className="w-[558px] h-[154px] bg-white rounded-3xl shadow-blue flex items-center pt-[12px] pb-[13px] px-[13px] gap-7">
+    <div className="w-[558px] h-[154px] bg-white rounded-3xl shadow-default flex items-center pt-[12px] pb-[13px] px-[13px] gap-7">
       {/* 이미지 컨테이너 */}
       <div>
         <img
