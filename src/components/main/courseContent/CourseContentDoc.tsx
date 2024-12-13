@@ -1,8 +1,9 @@
 import images from "../../../assets/images/importImages";
+import CourseLocationCards from "./CourseLocationCards";
 
 export default function CourseContentDoc() {
   return (
-    <div className="font-pretendard">
+    <div className="font-pretendard text-custom-black">
       <div className="flex items-center gap-[11px] font-pretendard">
         <div className="w-10 h-10 bg-[#FFEADF] rounded-full" />
         <div className="flex flex-col gap-1">
@@ -20,7 +21,7 @@ export default function CourseContentDoc() {
           <div className="flex items-center justify-center gap-1 mt-4">
             <img
               src={images.like_not_filled_border_icon}
-              alt="Like Icon"
+              alt="좋아요 아이콘"
               className="h-[12px] w-[13px] "
             />
             <p className="font-regular text-[13px] leading-5">4.7k</p>
@@ -31,7 +32,7 @@ export default function CourseContentDoc() {
           <div className="flex items-center justify-start">
             <img
               src={images.location_icon}
-              alt="location_icon"
+              alt="장소 아이콘"
               className="w-[14.66px] h-4"
             />
             <p className="text-xs leading-5 font-regular text-custom-gray">
@@ -47,33 +48,41 @@ export default function CourseContentDoc() {
             </p>
           </div>
 
-          <div className="flex gap-[14px]">
-            <div>
-              <img src="" alt="" />
-              <p>{`이동시간 1`}</p>
+          <div className="flex gap-[14px] h-6 mb-10">
+            <div className="flex items-center gap-[11px]">
+              <img
+                src={images.course_estimated_time_icon}
+                alt="예상 이동 시간 아이콘"
+                className="w-[14px] h-[14px]"
+              />
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`이동시간 1~2시간`}</p>
             </div>
-            <div>
-              <img src="" alt="" />
-              <p></p>
+
+            <div className="flex items-center gap-[11px]">
+              <img
+                src={images.course_budget_icon}
+                alt="예상 예산 아이콘"
+                className="w-[14px] h-[14px]"
+              />
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상금액 2~3만원`}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center justify-between mt-4">
-        <p className="text-sm text-gray-600">이동시간: 1~2시간</p>
-        <p className="flex items-center space-x-1 text-sm text-gray-600">
-          <span>4.7k</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-5 text-gray-500"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M3.172 4.828a4 4 0 015.656 0L10 6.172l1.172-1.344a4 4 0 115.656 5.656L10 17.172l-6.828-6.828a4 4 0 010-5.656z" />
-          </svg>
-        </p>
+      <div className="min-h-[31px] flex flex-row gap-3 text-[14px] text-primary-500 font-medium leading-[10px] ">
+        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
+          데이트
+        </span>
+        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
+          모임
+        </span>
+        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
+          회식
+        </span>
       </div>
+
+      <CourseLocationCards />
     </div>
   );
 }
