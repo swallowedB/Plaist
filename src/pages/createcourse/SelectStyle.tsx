@@ -1,6 +1,7 @@
 import { useState } from "react";
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 
 export default function StartCourse() {
   const [isCompletedThisPage, setisCompletedThisPage] = useState(true);
@@ -37,11 +38,8 @@ export default function StartCourse() {
           <img src={images.progress_bar1} alt="Progress bar-select-course" />
         </figure>
       </aside>
-      <h1 className="font-pretendard text-[36px] font-bold mt-[80px] mb-[120px]">
-        어떤 코스 인가요?
-      </h1>
-
-      <fieldset className="tag--withWhom mb-[80px]">
+      <PostingGuideTitle titleText="어떤 코스 인가요?" mt={80} />
+      <fieldset className="tag--withWhom mt-[120px] mb-[80px]">
         <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[10px] block">
           누구와
         </legend>

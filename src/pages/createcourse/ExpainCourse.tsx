@@ -11,7 +11,7 @@ export default function ExplainCourse(): JSX.Element {
   const categories: string[] = ["기념일", "생일", "로맨틱"];
 
   const handleSave = () => {
-    setIsSaved(true); // 저장 상태 변경
+    setIsSaved(true);
     setTimeout(() => setIsVisible(false), 100); // 0.1초 후 메인 컨텐츠 숨기기
   };
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 import images from "../../assets/images/importImages";
 // Editbox
 import AddedCoursebox from "../../components/createMyCourseMain/AddedCoursebox";
@@ -10,6 +11,7 @@ import TotalDurationSelector from "../../components/createMyCourseMain/TotalDura
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 // 모듈 스타일
 import styles from "./CourseEditor.module.css";
+import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 
 export default function SelectCourseMain() {
   // AddedCoursebox 관리 상태
@@ -50,11 +52,12 @@ export default function SelectCourseMain() {
           <img src={images.progress_bar2} alt="Progress bar-select-course" />
         </figure>
       </aside>
-      <h1 className="text-[36px] font-bold text-primary-800 mb-[60px]">
-        나만의 코스를 생성
-        {/* 코스 생성 시작이면 "첫번째 코스를 생성" 으로 h1내용 수정*/}
-      </h1>
-      <section id="course-editor" className={styles.courseEditorContainer}>
+      <PostingGuideTitle titleText="나만의 코스를 생성" mt={81} />
+
+      <section
+        id="course-editor"
+        className={twMerge(styles.courseEditorContainer, "pt-[65px]")}
+      >
         {courseBoxes.map((box) => (
           <AddedCoursebox
             key={box.id}
