@@ -39,7 +39,7 @@ export default function InputField({
               : "bg-custom-input/50"
           }`}
       />
-      {<p className="mt-1 text-xs text-red-400">{error}</p>}
+      {<p className="font-pretendard font-medium ml-2 mt-2 text-xs text-primary-700">{error}</p>}
     </div>
   );
 }

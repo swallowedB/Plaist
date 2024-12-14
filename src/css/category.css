@@ -1,21 +1,3 @@
-.blurTop {
-  position: relative;
-}
-
-.blurTop::before {
-  content: "";
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 462.11px;
-  height: 456.68px;
-  background: radial-gradient(circle, #3b89e2 100%, #b1d0f3 100%);
-  border-radius: 50%;
-  filter: blur(150px);
-  z-index: 0;
-}
-
 .reset {
   margin: 0;
   padding: 0;

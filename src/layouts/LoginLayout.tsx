@@ -1,5 +1,4 @@
 import { Outlet } from "react-router";
-import Glass from "../components/Glass";
 
 export default function BackgroundLayout() {
   return (
@@ -9,11 +8,16 @@ export default function BackgroundLayout() {
     >
       <section
         id="main-content-box"
-        className="relative flex justify-center items-center w-[100vw] h-[100vh]  bg-transparent blur-bg-login"
+        className="relative flex flex-col items-center w-[100vw] h-[100vh] pt-[192px] "
       >
-        <Glass>
+        <div className="absolute blur-bg-login"/>
+        <div className={`
+          bg-white/25 w-[501px] h-auto border-2 border-white shadow-default rounded-[25px]
+          flex flex-col items-center justify-center absolute z-30 py-[155px] px-[109px]
+          `}>
           <Outlet /> {/* 중첩된 라우트가 렌더링될 위치 */}
-        </Glass>
+        </div>
+
       </section>
     </div>
   );
