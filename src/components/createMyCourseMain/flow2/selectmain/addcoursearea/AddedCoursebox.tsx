@@ -1,5 +1,5 @@
 import { useState } from "react";
-import images from "../../assets/images/importImages";
+import images from "../../../../../assets/images/importImages";
 
 interface AddedCourseboxProps {
   id: number;
@@ -19,12 +19,14 @@ export default function AddedCoursebox({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="box-unit font-pretendard bg-transparent pb-[9px]">
+    <div
+      id="box-unit"
+      className="font-pretendard bg-transparent w-[529px] h-[150px] pb-[9px]"
+    >
       <p className="text-[18px] text-primary-600 font-semiBold leading-[28px] mb-[5px]">
         {title}
       </p>
       <div
-        id="selected-course-box"
         className={`w-[529px] h-[108px] flex justify-items-center rounded-[21px] border-dashed border-primary-500 text-white ${
           isHovered ? "bg-primary-300" : "bg-primary-500"
         }`}

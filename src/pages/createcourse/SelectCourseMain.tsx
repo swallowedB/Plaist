@@ -1,20 +1,17 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import images from "../../assets/images/importImages";
-// Editbox
-import AddedCoursebox from "../../components/createMyCourseMain/AddedCoursebox";
-import AddNewMyCourseButton from "../../components/createMyCourseMain/AddNewMyCourseButton";
-// 나만의 코스 세부 정보
-import TotalPriceSelector from "./../../components/createMyCourseMain/TotalPriceSelector";
-import TotalDurationSelector from "../../components/createMyCourseMain/TotalDurationSelector";
-// 이동 버튼
-import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
-// 모듈 스타일
 import styles from "./CourseEditor.module.css";
+import images from "../../assets/images/importImages";
+//공통
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
+import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+// Editbox
+import AddedCoursebox from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddedCoursebox";
+import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddNewMyCourseButton";
+// 나만의 코스 세부 정보
+import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
 
 export default function SelectCourseMain() {
-  // AddedCoursebox 관리 상태
   // 아래는 mock 데이터
   const [courseBoxes, setCourseBoxes] = useState([
     {
@@ -52,11 +49,11 @@ export default function SelectCourseMain() {
           <img src={images.progress_bar2} alt="Progress bar-select-course" />
         </figure>
       </aside>
-      <PostingGuideTitle titleText="나만의 코스를 생성" mt={81} />
+      <PostingGuideTitle titleText="나만의 코스를 생성" />
 
       <section
         id="course-editor"
-        className={twMerge(styles.courseEditorContainer, "pt-[65px]")}
+        className={twMerge(styles.courseEditorContainer)}
       >
         {courseBoxes.map((box) => (
           <AddedCoursebox
@@ -65,7 +62,7 @@ export default function SelectCourseMain() {
             title={box.title}
             address={box.address}
             category={box.category}
-            onDelete={handleDelete} // 삭제 함수 전달
+            onDelete={handleDelete}
           />
         ))}
         <AddNewMyCourseButton />
@@ -74,8 +71,7 @@ export default function SelectCourseMain() {
         id="course-data-selector"
         className="flex flex-col items-center mb-[149px]"
       >
-        <TotalPriceSelector />
-        <TotalDurationSelector />
+        <SliderBox />
       </div>
       <div className="flex flex-col items-center justify-center mb-[100px]">
         <CreateMyCourseFlowButton

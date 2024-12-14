@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
-import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
 export default function ExplainCourse(): JSX.Element {
   const [title, setTitle] = useState<string>("");
