@@ -3,7 +3,7 @@
   width: 500px;
   height: 500px;
 
-  &:after {
+  &::after {
     content: "";
     flex-shrink: 0;
     border-radius: 500px;
@@ -17,7 +17,7 @@
     transform: translate(-50%, -38%);
     z-index: 1;
   }
-  &:before {
+  &::before {
     content: "";
     flex-shrink: 0;
     border-radius: 407px;
@@ -33,7 +33,6 @@
   }
 }
 
-/* to do : 수정이 필요합니다. */
 .blur-bg-left {
   position: relative;
   width: 462px;
@@ -66,25 +65,37 @@
   }
 }
 
-/* to do : 수정이 필요합니다. */
 .blur-bg-login {
   position: relative;
-  &:before {
+  width: 500px;
+  height: 500px;
+
+  &::after {
     content: "";
-    background-image: radial-gradient(circle, #5197e7, #89b6e9);
-    filter: blur(100px);
-    width: 450px;
-    height: 450px;
+    flex-shrink: 0;
+    border-radius: 500px;
+    background: radial-gradient(50% 50% at 50% 50%, #116eda 0%, #b1d0f3 100%);
+    filter: blur(90px);
+    width: 600px;
+    height: 600px;
     position: absolute;
-    transform: translate(-46%, -73%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    z-index: 1;
   }
-  &:after {
+  &::before {
     content: "";
-    background-image: radial-gradient(circle, #62a1e8, #b1d0f3);
-    width: 250px;
-    height: 250px;
+    flex-shrink: 0;
+    border-radius: 407px;
+    background: radial-gradient(50% 50% at 50% 50%, #62a1e8 0%, #b1d0f3 100%);
     filter: blur(100px);
+    width: 550px;
+    height: 550px;
     position: absolute;
-    transform: translate(-47%, 25%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    z-index: 2;
   }
 }

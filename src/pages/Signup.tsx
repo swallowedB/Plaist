@@ -104,16 +104,16 @@ export default function Signup() {
   }, [nickname, email, password]);
 
   return (
-    <div className="w-72 h-96 relative mb-[80px]">
+    <div className="w-72 h-full relative ">
       <div className="text-center">
         <h1 className="text-primary-600 text-[40px] font-normal font-rubik ">
           Welcome
         </h1>
-        <p className="text-primary-700 text-[12px] font-pretendard">
+        <p className="text-primary-600 text-[12px] font-pretendard font-medium">
           Please fill the details and create account
         </p>
       </div>
-      <form className="mt-10">
+      <form className="mt-6">
         <InputField
           id="nickname"
           name="nickname"
@@ -147,7 +147,7 @@ export default function Signup() {
           />
           <img
             src={passwordIcon}
-            className="absolute -mt-[58px] ml-[250px] z-50 -px-10"
+            className="absolute top-[15px] left-[255px] z-50"
           />
         </div>
         <button
@@ -166,11 +166,11 @@ export default function Signup() {
         </button>
       </form>
       <div className="text-center mt-[22px]">
-        <p className="text-custom-gray text-xs font-pretendard text-[13px]">
+        <p className="text-primary-800 text-xs font-pretendard text-[13px] ">
           Already have an account?{" "}
           <NavLink
             to="/login"
-            className="text-primary-600 font-pretendard text-[13px]"
+            className="text-primary-600 font-pretendard font-medium text-[13px]"
           >
             Sign in
           </NavLink>

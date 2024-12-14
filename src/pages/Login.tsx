@@ -5,7 +5,7 @@ import "../css/tailwind.css";
 import passwordIcon from "../assets/images/passwordIcon.svg";
 import { postLogin } from "../api/api";
 
-export default function Signup() {
+export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -81,7 +81,7 @@ export default function Signup() {
   return (
     <div className="relative w-72 h-96 ">
       <div className="text-center">
-        <h1 className="text-primary-600 text-[40px] font-rubik mb-[52px]">
+        <h1 className="text-primary-600 text-[50px] font-rubik mb-[32px]">
           Login
         </h1>
       </div>
@@ -110,13 +110,13 @@ export default function Signup() {
           />
           <img
             src={passwordIcon}
-            className="absolute -mt-[58px] ml-[250px] z-50 -px-10"
+            className="absolute top-[15px] left-[255px] z-50 "
           />
         </div>
         <button
           type="submit"
           className={`
-              w-full h-14 mt-[18px]
+              w-full h-14 mt-[10px]
               rounded-[50px] font-pretendard
               ${isFormValid ? "bg-primary-500" : "bg-primary-400"} text-white`}
           disabled={!isFormValid}
@@ -129,11 +129,11 @@ export default function Signup() {
         </button>
       </form>
       <div className="text-center mt-[22px]">
-        <p className="text-custom-gray text-xs font-pretendard text-[13px]">
+        <p className="text-primary-800 text-xs font-pretendard text-[13px]">
           Don’t have an account?{" "}
           <NavLink
             to="/signup"
-            className="text-primary-600 font-pretendard text-[13px]"
+            className="text-primary-600 font-pretendard  font-medium text-[13px]"
           >
             Sign up
           </NavLink>
