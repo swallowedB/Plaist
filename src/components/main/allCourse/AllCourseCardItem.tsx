@@ -14,9 +14,9 @@ export default function AllCourseCardItem({ courseItem }) {
     updatedAt,
     _id,
   } = courseItem;
-  const res = JSON.parse(courseItem.title);
-  console.log(courseItem);
-  console.log(res);
+  const courseDocData = JSON.parse(courseItem.title);
+  // console.log(courseItem);
+  console.log(courseDocData);
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
@@ -40,9 +40,9 @@ export default function AllCourseCardItem({ courseItem }) {
       <div className="w-full px-4 mt-3">
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
-          <NavLink to={`/view-course-content/${_id}`}>
+          <NavLink to={`/course-content/${_id}`}>
             <span className="text-sm font-medium text-custom-black font-pretendard max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap flex-grow">
-              ✨ 2025 새해 모임
+              {courseDocData.courseTitle}
             </span>
           </NavLink>
           <div className="flex flex-row items-center">
@@ -53,7 +53,9 @@ export default function AllCourseCardItem({ courseItem }) {
                 alt="Like Filled Icon"
                 className="h-[9px] w-[10px]"
               />
-              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-1">{`4.7k`}</p>
+              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-1">
+                {likes.length}
+              </p>
             </div>
           </div>
         </div>
@@ -67,7 +69,7 @@ export default function AllCourseCardItem({ courseItem }) {
             className="w-4 h-4 mr-1"
           />
           <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
-            {"서울, 성수"}
+            {courseDocData.locationObjs[0].locationAddress}
           </p>
         </div>
       </div>

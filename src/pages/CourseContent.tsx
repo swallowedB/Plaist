@@ -1,12 +1,26 @@
+import { useParams } from "react-router";
 import images from "../assets/images/importImages";
 import CourseContentDoc from "../components/main/courseContent/CourseContentDoc";
+import { useEffect, useState } from "react";
+import { getCourseObj } from "../api/postApi";
 
 export default function CourseContent() {
+  const { contentId } = useParams<{ contentId: string }>();
+  const [courseObj, setCourseObj] = useState<CourseObj | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getCourseObj(contentId!);
+      setCourseObj(res);
+    };
+    fetchData();
+  }, [contentId]);
+
   return (
     <div className="relative w-full h-auto hadow-lg hrounded-lg">
       <div className="relative">
         <img
-          src={images.course_background_img}
+          src={courseObj?.image}
           alt="background"
           className="object-cover w-full"
         />
@@ -21,7 +35,7 @@ export default function CourseContent() {
         </div>
 
         <div className="px-[61px] h-auto overflow-y-auto ">
-          <CourseContentDoc />
+          <CourseContentDoc courseObj={courseObj} />
         </div>
       </div>
     </div>

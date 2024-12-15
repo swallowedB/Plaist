@@ -31,5 +31,3 @@ type Post = {
   image: string;
   [key: string]: any;
 };
-
-

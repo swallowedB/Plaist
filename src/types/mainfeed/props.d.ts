@@ -28,3 +28,55 @@ interface ICommentListItemProps {
   createdAt: string;
   comment: string;
 }
+// -------------------------------------------------
+
+interface LocationObj {
+  locationName: string;
+  locationAddress: string;
+  locationCategory: string;
+  locationPhoneNum: string;
+}
+
+interface Channel {
+  authRequired: boolean;
+  posts: string[];
+  _id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+interface Author {
+  role: string;
+  emailVerified: boolean;
+  banned: boolean;
+  isOnline: boolean;
+  posts: string[];
+  likes: string[];
+  comments: string[];
+  followers: string[];
+  following: string[];
+  notifications: string[];
+  messages: string[];
+  _id: string;
+  fullName: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface CourseObj {
+  likes: string[];
+  comments: string[];
+  _id: string;
+  title: string;
+  image: string;
+  imagePublicId: string;
+  channel: Channel;
+  author: Author;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
