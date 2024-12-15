@@ -13,30 +13,30 @@ export default function SelectPrice() {
     const thousands = calculatedValue % 10000;
     displayValue =
       thousands === 0
-        ? `${tenThousands}만 원`
+        ? `${tenThousands}만원`
         : `${tenThousands}만 ${Math.floor(thousands / 1000)}천원`;
   } else {
     displayValue = `${calculatedValue}원`;
   }
 
   if (priceSliderValue === 0) {
-    displayValue = "0원 데이트";
+    displayValue = "1만원 이하";
   } else if (priceSliderValue === 200) {
-    displayValue = "약 20만 원 이상";
+    displayValue = "20만원 이상";
   }
   return (
     <>
-      <SliderDisplay question="예상금액은?" calculatedValue={displayValue} />
+      <SliderDisplay question="예상 금액은?" calculatedValue={displayValue} />
       <RangeSlider
         value={priceSliderValue} // 상태 값 수정
         onChange={setPriceSliderValue} // 슬라이더 값 변경 시 호출
         max={200}
-        step={1}
+        step={10}
       />
       <SliderLabel
-        minLabel="0원"
-        middleLabel="10만 원"
-        maxLabel="20만 원 이상"
+        minLabel="1만원 이하"
+        middleLabel="10만원"
+        maxLabel="20만원 이상"
       />
     </>
   );

@@ -25,7 +25,6 @@ const RangeSlider = ({ value, onChange, max, step }: RangeSliderProps) => {
     <div className="w-[476px] flex justify-center mt-4 slidecontainer font-pretendard">
       <input
         type="range"
-        min="0"
         max={max}
         value={value}
         onChange={handleChange}
