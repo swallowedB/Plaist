@@ -1,9 +1,22 @@
 import img from "../../../assets/images/tryImg.png"
 import images from "../../../assets/images/importImages"
 
-export default function MypageCardItem() {
+type TestData = {
+  id: number;
+  title: string;
+  likes: number;
+  location: string;
+};
+
+
+type MypageCardItemProps = {
+  data: TestData;
+};
+
+
+export default function MypageCardItem({ data }: MypageCardItemProps) {
   return (
-    <div>
+    <div className="mt-3">
       <div className={`
         w-[177px] h-[194px] rounded-2xl bg-white shadow-blue
         relative flex flex-col items-center p-2
@@ -36,11 +49,11 @@ export default function MypageCardItem() {
         
         {/* 제목 및 좋아요 수 */}
         <div className="flex flex-row items-center justify-between gap-[10px] mt-[9px] w-[154px]">
-          <p className="font-pretendard text-[14px] font-regular text-custom-black">2025 새해 모임</p>
+          <p className="font-pretendard text-[14px] font-regular text-custom-black">{data.title}</p>
           {/* 좋아요 수 */}
           <div className="flex flex-row items-center">
             <img src={images.like_filled_icon} alt="좋아요 아이콘" />
-            <p className="ml-[2px] font-pretendard text-[13px] font-regular text-custom-black">4.7k</p>
+            <p className="ml-[2px] font-pretendard text-[13px] font-regular text-custom-black">{data.likes}</p>
           </div>
         </div>
         
@@ -52,9 +65,8 @@ export default function MypageCardItem() {
             alt="Location Icon"
             className="w-4 h-4 mr-1"
           />
-          <p className="font-pretendard text-[12px] text-custom-gray font-regular">Seoul, GangNam</p>
+          <p className="font-pretendard text-[12px] text-custom-gray font-regular">{data.location}</p>
         </div>
-
       </div>
     </div>
   )

@@ -11,7 +11,7 @@ export default function MypageProfile() {
       <nav>
         <Link to="/user-info">
           <img
-            className="absolute top-[190px] left-[340px]" 
+            className="absolute top-[70px] left-[300px]" 
             src={profileICon} 
             alt="회원 정보 변경" />
         
