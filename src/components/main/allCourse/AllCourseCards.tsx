@@ -1,37 +1,53 @@
 import images from "../../../assets/images/importImages";
 import AllCourseCardItem from "./AllCourseCardItem";
 
-export default function AllCourseCards() {
+interface Post {
+  likes: any[];
+  comments: any[];
+  _id: string;
+  title: string; // JSON 형식으로 전달된 문자열
+  image: string;
+  imagePublicId: string;
+  channel: {
+    authRequired: boolean;
+    posts: string[];
+    _id: string;
+    name: string;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
+  author: {
+    role: string;
+    emailVerified: boolean;
+    banned: boolean;
+    isOnline: boolean;
+    posts: string[];
+    likes: any[];
+    comments: string[];
+    followers: string[];
+    following: string[];
+    notifications: any[];
+    messages: any[];
+    _id: string;
+    fullName: string;
+    email: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export default function AllCourseCards({ courseList }: any) {
+  console.log(courseList);
   return (
     <div className="grid grid-cols-2 gap-x-[17px] gap-y-[36px] ">
-      <AllCourseCardItem
-        contentId={1} // API 응답에서 고유 id값을 받아 입력
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-      />
-      <AllCourseCardItem
-        contentId={2}
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-      />
-      <AllCourseCardItem
-        contentId={3}
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-      />
-      <AllCourseCardItem
-        contentId={4}
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-      />
+      {courseList.map((courseItem: Post, idx: number) => {
+        return <AllCourseCardItem key={idx} courseItem={courseItem} />;
+      })}
     </div>
   );
 }

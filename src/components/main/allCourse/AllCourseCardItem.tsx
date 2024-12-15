@@ -1,19 +1,28 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
 
-export default function AllCourseCardItem({
-  title,
-  rating,
-  location,
-  imageUrl,
-  contentId,
-}) {
+export default function AllCourseCardItem({ courseItem }) {
+  const {
+    author,
+    channel,
+    comments,
+    createdAt,
+    image,
+    imagePublicId,
+    likes,
+    title,
+    updatedAt,
+    _id,
+  } = courseItem;
+  const courseDocData = JSON.parse(courseItem.title);
+  // console.log(courseItem);
+  console.log(courseDocData);
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
       <div className="relative">
         <img
-          src={imageUrl}
+          src={image}
           alt="Course Image"
           className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
         />
@@ -31,9 +40,9 @@ export default function AllCourseCardItem({
       <div className="w-full px-4 mt-3">
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
-          <NavLink to={`/view-course-content/${contentId}`}>
+          <NavLink to={`/course-content/${_id}`}>
             <span className="text-sm font-medium text-custom-black font-pretendard max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap flex-grow">
-              {title}
+              {courseDocData.courseTitle}
             </span>
           </NavLink>
           <div className="flex flex-row items-center">
@@ -44,7 +53,9 @@ export default function AllCourseCardItem({
                 alt="Like Filled Icon"
                 className="h-[9px] w-[10px]"
               />
-              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-1">{`${rating}k`}</p>
+              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-1">
+                {likes.length}
+              </p>
             </div>
           </div>
         </div>
@@ -58,7 +69,7 @@ export default function AllCourseCardItem({
             className="w-4 h-4 mr-1"
           />
           <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
-            {location}
+            {courseDocData.locationObjs[0].locationAddress}
           </p>
         </div>
       </div>

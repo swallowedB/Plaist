@@ -55,7 +55,7 @@ export default function App() {
           <Route path="/" element={<Main />} />
           <Route element={<CourseContentLayout />}>
             <Route
-              path="/view-course-content/:contentId"
+              path="/course-content/:contentId"
               element={<CourseContent />}
             />
           </Route>
