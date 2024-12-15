@@ -63,8 +63,8 @@ export default function SelectTag() {
           <img src={images.progress_bar1} alt="Progress bar-select-course" />
         </figure>
       </aside>
-      <h1 className="font-pretendard text-[36px] font-bold mt-[80px] mb-[120px]">
-        어떤 코스 인가요?
+      <h1 className="text-primary-800 font-pretendard text-[36px] font-bold mt-[80px] mb-[123px]">
+        어떤 코스인가요?
       </h1>
 
       <fieldset className="tag--withWhom mb-[80px]">
@@ -78,8 +78,8 @@ export default function SelectTag() {
                 key={item}
                 className={`w-[94px] h-[45px] rounded-[30px] border-2 font-pretendard text-[16px] font-medium leading-[42px] text-center cursor-pointer ${
                   withWhom.includes(item)
-                    ? "bg-[#306EB5] text-white border-[#306EB5]"
-                    : "bg-white text-[#306EB5] border-[#306EB5]"
+                    ? "bg-primary-500 text-white border-primary-500"
+                    : "bg-white text-primary-600 border-primary-600"
                 }`}
                 onClick={() => toggleSelection(item, "withWhom")}
               >
@@ -101,8 +101,8 @@ export default function SelectTag() {
                 key={item}
                 className={`w-[94px] h-[45px] rounded-[30px] border-2 font-pretendard text-[16px] font-medium leading-[42px] text-center cursor-pointer ${
                   style.includes(item)
-                    ? "bg-[#306EB5] text-white border-[#306EB5]"
-                    : "bg-white text-[#306EB5] border-[#306EB5]"
+                    ? "bg-primary-500 text-white border-primary-500"
+                    : "bg-white text-primary-600 border-primary-600"
                 }`}
                 onClick={() => toggleSelection(item, "style")}
               >
