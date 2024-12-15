@@ -2,7 +2,6 @@ import { useState } from "react"
 import MypageMyCourse from "./MypageMyCourse";
 import MyLike from "./MyLike";
 import MyComment from "./MyComment";
-import MypageSearch from "./MypageSearch";
 
 export default function MypageCategoryTap() {
   const [activeTab, setActiveTab] = useState(1);
@@ -43,18 +42,13 @@ export default function MypageCategoryTap() {
             onClick={() => handleClick(index)}
           >
             <p className={`font-pretendard font-semiBold text-[16px] 
-              ${activeTab === index ? "text-primary-700" : "text-custom-black" }` }>{tab}</p>
+              ${activeTab === index ? "text-primary-700" : "text-primary-900" }` }>{tab}</p>
           </div>
         ))}
       </div>
-      
-      {/* 검색바 */}
-      <div>
-        <MypageSearch />
-      </div>
 
       {/* 컴포넌트 렌더링 영역 */}
-      <div>
+      <div className="mt-[35px]">
         {renderActiveTab()}
       </div>
     </div>
