@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import { deleteFollow } from "../../api/api";
 
 // props로 setCurrentStep을 받기 위한 타입 정의
 interface ExplainCourseProps {
@@ -16,16 +17,26 @@ export default function ExplainCourse({
   const [description, setDescription] = useState<string>("");
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  // 원의 갯수
+  const [courseCount, setCourseCount] = useState(4);
 
   const categories: string[] = ["기념일", "생일", "로맨틱"];
 
   const handleSave = () => {
     setIsSaved(true);
-    setTimeout(() => setIsVisible(false), 100); // 0.1초 후 메인 컨텐츠 숨기기
+    setTimeout(() => setIsVisible(false), 100); // 메인 컨텐츠 숨기기
   };
 
   useEffect(() => {
-    setTimeout(() => setIsVisible(true), 200); // 0.1초 후 메인 컨텐츠 나타나기
+    const fetchData = async () => {
+      try {
+        const data = await deleteFollow("jade");
+        console.log("API 응답 데이터:", data);
+      } catch (error) {
+        console.error("API 호출 중 오류 발생:", error);
+      }
+    };
+    setTimeout(() => setIsVisible(true), 200); // 메인 컨텐츠 나타나기
   }, []);
 
   return (
@@ -35,10 +46,12 @@ export default function ExplainCourse({
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
       )}
 
-      {/* 메인 컨텐츠 (위에서 아래로 나타나는 애니메이션) */}
+      {/* 메인 컨텐츠 */}
       <div
         className={`w-[767px] h-[1000px] bg-white shadow-lg rounded-3xl p-8 relative z-50 transform transition-all duration-700 ease-in-out ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          isVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-[1500px]"
         }`}
         style={{
           paddingLeft: "60px",
@@ -70,14 +83,14 @@ export default function ExplainCourse({
             </ul>
 
             {/* 이동시간/예상금액 */}
-            <div className="flex gap-8 text-sm text-primary-600">
+            <div className="flex gap-8 text-sm text-primary-600 font-pretendard">
               <div className="flex items-center gap-2">
                 <img
-                  src={images.course_budget_icon}
+                  src={images.course_estimated_time_icon}
                   alt="이동시간 아이콘"
                   className="w-4 h-4"
                 />
-                <span>이동시간: 1-2시간</span>
+                <span>이동시간 1-2시간</span>
               </div>
               <div className="flex items-center gap-2">
                 <img
@@ -85,7 +98,7 @@ export default function ExplainCourse({
                   alt="예상금액 아이콘"
                   className="w-4 h-4"
                 />
-                <span>예상금액: 2-3만원</span>
+                <span>예상금액 2-3만원</span>
               </div>
             </div>
           </div>
@@ -115,11 +128,28 @@ export default function ExplainCourse({
 
         {/* 선택한 코스 */}
         <div className="mt-10">
-          <h3 className="text-custom-black font-semibold mb-4 text-base">
+        <h3 className="text-custom-black font-semibold mb-4 text-base">
             선택한 코스
           </h3>
-          <div className="flex gap-4">
-            <img src={images.course_selected_img} alt="선택한 코스" />
+          <div className="relative flex items-center justify-center gap-[56px]">
+            {/* 원들을 유동적으로 렌더링 */}
+            {Array.from({ length: courseCount }).map((_, index) => (
+              <div
+                key={index}
+                className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center z-10"
+              ></div>
+            ))}
+
+            {/* 가로줄 */}
+            <div
+              className="absolute top-1/2 border-t-2 border-dashed border-primary-600 transform -translate-y-1/2 z-[-1]"
+              style={{
+                width: `${120 * courseCount + 56 * (courseCount - 1)}px`, // 원의 개수에 맞춰 가로줄의 길이 계산
+                left: `calc(50% - ${
+                  (120 * courseCount) / 2 + (56 * (courseCount - 1)) / 2
+                }px)`, // 원의 중앙에 맞춰 가로줄 위치 조정
+              }}
+            ></div>
           </div>
         </div>
 
@@ -131,7 +161,12 @@ export default function ExplainCourse({
             setCurrentStep={setCurrentStep} // 단계 변경 함수
             currentStep={currentStep} // 현재 단계
           >
-            <button onClick={handleSave}>저장</button>
+            <button
+              onClick={handleSave}
+              className="w-full h-full text-white rounded-[30px] "
+            >
+              저장
+            </button>
           </CreateMyCourseFlowButton>
         </div>
       </div>
