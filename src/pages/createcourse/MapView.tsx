@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function SelectCourseMain() {
   const [isCompleteThisPage, setisCompleteThisPage] = useState(true);
-  
+
   return (
     <div>
       <aside>

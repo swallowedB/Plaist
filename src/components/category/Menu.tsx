@@ -95,7 +95,7 @@ export default function Menu() {
             className={`menu--button ${
               location.name === "전국"
                 ? "bg-[#306EB5] text-white"
-                : "bg-white/70 text-black"
+                : "bg-white/70 text-primary-600"
             }`}
             onClick={() => onMenuButtonClick("지역", "전국", "전국")}
           >
@@ -107,7 +107,7 @@ export default function Menu() {
               className={`menu--button ${
                 location.name === channel.name
                   ? "bg-[#306EB5] text-white"
-                  : "bg-white/70 text-black"
+                  : "bg-white/70 text-primary-600"
               }`}
               onClick={() =>
                 onMenuButtonClick("지역", channel._id, channel.name)
@@ -125,7 +125,7 @@ export default function Menu() {
             className={`menu--button ${
               spot.name === "전체"
                 ? "bg-[#306EB5] text-white"
-                : "bg-white/70 text-black"
+                : "bg-white/70 text-primary-600"
             }`}
             onClick={() => onMenuButtonClick("스팟", "전체", "전체")}
           >
@@ -137,7 +137,7 @@ export default function Menu() {
               className={`menu--button ${
                 spot.name === channel.name
                   ? "bg-[#306EB5] text-white"
-                  : "bg-white/70 text-black"
+                  : "bg-white/70 text-primary-600"
               }`}
               onClick={() =>
                 onMenuButtonClick("스팟", channel._id, channel.name)
