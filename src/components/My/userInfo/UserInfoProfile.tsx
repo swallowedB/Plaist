@@ -1,6 +1,7 @@
 import profileImg_N from "../../../assets/images/profileImg_N_icon.svg";
 import { useState } from "react";
 import { useUserStore } from "../../../stores/userInfoStore";
+import { postUserPoto } from "../../../api/userApi";
 
 export default function UserInfoProfile() {
   const { userProfilePic, updateUserPic, userInfo, } = useUserStore();
@@ -10,13 +11,25 @@ export default function UserInfoProfile() {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
     fileInput.accept = 'image/*';
-    fileInput.onchange = (e: Event) => {
+    fileInput.onchange = async (e: Event) => {
       const target = e.target as HTMLInputElement;
       const file = target.files?.[0];
       if(file) {
         const fileURL = URL.createObjectURL(file);
         setProfilePic(fileURL);
         updateUserPic(fileURL);
+
+        {/* 파일 업로드 - API */}
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("isCover", "false");
+
+        try{
+          const uploadedImageUrl = await postUserPoto(formData);
+          updateUserPic(uploadedImageUrl);
+        } catch (error){
+          console.error("프로필 사진 업로드 실패:", error);
+        }
       }
     }
     fileInput.click();
@@ -27,7 +40,7 @@ export default function UserInfoProfile() {
     <div className="flex flex-col items-center">
     <div
       style={{backgroundImage: `url(${profilePic})` }} 
-      className="w-[96px] h-[96px] bg-[#f3d0d9] rounded-full shadow-backblue "/>
+      className="w-[96px] h-[96px] bg-[#f3d0d9] rounded-full shadow-backblue overflow-hidden bg-cover bg-center "/>
 
       <img
         className="absolute top-[254px] left-[340px] cursor-pointer" 
