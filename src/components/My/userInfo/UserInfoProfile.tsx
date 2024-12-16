@@ -37,7 +37,7 @@ export default function UserInfoProfile() {
       />
 
     <p className="text-primary-700 text-[24px] font-bold font-pretendard mt-[8px]">
-      {userInfo.nickname}
+      {userInfo.fullName}
     </p> 
   </div>
   )
