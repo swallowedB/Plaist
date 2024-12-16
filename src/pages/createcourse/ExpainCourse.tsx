@@ -128,7 +128,7 @@ export default function ExplainCourse({
 
         {/* 선택한 코스 */}
         <div className="mt-10">
-        <h3 className="text-custom-black font-semibold mb-4 text-base">
+          <h3 className="text-custom-black font-semibold mb-4 text-base">
             선택한 코스
           </h3>
           <div className="relative flex items-center justify-center gap-[56px]">
@@ -156,10 +156,9 @@ export default function ExplainCourse({
         {/* 저장 버튼 */}
         <div className="mt-10 text-center">
           <CreateMyCourseFlowButton
-            isCompleteThisPage={true} // 페이지 완료 여부
-            isLastStep={false} // 마지막 단계
             setCurrentStep={setCurrentStep} // 단계 변경 함수
             currentStep={currentStep} // 현재 단계
+            isCompleteThisPage={true} // 페이지 완료 여부
           >
             <button
               onClick={handleSave}

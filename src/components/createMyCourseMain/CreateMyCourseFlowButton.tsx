@@ -1,39 +1,44 @@
-import { useNavigate } from "react-router";
+import { Dispatch, SetStateAction } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate를 import 합니다.
 
 interface CreateMyCourseFlowButtonProps {
+  setCurrentStep: Dispatch<SetStateAction<string>>;
+  currentStep: string;
   isCompleteThisPage: boolean;
-  isLastStep: boolean;
-  setCurrentStep?: (step: number) => void;
   children: React.ReactNode;
-  currentStep: number;
 }
 
 export default function CreateMyCourseFlowButton({
-  isCompleteThisPage,
-  isLastStep,
   setCurrentStep,
-  children,
   currentStep,
+  isCompleteThisPage,
+  children,
 }: CreateMyCourseFlowButtonProps) {
   const navigate = useNavigate();
 
-  const handleClick = () => {
+  const handleNext = () => {
     if (isCompleteThisPage) {
-      if (isLastStep) {
-        navigate("/"); // 마지막 단계면 홈으로 이동
-      } else {
-        setCurrentStep?.(currentStep + 1); // 다음 단계로 이동
+      if (currentStep === "step1") {
+        setCurrentStep("step2");
+      } else if (currentStep === "step2") {
+        setCurrentStep("step3");
+      } else if (currentStep === "step2.5") {
+        setCurrentStep("step2");
+      } else if (currentStep === "step3") {
+        setCurrentStep("step4");
+      } else if (currentStep === "step4") {
+        navigate("/");
       }
     }
   };
 
   return (
     <button
-      onClick={handleClick}
-      className={`w-[364px] h-[58px] rounded-[30px] border-primary-500 font-pretendard text-white ${
+      onClick={handleNext}
+      disabled={!isCompleteThisPage}
+      className={`w-[364px] h-[58px] rounded-[30px] border-primary-500 font-pretendard text-white mb-[] ${
         isCompleteThisPage ? "bg-primary-500" : "bg-primary-300"
       }`}
-      disabled={!isCompleteThisPage}
     >
       {children}
     </button>

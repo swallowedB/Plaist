@@ -108,14 +108,11 @@ export default function SelectTag({
           ))}
         </ul>
       </fieldset>
-
       <div className="flex justify-center items-center mt-[140px]">
-        {/* 'currentStep' 값을 넘겨서 버튼 클릭 시 step을 변경하도록 수정 */}
         <CreateMyCourseFlowButton
-          isCompleteThisPage={Boolean(style.length && withWhom.length)}
-          isLastStep={false}
           setCurrentStep={setCurrentStep}
-          currentStep={currentStep} // 'currentStep'을 prop으로 전달
+          currentStep={currentStep}
+          isCompleteThisPage={Boolean(style.length && withWhom.length)}
         >
           다음
         </CreateMyCourseFlowButton>

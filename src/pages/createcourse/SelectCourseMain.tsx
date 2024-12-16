@@ -9,17 +9,15 @@ import CreateMyCourseFlowButton from "../../components/createMyCourseMain/Create
 
 import { Dispatch, SetStateAction } from "react";
 
-// props로 `setCurrentStep`과 `currentStep`을 받는 타입 정의
 interface SelectCourseMainProps {
-  setCurrentStep: Dispatch<SetStateAction<number>>;
-  currentStep: number;
+  setCurrentStep: Dispatch<SetStateAction<string>>;
+  currentStep: string;
 }
 
 export default function SelectCourseMain({
   setCurrentStep,
   currentStep,
 }: SelectCourseMainProps) {
-  // 아래는 mock 데이터
   const [courseBoxes, setCourseBoxes] = useState([
     {
       id: 1,
@@ -41,7 +39,6 @@ export default function SelectCourseMain({
     },
   ]);
 
-  // 삭제 함수
   const handleDelete = (id: number) => {
     setCourseBoxes((prev) => prev.filter((box) => box.id !== id));
   };
@@ -66,7 +63,10 @@ export default function SelectCourseMain({
             onDelete={handleDelete}
           />
         ))}
-        <AddNewMyCourseButton />
+        <AddNewMyCourseButton
+          setCurrentStep={setCurrentStep}
+          currentStep={currentStep}
+        />
       </section>
 
       <div
@@ -76,13 +76,11 @@ export default function SelectCourseMain({
         <SliderBox />
       </div>
 
-      {/* 완료 버튼 */}
       <div className="flex flex-col items-center justify-center mb-[100px]">
         <CreateMyCourseFlowButton
-          isCompleteThisPage={isCompletedThisPage}
-          isLastStep={false} // 마지막 단계 아님
           setCurrentStep={setCurrentStep}
-          currentStep={currentStep} // 현재 단계 인덱스 전달
+          currentStep={currentStep} // 현재 단계 전달
+          isCompleteThisPage={isCompletedThisPage}
         >
           완료
         </CreateMyCourseFlowButton>

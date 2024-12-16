@@ -16,13 +16,15 @@ export default function ExplainCourse() {
         <figure className="mb-[194px]">
           <img src={images.big_logo_after_posting} alt="logo" />
         </figure>
-        <CreateMyCourseFlowButton
-          isCompleteThisPage={true}
-          isLastStep={true} // 마지막 단계인지?
-          currentStep={4} // 현재 단계
-        >
-          다양한 코스 구경하기
-        </CreateMyCourseFlowButton>
+        <div className="flex flex-col items-center justify-center mb-[100px]">
+          <CreateMyCourseFlowButton
+            isCompleteThisPage={true}
+            isLastStep={true} // 마지막 단계인지?
+            currentStep="step4" // 현재 단계
+          >
+            다양한 코스 구경하기
+          </CreateMyCourseFlowButton>
+        </div>
       </section>
     </div>
   );

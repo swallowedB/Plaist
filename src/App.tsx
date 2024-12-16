@@ -11,7 +11,6 @@ import Main from "./pages/MainFeed";
 import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
 import CreateMyCourse from "./pages/createcourse/CreateMycourse";
-import MapView from "./pages/createcourse/MapView";
 // 그외
 import MyPage from "./pages/MyPage";
 import Login from "./pages/Login";
@@ -71,7 +70,6 @@ export default function App() {
             <Route path="view-my-course" element={<ViewMycourse />} />
             {/* createMycourse */}
             <Route path="" element={<CreateMyCourse />} />
-            <Route path="map-view" element={<MapView />} />
           </Route>
         </Route>
 
