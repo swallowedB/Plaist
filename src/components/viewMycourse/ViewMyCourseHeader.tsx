@@ -7,12 +7,13 @@ export default function ViewMyCourseHeader() {
       className="flex flex-col items-center justify-center"
     >
       <h1
-        style={{textShadow: '0px 3px 15px rgba(47, 125, 215, 0.30)'}} 
-        className="text-[60px] font-rubik text-white mb-[37px]">
+        style={{ textShadow: "0px 3px 15px rgba(47, 125, 215, 0.30)" }}
+        className="text-[60px] font-rubik text-white mb-[37px]"
+      >
         My Course
       </h1>
       <NavLink
-        to="../flow1-select-style"
+        to="../"
         className={`text-center w-[285px] h-[50px] bg-primary-500 border-2 border-white/65 text-white 
           font-pretendard text-[20px] font-semiBold rounded-[30px] shadow-backblue border-white leading-[47px]`}
       >

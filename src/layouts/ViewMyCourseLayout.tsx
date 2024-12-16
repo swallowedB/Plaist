@@ -6,10 +6,9 @@ export default function ViewMycourse() {
       id="background"
       className="relative flex items-center justify-center bg-white"
     >
-      
       <section
         id="main-content-box"
-        className="relative flex justify-center w-[100vw] h-[100vh] bg-transparent"
+        className="relative flex justify-center w-[767px] bg-transparent"
       >
         <Outlet />
       </section>
