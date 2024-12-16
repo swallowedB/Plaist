@@ -1,6 +1,7 @@
 import { useCookie } from "../../hooks/useCookie";
 import FooterNavLink from "../FooterNavLink";
 import { useLocation } from "react-router";
+import images from "../../assets/images/importImages";
 
 export default function Nav() {
   const isLoggedIn = useCookie();
@@ -14,7 +15,12 @@ export default function Nav() {
   ];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
 
-  const getIcon = (path: string, defaultIcon: string, activeIcon: string) => {
+  const getIcon = (
+    path: string,
+    defaultIcon: keyof typeof images,
+    activeIcon: keyof typeof images
+  ) => {
+    if (path === "/login") return defaultIcon;
     return location.pathname === path ? activeIcon : defaultIcon;
   };
 
