@@ -170,7 +170,7 @@ export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
           </div>
         </form>
 
-        <section className="w-[416px] flex flex-col items-center gap-[19px] mt-[39px] mb-[79px]">
+        <section className="w-[416px] min-h-[11vh] flex flex-col items-center gap-[19px] mt-[39px] mb-[79px]">
           {searchResults}
         </section>
         {/* 버튼 */}

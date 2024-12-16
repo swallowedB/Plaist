@@ -16,6 +16,7 @@ export default function Login() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [emailTouched, setEmailTouched] = useState(false);
   const [passwordTouched, setPasswordTouched] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -79,6 +80,10 @@ export default function Login() {
     validateForm();
   }, [email, password]);
 
+  useEffect(() => {
+    console.log("isActive:", isActive);
+  }, [isActive]);
+
   return (
     <div className="relative w-72 h-96 ">
       <div className="text-center">
@@ -100,7 +105,7 @@ export default function Login() {
         <div className="relative">
           <InputField
             id="password"
-            type="password"
+            type={isActive ? "text" : "password"}
             name="password"
             placeholder="Password"
             value={password}
@@ -109,10 +114,15 @@ export default function Login() {
             error={passwordTouched ? passwordError : ""}
             className="relative z-10"
           />
-          <img
-            src={passwordIcon}
+          <button
+            type="button"
+            onClick={() => {
+              setIsActive((prevState) => !prevState);
+            }}
             className="absolute top-[15px] left-[255px] z-50 "
-          />
+          >
+            <img src={passwordIcon} />
+          </button>
         </div>
         <button
           type="submit"
