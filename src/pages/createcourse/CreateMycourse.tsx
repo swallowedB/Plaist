@@ -4,7 +4,7 @@ import SelectTag from "./SelectTag";
 import SelectCourseMain from "./SelectCourseMain";
 import ExplainCourse from "./ExpainCourse";
 import SucessMyPost from "./SucessMyPost";
-import Mapview from "./Mapview";
+import Mapview from "./MapView";
 
 export default function CreateMyCourse() {
   const [currentStep, setCurrentStep] = useState<string>("step1");
@@ -44,7 +44,16 @@ export default function CreateMyCourse() {
         />
       ),
     },
-    { id: "step4", name: "SucessMyPost", component: <SucessMyPost /> },
+    {
+      id: "step4",
+      name: "SucessMyPost",
+      component: (
+        <SucessMyPost
+          setCurrentStep={setCurrentStep}
+          currentStep={currentStep}
+        />
+      ),
+    },
   ];
 
   // progress_bar 이미지 경로 계산

@@ -3,10 +3,11 @@ import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuid
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
 
 interface MapviewProps {
-  setCurrentStep: Dispatch<SetStateAction<number>>;
+  setCurrentStep: Dispatch<SetStateAction<string>>;
+  currentStep: string;
 }
 
-export default function Mapview({ setCurrentStep }: MapviewProps) {
+export default function Mapview({ setCurrentStep, currentStep }: MapviewProps) {
   // 페이지 상단으로 스크롤 이동
   const goToTop = () => {
     const mapElement = document.getElementById("top");
@@ -29,6 +30,7 @@ export default function Mapview({ setCurrentStep }: MapviewProps) {
         <MapDisplay
           goToTop={goToTop} // 스크롤 이동 함수 전달
           setCurrentStep={setCurrentStep} // 단계 변경 함수 전달
+          currentStep={currentStep}
         />
       </section>
     </div>

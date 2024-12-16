@@ -5,8 +5,8 @@ import { deleteFollow } from "../../api/api";
 
 // props로 setCurrentStep을 받기 위한 타입 정의
 interface ExplainCourseProps {
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-  currentStep: number; // currentStep을 부모 컴포넌트에서 전달 받도록 수정
+  setCurrentStep: React.Dispatch<React.SetStateAction<string>>;
+  currentStep: string;
 }
 
 export default function ExplainCourse({

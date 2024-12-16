@@ -5,9 +5,11 @@ import CreateMyCourseFlowButton from "../../CreateMyCourseFlowButton";
 export default function MapDisplay({
   goToTop,
   setCurrentStep,
+  currentStep,
 }: {
   goToTop: () => void;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentStep: React.Dispatch<React.SetStateAction<string>>;
+  currentStep: string;
 }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const infowindowRef = useRef<kakao.maps.InfoWindow | null>(null);
@@ -172,7 +174,7 @@ export default function MapDisplay({
         </section>
         <CreateMyCourseFlowButton
           setCurrentStep={setCurrentStep}
-          currentStep="step2.5"
+          currentStep={currentStep}
           isCompleteThisPage={true}
         >
           선택

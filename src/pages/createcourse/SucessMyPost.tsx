@@ -1,7 +1,14 @@
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+interface ExplainCourseProps {
+  setCurrentStep: React.Dispatch<React.SetStateAction<string>>;
+  currentStep: string;
+}
 
-export default function ExplainCourse() {
+export default function SuccessMyPost({
+  setCurrentStep,
+  currentStep,
+}: ExplainCourseProps) {
   return (
     <div>
       <section className="flex flex-col items-center justify-center mt-[99px] font-pretendard">
@@ -19,8 +26,8 @@ export default function ExplainCourse() {
         <div className="flex flex-col items-center justify-center mb-[100px]">
           <CreateMyCourseFlowButton
             isCompleteThisPage={true}
-            isLastStep={true} // 마지막 단계인지?
-            currentStep="step4" // 현재 단계
+            setCurrentStep={setCurrentStep}
+            currentStep={currentStep} // 현재 단계
           >
             다양한 코스 구경하기
           </CreateMyCourseFlowButton>

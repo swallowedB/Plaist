@@ -4,8 +4,8 @@ import PostingGuideTitle from "../../components/createMyCourseMain/PostingGuideT
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
 interface SelectTagProps {
-  setCurrentStep: Dispatch<SetStateAction<number>>;
-  currentStep: number; // currentStep을 prop으로 전달받습니다.
+  setCurrentStep: Dispatch<SetStateAction<string>>;
+  currentStep: string;
 }
 
 export default function SelectTag({
