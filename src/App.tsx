@@ -71,16 +71,6 @@ export default function App() {
 
           <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
-        </Route>
-
-        {/* create-course 경로 */}
-        <Route path="create-course">
-          <Route element={<ViewMyCourseLayout />}>
-            {/* view-my-course 경로 */}
-            <Route path="view-my-course" element={<ViewMycourse />} />
-            {/* createMycourse */}
-            <Route path="" element={<CreateMyCourse />} />
-          </Route>
 
           <Route path="my-page" element={<MyPage />} />
           <Route path="user-info" element={<UserInfo />} />
@@ -89,6 +79,15 @@ export default function App() {
           <Route path="authTest" element={<AuthTest />} />
           <Route path="searchTest" element={<SearchTest />} />
           <Route path="createChannel" element={<CreateChannel />} />
+          {/* create-course 경로 */}
+          <Route path="create-course">
+            <Route element={<ViewMyCourseLayout />}>
+              {/* view-my-course 경로 */}
+              <Route path="view-my-course" element={<ViewMycourse />} />
+              {/* createMycourse */}
+              <Route path="" element={<CreateMyCourse />} />
+            </Route>
+          </Route>
         </Route>
       </Routes>
     </QueryClientProvider>

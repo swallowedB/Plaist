@@ -56,13 +56,11 @@ export default function CreateMyCourse() {
     },
   ];
 
-  // progress_bar 이미지 경로 계산
   const getProgressBarImage = () => {
-    // 'step' 뒤의 숫자만 추출하고 소수점을 버리고 숫자만 남김
     const stepNumber = parseFloat(
       currentStep.replace("step", "").split(".")[0]
     );
-    return images[`progress_bar${stepNumber}`]; // step1, step2, step3 이미지 반환
+    return images[`progress_bar${stepNumber}`];
   };
 
   return (
