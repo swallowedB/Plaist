@@ -10,7 +10,7 @@ export default function CourseContentCommentArea({
 }) {
   return (
     <div className="flex mx-[45px] mb-[90px] flex-col gap-[45px] text-custom-black font-pretendard">
-      <CommentInputArea contentId={courseObj._id} />
+      <CommentInputArea courseObj={courseObj} />
       <img src={images.course_comment_line_img} alt="" />
       <div>
         {/* 댓글 헤더 */}
