@@ -4,6 +4,8 @@ import { NavLink, useNavigate, useSearchParams } from "react-router";
 import "../css/tailwind.css";
 import passwordIcon from "../assets/images/passwordIcon.svg";
 import { postLogin } from "../api/api";
+import typePassword from "../assets/images/password_icon_password.png";
+import typeText from "../assets/images/password_icon_text.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -80,9 +82,7 @@ export default function Login() {
     validateForm();
   }, [email, password]);
 
-  useEffect(() => {
-    console.log("isActive:", isActive);
-  }, [isActive]);
+  useEffect(() => {}, [isActive]);
 
   return (
     <div className="relative w-72 h-96 ">
@@ -121,7 +121,7 @@ export default function Login() {
             }}
             className="absolute top-[15px] left-[255px] z-50 "
           >
-            <img src={passwordIcon} />
+            <img src={isActive ? typeText : typePassword} />
           </button>
         </div>
         <button
