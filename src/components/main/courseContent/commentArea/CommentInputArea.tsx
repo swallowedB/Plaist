@@ -2,9 +2,11 @@ import { useState } from "react";
 import images from "../../../../assets/images/importImages";
 import { postComment } from "../../../../api/commentApi";
 
-export default function CommentInputArea({ contentId }: { contentId: string }) {
+export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { _id, comments } = courseObj;
+  const contentId = _id;
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -65,7 +67,7 @@ export default function CommentInputArea({ contentId }: { contentId: string }) {
             className="w-[14px] h-[15px]"
           />
           <p className="text-[13px] font-regular leading-5 text-primary-700">
-            213
+            {comments.length}
           </p>
         </div>
       </div>
