@@ -118,7 +118,7 @@ export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
       </div>
 
       <CourseLocationCards doc={doc} />
-      <CourseContentCommentArea />
+      <CourseContentCommentArea courseObj={courseObj} />
     </div>
   );
 }
