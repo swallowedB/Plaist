@@ -63,7 +63,7 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
         <div className="flex items-center gap-1 px-[9px]">
           <img
             src={images.course_comment_icon}
-            alt=""
+            alt="댓글 아이콘 이미지"
             className="w-[14px] h-[15px]"
           />
           <p className="text-[13px] font-regular leading-5 text-primary-700">
