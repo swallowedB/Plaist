@@ -4,7 +4,7 @@ export default function ViewMyCourseHeader() {
   return (
     <div
       id="viewmycourse-flexbox--toparea"
-      className="flex flex-col justify-center items-center"
+      className="flex flex-col items-center justify-center"
     >
       <h1
         style={{textShadow: '0px 3px 15px rgba(47, 125, 215, 0.30)'}} 
