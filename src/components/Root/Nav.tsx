@@ -38,7 +38,11 @@ export default function Nav() {
             label="피드"
           />
           <FooterNavLink
-            to="/create-course/view-my-course"
+            to={
+              isLoggedIn
+                ? "/create-course/view-my-course"
+                : "/login?page=create-course/view-my-course"
+            }
             icon={getIcon(
               "/create-course/view-my-course",
               "create_icon",
@@ -47,12 +51,8 @@ export default function Nav() {
             label="마이 코스"
           />
           <FooterNavLink
-            to={isLoggedIn ? "/my-page" : "/login"}
-            icon={getIcon(
-              isLoggedIn ? "/my-page" : "/login",
-              "mypage_icon",
-              "clickmypage_icon"
-            )}
+            to={isLoggedIn ? "/my-page" : "/login?page=my-page"}
+            icon={getIcon("/my-page", "mypage_icon", "clickmypage_icon")}
             label="마이페이지"
           />
         </nav>

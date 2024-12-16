@@ -21,7 +21,7 @@ export default function HeaderIcon() {
           />
           <div className="flex items-center gap-4 md:pr-[61px]">
             <HeaderIconLink
-              to={isLoggedIn ? "/notification" : "/login"}
+              to={isLoggedIn ? "/notification" : "/login?page=notification"}
               icon="notification_icon"
               className="w-[17px] h-[20px]"
             />

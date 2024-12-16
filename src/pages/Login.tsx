@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import InputField from "../components/InputField";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useSearchParams } from "react-router";
 import "../css/tailwind.css";
 import passwordIcon from "../assets/images/passwordIcon.svg";
 import { postLogin } from "../api/api";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const page = searchParams.get("page");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -54,7 +56,6 @@ export default function Login() {
   };
 
   const validateForm = () => {
-    const errors = { nickname: "", email: "", password: "" };
     let valid = true;
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -122,7 +123,7 @@ export default function Login() {
           disabled={!isFormValid}
           onClick={(e) => {
             e.preventDefault();
-            postLogin(email, password, navigate);
+            postLogin(email, password, navigate, page);
           }}
         >
           로그인

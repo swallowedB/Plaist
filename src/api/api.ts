@@ -78,7 +78,8 @@ export const postSingUp = async (
 export const postLogin = async (
   email: string,
   password: string,
-  navigate: NavigateFunction
+  navigate: NavigateFunction,
+  page: string | null
 ) => {
   try {
     const { status, data } = await axiosInstance.post(`/login`, {
@@ -87,7 +88,7 @@ export const postLogin = async (
     });
     if (status === 200) {
       setCookie("token", data.token);
-      navigate("/");
+      navigate(`/${page}`);
     }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
@@ -100,7 +101,7 @@ export const postLogout = async (navigate: NavigateFunction) => {
     const { status } = await axiosInstance.post(`/logout`);
     if (status === 200) {
       deleteCookie("token");
-      navigate("/login");
+      navigate("/login?page=my-page");
     }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
