@@ -1,20 +1,41 @@
+import { useEffect } from "react";
 import images from "../../../assets/images/importImages"
+import { useCommentsStore } from "../../../stores/useCommentsStore";
 
-type TestData = {
-  id: number;
+type CommentData = {
+  id: string;
+  comment: string;
+  createdAt: string;
+};
+
+type PostData = {
+  id: string;
   title: string;
-  comments: string;
   likes: number;
   location: string;
-  createdAt: string
 };
 
-
-type MyCommentItemProps = {
-  data: TestData;
+type MyCommentCardItemProps = {
+  post: PostData;
+  comment: CommentData;
 };
+export default function MyCommentCardItem({ post, comment }: MyCommentCardItemProps) {
+  const { fetchComments, deleteComment } = useCommentsStore();
 
-export default function MyCommentCardItem({ data }: MyCommentItemProps) {
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  const handleDelete = async (id: string) => {
+    try{
+      await deleteComment(id);
+      console.log(`Deleted comment with ID: ${id}`);
+      await fetchComments();
+    } catch (error){
+      console.error("Error deleting comment:", error);
+    }
+  };
+
   return (
     <div>
       <div className={`
@@ -29,16 +50,18 @@ export default function MyCommentCardItem({ data }: MyCommentItemProps) {
           <div className="flex flex-row items-center justify-between w-full">
 
             {/* 게시글 제목 */}
-            <p className="font-pretendard text-[16px] font-medium text-custom-black">{data.title}</p>
+            <p className="font-pretendard text-[16px] font-medium text-custom-black">{post.title}</p>
 
             {/* 수정/삭제 버튼 */}
             <div className="flex flex-row items-center gap-3">
               <button
                 className="font-pretendard font-regular text-xs text-primary-600"
+                onClick={() => console.log(`Editing comment with ID: ${comment.id}`)}
               >수정</button>
               <p className="font-pretendard font-regular text-xs text-custom-gray">|</p>
               <button
                 className="font-pretendard font-regular text-xs text-primary-600"
+                onClick={() => handleDelete(comment.id)}
               >삭제</button>
             </div>
           </div>
@@ -47,7 +70,7 @@ export default function MyCommentCardItem({ data }: MyCommentItemProps) {
           <div className="flex items-start w-full">
             {/* 댓글 본문 미리보기 */}
             <p className="w-[419px] font-pretendard font-regular text-xs text-custom-gray">
-              {data.comments}
+              {comment.comment}
             </p>
           </div>
 
@@ -62,16 +85,16 @@ export default function MyCommentCardItem({ data }: MyCommentItemProps) {
                 className="w-4 h-4 mr-1"/>
               <div className={`flex flex-row items-center gap-2 font-pretendard text-xs text-custom-gray font-regular
                 `}>
-                <p>{data.location}</p>
+                <p>{post.location}</p>
                 <p>|</p>
-                <p>{data.createdAt}</p>
+                <p>{comment.createdAt}</p>
               </div>
             </div>
 
             {/* 좋아요 수 */}
             <div className="flex flex-row items-center">
               <img src={images.like_filled_icon} alt="좋아요 아이콘" className="w-3 h-3" />
-              <p className="ml-1 leading-5 font-pretendard text-[13px] font-regular text-custom-black">{data.likes}</p>
+              <p className="ml-1 leading-5 font-pretendard text-[13px] font-regular text-custom-black">{post.likes}</p>
             </div>
           </div>
           
