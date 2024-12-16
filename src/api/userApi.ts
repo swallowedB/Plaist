@@ -52,10 +52,17 @@ export const updateUserInfo = async ({ fullName, email }: { fullName: string; em
 };
 
 // 사용자 프로필 사진 변경
-export const postUserPoto = async () => {
+export const postUserPoto = async (formData: FormData) => {
   try{
-    const response = await axiosInstance.get(`/users/upload-photo`);
-    return response.data;
+    const response = await axiosInstance.post(`/users/upload-photo`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const { image } =response.data;
+    console.log("업로드된 이미지 URL Check:", image);
+    return image;
   } catch (error) {
     console.error("/users/upload-photo 호출 중 오류 발생:", error);
   }
