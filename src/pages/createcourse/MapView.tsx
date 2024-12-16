@@ -1,15 +1,16 @@
 import images from "../../assets/images/importImages";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
-import SearchResultOfCreateMy from "../../components/createMyCourseMain/flow2/mapview/SearchResultOfCreateMy";
-
-import { useState } from "react";
 
 export default function SelectCourseMain() {
-  const [isCompleteThisPage, setisCompleteThisPage] = useState(true);
-
+  const goToTop = () => {
+    const mapElement = document.getElementById("top");
+    if (mapElement) {
+      mapElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
-    <div>
+    <div id="top">
       <aside>
         <figure>
           <img src={images.progress_bar2} alt="Progress bar-select-course2" />
@@ -21,8 +22,7 @@ export default function SelectCourseMain() {
           titleText="첫번째 코스를 선택"
           mt={80}
         />
-        <MapDisplay />
-        <SearchResultOfCreateMy />
+        <MapDisplay goToTop={goToTop} />
       </section>
     </div>
   );
