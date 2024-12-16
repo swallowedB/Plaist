@@ -1,5 +1,6 @@
 import images from "../../assets/images/importImages";
 import AllCourseCardItem from "../main/allCourse/AllCourseCardItem";
+
 interface Post {
   likes: any[];
   comments: any[];
@@ -40,13 +41,20 @@ interface Post {
   __v: number;
 }
 
-export default function MyCourseCards({ courseList }: any) {
-  console.log(courseList);
+export default function MyCourseCards({ courseList }: { courseList: Post[] }) {
   return (
-    <div className="grid grid-cols-2 gap-x-[17px] gap-y-[36px] ">
-      {courseList.map((courseItem: Post, idx: number) => {
-        return <AllCourseCardItem key={idx} courseItem={courseItem} />;
-      })}
+    <div>
+      {courseList.length > 0 ? (
+        <div className="grid grid-cols-2 gap-x-[17px] gap-y-[36px]">
+          {courseList.map((courseItem: Post, idx: number) => (
+            <AllCourseCardItem key={idx} courseItem={courseItem} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center font-pretendard text-white text-[18px] font-semiBold h-[100px]">
+          <p>나만의 코스가 아직 없습니다</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -40,8 +40,8 @@ export default function Nav() {
           <FooterNavLink
             to={
               isLoggedIn
-                ? "/create-course/view-my-course"
-                : "/login?page=create-course/view-my-course"
+                ? "/my-course-builder/viewer"
+                : "/login?page=my-course-builder/viewer"
             }
             icon={getIcon(
               "/create-course/view-my-course",
