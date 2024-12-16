@@ -1,13 +1,20 @@
 import { Link } from "react-router"
 import profileICon from "../../assets/images/profile_icon.svg";
-import exprofileImg from "../../assets/images/exProfileImg.svg";
+import { useUserStore } from "../../stores/userInfoStore";
+import { useEffect } from "react";
 
 export default function MypageProfile() {
+  const { userProfilePic, userInfo, fetchUserInfo } = useUserStore();
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, [fetchUserInfo]);
+
   return (
     <>
       <div
-        style={{backgroundImage: `url(${exprofileImg})`}} 
-        className="w-[96px] h-[96px] bg-[#f3d0d9] rounded-full shadow-backblue"/>
+        style={{backgroundImage: `url(${userProfilePic})`}} 
+        className="w-[96px] h-[96px] bg-[#f3d0d9] rounded-full shadow-backblue overflow-hidden bg-cover bg-center"/>
       <nav>
         <Link to="/user-info">
           <img
@@ -17,8 +24,8 @@ export default function MypageProfile() {
         
         </Link>
       </nav>
-      <p className="text-primary-700 text-[24px] font-bold font-pretendard mt-[8px]">Timmy</p>
-      <p className="text-primary-600 text-[14px] font-regular font-pretendard">Timmy2@gmail.com</p>    
+      <p className="text-primary-700 text-[24px] font-bold font-pretendard mt-[8px]">{userInfo.fullName}</p>
+      <p className="text-primary-600 text-[14px] font-regular font-pretendard">{userInfo.email}</p>    
     </>
   );
 }
