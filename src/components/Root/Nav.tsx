@@ -7,12 +7,7 @@ export default function Nav() {
   const isLoggedIn = useCookie();
   const location = useLocation();
 
-  const hiddenPaths = [
-    "/create-course/flow1-select-style",
-    "/create-course/flow2-select-course",
-    "/create-course/flow3-explain-course",
-    "/create-course/flow4-success-post",
-  ];
+  const hiddenPaths = ["/create-course"];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
 
   const getIcon = (

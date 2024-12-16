@@ -4,13 +4,6 @@ import CreateMyCourseFlowButton from "../../components/createMyCourseMain/Create
 export default function ExplainCourse() {
   return (
     <div>
-      <aside>
-        <figure>
-          {/* 이미지 렌더링 */}
-          <img src={images.progress_bar4} alt="Progress bar-sucess-posting" />
-        </figure>
-      </aside>
-
       <section className="flex flex-col items-center justify-center mt-[99px] font-pretendard">
         <p className="text-[36px] mb-[50px]">🎉</p>
         <h1 className="text-[36px] leading-0 font-bold text-primary-800 text-center mb-[13px]">
@@ -23,7 +16,11 @@ export default function ExplainCourse() {
         <figure className="mb-[194px]">
           <img src={images.big_logo_after_posting} alt="logo" />
         </figure>
-        <CreateMyCourseFlowButton to="/" isCompleteThisPage={true}>
+        <CreateMyCourseFlowButton
+          isCompleteThisPage={true}
+          isLastStep={true} // 마지막 단계인지?
+          currentStep={4} // 현재 단계
+        >
           다양한 코스 구경하기
         </CreateMyCourseFlowButton>
       </section>
