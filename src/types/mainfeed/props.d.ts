@@ -12,7 +12,6 @@ interface ICourseLocationCardItemProps {
   title: string;
   rating: number;
   location: string;
-  imageUrl: string;
   contentId: string;
   contact: string;
   category: string;
@@ -107,6 +106,23 @@ interface Channel {
   description: string;
   createdAt: string;
   updatedAt: string;
+}
+
+interface LocationObj {
+  locationName: string;
+  locationAddress: string;
+  locationCategory: string;
+  locationPhoneNum: string;
+}
+
+interface Title {
+  courseTitle: string;
+  courseDescription: string;
+  estimatedTime: string;
+  estimatedCost: number;
+  locationObjs: LocationObj[];
+  withWhom: string[];
+  style: string[];
 }
 
 interface Course {

@@ -1,14 +1,18 @@
 import images from "../../../assets/images/importImages";
 import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
 import CourseLocationCards from "./locationCardArea/CourseLocationCards";
-import { convertDateFormatt } from "../../../utills/main/formatingDate";
-import { convertTime } from "../../../utills/main/timeConvert";
+
+import {
+  convertDateFormatt,
+  convertTime,
+  formatPrice,
+} from "../../../utills/main/fomatter";
 
 export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
   if (!courseObj) {
     return <div>Loading...</div>;
   }
-  const doc = JSON.parse(courseObj.title);
+  const doc: Title = JSON.parse(courseObj.title);
   console.log(courseObj);
   console.log(doc);
 
@@ -71,7 +75,7 @@ export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
                 alt="예상 이동 시간 아이콘"
                 className="w-[14px] h-[14px]"
               />
-              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 소요 시간: ${convertTime(
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 시간 ${convertTime(
                 doc.estimatedTime
               )}H`}</p>
             </div>
@@ -82,25 +86,38 @@ export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
                 alt="예상 예산 아이콘"
                 className="w-[14px] h-[14px]"
               />
-              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상금액 2~3만원`}</p>
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 금액 ${formatPrice(
+                doc.estimatedCost
+              )}`}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="min-h-[31px] flex flex-row gap-3 text-[14px] text-primary-500 font-medium leading-[10px] ">
-        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
-          데이트
-        </span>
-        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
-          모임
-        </span>
-        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
-          회식
-        </span>
+        {doc.withWhom.map((item, idx) => {
+          return (
+            <span
+              key={idx}
+              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
+            >
+              {item}
+            </span>
+          );
+        })}
+        {doc.style.map((item, idx) => {
+          return (
+            <span
+              key={idx}
+              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
+            >
+              {item}
+            </span>
+          );
+        })}
       </div>
 
-      <CourseLocationCards />
+      <CourseLocationCards doc={doc} />
       <CourseContentCommentArea />
     </div>
   );

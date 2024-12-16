@@ -1,12 +1,11 @@
 import images from "../../../../assets/images/importImages";
 
 export default function CourseLocationCardItem({
-  title,
-  location,
-  contentId,
-  contact,
-  category,
-}: ICourseLocationCardItemProps) {
+  locationName,
+  locationAddress,
+  locationPhoneNum,
+  locationCategory,
+}: LocationObj) {
   return (
     <div className="flex items-center">
       <div className="h-[74px] w-[74px] bg-primary-600 rounded-full flex px-4 shadow-default">
@@ -20,12 +19,12 @@ export default function CourseLocationCardItem({
           <div className="flex items-center gap-[6px]">
             <div className={`flex items-end gap-[6px] leading-6`}>
               <p className="text-[18px] font-medium text-custom-black font-pretendard ">
-                {title}
+                {locationName}
               </p>
               <p
                 className={`text-custom-gray text-[13px] font-medium leading-5`}
               >
-                {category}
+                {locationCategory}
               </p>
             </div>
           </div>
@@ -39,7 +38,7 @@ export default function CourseLocationCardItem({
                 className="w-4 h-4 mr-1"
               />
               <p className="text-xs font-pretendard text-custom-black">
-                {contact}
+                {locationPhoneNum}
               </p>
             </div>
 
@@ -50,7 +49,7 @@ export default function CourseLocationCardItem({
                 className="w-4 h-4 mr-1"
               />
               <p className="text-xs font-pretendard text-custom-gray">
-                {location}
+                {locationAddress}
               </p>
             </div>
           </div>
