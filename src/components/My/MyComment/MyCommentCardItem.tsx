@@ -1,6 +1,20 @@
 import images from "../../../assets/images/importImages"
 
-export default function MyCommentCardItem() {
+type TestData = {
+  id: number;
+  title: string;
+  comments: string;
+  likes: number;
+  location: string;
+  createdAt: string
+};
+
+
+type MyCommentItemProps = {
+  data: TestData;
+};
+
+export default function MyCommentCardItem({ data }: MyCommentItemProps) {
   return (
     <div>
       <div className={`
@@ -15,7 +29,7 @@ export default function MyCommentCardItem() {
           <div className="flex flex-row items-center justify-between w-full">
 
             {/* 게시글 제목 */}
-            <p className="font-pretendard text-[16px] font-medium text-custom-black">✨ 2025 새해 모임</p>
+            <p className="font-pretendard text-[16px] font-medium text-custom-black">{data.title}</p>
 
             {/* 수정/삭제 버튼 */}
             <div className="flex flex-row items-center gap-3">
@@ -33,7 +47,7 @@ export default function MyCommentCardItem() {
           <div className="flex items-start w-full">
             {/* 댓글 본문 미리보기 */}
             <p className="w-[419px] font-pretendard font-regular text-xs text-custom-gray">
-              4~5명이 모여서 즐기기 딱 좋은 코스였습니다👍 좋은 정보 공유 감사합니다😇
+              {data.comments}
             </p>
           </div>
 
@@ -48,16 +62,16 @@ export default function MyCommentCardItem() {
                 className="w-4 h-4 mr-1"/>
               <div className={`flex flex-row items-center gap-2 font-pretendard text-xs text-custom-gray font-regular
                 `}>
-                <p>Seoul, GangNam</p>
+                <p>{data.location}</p>
                 <p>|</p>
-                <p>2024.10.10</p>
+                <p>{data.createdAt}</p>
               </div>
             </div>
 
             {/* 좋아요 수 */}
             <div className="flex flex-row items-center">
               <img src={images.like_filled_icon} alt="좋아요 아이콘" className="w-3 h-3" />
-              <p className="ml-1 leading-5 font-pretendard text-[13px] font-regular text-custom-black">4.7k</p>
+              <p className="ml-1 leading-5 font-pretendard text-[13px] font-regular text-custom-black">{data.likes}</p>
             </div>
           </div>
           

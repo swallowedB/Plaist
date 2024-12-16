@@ -45,7 +45,7 @@ const Notification = () => {
     <div className="relative font-pretendard inset-0 flex flex-col items-center">
       <div className="absolute blur-bg-center"/>
       <div className={`
-        absolute z-30 w-[647px] bg-white/25 rounded-[25px] shadow-default flex flex-col
+        absolute z-30 w-[647px] bg-white/25 rounded-t-[25px] shadow-default flex flex-col
         mt-[115px] h-full border-2 border-white
         `}>
 

@@ -39,7 +39,8 @@ export default function SearchBar({data, searchKey, onSearch, placeholder}: Sear
         onChange={handleInputChange}
         className={`
           w-[415px] h-[47px] px-6 py-3 font-pretendard bg-custom-input/70 shadow-default rounded-[30px] 
-           outline-none focus:outline-none focus:bg-white transition-all
+          outline-none focus:outline-none focus:bg-white transition-all placeholder:text-sm placeholder:text-custom-gray/70
+          placeholder:font-medium
           `}/>
       
     </div>
