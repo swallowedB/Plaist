@@ -40,7 +40,7 @@ export default function CreateMyCourse() {
   ];
 
   return (
-    <div className="mt-[95px]">
+    <div className="mt-[95px] w-full max-w-lg mb-8">
       {/* 진행률 바 */}
       <aside>
         <figure>
