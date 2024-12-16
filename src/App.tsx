@@ -10,8 +10,7 @@ import Main from "./pages/MainFeed";
 // 코스 생성 관련
 import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
-import SelectTag from "./pages/createcourse/SelectTag";
-import SelectCourseMain from "./pages/createcourse/SelectCourseMain";
+import CreateMyCourse from "./pages/createcourse/CreateMycourse";
 import MapView from "./pages/createcourse/MapView";
 // 그외
 import MyPage from "./pages/MyPage";
@@ -31,16 +30,17 @@ import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
 
 import UserInfo from "./components/My/userInfo/UserInfo";
-import ExpainCourse from "./pages/createcourse/ExpainCourse";
-import SucessMyPost from "./pages/createcourse/SucessMyPost";
 import { useCookie } from "./hooks/useCookie";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-  let isLoggedin = useCookie();
+  const [isLoggedin, setIsLoggedin] = useState<boolean>(false); // 상태로 관리
+  const cookieValue = useCookie();
+
   useEffect(() => {
-    isLoggedin = useCookie();
-  }, [isLoggedin]);
+    setIsLoggedin(cookieValue); // 쿠키 값에 따라 로그인 상태를 업데이트
+  }, [cookieValue]);
+
   return (
     <Routes>
       {/* Root Layout */}
@@ -66,18 +66,12 @@ export default function App() {
 
         {/* create-course 경로 */}
         <Route path="create-course">
-          {/* view-my-course 경로 */}
           <Route element={<ViewMyCourseLayout />}>
+            {/* view-my-course 경로 */}
             <Route path="view-my-course" element={<ViewMycourse />} />
-
-            {/* create-my-course 하위 경로 */}
-            <Route path="flow1-select-style" element={<SelectTag />} />
-            <Route path="flow2-select-course">
-              <Route path="" element={<SelectCourseMain />} />
-              <Route path="map-view" element={<MapView />} />
-            </Route>
-            <Route path="flow3-explain-course" element={<ExpainCourse />} />
-            <Route path="flow4-sucesss-post" element={<SucessMyPost />} />
+            {/* createMycourse */}
+            <Route path="" element={<CreateMyCourse />} />
+            <Route path="map-view" element={<MapView />} />
           </Route>
         </Route>
 

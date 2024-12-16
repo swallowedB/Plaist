@@ -1,17 +1,24 @@
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import styles from "./CourseEditor.module.css";
-import images from "../../assets/images/importImages";
-//공통
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
-import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
-// Editbox
 import AddedCoursebox from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddedCoursebox";
 import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddNewMyCourseButton";
-// 나만의 코스 세부 정보
 import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
+import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
-export default function SelectCourseMain() {
+import { Dispatch, SetStateAction } from "react";
+
+// props로 `setCurrentStep`과 `currentStep`을 받는 타입 정의
+interface SelectCourseMainProps {
+  setCurrentStep: Dispatch<SetStateAction<number>>;
+  currentStep: number;
+}
+
+export default function SelectCourseMain({
+  setCurrentStep,
+  currentStep,
+}: SelectCourseMainProps) {
   // 아래는 mock 데이터
   const [courseBoxes, setCourseBoxes] = useState([
     {
@@ -39,16 +46,10 @@ export default function SelectCourseMain() {
     setCourseBoxes((prev) => prev.filter((box) => box.id !== id));
   };
 
-  const [isCompletedThisPage, setisCompletedThisPage] = useState(true);
+  const [isCompletedThisPage, setIsCompletedThisPage] = useState(true);
 
   return (
     <div>
-      <aside>
-        <figure>
-          {/* 이미지 렌더링 */}
-          <img src={images.progress_bar2} alt="Progress bar-select-course" />
-        </figure>
-      </aside>
       <PostingGuideTitle titleText="나만의 코스를 생성" />
 
       <section
@@ -67,18 +68,23 @@ export default function SelectCourseMain() {
         ))}
         <AddNewMyCourseButton />
       </section>
+
       <div
         id="course-data-selector"
         className="flex flex-col items-center mb-[149px]"
       >
         <SliderBox />
       </div>
+
+      {/* 완료 버튼 */}
       <div className="flex flex-col items-center justify-center mb-[100px]">
         <CreateMyCourseFlowButton
-          to="/create-course/flow3-explain-course"
           isCompleteThisPage={isCompletedThisPage}
+          isLastStep={false} // 마지막 단계 아님
+          setCurrentStep={setCurrentStep}
+          currentStep={currentStep} // 현재 단계 인덱스 전달
         >
-          다음
+          완료
         </CreateMyCourseFlowButton>
       </div>
     </div>

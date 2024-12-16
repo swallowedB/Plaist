@@ -2,7 +2,16 @@ import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
-export default function ExplainCourse(): JSX.Element {
+// props로 setCurrentStep을 받기 위한 타입 정의
+interface ExplainCourseProps {
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  currentStep: number; // currentStep을 부모 컴포넌트에서 전달 받도록 수정
+}
+
+export default function ExplainCourse({
+  setCurrentStep,
+  currentStep,
+}: ExplainCourseProps): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [isSaved, setIsSaved] = useState<boolean>(false);
@@ -25,27 +34,6 @@ export default function ExplainCourse(): JSX.Element {
       {!isSaved && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
       )}
-
-      {/* 상단 진행바 */}
-      <aside className="w-full max-w-lg mb-8">
-        <figure>
-          <img
-            src={images.progress_bar3}
-            alt="Progress bar-posting-add-explain"
-            className="w-full"
-          />
-        </figure>
-      </aside>
-
-      {/* 다음 버튼 (상단 진행바 아래에 고정) */}
-      <div className="w-full max-w-lg mb-8 text-center">
-        <CreateMyCourseFlowButton
-          to="/create-course/flow4-sucesss-post"
-          isCompleteThisPage={isSaved}
-        >
-          다음
-        </CreateMyCourseFlowButton>
-      </div>
 
       {/* 메인 컨텐츠 (위에서 아래로 나타나는 애니메이션) */}
       <div
@@ -71,13 +59,14 @@ export default function ExplainCourse(): JSX.Element {
 
             {/* 카테고리 */}
             <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[12px]">
-              {categories.map((item) => {
-                return (
-                  <li className="w-[72px] h-[34px] text-[14px] rounded-[30px] border-2 border-primary-600 font-pretendard text-center flex items-center justify-center">
-                    {item}
-                  </li>
-                );
-              })}
+              {categories.map((item, index) => (
+                <li
+                  key={index}
+                  className="w-[72px] h-[34px] text-[14px] rounded-[30px] border-2 border-primary-600 font-pretendard text-center flex items-center justify-center"
+                >
+                  {item}
+                </li>
+              ))}
             </ul>
 
             {/* 이동시간/예상금액 */}
@@ -126,7 +115,7 @@ export default function ExplainCourse(): JSX.Element {
 
         {/* 선택한 코스 */}
         <div className="mt-10">
-          <h3 className="text-custom-black font-semibold mb-4 text-base ">
+          <h3 className="text-custom-black font-semibold mb-4 text-base">
             선택한 코스
           </h3>
           <div className="flex gap-4">
@@ -137,8 +126,10 @@ export default function ExplainCourse(): JSX.Element {
         {/* 저장 버튼 */}
         <div className="mt-10 text-center">
           <CreateMyCourseFlowButton
-            to="/create-course/flow4-sucesss-post"
-            isCompleteThisPage={isSaved}
+            isCompleteThisPage={true} // 페이지 완료 여부
+            isLastStep={false} // 마지막 단계
+            setCurrentStep={setCurrentStep} // 단계 변경 함수
+            currentStep={currentStep} // 현재 단계
           >
             <button onClick={handleSave}>저장</button>
           </CreateMyCourseFlowButton>

@@ -1,8 +1,17 @@
-import images from "../../assets/images/importImages";
+import { Dispatch, SetStateAction } from "react";
 import { usePostStore } from "../../stores/postStore";
+import PostingGuideTitle from "../../components/createMyCourseMain/PostingGuideTitle";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
-export default function SelectTag() {
+interface SelectTagProps {
+  setCurrentStep: Dispatch<SetStateAction<number>>;
+  currentStep: number; // currentStep을 prop으로 전달받습니다.
+}
+
+export default function SelectTag({
+  setCurrentStep,
+  currentStep,
+}: SelectTagProps) {
   const withWhomList = [
     "친구",
     "연인",
@@ -40,14 +49,14 @@ export default function SelectTag() {
   const toggleSelection = (item: string, type: "style" | "withWhom") => {
     if (type === "style") {
       if (style.includes(item)) {
-        //선택 해제
+        // 선택 해제
         deleteStyle(item);
       } else {
         setStyle(item); // 선택 추가
       }
     } else if (type === "withWhom") {
       if (withWhom.includes(item)) {
-        //선택 해제
+        // 선택 해제
         deleteWithWhom(item);
       } else {
         setWithWhom(item); // 선택 추가
@@ -57,36 +66,25 @@ export default function SelectTag() {
 
   return (
     <div>
-      <aside>
-        <figure>
-          {/* 이미지 렌더링 */}
-          <img src={images.progress_bar1} alt="Progress bar-select-course" />
-        </figure>
-      </aside>
-      <h1 className="text-primary-800 font-pretendard text-[36px] font-bold mt-[80px] mb-[123px]">
-        어떤 코스인가요?
-      </h1>
-
-      <fieldset className="tag--withWhom mb-[80px]">
+      <PostingGuideTitle titleText="어떤 코스인가요?" mt={80} />
+      <fieldset className="tag--withWhom mb-[80px] mt-[123px]">
         <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[10px] block">
           누구와
         </legend>
         <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[15px]">
-          {withWhomList.map((item) => {
-            return (
-              <li
-                key={item}
-                className={`w-[94px] h-[45px] rounded-[30px] border-2 font-pretendard text-[16px] font-medium leading-[42px] text-center cursor-pointer ${
-                  withWhom.includes(item)
-                    ? "bg-primary-500 text-white border-primary-500"
-                    : "bg-white text-primary-600 border-primary-600"
-                }`}
-                onClick={() => toggleSelection(item, "withWhom")}
-              >
-                {item}
-              </li>
-            );
-          })}
+          {withWhomList.map((item) => (
+            <li
+              key={item}
+              className={`w-[94px] h-[45px] rounded-[30px] border-2 font-pretendard text-[16px] font-medium leading-[42px] text-center cursor-pointer ${
+                withWhom.includes(item)
+                  ? "bg-primary-500 text-white border-primary-500"
+                  : "bg-white text-primary-600 border-primary-600"
+              }`}
+              onClick={() => toggleSelection(item, "withWhom")}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </fieldset>
 
@@ -95,27 +93,29 @@ export default function SelectTag() {
           스타일
         </legend>
         <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[15px]">
-          {styleList.map((item) => {
-            return (
-              <li
-                key={item}
-                className={`w-[94px] h-[45px] rounded-[30px] border-2 font-pretendard text-[16px] font-medium leading-[42px] text-center cursor-pointer ${
-                  style.includes(item)
-                    ? "bg-primary-500 text-white border-primary-500"
-                    : "bg-white text-primary-600 border-primary-600"
-                }`}
-                onClick={() => toggleSelection(item, "style")}
-              >
-                {item}
-              </li>
-            );
-          })}
+          {styleList.map((item) => (
+            <li
+              key={item}
+              className={`w-[94px] h-[45px] rounded-[30px] border-2 font-pretendard text-[16px] font-medium leading-[42px] text-center cursor-pointer ${
+                style.includes(item)
+                  ? "bg-primary-500 text-white border-primary-500"
+                  : "bg-white text-primary-600 border-primary-600"
+              }`}
+              onClick={() => toggleSelection(item, "style")}
+            >
+              {item}
+            </li>
+          ))}
         </ul>
       </fieldset>
+
       <div className="flex justify-center items-center mt-[140px]">
+        {/* 'currentStep' 값을 넘겨서 버튼 클릭 시 step을 변경하도록 수정 */}
         <CreateMyCourseFlowButton
-          to="../flow2-select-course"
           isCompleteThisPage={Boolean(style.length && withWhom.length)}
+          isLastStep={false}
+          setCurrentStep={setCurrentStep}
+          currentStep={currentStep} // 'currentStep'을 prop으로 전달
         >
           다음
         </CreateMyCourseFlowButton>
