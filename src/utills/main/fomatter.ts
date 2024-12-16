@@ -13,7 +13,7 @@ export const convertDateFormatt = (isoDate: string) => {
       day: "2-digit",
     })
     .replace(/\./g, ".");
-  return formattedDate;
+  return formattedDate.slice(0, -1);
 };
 
 export const formatPrice = (price: number): string => {
