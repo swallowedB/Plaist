@@ -4,20 +4,44 @@ import { postComment } from "../../../../api/commentApi";
 
 export default function CommentInputArea({ contentId }: { contentId: string }) {
   const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
     console.log(comment);
   };
 
-  const onCommentSubmitHandler = async (
-    e: React.FormEvent<HTMLFormElement>
+  const onCommentSubmitHandler = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    if (comment.trim() === "") {
+      alert("댓글 내용을 입력해 주세요.");
+      setIsSubmitting(false);
+      return;
+    }
+    try {
+      await postComment({ contentId, comment });
+      console.log("댓글 입력 완료");
+      setComment("");
+    } catch (error) {
+      console.error("댓글 제출 중 오류 발생:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const onEnterKeyDownHandler = (
+    e: React.KeyboardEvent<HTMLTextAreaElement>
   ) => {
-    e.preventDefault();
-    if (comment === "") return alert("댓글 내용을 입력해 주세요.");
-    await postComment({ contentId, comment });
-    console.log("댓글 입력 완료");
-    setComment("");
+    if (e.key === "Enter" && e.shiftKey) {
+      return;
+    }
+
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onCommentSubmitHandler();
+    }
   };
 
   return (
@@ -46,10 +70,16 @@ export default function CommentInputArea({ contentId }: { contentId: string }) {
         </div>
       </div>
       <div>
-        <form onSubmit={onCommentSubmitHandler}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            onCommentSubmitHandler();
+          }}
+        >
           <textarea
             spellCheck="true"
             onChange={onInputChangeHandler}
+            onKeyDown={onEnterKeyDownHandler}
             placeholder="타자를 두들길 준비 되셨나요? (｡･∀･)ﾉﾞ"
             className="w-[558px] h-[107px] bg-[#F3F2F3] rounded-[15px] px-5 py-6 text-[13px] "
             value={comment}
