@@ -1,19 +1,21 @@
-import { useState } from "react";
 import images from "../../../assets/images/importImages";
 import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
 import CourseLocationCards from "./locationCardArea/CourseLocationCards";
-import { convertDateFormatt } from "../../../utills/main/formatingDate";
 
-export default function CourseContentDoc({
-  courseObj,
-}: {
-  courseObj: CourseObj;
-}) {
-  console.log(courseObj);
- 
+import {
+  convertDateFormatt,
+  convertTime,
+  formatPrice,
+} from "../../../utills/main/fomatter";
+
+export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
   if (!courseObj) {
     return <div>Loading...</div>;
   }
+  const doc: Title = JSON.parse(courseObj.title);
+  console.log(courseObj);
+  console.log(doc);
+
   return (
     <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex items-center gap-[11px] font-pretendard">
@@ -26,14 +28,16 @@ export default function CourseContentDoc({
           <p className="text-xs font-semibold text-primary-900">
             {courseObj.author.fullName}
           </p>
-          <p className="text-xs text-custom-gray">{convertDateFormatt(courseObj.createdAt)}</p>
+          <p className="text-xs text-custom-gray">
+            {convertDateFormatt(courseObj.createdAt)}
+          </p>
         </div>
       </div>
 
       <div className="mt-[43px]">
         <div className="flex justify-between">
           <h1 className="text-4xl font-semibold leading-8">
-            ✨ 단체 연말 모임
+            {doc.courseTitle}
           </h1>
 
           <div className="flex items-center justify-center gap-1 mt-4">
@@ -42,7 +46,9 @@ export default function CourseContentDoc({
               alt="좋아요 아이콘"
               className="h-[12px] w-[13px] "
             />
-            <p className="font-regular text-[13px] leading-5">4.7k</p>
+            <p className="font-regular text-[13px] leading-5">
+              {courseObj.likes.length}
+            </p>
           </div>
         </div>
 
@@ -54,16 +60,12 @@ export default function CourseContentDoc({
               className="w-[14.66px] h-4"
             />
             <p className="text-xs leading-5 font-regular text-custom-gray">
-              성수동
+              {doc.locationObjs[0].locationAddress}
             </p>
           </div>
 
           <div className="text-[14px] font-medium leading-5 text-custom-gray">
-            <p>
-              이 모임 코스는 인원수 6~7명 모임에 가장 좋은 코스입니다. 2024년이
-              얼마 남지 않았을 때, 모두 모여 시간을 보내기 좋은 코스로, 무드
-              있는 코스입니다.
-            </p>
+            <p>{doc.courseDescription}</p>
           </div>
 
           <div className="flex gap-[14px] h-6 mb-10">
@@ -73,7 +75,9 @@ export default function CourseContentDoc({
                 alt="예상 이동 시간 아이콘"
                 className="w-[14px] h-[14px]"
               />
-              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`이동시간 1~2시간`}</p>
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 시간 ${convertTime(
+                doc.estimatedTime
+              )}H`}</p>
             </div>
 
             <div className="flex items-center gap-[11px]">
@@ -82,25 +86,38 @@ export default function CourseContentDoc({
                 alt="예상 예산 아이콘"
                 className="w-[14px] h-[14px]"
               />
-              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상금액 2~3만원`}</p>
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 금액 ${formatPrice(
+                doc.estimatedCost
+              )}`}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="min-h-[31px] flex flex-row gap-3 text-[14px] text-primary-500 font-medium leading-[10px] ">
-        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
-          데이트
-        </span>
-        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
-          모임
-        </span>
-        <span className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]">
-          회식
-        </span>
+        {doc.withWhom.map((item, idx) => {
+          return (
+            <span
+              key={idx}
+              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
+            >
+              {item}
+            </span>
+          );
+        })}
+        {doc.style.map((item, idx) => {
+          return (
+            <span
+              key={idx}
+              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
+            >
+              {item}
+            </span>
+          );
+        })}
       </div>
 
-      <CourseLocationCards />
+      <CourseLocationCards doc={doc} />
       <CourseContentCommentArea />
     </div>
   );

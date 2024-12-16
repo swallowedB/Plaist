@@ -6,7 +6,7 @@ import { getCourseObj } from "../api/postApi";
 
 export default function CourseContent() {
   const { contentId } = useParams<{ contentId: string }>();
-  const [courseObj, setCourseObj] = useState<CourseObj | null>(null);
+  const [courseObj, setCourseObj] = useState<Course | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +35,7 @@ export default function CourseContent() {
         </div>
 
         <div className="px-[61px] h-auto overflow-y-auto ">
-          <CourseContentDoc courseObj={courseObj} />
+          <CourseContentDoc courseObj={courseObj!} />
         </div>
       </div>
     </div>

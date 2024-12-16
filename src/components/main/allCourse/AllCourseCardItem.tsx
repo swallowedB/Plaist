@@ -1,22 +1,15 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
 
-export default function AllCourseCardItem({ courseItem }) {
-  const {
-    author,
-    channel,
-    comments,
-    createdAt,
-    image,
-    imagePublicId,
-    likes,
-    title,
-    updatedAt,
-    _id,
-  } = courseItem;
-  const courseDocData = JSON.parse(courseItem.title);
-  // console.log(courseItem);
-  console.log(courseDocData);
+export default function AllCourseCardItem({
+  courseItem,
+}: {
+  courseItem: Course;
+  }) {
+  if(!courseItem) {return <div>loading...</div>}
+  const { image, likes, _id } = courseItem || {};
+  const courseDocData = JSON.parse(courseItem?.title);
+
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
@@ -69,7 +62,7 @@ export default function AllCourseCardItem({ courseItem }) {
             className="w-4 h-4 mr-1"
           />
           <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
-            {courseDocData.locationObjs[0].locationAddress}
+            {/* {courseDocData.locationObjs[0].locationAddress} */}
           </p>
         </div>
       </div>
