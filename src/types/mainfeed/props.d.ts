@@ -30,11 +30,73 @@ interface ICommentListItemProps {
 }
 // -------------------------------------------------
 
-interface LocationObj {
-  locationName: string;
-  locationAddress: string;
-  locationCategory: string;
-  locationPhoneNum: string;
+interface Like {
+  _id: string;
+  user: string;
+  post: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Comment {
+  _id: string;
+  comment: string;
+  author: User;
+  post: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Follower {
+  _id: string;
+  user: string;
+  follower: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Notification {
+  seen: boolean;
+  _id: string;
+  author: string;
+  user: string;
+  post: string;
+  follow: string;
+  comment: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface Message {
+  _id: string;
+  message: string;
+  sender: string;
+  receiver: string;
+  seen: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface User {
+  _id: string;
+  fullName: string;
+  email: string;
+  coverImage: string;
+  image: string;
+  role: string;
+  emailVerified: boolean;
+  banned: boolean;
+  isOnline: boolean;
+  posts: string[];
+  likes: Like[];
+  comments: string[];
+  followers: Follower[];
+  following: Follower[];
+  notifications: Notification[];
+  messages: Message[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Channel {
@@ -45,38 +107,17 @@ interface Channel {
   description: string;
   createdAt: string;
   updatedAt: string;
-  __v: number;
 }
 
-interface Author {
-  role: string;
-  emailVerified: boolean;
-  banned: boolean;
-  isOnline: boolean;
-  posts: string[];
-  likes: string[];
-  comments: string[];
-  followers: string[];
-  following: string[];
-  notifications: string[];
-  messages: string[];
+interface Course {
+  likes: Like[];
+  comments: Comment[];
   _id: string;
-  fullName: string;
-  email: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface CourseObj {
-  likes: string[];
-  comments: string[];
-  _id: string;
-  title: string;
   image: string;
   imagePublicId: string;
+  title: string;
   channel: Channel;
-  author: Author;
+  author: User;
   createdAt: string;
   updatedAt: string;
-  __v: number;
 }

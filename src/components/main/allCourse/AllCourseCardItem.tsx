@@ -1,22 +1,14 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
 
-export default function AllCourseCardItem({ courseItem }) {
-  const {
-    author,
-    channel,
-    comments,
-    createdAt,
-    image,
-    imagePublicId,
-    likes,
-    title,
-    updatedAt,
-    _id,
-  } = courseItem;
+export default function AllCourseCardItem({
+  courseItem,
+}: {
+  courseItem: Course;
+}) {
+  const { image, likes, _id } = courseItem;
   const courseDocData = JSON.parse(courseItem.title);
-  // console.log(courseItem);
-  console.log(courseDocData);
+
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
