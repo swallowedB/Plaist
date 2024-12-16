@@ -33,6 +33,7 @@ import UserInfo from "./components/My/userInfo/UserInfo";
 import { useCookie } from "./hooks/useCookie";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export default function App() {
   const [isLoggedin, setIsLoggedin] = useState<boolean>(false); // 상태로 관리
@@ -46,6 +47,7 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <Routes>
         {/* Root Layout */}
         <Route path="/" element={<RootLayout />}>

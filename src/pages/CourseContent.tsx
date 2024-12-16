@@ -3,10 +3,24 @@ import images from "../assets/images/importImages";
 import CourseContentDoc from "../components/main/courseContent/CourseContentDoc";
 import { useEffect, useState } from "react";
 import { getCourseObj } from "../api/postApi";
+import { useQuery } from "@tanstack/react-query";
+import { getCourses } from "../api/react-query/api";
 
 export default function CourseContent() {
   const { contentId } = useParams<{ contentId: string }>();
   const [courseObj, setCourseObj] = useState<Course | null>(null);
+
+  const { data } = useQuery({
+    queryKey: ["getCourses", contentId],
+    queryFn: () => {
+      if (!contentId) {
+        throw new Error("Content ID is required");
+      }
+      return getCourses(contentId!);
+    },
+  });
+
+  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {
