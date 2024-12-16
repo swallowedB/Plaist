@@ -2,40 +2,40 @@ import { useEffect, useState } from "react";
 import UserInfoInput from "./UserInfoInput";
 
 interface UserInfoFormProps {
-  nicknameLabel: string;
+  fullNameLabel: string;
   emailLabel: string;
   regionLabel: string;
-  defaultNickname?: string;
+  defaultFullName?: string;
   defaultEmail?: string;
-  defaultRegion?: string;
-  onSubmit: (updatedInfo: {nickname: string; email:string; region:string}) => void;
+  // defaultRegion?: string;
+  onSubmit: (updatedInfo: {fullName: string; email:string;}) => void;
 }
 
 export default function UserInfoForm({
-  nicknameLabel,
+  fullNameLabel,
   emailLabel,
-  regionLabel,
-  defaultNickname="bboa",
-  defaultEmail="bboa00@gmail.com",
-  defaultRegion="서울",
+  defaultFullName = "",
+  defaultEmail = "",
+  // defaultRegion,
   onSubmit,
 }: UserInfoFormProps) {
-  const [nickname, setNickname] = useState(defaultNickname);
+  const [fullName, setFullName] = useState(defaultFullName);
   const [email, setEmail] = useState(defaultEmail);
-  const [region, setRegion] = useState(defaultRegion);
+  // const [region, setRegion] = useState(defaultRegion);
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
-    const hasChanges =
-      nickname !== defaultNickname ||
-      email !== defaultEmail ||
-      region !== defaultRegion;
-    setIsChanged(hasChanges);
-  }, [nickname, email, region, defaultNickname, defaultEmail, defaultRegion]);
+    setFullName(defaultFullName);
+    setEmail(defaultEmail);
+}, [defaultFullName, defaultEmail]);
+
+  useEffect(() => {
+    setIsChanged( fullName !== defaultFullName || email !== defaultEmail );
+  }, [fullName, email, defaultFullName, defaultEmail]);
 
   const handleSubmit = () => {
     if(isChanged){
-      onSubmit({nickname, email, region});
+      onSubmit({fullName, email});
     }
   };
 
@@ -43,24 +43,26 @@ export default function UserInfoForm({
     <div className="flex flex-col items-center gap-7">
       {/* 닉네임 */}
       <UserInfoInput 
-        label={nicknameLabel} 
-        id="nickname" 
-        defaultValue={nickname}
-        onChange={(value) => setNickname(value)} 
-      />
-      {/* 이메일 */}
-      <UserInfoInput 
-        label={emailLabel} 
-        id="email" 
-        defaultValue={email}
-        onChange={(value) => setEmail(value)}
+        label={fullNameLabel} 
+        id="name" 
+        defaultValue={fullName}
+        onChange={setFullName} 
       />
       {/* 지역 */}
-      <UserInfoInput 
+      {/* <UserInfoInput 
         label={regionLabel} 
         id="region" 
         defaultValue={region} 
-        onChange={(value) => setRegion(value)}
+        onChange={setRegion}
+      /> */}
+
+      {/* 이메일 */}
+      <UserInfoInput 
+        label={emailLabel} 
+        disabled={true}
+        id="email" 
+        defaultValue={email}
+        onChange={setEmail}
       />
 
       <button
@@ -68,7 +70,7 @@ export default function UserInfoForm({
         onClick={handleSubmit}
         disabled={!isChanged}
         className={`mt-4 w-44 rounded-3xl
-          ${isChanged ? "bg-primary-600 hover:bg-primary-400" : "bg-primary-200 cursor-not-allowed"}
+          ${isChanged ? "bg-primary-600 hover:bg-primary-400" : "bg-primary-300 cursor-not-allowed"}
           text-white px-6 py-2 rounded hover:bg-blue-400 font-pretendard font-medium`}
       >
         저장
