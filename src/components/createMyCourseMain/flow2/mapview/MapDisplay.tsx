@@ -62,14 +62,15 @@ export default function MapDisplay({
     const bounds = new kakao.maps.LatLngBounds();
     removeMarker();
 
-    places.forEach((place, i) => {
-      const placePosition = new kakao.maps.LatLng(place.y, place.x);
-      const marker = addMarker(placePosition, i);
-      if (marker) {
-        bounds.extend(placePosition);
-      }
-    });
-
+    for (let i = 0; i < places.length; i++) {
+      // 마커를 생성하고 지도에 표시합니다
+      const placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
+        marker = addMarker(placePosition, i);
+      // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+      // LatLngBounds 객체에 좌표를 추가합니다
+      bounds.extend(placePosition);
+    }
+    // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
     mapRef.current?.setBounds(bounds);
   }
 
