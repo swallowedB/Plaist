@@ -4,15 +4,17 @@ import { getChannelPostList } from "../../api/postApi";
 import { useEffect } from "react";
 import AllCourseCardItem from "../main/allCourse/AllCourseCardItem";
 
+// TODO 처음 진입시 컨텐츠 보이도록
 export default function Feed() {
   const location = useChannelStore((state) => state.location);
   const spot = useChannelStore((state) => state.spot);
   const channelList = useChannelStore((state) => state.channelList);
-  const [postList, setPostList] = useState<Post[]>([]);
+  const [postList, setPostList] = useState<Course[]>([]);
 
   const getPostList = async () => {
-    let allPostList: Post[] = [];
-    let uniquePostList: Post[] = [];
+    let allPostList: Course[] = [];
+    let uniquePostList: Course[] = [];
+
 
     // location filtering
     if (location.name === "전국" && spot.name === "전체") {
@@ -69,15 +71,13 @@ export default function Feed() {
     uniquePostList.sort(
       (postA, postB) => postB.likes.length - postA.likes.length
     );
-    setPostList(uniquePostList);
-    console.log("Location:", location);
-    console.log("Spot:", spot);
-    console.log("All Posts Before Unique Filter:", allPostList);
-    console.log("Unique Posts:", uniquePostList);
+
+    setPostList((_) => uniquePostList);
+    console.log(channelList);
   };
 
   // 중복 id 제거
-  const uniquePostById = (arr: Post[]) => {
+  const uniquePostById = (arr: Course[]) => {
     const idMap = new Map();
     arr.forEach((item) => {
       const title: TitleType = JSON.parse(item.title);
@@ -86,19 +86,16 @@ export default function Feed() {
     return Array.from(idMap.values());
   };
 
-  // 시작시 무조건 한번 실행
+  // channelList, location 또는 spot이 변경될 때 게시물 리스트 업데이트
   useEffect(() => {
-    getPostList();
-  }, []);
-
-  // location 또는 spot이 변경될 때 게시물 리스트 업데이트
-  useEffect(() => {
-    getPostList();
-  }, [location, spot]); // location과 spot이 변경될 때 실행
+    if (channelList) {
+      getPostList();
+    }
+  }, [channelList, location, spot]);
 
   return (
     <section className="grid grid-cols-2 gap-5 w-full h-full auto-rows-[258px]">
-      {postList.map((post) => {
+      {/* {postList.map((post) => {
         const title: TitleType = JSON.parse(post.title);
         const locationAddressSet = new Set(
           title.locationObjs.map((location) => {
@@ -121,9 +118,13 @@ export default function Feed() {
             }
             location={locationAddress}
             imageUrl={post.image}
+            contentId={post._id}
           />
         );
-      })}
+      })} */}
+      {postList.map((post) => (
+        <AllCourseCardItem key={post._id} courseItem={post} />
+      ))}
     </section>
   );
 }
