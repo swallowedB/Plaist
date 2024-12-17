@@ -2,7 +2,7 @@ import { useParams } from "react-router";
 import images from "../assets/images/importImages";
 import CourseContentDoc from "../components/main/courseContent/CourseContentDoc";
 import { useQuery } from "@tanstack/react-query";
-import { getCourses } from "../api/react-query/api";
+import { getCourses } from "../api/react-query/courseApi";
 import Loader from "../components/skeletonUI/Loader";
 import { useEffect } from "react";
 import { useCommentStore } from "../stores/main/comment/useCommentStore";

@@ -48,6 +48,7 @@ import location_cafe_icon from "../images/course/location/location_cafe_icon.svg
 
 import white_heart_filled_icon from "../images/course/white_heart_filled_icon.svg";
 import white_heart_not_filled_icon from "../images/course/white_heart_not_filled_icon.svg";
+import like_small_not_filled_icon from "../images/like_small_not_filled_icon.svg"
 
 const images: {
   [key: string]: string;
@@ -100,6 +101,7 @@ const images: {
   location_cafe_icon,
   white_heart_filled_icon,
   white_heart_not_filled_icon,
+  like_small_not_filled_icon,
 };
 
 export default images;
