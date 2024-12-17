@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import styles from "./CourseEditor.module.css";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
@@ -6,17 +6,39 @@ import AddedCoursebox from "../../components/createMyCourseMain/flow2/selectmain
 import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddNewMyCourseButton";
 import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import { useSliderStore } from "./../../stores/sliderStore";
 
-import { Dispatch, SetStateAction } from "react";
-
+interface LocationObj {
+  locationName: string;
+  locationAddress: string;
+  locationCategory: string;
+  locationPhoneNum: string;
+  location_id: string;
+  like: string;
+}
 interface SelectCourseMainProps {
-  setCurrentStep: Dispatch<SetStateAction<string>>;
-  currentStep: string;
+  locationObjs: LocationObj[]; // locationObjs는 LocationObj 타입의 배열
+  estimatedTime: number; // estimatedTime은 숫자
+  estimatedCost: number; // estimatedCost는 숫자
+  onPlus: (
+    estimatedTime: number,
+    estimatedCost: number,
+    locationObjs: LocationObj[]
+  ) => void; // onPlus는 해당 데이터를 전달하는 함수
+  onNext: (
+    estimatedTime: number,
+    estimatedCost: number,
+    locationObjs: LocationObj[],
+    channelId: string
+  ) => void; // onNext는 해당 데이터를 전달하고 channelId를 인자로 받는 함수
+  onBack: () => void; // onBack은 반환값이 없는 함수
 }
 
 export default function SelectCourseMain({
-  setCurrentStep,
-  currentStep,
+  locationObjs,
+  onPlus,
+  onNext,
+  onBack,
 }: SelectCourseMainProps) {
   const [courseBoxes, setCourseBoxes] = useState([
     {
@@ -43,7 +65,42 @@ export default function SelectCourseMain({
     setCourseBoxes((prev) => prev.filter((box) => box.id !== id));
   };
 
+  // useSliderStore에서 estimatedTime과 estimatedCost를 가져옴
+  const { estimatedTime, estimatedCost } = useSliderStore();
+
+  // handlePlus에서 estimatedTime과 estimatedCost를 onPlus로 전달
+  const handlePlus: () => void = () => {
+    onPlus(estimatedTime, estimatedCost, locationObjs); // 선택된 데이터 전달
+  };
+
+  const handleNext: () => void = () => {
+    onNext(estimatedTime, estimatedCost, locationObjs, "channelId"); // channelId는 실제 값으로 대체
+  };
+
+  // 상태 변수 정의
   const [isCompletedThisPage, setIsCompletedThisPage] = useState(true);
+
+  // courseBoxes 길이가 1 이상이고 estimatedTime, estimatedCost가 0보다 클 때만 완료 상태 true로 설정
+  useEffect(() => {
+    if (courseBoxes.length > 0 && estimatedTime > 0 && estimatedCost > 0) {
+      setIsCompletedThisPage(true);
+    } else {
+      setIsCompletedThisPage(false);
+    }
+  }, [courseBoxes, estimatedTime, estimatedCost]);
+
+  // 뒤로 가기 이벤트 처리
+  useEffect(() => {
+    const handlePopState = () => {
+      onBack(); // 뒤로 가기 시 onBack 함수 실행
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState); // 컴포넌트가 unmount될 때 이벤트 리스너 제거
+    };
+  }, [onBack]);
 
   return (
     <div>
@@ -63,10 +120,7 @@ export default function SelectCourseMain({
             onDelete={handleDelete}
           />
         ))}
-        <AddNewMyCourseButton
-          setCurrentStep={setCurrentStep}
-          currentStep={currentStep}
-        />
+        <AddNewMyCourseButton onPlus={handlePlus} />
       </section>
 
       <div
@@ -78,8 +132,7 @@ export default function SelectCourseMain({
 
       <div className="flex flex-col items-center justify-center mb-[100px]">
         <CreateMyCourseFlowButton
-          setCurrentStep={setCurrentStep}
-          currentStep={currentStep} // 현재 단계 전달
+          onNext={handleNext}
           isCompleteThisPage={isCompletedThisPage}
         >
           완료

@@ -12,6 +12,8 @@
   "dependencies": {
     "@tanstack/react-query": "^5.62.7",
     "@tanstack/react-query-devtools": "^5.62.7",
+    "@use-funnel/core": "^0.0.7",
+    "@use-funnel/next": "^0.0.8",
     "axios": "^1.7.9",
     "install": "^0.13.0",
     "js-cookie": "^3.0.5",

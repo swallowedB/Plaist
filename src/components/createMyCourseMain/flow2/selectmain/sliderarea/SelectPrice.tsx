@@ -4,10 +4,12 @@ import RangeSlider from "./RangeSlider";
 import SliderLabel from "./SliderLabel";
 
 export default function SelectPrice() {
-  const { priceSliderValue, setPriceSliderValue } = useSliderStore();
-  // price 값 계산
-  const calculatedValue = priceSliderValue * 1000;
+  const { estimatedCost, setEstimatedCost } = useSliderStore();
+
+  const calculatedValue = estimatedCost;
   let displayValue = "";
+
+  // 10,000원 이상이면 '만원' 단위로 표시
   if (calculatedValue >= 10000) {
     const tenThousands = Math.floor(calculatedValue / 10000);
     const thousands = calculatedValue % 10000;
@@ -16,25 +18,27 @@ export default function SelectPrice() {
         ? `${tenThousands}만원`
         : `${tenThousands}만 ${Math.floor(thousands / 1000)}천원`;
   } else {
-    displayValue = `${calculatedValue}원`;
+    displayValue = `${calculatedValue}원`; // 그 외의 경우 원 단위로 표시
   }
 
-  if (priceSliderValue === 0) {
+  // 예외 처리
+  if (estimatedCost === 0) {
     displayValue = "1만원 이하";
-  } else if (priceSliderValue === 200) {
-    displayValue = "20만원 이상";
+  } else if (estimatedCost === 2000000) {
+    displayValue = "10만원 이상";
   }
+
   return (
     <>
-      <SliderDisplay question="예상 금액은?" calculatedValue={displayValue} />
+      <SliderDisplay question="예상 비용은?" calculatedValue={displayValue} />
       <RangeSlider
-        value={priceSliderValue} // 상태 값 수정
-        onChange={setPriceSliderValue} // 슬라이더 값 변경 시 호출
-        max={200}
-        step={10}
+        value={estimatedCost}
+        onChange={setEstimatedCost}
+        max={2000000}
+        step={10000}
       />
       <SliderLabel
-        minLabel="1만원 이하"
+        minLabel="최소"
         middleLabel="10만원"
         maxLabel="20만원 이상"
       />

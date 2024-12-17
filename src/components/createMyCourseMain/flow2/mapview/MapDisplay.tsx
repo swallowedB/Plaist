@@ -1,16 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
 import images from "../../../../assets/images/importImages";
-import CreateMyCourseFlowButton from "../../CreateMyCourseFlowButton";
-export default function MapDisplay({
-  goToTop,
-  setCurrentStep,
-  currentStep,
-}: {
-  goToTop: () => void;
-  setCurrentStep: React.Dispatch<React.SetStateAction<string>>;
-  currentStep: string;
-}) {
+export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const infowindowRef = useRef<kakao.maps.InfoWindow | null>(null);
   const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
@@ -173,13 +164,6 @@ export default function MapDisplay({
         <section className="w-[416px] min-h-[11vh] flex flex-col items-center gap-[19px] mt-[39px] mb-[79px]">
           {searchResults}
         </section>
-        <CreateMyCourseFlowButton
-          setCurrentStep={setCurrentStep}
-          currentStep={currentStep}
-          isCompleteThisPage={true}
-        >
-          선택
-        </CreateMyCourseFlowButton>
       </section>
     </>
   );
