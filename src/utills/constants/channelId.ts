@@ -1,0 +1,1 @@
+export const allCourseChannelId = `675e6ed26ada400ee6bec120`;
