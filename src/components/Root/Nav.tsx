@@ -7,7 +7,7 @@ export default function Nav() {
   const isLoggedIn = useCookie();
   const location = useLocation();
 
-  const hiddenPaths = ["/my-course-builder/"];
+  const hiddenPaths = ["/my-course-builder"];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
 
   const getIcon = (
@@ -44,7 +44,7 @@ export default function Nav() {
                 : "/login?page=my-course-builder/viewer"
             }
             icon={getIcon(
-              "/create-course/view-my-course",
+              "/my-course-builder/viewer",
               "create_icon",
               "clickcreate_icon"
             )}

@@ -63,7 +63,7 @@ export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
   };
 
   return (
-    <div>
+    <div className="mb-8">
       <PostingGuideTitle titleText="어떤 코스인가요?" mt={80} />
       <fieldset className="tag--withWhom mb-[80px] mt-[123px]">
         <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[10px] block">

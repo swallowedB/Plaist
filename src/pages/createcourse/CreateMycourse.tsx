@@ -48,7 +48,7 @@ export default function CreateMyCourse() {
   console.log(funnel.step); // current step 확인
 
   return (
-    <div className="mt-[95px] max-w-[767px] mb-8 flex flex-col items-center">
+    <div className="mt-[95px] max-w-[767px]  flex flex-col items-center">
       <aside>
         <figure>
           <img src={getProgressBarImage(funnel.step)} alt="Progress bar" />
