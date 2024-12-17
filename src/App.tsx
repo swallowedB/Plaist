@@ -84,10 +84,10 @@ export default function App() {
           <Route path="searchTest" element={<SearchTest />} />
           <Route path="createChannel" element={<CreateChannel />} />
           {/* create-course 경로 */}
-          <Route path="create-course">
+          <Route path="my-course-builder">
             <Route element={<ViewMyCourseLayout />}>
               {/* view-my-course 경로 */}
-              <Route path="view-my-course" element={<ViewMycourse />} />
+              <Route path="viewer" element={<ViewMycourse />} />
               {/* createMycourse */}
               <Route path="" element={<CreateMyCourse />} />
             </Route>

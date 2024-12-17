@@ -5,7 +5,7 @@ export default function FixedCreateButton() {
   return (
     <button className="fixed bottom-24 right-2">
       {/* 'CreateMyCourse' 페이지로 이동하도록 수정 */}
-      <NavLink to="/create-course">
+      <NavLink to="/my-course-builder">
         <img
           src={images.start_create_button}
           alt="fixed-create-course-button"
