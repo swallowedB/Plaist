@@ -1,21 +1,20 @@
 import { useEffect, useState } from "react";
 import images from "../../../../assets/images/importImages";
 import { postComment } from "../../../../api/commentApi";
-import { useCommentStore } from "../../../../stores/main/commentsStore";
-import { getUserInfo } from "../../../../api/userApi";
+import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
 import { useUserStore } from "../../../../stores/userInfoStore";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
-  const [userName, setUserName] = useState(null);
   const { comments, setComments } = useCommentStore();
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { _id } = courseObj;
   const contentId = _id;
 
-  const { userInfo } = useUserStore();
+  const { userInfo, fetchUserInfo } = useUserStore();
   useEffect(() => {
-  }, [])
+    fetchUserInfo();
+  }, [fetchUserInfo]);
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -38,7 +37,7 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
         createdAt: new Date().toISOString(),
         comment,
       } as Comment;
-      setComments([...comments, newComment]);
+      setComments([newComment, ...comments]);
 
       await postComment({ contentId, comment });
       console.log("댓글 입력 완료");
@@ -75,7 +74,9 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
             alt=""
             className="w-10 h-10 rounded-full bg-primary-200"
           />
-          <div className="text-base font-bold text-primary-800">{userName}</div>
+          <div className="text-base font-bold text-primary-800">
+            {userInfo.fullName}
+          </div>
         </div>
         {/* 코맨트 개수 */}
         <div className="flex items-center gap-1 px-[9px]">

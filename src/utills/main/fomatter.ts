@@ -22,3 +22,15 @@ export const formatPrice = (price: number): string => {
   }
   return price.toLocaleString("ko-KR") + "원";
 };
+
+export const sortByCreatedAtDesc = (data: Comment[]): Comment[] => {
+  return data.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+};
+
+export const sortByCreatedAtIncre = (data: Comment[]): Comment[] => {
+  return data.sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  );
+};

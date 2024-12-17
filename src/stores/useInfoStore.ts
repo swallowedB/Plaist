@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import exprofilImg from "../assets/images/exProfileImg.svg";
-import { getUserInfo } from "../api/userApi";
+import { getUserIdFromToken, getUserInfo } from "../api/userApi";
 
 interface UserInfo {
   fullName: string;
@@ -10,14 +10,18 @@ interface UserInfo {
 }
 
 interface UserStore {
+  userId: string;
   userProfilePic: string;
   userInfo: UserInfo;
   fetchUserInfo: () => Promise<void>;
   updateUserPic: (newPic: string) => void;
   setUserInfo: (updatedInfo: Partial<UserInfo>) => void;
+  setUserId: () => void;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
+  userId: "",
+
   userProfilePic: "",
 
   userInfo: {
@@ -27,6 +31,15 @@ export const useUserStore = create<UserStore>((set) => ({
     image: "",
   },
 
+  setUserId: () => {
+    try{
+      const userId = getUserIdFromToken();
+      set(() => ({userId}));
+    } catch (error){
+      console.error("UserId 추출 실패:", error);
+    }
+  },
+
   fetchUserInfo: async () => {
     try{
       const data = await getUserInfo();
@@ -34,7 +47,6 @@ export const useUserStore = create<UserStore>((set) => ({
       if (!data.fullName) {
         console.warn('fullname 값이 비어 있습니다. API 응답을 확인하세요:', data);
       }
-      console.log("Fetched User Info:", data); // 디버깅용
 
       const profilePicUrl = data.image || exprofilImg;
       let region = "";
