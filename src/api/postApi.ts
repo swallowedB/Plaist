@@ -1,4 +1,7 @@
 import { axiosInstance } from "./axios";
+import { getToken } from "../utills/Auth/getTokenWithCloser";
+const token = getToken();
+console.log(token);
 
 export const getChannelPostList = async (
   channelId: string,

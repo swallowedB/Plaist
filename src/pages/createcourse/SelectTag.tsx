@@ -1,17 +1,9 @@
-import { Dispatch, SetStateAction } from "react";
 import { usePostStore } from "../../stores/postStore";
 import PostingGuideTitle from "../../components/createMyCourseMain/PostingGuideTitle";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+type OnNextInputTags = (withWhom: string[], styles: string[]) => void;
 
-interface SelectTagProps {
-  setCurrentStep: Dispatch<SetStateAction<string>>;
-  currentStep: string;
-}
-
-export default function SelectTag({
-  setCurrentStep,
-  currentStep,
-}: SelectTagProps) {
+export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
   const withWhomList = [
     "친구",
     "연인",
@@ -64,6 +56,12 @@ export default function SelectTag({
     }
   };
 
+  // '다음' 버튼 클릭 시 onNext 호출
+
+  const handleNext: () => void = () => {
+    onNext(withWhom, style); // 선택된 'withWhom'과 'style'을 onNext로 전달
+  };
+
   return (
     <div>
       <PostingGuideTitle titleText="어떤 코스인가요?" mt={80} />
@@ -110,8 +108,7 @@ export default function SelectTag({
       </fieldset>
       <div className="flex justify-center items-center mt-[140px]">
         <CreateMyCourseFlowButton
-          setCurrentStep={setCurrentStep}
-          currentStep={currentStep}
+          onNext={handleNext}
           isCompleteThisPage={Boolean(style.length && withWhom.length)}
         >
           다음
