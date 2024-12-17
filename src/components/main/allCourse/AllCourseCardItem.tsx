@@ -21,13 +21,13 @@ export default function AllCourseCardItem({
           className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
         />
         {/* 좋아요 버튼 */}
-        <div className="absolute flex items-center justify-center bg-[#2E2E2E] opacity-20 rounded-full top-[18px] right-[8.71px] h-7 w-7 cursor-pointer">
+        <button className="absolute flex items-center justify-center bg-[#2E2E2E] opacity-20 rounded-full top-[18px] right-[8.71px] h-7 w-7">
           <img
             src={images.like_icon}
             alt="Like Icon"
             className="h-[13px] w-[14px]"
           />
-        </div>
+        </button>
       </div>
 
       {/* 텍스트 정보 */}

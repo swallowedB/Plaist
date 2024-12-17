@@ -5,6 +5,8 @@ import MainTitle from "../components/main/MainTitle";
 import MainAllCourse from "../components/main/MainAllCourse";
 
 export default function Main() {
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
