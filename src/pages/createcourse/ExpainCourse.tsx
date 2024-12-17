@@ -75,10 +75,10 @@ export default function ExplainCourse({
       onBack();
     };
 
-    window.addEventListener("popstate", handlePopState);
+    window?.addEventListener("popstate", handlePopState);
 
     return () => {
-      window.removeEventListener("popstate", handlePopState);
+      window?.removeEventListener("popstate", handlePopState);
     };
   }, [onBack]);
 

@@ -39,7 +39,7 @@ export default function SelectCourseMain({
   onNext,
   onBack,
 }: SelectCourseMainProps) {
-  //  가상 데이터
+  // 가상 데이터
   locationObjs = [
     {
       locationName: "솔레미오",

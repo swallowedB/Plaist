@@ -56,8 +56,8 @@ export type InputLocationContext = {
 };
 
 export type InputExplainationContext = {
-  courseTitle: string;
-  courseDescription: string;
+  courseTitle?: string;
+  courseDescription?: string;
   locationObjs: {
     locationName: string;
     locationAddress: string;
@@ -70,6 +70,6 @@ export type InputExplainationContext = {
   estimatedCost: number;
   withWhom: string[];
   styles: string[];
-  image: string;
+  image?: string;
   channelId: string;
 };
