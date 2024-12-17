@@ -1,16 +1,14 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
 import { splitBySpaceUntilIndex1 } from "../../../utills/main/fomatter";
-import { deleteLikes, postLikes } from "../../../api/react-query/likeApi";
-import { useState } from "react";
 
 export default function AllCourseCardItem({
   courseItem,
 }: {
   courseItem: Course;
 }) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeId, setLikeId] = useState<string | null>(null);
+  // const [isLiked, setIsLiked] = useState(false);
+  // const [likeId, setLikeId] = useState<string | null>(null);
 
   if (!courseItem) {
     return <div>loading...</div>;
@@ -18,28 +16,6 @@ export default function AllCourseCardItem({
   const { image, likes, _id } = courseItem || {};
   const courseDocData = JSON.parse(courseItem?.title);
 
-  console.log(courseItem);
-
-  // 좋아요 버튼 클릭 핸들러
-  const onLikeButtonClickHandler = async () => {
-    try {
-      if (!isLiked) {
-        const res = await postLikes(_id);
-        console.log(res);
-        setLikeId(res._id);
-        console.log("좋아요 성공", res._id);
-        setIsLiked(true);
-      } else {
-        if (!likeId) return;
-        const res = await deleteLikes(likeId);
-        console.log("좋아요 삭제 성공", res);
-        setLikeId(null);
-        setIsLiked(false);
-      }
-    } catch (error) {
-      console.error("좋아요 처리 중 오류 발생:", error);
-    }
-  };
 
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
@@ -50,7 +26,7 @@ export default function AllCourseCardItem({
           alt="Course Image"
           className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
         />
-        {/* 좋아요 버튼 */}
+        {/* 좋아요 버튼
         <button
           onClick={onLikeButtonClickHandler}
           className="absolute flex items-center justify-center bg-[#2E2E2E] opacity-70 rounded-full top-[18px] right-[8.71px] h-7 w-7 text-white"
@@ -64,7 +40,7 @@ export default function AllCourseCardItem({
           ) : (
             <img src={images.like_not_filled_border_icon} alt="Like Icon" />
           )}
-        </button>
+        </button> */}
       </div>
 
       {/* 텍스트 정보 */}
