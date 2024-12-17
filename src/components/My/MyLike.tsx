@@ -1,37 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "../utills/SearchBar";
 import MypageCards from "./MypageCards/MypageCards";
+import { useLikesStore } from "../../stores/useLikesStore";
 
-type TestData = {
-  id: number;
+type LikeCardData = {
+  id: string;
   title: string;
   likes: number;
   location: string;
 };
 
-const testData: TestData[] = [
-    {id:1, title:"✨ 2025 새해 모임", likes:4, location: 'seoul'},
-    {id:2, title:"✨ 2026 새해 모임", likes:5, location: 'seoul'},
-    {id:3, title:"✨ 2027 새해 모임", likes:7, location: 'seoul'},
-    {id:4, title:"✨ 2027 새해 모임", likes:7, location: 'seoul'},
-    {id:5, title:"✨ 2027 새해 모임", likes:8, location: 'seoul'},
-    {id:5, title:"✨ 2027 새해 모임", likes:8, location: 'seoul'},
-    {id:5, title:"✨ 2027 새해 모임", likes:8, location: 'seoul'},
-    {id:5, title:"✨ 2027 새해 모임", likes:8, location: 'seoul'},
-    {id:5, title:"✨ 2027 새해 모임", likes:8, location: 'seoul'},
-    {id:5, title:"✨ 2027 새해 모임", likes:8, location: 'seoul'},
-]
-
 export default function MyLike() {
-  const [filteredData, setFilteredData] = useState<TestData[]>(testData|| []);
+  const {likes, fetchLikes} = useLikesStore();
+  const [filteredData, setFilteredData] = useState<LikeCardData[]>([]);
+
+  useEffect(() =>{
+    fetchLikes();
+  }, [fetchLikes]);
+
+  const transformedData: LikeCardData[] = likes.map((like) => ({
+    id: like.post, 
+    title: "Sample Title",
+    likes: 0, 
+    location: "Sample Location", 
+  }));
+
+  useEffect(() => {
+    setFilteredData(transformedData);
+  }, [transformedData]);
+
 
   return (
     <div className={`flex flex-col items-center`}>
       <SearchBar
-        data={testData}
+        data={transformedData}
         searchKey="title"
-        onSearch={setFilteredData}
-        placeholder="검색해보세요 (oﾟvﾟ)ノ"
+        onSearch={(filteredData) => setFilteredData(filteredData)}
+        placeholder="어떤 것이든 검색해보세요 (oﾟvﾟ)ノ"
       />
       {/* 필터링된 데이터 렌더링 */}
       <div className="mt-8 flex flex-col">
