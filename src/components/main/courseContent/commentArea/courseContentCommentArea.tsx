@@ -8,6 +8,7 @@ export default function CourseContentCommentArea({
 }: {
   courseObj: Course;
 }) {
+  
   return (
     <div className="flex mx-[45px] mb-[90px] flex-col gap-[45px] text-custom-black font-pretendard">
       <CommentInputArea courseObj={courseObj} />

@@ -5,11 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getCourses } from "../api/react-query/api";
 import Loader from "../components/skeletonUI/Loader";
 import { useEffect } from "react";
-import { useCommentStore } from "../stores/main/commentsStore";
+import { useCommentStore } from "../stores/main/comment/useCommentStore";
 
 export default function CourseContent() {
   const { contentId } = useParams<{ contentId: string }>();
-  const { comments, setComments } = useCommentStore();
+  const { setComments } = useCommentStore();
 
   const { data: courseData, isLoading: isCourseLoading } = useQuery({
     queryKey: ["getCourses", contentId],
@@ -19,15 +19,13 @@ export default function CourseContent() {
       }
       return getCourses(contentId!);
     },
-    staleTime: 1000 * 60 * 5,
   });
 
   useEffect(() => {
     if (courseData) {
-      setComments( courseData.comments );
+      setComments(courseData.comments);
     }
   }, [courseData, setComments]);
-  console.log(comments);
   return (
     <>
       {isCourseLoading ? (

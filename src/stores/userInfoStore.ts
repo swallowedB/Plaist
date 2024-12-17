@@ -40,7 +40,7 @@ export const useUserStore = create<UserStore>((set) => ({
           region: data.region || "",
         },
       }));
-      console.log('Updated user info:', data);
+      // console.log('Updated user info:', data);
     } catch (error){
       console.error('사용자 정보 가져오기 오류 발생', error);
     }

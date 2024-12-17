@@ -33,8 +33,6 @@ import { useCookie } from "./hooks/useCookie";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { UseScrollTop } from "./hooks/useScrollTop";
-
 
 export default function App() {
   const [isLoggedin, setIsLoggedin] = useState<boolean>(false); // 상태로 관리
@@ -49,9 +47,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-      <UseScrollTop />
       <Routes>
-      
         {/* Root Layout */}
         <Route path="/" element={<RootLayout />}>
           {/* 블러 글레스 적용 페이지 */}

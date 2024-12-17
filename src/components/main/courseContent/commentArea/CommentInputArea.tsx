@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import images from "../../../../assets/images/importImages";
 import { postComment } from "../../../../api/commentApi";
-import { useCommentStore } from "../../../../stores/main/commentsStore";
+import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
+import { useUserStore } from "../../../../stores/userInfoStore";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { comments, setComments } = useCommentStore();
@@ -9,6 +10,11 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { _id } = courseObj;
   const contentId = _id;
+
+  const { userInfo, fetchUserInfo } = useUserStore();
+  useEffect(() => {
+    fetchUserInfo();
+  }, [fetchUserInfo]);
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -26,12 +32,12 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
     try {
       const newComment = {
         author: {
-          fullName: "내 댓글",
-          createdAt: new Date().toISOString(),
+          fullName: userInfo.fullName,
         },
+        createdAt: new Date().toISOString(),
         comment,
       } as Comment;
-      setComments([...comments, newComment]);
+      setComments([newComment, ...comments]);
 
       await postComment({ contentId, comment });
       console.log("댓글 입력 완료");
@@ -68,7 +74,9 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
             alt=""
             className="w-10 h-10 rounded-full bg-primary-200"
           />
-          <div className="text-base font-bold text-primary-800">imaria0218</div>
+          <div className="text-base font-bold text-primary-800">
+            {userInfo.fullName}
+          </div>
         </div>
         {/* 코맨트 개수 */}
         <div className="flex items-center gap-1 px-[9px]">
@@ -97,7 +105,6 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
             className="w-[558px] h-[107px] bg-[#F3F2F3] rounded-[15px] px-5 py-6 text-[13px] "
             value={comment}
           />
-          <button type="submit">댓글 입력</button>
         </form>
       </div>
     </div>
