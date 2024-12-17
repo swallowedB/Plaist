@@ -64,7 +64,7 @@ export const postSingUp = async (
     });
 
     if (status === 200) {
-      navigate("/login");
+      navigate("/login?page=my-page");
       console.log(data);
     } else {
       console.log("failed");
@@ -91,6 +91,7 @@ export const postLogin = async (
       navigate(`/${page}`);
     }
   } catch (error) {
+    alert("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
     console.error("API 호출 중 오류 발생:", error);
   }
 };
