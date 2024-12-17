@@ -28,6 +28,9 @@ import CreateChannel from "./pages/CreateChannel";
 import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
 
+//알림 관련
+import { useNotificationStore } from "./stores/notificationStore";
+
 import UserInfo from "./components/My/userInfo/UserInfo";
 import { useCookie } from "./hooks/useCookie";
 import { useEffect, useState } from "react";
@@ -38,8 +41,23 @@ export default function App() {
   const [isLoggedin, setIsLoggedin] = useState<boolean>(false); // 상태로 관리
   const cookieValue = useCookie();
 
+  //notification
+  const startNotificationPolling = useNotificationStore(
+    (state) => state.startLongPolling
+  );
+  const stopNotificationPolling = useNotificationStore(
+    (state) => state.stopLongPolling
+  );
+
   useEffect(() => {
+    console.log(isLoggedin);
     setIsLoggedin(cookieValue); // 쿠키 값에 따라 로그인 상태를 업데이트
+    if (isLoggedin) {
+      startNotificationPolling();
+      console.log("polling start");
+    } else {
+      stopNotificationPolling();
+    }
   }, [cookieValue]);
 
   const queryClient = new QueryClient();
