@@ -1,4 +1,4 @@
-import { useFunnel } from "@use-funnel/next";
+import { useFunnel } from "@use-funnel/react-router-dom";
 import { useNavigate } from "react-router-dom";
 import images from "../../assets/images/importImages";
 import SelectTag from "./SelectTag";
@@ -44,6 +44,8 @@ export default function CreateMyCourse() {
       context: { withWhom: [], styles: [] },
     },
   });
+
+  console.log(funnel.step); // current step 확인
 
   return (
     <div className="mt-[95px] max-w-[767px] mb-8 flex flex-col items-center">
@@ -142,41 +144,3 @@ export default function CreateMyCourse() {
     </div>
   );
 }
-
-// // 컴포넌트 타입 선언
-// declare function 태그입력(props: {
-//   onNext: (withWhom: string[], styles: string[]) => void;
-// }): JSX.Element;
-// declare function 코스상세입력(props: {
-//   locationObjs: InputLocationContext[];
-//   estimatedTime: number;
-//   estimatedCost: number;
-//   onPlus: (
-//     estimatedTime: number,
-//     estimatedCost: number,
-//     locationObjs: InputLocationContext[]
-//   ) => void;
-//   onNext: (
-//     estimatedTime: number,
-//     estimatedCost: number,
-//     locationObjs: InputLocationContext[],
-//     channelId: string
-//   ) => void;
-//   onBack: () => void;
-// }): JSX.Element;
-// declare function 장소선택(props: {
-//   onNext: (location: InputLocationContext) => void;
-//   onBack: () => void;
-// }): JSX.Element;
-// declare function 게시글작성(props: {
-//   locationObjs: InputLocationContext[];
-//   withWhom: string[];
-//   styles: string[];
-//   onNext: (
-//     courseTitle: string,
-//     courseDescription: string,
-//     image: string
-//   ) => void;
-//   onBack: () => void;
-// }): JSX.Element;
-// declare function 완료(props: { onNext: () => void }): JSX.Element;

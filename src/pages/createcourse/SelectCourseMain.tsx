@@ -78,7 +78,7 @@ export default function SelectCourseMain({
 
   // handlePlus에서 estimatedTime과 estimatedCost를 onPlus로 전달
   const handlePlus = () => {
-    onPlus(estimatedTime, estimatedCost, locationObjs); // 선택된 데이터 전달
+    onPlus(estimatedTime, estimatedCost, locationObjs); // onPlus가 제대로 호출되도록 전달
   };
 
   const channelId = "121244"; // 타입 애러때문에 넣어둠
@@ -140,10 +140,7 @@ export default function SelectCourseMain({
       </div>
 
       <div className="flex flex-col items-center justify-center mb-[100px]">
-        <CreateMyCourseFlowButton
-          onNext={handleNext}
-          isCompleteThisPage={isCompletedThisPage}
-        >
+        <CreateMyCourseFlowButton onNext={handleNext} isCompleteThisPage={true}>
           완료
         </CreateMyCourseFlowButton>
       </div>
