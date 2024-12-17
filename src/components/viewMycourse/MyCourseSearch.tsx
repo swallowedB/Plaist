@@ -1,13 +1,20 @@
-import { useCreateCourseStore } from "../../stores/viewMyCourseStore";
 import searchIcon from "../../assets/images/search_icon.svg";
+import { useState } from "react";
 
-export default function MyCourseSearch() {
-  const searchInput = useCreateCourseStore((state) => state.searchInput);
-  const setSearchInput = useCreateCourseStore((state) => state.setSearchInput);
+export default function MyCourseSearch({
+  setSearch,
+  onSearch,
+}: {
+  setSearch: (search: string) => void;
+  onSearch: () => void;
+}) {
+  const [searchInput, setSearchInput] = useState("");
 
   const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    onSearch();
   };
+
   return (
     <form
       action="submit"
@@ -26,14 +33,20 @@ export default function MyCourseSearch() {
           id="search"
           placeholder="무엇을 찾으시나요?"
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e) => {
+            const newValue = e.target.value;
+            setSearchInput(newValue);
+            setSearch(newValue);
+          }}
           className="w-full h-[47px] rounded-[30px] px-[26px] font-pretendard text-[#2E2E2E] shadow-blue"
         />
-        <img
-          src={searchIcon}
-          alt="search Icon"
-          className="absolute top-1/2 right-[20px] transform -translate-y-1/2"
-        />
+        <button>
+          <img
+            src={searchIcon}
+            alt="search Icon"
+            className="absolute top-1/2 right-[20px] transform -translate-y-1/2"
+          />
+        </button>
       </section>
     </form>
   );

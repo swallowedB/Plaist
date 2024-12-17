@@ -6,8 +6,9 @@ import CommentList from "./CommentList";
 export default function CourseContentCommentArea({
   courseObj,
 }: {
-    courseObj : Course
+  courseObj: Course;
 }) {
+  
   return (
     <div className="flex mx-[45px] mb-[90px] flex-col gap-[45px] text-custom-black font-pretendard">
       <CommentInputArea courseObj={courseObj} />
@@ -19,7 +20,7 @@ export default function CourseContentCommentArea({
           <CourseSortToggle />
         </div>
         {/* 댓글 바디 */}
-        <CommentList comments={courseObj.comments} />
+        <CommentList />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ export const getUserIdFromToken = () => {
     throw new Error("사용자 토큰이 존재하지 않습니다.");
   }
   const decodedToken = jwtDecode<JwtPayload>(token);
-  console.log("Decoded JWT:", decodedToken); // 디코딩된 토큰 확인
+  // console.log("Decoded JWT:", decodedToken); // 디코딩된 토큰 확인
   return decodedToken.user._id; // 서버의 JWT 구조에 따라 키 확인
 };
 
@@ -25,9 +25,9 @@ export const getUserIdFromToken = () => {
 export const getUserInfo = async () => {
   try {
     const userId = getUserIdFromToken();
-    console.log(userId);
+    // console.log(userId);
     const response = await axiosInstance.get(`/users/${userId}`);
-    console.log(response);
+    // console.log(response);
     return response.data;
   } catch (error) {
     console.error("/users/{id} 호출 중 오류 발생:", error);
