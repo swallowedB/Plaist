@@ -14,7 +14,7 @@ interface LocationObj {
   locationCategory: string;
   locationPhoneNum: string;
   location_id: string;
-  like: string;
+  like: number;
 }
 
 interface SelectCourseMainProps {
@@ -44,32 +44,32 @@ export default function SelectCourseMain({
     {
       locationName: "솔레미오",
       locationAddress: "서울특별시 용산구",
-      locationCategory: "서울",
+      locationCategory: "음식점",
       locationPhoneNum: "번호",
       location_id: "1239484",
-      like: "12",
+      like: 1,
+    },
+    {
+      locationName: "솔레미오",
+      locationAddress: "서울특별시 용산구",
+      locationCategory: "카페",
+      locationPhoneNum: "번호",
+      location_id: "1239484",
+      like: 121,
+    },
+    {
+      locationName: "솔레미오",
+      locationAddress: "서울특별시 용산구",
+      locationCategory: "음식점",
+      locationPhoneNum: "번호",
+      location_id: "1239484",
+      like: 112,
     },
   ];
 
-  const [courseBoxes, setCourseBoxes] = useState([
-    {
-      brand: "솔레미오",
-      address: "서울 용산구 이태원동 용산구",
-      category: "음식점",
-    },
-    {
-      brand: "명랑핫도구 1호점",
-      address: "서울 용산구 이태원동 용산구",
-      category: "카페",
-    },
-    {
-      brand: "디너서울",
-      address: "서울 용산구 이태원동 용산구",
-      category: "관광지",
-    },
-  ]);
+  const [courseBoxes, setCourseBoxes] = useState(locationObjs);
 
-  const [isCompletedThisPage, setIsCompletedThisPage] = useState(true);
+  const [isCompletedThisPage, setIsCompletedThisPage] = useState(false);
   const handleDelete = (id: number) => {
     setCourseBoxes((prev) => prev.filter((_, index) => index !== id));
   };
@@ -82,7 +82,6 @@ export default function SelectCourseMain({
     onNext(estimatedTime, estimatedCost, locationObjs, channelId);
   };
 
-  // courseBoxes 길이가 1 이상이고 estimatedTime, estimatedCost가 0보다 클 때만 완료 상태 true로 설정
   useEffect(() => {
     if (courseBoxes.length > 0 && estimatedTime > 0 && estimatedCost > 0) {
       setIsCompletedThisPage(true);
@@ -97,7 +96,7 @@ export default function SelectCourseMain({
     };
     window.addEventListener("popstate", handlePopState);
     return () => {
-      window.removeEventListener("popstate", handlePopState); // 컴포넌트가 unmount될 때 이벤트 리스너 제거
+      window.removeEventListener("popstate", handlePopState);
     };
   }, [onBack]);
 
@@ -111,10 +110,10 @@ export default function SelectCourseMain({
       >
         {courseBoxes.map((box, index) => (
           <AddedCoursebox
-            brand={box.brand}
+            locationName={box.locationName}
             index={index}
-            address={box.address}
-            category={box.category}
+            locationAddress={box.locationAddress}
+            locationCategory={box.locationCategory}
             onDelete={handleDelete}
           />
         ))}
@@ -129,7 +128,10 @@ export default function SelectCourseMain({
       </div>
 
       <div className="flex flex-col items-center justify-center mb-[100px]">
-        <CreateMyCourseFlowButton onNext={handleNext} isCompleteThisPage={true}>
+        <CreateMyCourseFlowButton
+          onNext={handleNext}
+          isCompleteThisPage={isCompletedThisPage}
+        >
           완료
         </CreateMyCourseFlowButton>
       </div>

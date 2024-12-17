@@ -9,7 +9,7 @@ interface LocationProps {
   locationCategory: string;
   locationPhoneNum: string;
   location_id: string;
-  like: string;
+  like: number;
 }
 
 interface MapviewProps {
@@ -33,7 +33,7 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
     locationCategory: "음식점",
     locationPhoneNum: "121-3313-1111",
     location_id: "12434355",
-    like: "12",
+    like: 12,
   };
 
   const handleNext: () => void = () => {

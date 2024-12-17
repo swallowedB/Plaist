@@ -7,7 +7,7 @@ export type InputTagsContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime?: number;
   estimatedCost?: number;
@@ -26,7 +26,7 @@ export type InputCourseDetailsContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime?: number;
   estimatedCost?: number;
@@ -45,7 +45,7 @@ export type InputLocationContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime: number;
   estimatedCost: number;
@@ -64,7 +64,7 @@ export type InputExplainationContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime: number;
   estimatedCost: number;
