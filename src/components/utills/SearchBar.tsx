@@ -10,6 +10,7 @@ interface SearchBarProps {
 export default function SearchBar({data, searchKey, onSearch, placeholder}: SearchBarProps) {
 
   const [userInput, setUserInput] = useState("");
+  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase();
