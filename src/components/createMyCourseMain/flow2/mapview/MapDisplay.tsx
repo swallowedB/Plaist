@@ -1,7 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
 import images from "../../../../assets/images/importImages";
-export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
+
+export default function MapDisplay({
+  goToTop,
+  children,
+  locationChange,
+}: {
+  goToTop: () => void;
+  children: React.ReactNode;
+  locationChange: (
+    locationName: string,
+    locationAddress: string,
+    locationCategory: string,
+    locationPhoneNum: string
+  ) => void;
+}) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const infowindowRef = useRef<kakao.maps.InfoWindow | null>(null);
   const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
@@ -55,8 +69,8 @@ export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
 
     for (let i = 0; i < places.length; i++) {
       // 마커를 생성하고 지도에 표시합니다
-      const placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-        marker = addMarker(placePosition, i);
+      const placePosition = new kakao.maps.LatLng(places[i].y, places[i].x);
+      addMarker(placePosition, i);
       // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
       // LatLngBounds 객체에 좌표를 추가합니다
       bounds.extend(placePosition);
@@ -118,6 +132,12 @@ export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
       location={place.address_name}
       isActive={selectedItemIndex === index}
       onSelect={() => {
+        locationChange(
+          place.place_name,
+          place.address_name,
+          place.category_name,
+          place.phone
+        );
         setSelectedItemIndex(index);
         goToTop();
         if (markers[index]) {
@@ -133,14 +153,14 @@ export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
         id="map"
         className="w-[571px] h-[338px] mt-[38px] mb-[51px] shadow-default rounded-t-[20px]"
       ></div>
-      <section className="w-[767px] rounded-t-[50px] bg-primary-100 flex flex-col items-center font-pretendard pt-[62px]">
+      <section className="w-[767px] rounded-t-[50px] bg-primary-100 flex flex-col items-center font-pretendard pt-[62px] ">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             searchPlaces();
           }}
         >
-          <div className="w-[415px] h-[47px] relative">
+          <div className="w-[415px] h-[47px] relative ">
             <input
               type="text"
               value={keyword}
@@ -164,6 +184,7 @@ export default function MapDisplay({ goToTop }: { goToTop: () => void }) {
         <section className="w-[416px] min-h-[11vh] flex flex-col items-center gap-[19px] mt-[39px] mb-[79px]">
           {searchResults}
         </section>
+        {children}
       </section>
     </>
   );

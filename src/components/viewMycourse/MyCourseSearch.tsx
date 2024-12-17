@@ -18,7 +18,9 @@ export default function MyCourseSearch({
   return (
     <form
       action="submit"
-      onSubmit={(e) => formSubmit(e)}
+      onSubmit={(e) => {
+        formSubmit(e);
+      }}
       className="z-10 text-center relative mb-[42px]"
     >
       <label
