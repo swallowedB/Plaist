@@ -11,7 +11,7 @@ interface ExplainCourseProps {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   withWhom: string[];
   styles: string[];

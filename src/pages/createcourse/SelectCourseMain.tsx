@@ -14,7 +14,7 @@ interface LocationObj {
   locationCategory: string;
   locationPhoneNum: string;
   location_id: string;
-  like: string;
+  like: number;
 }
 
 interface SelectCourseMainProps {
@@ -47,7 +47,7 @@ export default function SelectCourseMain({
       locationCategory: "음식점",
       locationPhoneNum: "번호",
       location_id: "1239484",
-      like: "12",
+      like: 1,
     },
     {
       locationName: "솔레미오",
@@ -55,7 +55,7 @@ export default function SelectCourseMain({
       locationCategory: "카페",
       locationPhoneNum: "번호",
       location_id: "1239484",
-      like: "12",
+      like: 121,
     },
     {
       locationName: "솔레미오",
@@ -63,7 +63,7 @@ export default function SelectCourseMain({
       locationCategory: "음식점",
       locationPhoneNum: "번호",
       location_id: "1239484",
-      like: "12",
+      like: 112,
     },
   ];
 
