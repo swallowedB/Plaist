@@ -2,7 +2,7 @@ import arrowIcon from "../../assets/images/uparrow_icon.svg";
 import positionIcon from "../../assets/images/position_icon.svg";
 import { useChannelStore } from "../../stores/channelStore";
 import { getChannelList } from "../../api/channelApi";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Menu() {
   // local state
@@ -19,6 +19,15 @@ export default function Menu() {
   const setLocation = useChannelStore((state) => state.setLocation);
   const setSpot = useChannelStore((state) => state.setSpot);
 
+  const fetchChannelList = async () => {
+    try {
+      const channels = await getChannelList();
+      setChannelList(channels);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const toggleMenu = (menu: "location" | "spot") => {
     setIsMenuClicked((state) => ({
       location: menu === "location" ? !state.location : false,
@@ -28,8 +37,7 @@ export default function Menu() {
 
   const menuClicked = async (menu: "location" | "spot") => {
     try {
-      const channels = await getChannelList();
-      setChannelList(channels);
+      fetchChannelList();
       toggleMenu(menu);
     } catch (error) {
       console.log(error);
@@ -48,6 +56,18 @@ export default function Menu() {
     if (type === "지역") setLocation(channelId, channelName);
     else if (type === "스팟") setSpot(channelId, channelName);
   };
+
+  useEffect(() => {
+    // 피드 실행 전 먼저 실행되도록
+    const initializeState = async () => {
+      try {
+        await fetchChannelList();
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    initializeState();
+  }, []);
 
   return (
     <section className="menubox flex w-[509px] h-[47px] bg-white rounded-[30px] mt-[32px] z-20 font-pretendard text-[#3B89E2] justify-center items-center z-100 shadow-blue relative px-[28px] font-semiBold">

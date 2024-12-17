@@ -1,19 +1,18 @@
 import { create } from "zustand";
-import axios from "axios";
+import { deleteCommentApi, fetchCommentsApi } from "../api/commentApi";
 
 type Comment = {
-  _id: string;
-  comment: string;
-  author: string;
-  post: string;
+  id: string;
+  content: string;
   createdAt: string;
-  updatedAt: string;
+  postId: string;
 };
 
+
 type CommentsState = {
-  comments: Comment[]; // 댓글 목록
-  fetchComments: () => Promise<void>; // 댓글 가져오기
-  deleteComment: (id: string) => Promise<void>; // 댓글 삭제하기
+  comments: Comment[];
+  fetchComments: () => Promise<void>;
+  deleteComments: () => Promise<void>;
 };
 
 export const useCommentsStore = create<CommentsState>((set) => ({
@@ -22,23 +21,22 @@ export const useCommentsStore = create<CommentsState>((set) => ({
   // 댓글 목록 가져오기
   fetchComments: async () => {
     try {
-      const response = await axios.get<Comment[]>(`${import.meta.env.VITE_API_BASE_URL}/comments`);
-      set({ comments: response.data }); // 상태 업데이트
+      const comments = await fetchCommentsApi();
+      set({ comments });
     } catch (error) {
-      console.error("Failed to fetch comments:", error);
+      console.error("Error fetching comments in store:", error);
     }
   },
 
-  // 댓글 삭제하기
-  deleteComment: async (_id: string) => {
+   // 댓글 삭제
+   deleteComments: async (id) => {
     try {
-      const apiUrl = `${import.meta.env.VITE_API_BASE_URL}/comments/delete`;
-      await axios.delete(apiUrl);
+      await deleteCommentApi (id);
       set((state) => ({
-        comments: state.comments.filter((comment) => comment._id !== _id),
-      })); // 상태에서 해당 댓글 제거
+        comments: state.comments.filter((comment) => comment.id !== id),
+      }));
     } catch (error) {
-      console.error("Failed to delete comment:", error);
+      console.error("Error deleting comment in store:", error);
     }
   },
 }));

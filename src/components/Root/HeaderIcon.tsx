@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { useCookie } from "../../hooks/useCookie";
 import HeaderIconLink from "../HeaderNavLink";
 import { useLocation } from "react-router";
+// 알림 상태 업데이트
+import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function HeaderIcon() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
+  const isNotificationActivated = useNotificationStore(
+    (state) => state.isIconActivated
+  );
+
   useEffect(() => {
     setIsLoggedIn(useCookie());
   }, [location]);
@@ -22,7 +28,11 @@ export default function HeaderIcon() {
           <div className="flex items-center gap-4 md:pr-[61px]">
             <HeaderIconLink
               to={isLoggedIn ? "/notification" : "/login?page=notification"}
-              icon="notification_icon"
+              icon={
+                isNotificationActivated
+                  ? "notification_icon"
+                  : "notification_deactivate_icon"
+              }
               className="w-[17px] h-[20px]"
             />
             <HeaderIconLink

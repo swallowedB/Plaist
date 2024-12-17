@@ -7,6 +7,7 @@ interface UserInfo {
   email: string;
   region: string;
   image?: string;
+
 }
 
 interface UserStore {
