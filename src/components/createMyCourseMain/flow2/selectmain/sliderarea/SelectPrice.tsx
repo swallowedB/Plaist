@@ -24,8 +24,8 @@ export default function SelectPrice() {
   // 예외 처리
   if (estimatedCost === 0) {
     displayValue = "1만원 이하";
-  } else if (estimatedCost === 2000000) {
-    displayValue = "10만원 이상";
+  } else if (estimatedCost === 200000) {
+    displayValue = "20만원 이상";
   }
 
   return (
@@ -34,7 +34,7 @@ export default function SelectPrice() {
       <RangeSlider
         value={estimatedCost}
         onChange={setEstimatedCost}
-        max={2000000}
+        max={200000}
         step={10000}
       />
       <SliderLabel

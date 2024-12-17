@@ -54,40 +54,33 @@ export default function SelectCourseMain({
   const [courseBoxes, setCourseBoxes] = useState([
     {
       brand: "솔레미오",
-      address: "서울 용산구 이태원동...",
+      address: "서울 용산구 이태원동 용산구",
       category: "음식점",
     },
     {
       brand: "명랑핫도구 1호점",
-      address: "서울 강남구...",
+      address: "서울 용산구 이태원동 용산구",
       category: "카페",
     },
     {
       brand: "디너서울",
-      address: "서울 종로구...",
+      address: "서울 용산구 이태원동 용산구",
       category: "관광지",
     },
   ]);
 
+  const [isCompletedThisPage, setIsCompletedThisPage] = useState(true);
   const handleDelete = (id: number) => {
     setCourseBoxes((prev) => prev.filter((_, index) => index !== id));
   };
-
-  // useSliderStore에서 estimatedTime과 estimatedCost를 가져옴
   const { estimatedTime, estimatedCost } = useSliderStore();
-
-  // handlePlus에서 estimatedTime과 estimatedCost를 onPlus로 전달
   const handlePlus = () => {
-    onPlus(estimatedTime, estimatedCost, locationObjs); // onPlus가 제대로 호출되도록 전달
+    onPlus(estimatedTime, estimatedCost, locationObjs);
   };
-
   const channelId = "121244"; // 타입 애러때문에 넣어둠
   const handleNext = () => {
-    onNext(estimatedTime, estimatedCost, locationObjs, channelId); // 올바른 순서로 인수 전달
+    onNext(estimatedTime, estimatedCost, locationObjs, channelId);
   };
-
-  // 상태 변수 정의
-  const [isCompletedThisPage, setIsCompletedThisPage] = useState(true);
 
   // courseBoxes 길이가 1 이상이고 estimatedTime, estimatedCost가 0보다 클 때만 완료 상태 true로 설정
   useEffect(() => {
@@ -98,14 +91,11 @@ export default function SelectCourseMain({
     }
   }, [courseBoxes, estimatedTime, estimatedCost]);
 
-  // 뒤로 가기 이벤트 처리
   useEffect(() => {
     const handlePopState = () => {
-      onBack(); // 뒤로 가기 시 onBack 함수 실행
+      onBack();
     };
-
     window.addEventListener("popstate", handlePopState);
-
     return () => {
       window.removeEventListener("popstate", handlePopState); // 컴포넌트가 unmount될 때 이벤트 리스너 제거
     };
@@ -121,7 +111,6 @@ export default function SelectCourseMain({
       >
         {courseBoxes.map((box, index) => (
           <AddedCoursebox
-            key={box.brand}
             brand={box.brand}
             index={index}
             address={box.address}

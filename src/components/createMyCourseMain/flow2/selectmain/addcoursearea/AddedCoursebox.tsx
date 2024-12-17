@@ -20,15 +20,15 @@ export default function AddedCoursebox({
 
   // 코스 제목 결정 로직
   const title =
-    index === 1
+    index === 0
       ? "첫번째 코스"
-      : index === 2
+      : index === 1
       ? "두번째 코스"
-      : index === 3
+      : index === 2
       ? "세번째 코스"
-      : index === 4
+      : index === 3
       ? "네번째 코스"
-      : index === 5
+      : index === 4
       ? "다섯번째 코스"
       : "기타 코스"; // 기본값 처리
 
@@ -56,17 +56,19 @@ export default function AddedCoursebox({
                 : images.course_selected_icon
             }
             alt="아이콘"
-            onClick={() => onDelete(index)} // 삭제 콜백 호출
-            className="cursor-pointer" // 클릭 가능 스타일
+            onClick={() => onDelete(index)}
+            className="cursor-pointer"
           />
         </div>
 
         {/* 주소와 제목 */}
-        <div className="flex justify-start items-center w-[302px]">
-          <div>
-            <h2 className="font-semiBold">{brand}</h2>
-            <p className="font-regular">{address}</p>
-          </div>
+        <div className="flex flex-col justify-center items-start w-[302px]">
+          <h2 className="w-[302px] font-semiBold overflow-hidden whitespace-nowrap truncate">
+            {brand}
+          </h2>
+          <p className="w-[302px] font-regular text-overflow: ellipsis">
+            {address}
+          </p>
         </div>
 
         {/* 카테고리 */}
