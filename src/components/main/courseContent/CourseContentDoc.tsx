@@ -37,7 +37,7 @@ export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
 
           <div className="flex items-center justify-center gap-1 mt-4">
             <img
-              src={images.like_not_filled_border_icon}
+              src={images.like_small_not_filled_icon}
               alt="좋아요 아이콘"
               className="h-[12px] w-[13px] "
             />

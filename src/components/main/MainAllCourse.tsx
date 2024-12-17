@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import AllCourseCards from "./allCourse/AllCourseCards";
 import AllCourseHeader from "./allCourse/AllCourseHeader";
 import { getChannelPostList } from "../../api/postApi";
