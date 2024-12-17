@@ -2,21 +2,35 @@ import { useState } from "react";
 import images from "../../../../../assets/images/importImages";
 
 interface AddedCourseboxProps {
-  id: number;
-  title: string;
+  brand: string;
+  index: number;
   address: string;
   category: string;
   onDelete: (id: number) => void; // 삭제 콜백 함수
 }
 
 export default function AddedCoursebox({
-  id,
-  title,
+  brand,
+  index,
   address,
   category,
   onDelete,
 }: AddedCourseboxProps) {
   const [isHovered, setIsHovered] = useState(false);
+
+  // 코스 제목 결정 로직
+  const title =
+    index === 0
+      ? "첫번째 코스"
+      : index === 1
+      ? "두번째 코스"
+      : index === 2
+      ? "세번째 코스"
+      : index === 3
+      ? "네번째 코스"
+      : index === 4
+      ? "다섯번째 코스"
+      : "기타 코스"; // 기본값 처리
 
   return (
     <div
@@ -33,6 +47,7 @@ export default function AddedCoursebox({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        {/* 삭제 아이콘 */}
         <div className="flex items-center justify-center w-[114px]">
           <img
             src={
@@ -41,18 +56,22 @@ export default function AddedCoursebox({
                 : images.course_selected_icon
             }
             alt="아이콘"
-            onClick={() => onDelete(id)} // 삭제 콜백 호출
-            className="cursor-pointer" // 클릭 가능 스타일
+            onClick={() => onDelete(index)}
+            className="cursor-pointer"
           />
         </div>
 
-        <div className="flex justify-start items-center w-[302px]">
-          <div>
-            <h2 className="font-semiBold">{title}</h2>
-            <p className="font-regular">{address}</p>
-          </div>
+        {/* 주소와 제목 */}
+        <div className="flex flex-col justify-center items-start w-[302px]">
+          <h2 className="w-[302px] font-semiBold overflow-hidden whitespace-nowrap truncate">
+            {brand}
+          </h2>
+          <p className="w-[302px] font-regular text-overflow: ellipsis">
+            {address}
+          </p>
         </div>
 
+        {/* 카테고리 */}
         <div className="flex items-center justify-center w-[113px] font-regular">
           <p>{category}</p>
         </div>
