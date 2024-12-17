@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
@@ -27,14 +27,33 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
   };
 
   // location 객체 정의 시 문법 오류 수정
-  const location = {
-    locationName: "피자집",
-    locationAddress: "서울특별시 용산구",
-    locationCategory: "음식점",
-    locationPhoneNum: "121-3313-1111",
-    location_id: "12434355",
-    like: 12,
+  const [location, setLocation] = useState({
+    locationName: "",
+    locationAddress: "",
+    locationCategory: "",
+    locationPhoneNum: "",
+    location_id: "",
+    like: 0,
+  });
+
+  const locationChange = (
+    locationName: string,
+    locationAddress: string,
+    locationCategory: string,
+    locationPhoneNum: string
+  ) => {
+    setLocation({
+      locationName,
+      locationAddress,
+      locationCategory,
+      locationPhoneNum,
+      location_id: "",
+      like: 0,
+    });
   };
+  useEffect(() => {
+    console.log(location);
+  }, [location]);
 
   const handleNext: () => void = () => {
     onNext(location); // location 객체 전달
@@ -65,10 +84,14 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
       <section className="flex flex-col items-center">
         {/* 가이드 제목 컴포넌트 */}
         {/* 지도 및 검색 결과 표시 컴포넌트 */}
-        <MapDisplay goToTop={goToTop} />
-        <CreateMyCourseFlowButton onNext={handleNext} isCompleteThisPage={true}>
-          선택
-        </CreateMyCourseFlowButton>
+        <MapDisplay goToTop={goToTop} locationChange={locationChange}>
+          <CreateMyCourseFlowButton
+            onNext={handleNext}
+            isCompleteThisPage={true}
+          >
+            선택
+          </CreateMyCourseFlowButton>
+        </MapDisplay>
       </section>
     </div>
   );
