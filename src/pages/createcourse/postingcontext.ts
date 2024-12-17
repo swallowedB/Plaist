@@ -1,4 +1,4 @@
-export type InputTags = {
+export type InputTagsContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs?: {
@@ -17,7 +17,7 @@ export type InputTags = {
   channelId?: string;
 };
 
-export type InputCourseDetails = {
+export type InputCourseDetailsContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs?: {
@@ -28,15 +28,15 @@ export type InputCourseDetails = {
     location_id: string;
     like: string;
   }[];
-  estimatedTime: number;
-  estimatedCost: number;
-  withWhom?: string[];
-  styles?: string[];
+  estimatedTime?: number;
+  estimatedCost?: number;
+  withWhom: string[];
+  styles: string[];
   image?: string;
-  channelId: string;
+  channelId?: string;
 };
 
-export type InputLocation = {
+export type InputLocationContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs: {
@@ -47,18 +47,18 @@ export type InputLocation = {
     location_id: string;
     like: string;
   }[];
-  estimatedTime?: number;
-  estimatedCost?: number;
-  withWhom?: string[];
-  styles?: string[];
+  estimatedTime: number;
+  estimatedCost: number;
+  withWhom: string[];
+  styles: string[];
   image?: string;
-  channelId: string;
+  channelId?: string;
 };
 
-export type InputExplaination = {
+export type InputExplainationContext = {
   courseTitle: string;
   courseDescription: string;
-  locationObjs?: {
+  locationObjs: {
     locationName: string;
     locationAddress: string;
     locationCategory: string;
@@ -66,10 +66,10 @@ export type InputExplaination = {
     location_id: string;
     like: string;
   }[];
-  estimatedTime?: number;
-  estimatedCost?: number;
-  withWhom?: string[];
-  styles?: string[];
+  estimatedTime: number;
+  estimatedCost: number;
+  withWhom: string[];
+  styles: string[];
   image: string;
-  channelId?: string;
+  channelId: string;
 };

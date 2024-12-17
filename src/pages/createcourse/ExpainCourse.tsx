@@ -5,26 +5,55 @@ import { deleteFollow } from "../../api/api";
 
 // props로 setCurrentStep을 받기 위한 타입 정의
 interface ExplainCourseProps {
-  setCurrentStep: React.Dispatch<React.SetStateAction<string>>;
-  currentStep: string;
+  locationObjs: {
+    locationName: string;
+    locationAddress: string;
+    locationCategory: string;
+    locationPhoneNum: string;
+    location_id: string;
+    like: string;
+  }[];
+  withWhom: string[];
+  styles: string[];
+  estimatedTime: number;
+  estimatedCost: number;
+  onNext: (
+    courseTitle: string,
+    courseDescription: string,
+    image: string
+  ) => void; // 다음 단계로 이동 시 호출할 함수
+  onBack: () => void; // 이전 단계로 이동 시 호출할 함수
 }
 
 export default function ExplainCourse({
-  setCurrentStep,
-  currentStep,
+  locationObjs,
+  withWhom,
+  styles,
+  estimatedTime,
+  estimatedCost,
+  onNext,
+  onBack,
 }: ExplainCourseProps): JSX.Element {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [isSaved, setIsSaved] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   // 원의 갯수
-  const [courseCount, setCourseCount] = useState(4);
-
-  const categories: string[] = ["기념일", "생일", "로맨틱"];
+  const categories = locationObjs.map((obj) => obj.locationCategory);
+  const [courseCount, setCourseCount] = useState(categories.length);
+  const tags: string[] = [...withWhom, ...styles];
 
   const handleSave = () => {
     setIsSaved(true);
     setTimeout(() => setIsVisible(false), 100); // 메인 컨텐츠 숨기기
+  };
+
+  // 가짜 데이터
+  const image =
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7LpapIl8DITfz4_Y2z7pqs7FknPkjReAZCg&s";
+
+  const handleNextClick = () => {
+    onNext(title, description, image); // 제목, 설명, 이미지 전달
   };
 
   useEffect(() => {
@@ -36,8 +65,22 @@ export default function ExplainCourse({
         console.error("API 호출 중 오류 발생:", error);
       }
     };
+    fetchData();
     setTimeout(() => setIsVisible(true), 200); // 메인 컨텐츠 나타나기
   }, []);
+
+  // 뒤로가기 이벤트 감지
+  useEffect(() => {
+    const handlePopState = () => {
+      onBack();
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [onBack]);
 
   return (
     <div className="flex flex-col items-center min-h-screen">
@@ -72,7 +115,7 @@ export default function ExplainCourse({
 
             {/* 카테고리 */}
             <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[12px]">
-              {categories.map((item, index) => (
+              {tags.map((item, index) => (
                 <li
                   key={index}
                   className="w-[72px] h-[34px] text-[14px] rounded-[30px] border-2 border-primary-600 font-pretendard text-center flex items-center justify-center"
@@ -90,7 +133,7 @@ export default function ExplainCourse({
                   alt="이동시간 아이콘"
                   className="w-4 h-4"
                 />
-                <span>이동시간 1-2시간</span>
+                <span>이동시간 {estimatedTime}시간</span>
               </div>
               <div className="flex items-center gap-2">
                 <img
@@ -98,7 +141,7 @@ export default function ExplainCourse({
                   alt="예상금액 아이콘"
                   className="w-4 h-4"
                 />
-                <span>예상금액 2-3만원</span>
+                <span>예상금액 {estimatedCost}만원</span>
               </div>
             </div>
           </div>
@@ -156,8 +199,7 @@ export default function ExplainCourse({
         {/* 저장 버튼 */}
         <div className="mt-10 text-center">
           <CreateMyCourseFlowButton
-            setCurrentStep={setCurrentStep} // 단계 변경 함수
-            currentStep={currentStep} // 현재 단계
+            onNext={handleNextClick}
             isCompleteThisPage={true} // 페이지 완료 여부
           >
             <button

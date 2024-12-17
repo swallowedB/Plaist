@@ -16,22 +16,21 @@ interface LocationObj {
   location_id: string;
   like: string;
 }
+
 interface SelectCourseMainProps {
-  locationObjs: LocationObj[]; // locationObjs는 LocationObj 타입의 배열
-  estimatedTime: number; // estimatedTime은 숫자
-  estimatedCost: number; // estimatedCost는 숫자
+  locationObjs: LocationObj[];
   onPlus: (
     estimatedTime: number,
     estimatedCost: number,
     locationObjs: LocationObj[]
-  ) => void; // onPlus는 해당 데이터를 전달하는 함수
+  ) => void;
   onNext: (
     estimatedTime: number,
     estimatedCost: number,
     locationObjs: LocationObj[],
     channelId: string
-  ) => void; // onNext는 해당 데이터를 전달하고 channelId를 인자로 받는 함수
-  onBack: () => void; // onBack은 반환값이 없는 함수
+  ) => void;
+  onBack: () => void;
 }
 
 export default function SelectCourseMain({
@@ -40,41 +39,51 @@ export default function SelectCourseMain({
   onNext,
   onBack,
 }: SelectCourseMainProps) {
+  //  가상 데이터
+  locationObjs = [
+    {
+      locationName: "솔레미오",
+      locationAddress: "서울특별시 용산구",
+      locationCategory: "서울",
+      locationPhoneNum: "번호",
+      location_id: "1239484",
+      like: "12",
+    },
+  ];
+
   const [courseBoxes, setCourseBoxes] = useState([
     {
-      id: 1,
-      title: "첫번째 코스",
+      brand: "솔레미오",
       address: "서울 용산구 이태원동...",
       category: "음식점",
     },
     {
-      id: 2,
-      title: "두번째 코스",
+      brand: "명랑핫도구 1호점",
       address: "서울 강남구...",
       category: "카페",
     },
     {
-      id: 3,
-      title: "세번째 코스",
+      brand: "디너서울",
       address: "서울 종로구...",
       category: "관광지",
     },
   ]);
 
   const handleDelete = (id: number) => {
-    setCourseBoxes((prev) => prev.filter((box) => box.id !== id));
+    setCourseBoxes((prev) => prev.filter((_, index) => index !== id));
   };
 
   // useSliderStore에서 estimatedTime과 estimatedCost를 가져옴
   const { estimatedTime, estimatedCost } = useSliderStore();
 
   // handlePlus에서 estimatedTime과 estimatedCost를 onPlus로 전달
-  const handlePlus: () => void = () => {
+  const handlePlus = () => {
     onPlus(estimatedTime, estimatedCost, locationObjs); // 선택된 데이터 전달
   };
 
-  const handleNext: () => void = () => {
-    onNext(estimatedTime, estimatedCost, locationObjs, "channelId"); // channelId는 실제 값으로 대체
+  const channelId = "121244"; // 타입 애러때문에 넣어둠
+  const handleNext = () => {
+    onNext(estimatedTime, estimatedCost, locationObjs, channelId); // 올바른 순서로 인수 전달
   };
 
   // 상태 변수 정의
@@ -110,11 +119,11 @@ export default function SelectCourseMain({
         id="course-editor"
         className={twMerge(styles.courseEditorContainer)}
       >
-        {courseBoxes.map((box) => (
+        {courseBoxes.map((box, index) => (
           <AddedCoursebox
-            key={box.id}
-            id={box.id}
-            title={box.title}
+            key={box.brand}
+            brand={box.brand}
+            index={index}
             address={box.address}
             category={box.category}
             onDelete={handleDelete}
