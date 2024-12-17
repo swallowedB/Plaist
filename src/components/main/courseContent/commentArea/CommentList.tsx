@@ -1,7 +1,10 @@
+import { useCommentStore } from "../../../../stores/main/commentsStore";
 import { convertDateFormatt } from "../../../../utills/main/fomatter";
 import CommentListItem from "./CommentListItem";
 
-export default function CommentList({ comments }: { comments: Comment[] }) {
+export default function CommentList() {
+  const { comments } = useCommentStore()
+  
   return (
     <>
       <ul className="flex flex-col gap-10 mt-[61px]">

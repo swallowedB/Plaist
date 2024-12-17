@@ -9,12 +9,7 @@ import {
 } from "../../../utills/main/fomatter";
 
 export default function CourseContentDoc({ courseObj }: { courseObj: Course }) {
-  if (!courseObj) {
-    return <div>Loading...</div>;
-  }
   const doc: Title = JSON.parse(courseObj.title);
-  console.log(courseObj);
-  console.log(doc);
 
   return (
     <div className="mb-20 font-pretendard text-custom-black">

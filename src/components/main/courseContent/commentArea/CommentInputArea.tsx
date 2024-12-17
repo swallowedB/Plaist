@@ -1,16 +1,17 @@
 import { useState } from "react";
 import images from "../../../../assets/images/importImages";
 import { postComment } from "../../../../api/commentApi";
+import { useCommentStore } from "../../../../stores/main/commentsStore";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
+  const { comments, setComments } = useCommentStore();
   const [comment, setComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { _id, comments } = courseObj;
+  const { _id } = courseObj;
   const contentId = _id;
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
-    console.log(comment);
   };
 
   const onCommentSubmitHandler = async () => {
@@ -23,8 +24,18 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
       return;
     }
     try {
+      const newComment = {
+        author: {
+          fullName: "내 댓글",
+          createdAt: new Date().toISOString(),
+        },
+        comment,
+      } as Comment;
+      setComments([...comments, newComment]);
+
       await postComment({ contentId, comment });
       console.log("댓글 입력 완료");
+
       setComment("");
     } catch (error) {
       console.error("댓글 제출 중 오류 발생:", error);
