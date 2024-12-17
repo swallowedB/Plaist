@@ -1,7 +1,4 @@
 import { axiosInstance } from "./axios";
-import { getToken } from "../utills/Auth/getTokenWithCloser";
-const token = getToken();
-console.log(token);
 
 // Channel에 해당하는 post 가져오기
 export const getChannelPostList = async (

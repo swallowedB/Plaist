@@ -18,14 +18,11 @@ export default function AllCourseCardItem({
   const { image, likes, _id } = courseItem || {};
   const courseDocData = JSON.parse(courseItem?.title);
 
-  console.log(courseItem);
-
   // 좋아요 버튼 클릭 핸들러
   const onLikeButtonClickHandler = async () => {
     try {
       if (!isLiked) {
         const res = await postLikes(_id);
-        console.log(res);
         setLikeId(res._id);
         console.log("좋아요 성공", res._id);
         setIsLiked(true);
@@ -50,7 +47,7 @@ export default function AllCourseCardItem({
           alt="Course Image"
           className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
         />
-        {/* 좋아요 버튼 */}
+        {/* 좋아요 버튼
         <button
           onClick={onLikeButtonClickHandler}
           className="absolute flex items-center justify-center bg-[#2E2E2E] opacity-70 rounded-full top-[18px] right-[8.71px] h-7 w-7 text-white"
@@ -64,7 +61,7 @@ export default function AllCourseCardItem({
           ) : (
             <img src={images.like_not_filled_border_icon} alt="Like Icon" />
           )}
-        </button>
+        </button> */}
       </div>
 
       {/* 텍스트 정보 */}
