@@ -1,5 +1,6 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
+import { splitBySpaceUntilIndex1 } from "../../../utills/main/fomatter";
 
 export default function AllCourseCardItem({
   courseItem,
@@ -62,7 +63,7 @@ export default function AllCourseCardItem({
             className="w-4 h-4 mr-1"
           />
           <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
-            {/* {courseDocData.locationObjs[0].locationAddress} */}
+            {splitBySpaceUntilIndex1(courseDocData.locationObjs[0].locationAddress)}
           </p>
         </div>
       </div>

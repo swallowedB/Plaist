@@ -16,6 +16,11 @@ export const convertDateFormatt = (isoDate: string) => {
   return formattedDate.slice(0, -1);
 };
 
+export const splitBySpaceUntilIndex1 = (input: string): string => {
+  const splitResult = input.split(" ");
+  return splitResult.slice(0, 2).join(" ");
+};
+
 export const formatPrice = (price: number): string => {
   if (isNaN(price)) {
     throw new Error("Invalid number input");
