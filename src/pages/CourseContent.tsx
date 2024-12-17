@@ -4,11 +4,14 @@ import CourseContentDoc from "../components/main/courseContent/CourseContentDoc"
 import { useQuery } from "@tanstack/react-query";
 import { getCourses } from "../api/react-query/api";
 import Loader from "../components/skeletonUI/Loader";
+import { useEffect } from "react";
+import { useCommentStore } from "../stores/main/commentsStore";
 
 export default function CourseContent() {
   const { contentId } = useParams<{ contentId: string }>();
+  const { comments, setComments } = useCommentStore();
 
-  const { data, isLoading } = useQuery({
+  const { data: courseData, isLoading: isCourseLoading } = useQuery({
     queryKey: ["getCourses", contentId],
     queryFn: () => {
       if (!contentId) {
@@ -16,11 +19,18 @@ export default function CourseContent() {
       }
       return getCourses(contentId!);
     },
+    staleTime: 1000 * 60 * 5,
   });
 
+  useEffect(() => {
+    if (courseData) {
+      setComments( courseData.comments );
+    }
+  }, [courseData, setComments]);
+  console.log(comments);
   return (
     <>
-      {isLoading ? (
+      {isCourseLoading ? (
         <div className="flex flex-col items-center justify-center h-[1000px]">
           <Loader />
         </div>
@@ -28,7 +38,7 @@ export default function CourseContent() {
         <div className="relative w-full h-auto hadow-lg hrounded-lg">
           <div className="relative">
             <img
-              src={data?.image}
+              src={courseData?.image}
               alt="background"
               className="object-cover w-full"
             />
@@ -44,7 +54,7 @@ export default function CourseContent() {
               </div>
 
               <div className="px-[61px] h-auto overflow-y-auto ">
-                <CourseContentDoc courseObj={data!} />
+                <CourseContentDoc courseObj={courseData!} />
               </div>
             </div>
           </div>

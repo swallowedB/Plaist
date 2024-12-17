@@ -137,3 +137,7 @@ interface Course {
   createdAt: string;
   updatedAt: string;
 }
+
+interface Refetch {
+  refetch: () => Promise<QueryObserverResult<any, Error>>;
+}
