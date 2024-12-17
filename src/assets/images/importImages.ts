@@ -8,6 +8,7 @@ import clickmypage_icon from "../images/clickmypage_icon.svg";
 import clickcreate_icon from "../images/clickcreate_icon.svg";
 import playlist_logo from "../images/playlist-logo.svg";
 import notification_icon from "../images/notification-icon.svg";
+import notification_deactivate_icon from "../images/notification-deactivate-icon.svg";
 import hamburger_icon from "../images/hamburger-icon.svg";
 import like_icon from "../images/like_icon.svg";
 import course_img from "../images/course/course_img.svg";
@@ -62,6 +63,7 @@ const images: {
   clickmypage_icon,
   playlist_logo,
   notification_icon,
+  notification_deactivate_icon,
   hamburger_icon,
   like_icon,
   course_img,

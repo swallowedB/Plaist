@@ -1,4 +1,3 @@
-import images from "../../assets/images/importImages";
 import AllCourseCardItem from "../main/allCourse/AllCourseCardItem";
 
 interface Post {

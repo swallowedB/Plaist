@@ -1,5 +1,9 @@
 import { axiosInstance } from "./axios";
+import { getToken } from "../utills/Auth/getTokenWithCloser";
+const token = getToken();
+console.log(token);
 
+// Channel에 해당하는 post 가져오기
 export const getChannelPostList = async (
   channelId: string,
   offset = 0,
@@ -26,7 +30,10 @@ export const getChannelPostList = async (
   }
 };
 
-export const getCourseObj = async (contentId: string) => {
+// 특정 post를 가져오기
+export const getCourseObj = async (
+  contentId: string
+): Promise<Course | undefined> => {
   try {
     const response = await axiosInstance.get(`/posts/${contentId}`);
     return response.data;

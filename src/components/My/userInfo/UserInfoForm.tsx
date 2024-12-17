@@ -7,35 +7,37 @@ interface UserInfoFormProps {
   regionLabel: string;
   defaultFullName?: string;
   defaultEmail?: string;
-  // defaultRegion?: string;
-  onSubmit: (updatedInfo: {fullName: string; email:string;}) => void;
+  defaultRegion?: string;
+  onSubmit: (updatedInfo: {fullName: string; email:string; region: string;}) => void;
 }
 
 export default function UserInfoForm({
   fullNameLabel,
+  regionLabel,
   emailLabel,
   defaultFullName = "",
   defaultEmail = "",
-  // defaultRegion,
+  defaultRegion = "",
   onSubmit,
 }: UserInfoFormProps) {
   const [fullName, setFullName] = useState(defaultFullName);
   const [email, setEmail] = useState(defaultEmail);
-  // const [region, setRegion] = useState(defaultRegion);
+  const [region, setRegion] = useState(defaultRegion);
   const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
     setFullName(defaultFullName);
     setEmail(defaultEmail);
-}, [defaultFullName, defaultEmail]);
+    setRegion(defaultRegion);
+}, [defaultFullName, defaultEmail, defaultRegion]);
 
   useEffect(() => {
-    setIsChanged( fullName !== defaultFullName || email !== defaultEmail );
-  }, [fullName, email, defaultFullName, defaultEmail]);
+    setIsChanged( region !== defaultRegion || fullName !== defaultFullName || email !== defaultEmail );
+  }, [fullName, email, region, defaultRegion, defaultFullName, defaultEmail]);
 
   const handleSubmit = () => {
     if(isChanged){
-      onSubmit({fullName, email});
+      onSubmit({fullName, email, region});
     }
   };
 
@@ -49,12 +51,12 @@ export default function UserInfoForm({
         onChange={setFullName} 
       />
       {/* 지역 */}
-      {/* <UserInfoInput 
+      <UserInfoInput 
         label={regionLabel} 
         id="region" 
         defaultValue={region} 
         onChange={setRegion}
-      /> */}
+      />
 
       {/* 이메일 */}
       <UserInfoInput 

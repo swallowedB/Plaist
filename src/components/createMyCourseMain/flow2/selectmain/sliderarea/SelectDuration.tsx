@@ -2,15 +2,16 @@ import { useSliderStore } from "../../../../../stores/sliderStore";
 import SliderDisplay from "./SliderDisplay";
 import RangeSlider from "./RangeSlider";
 import SliderLabel from "./SliderLabel";
+
 export default function SelectDuration() {
-  const { durationSliderValue, setDurationSliderValue } = useSliderStore();
+  const { estimatedTime, setEstimatedTime } = useSliderStore();
   // duration 값 계산
-  const hours = Math.floor(durationSliderValue / 60);
-  const minutes = durationSliderValue % 60;
+  const hours = Math.floor(estimatedTime / 60);
+  const minutes = estimatedTime % 60;
   const formattedTime =
-    durationSliderValue === 0
+    estimatedTime === 0
       ? "최소 시간"
-      : durationSliderValue === 480
+      : estimatedTime === 480
       ? "약 8시간 이상"
       : `${hours ? `${hours}시간` : ""} ${minutes ? `${minutes}분` : ""}`;
 
@@ -21,8 +22,8 @@ export default function SelectDuration() {
         calculatedValue={formattedTime} // 수정된 값 사용
       />
       <RangeSlider
-        value={durationSliderValue} // 상태 값 수정
-        onChange={setDurationSliderValue} // 슬라이더 값 변경 시 호출
+        value={estimatedTime} // 상태 값 수정
+        onChange={setEstimatedTime} // 슬라이더 값 변경 시 호출
         max={480}
         step={10}
       />

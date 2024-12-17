@@ -29,11 +29,11 @@ export default function UserInfoInput({label, id, defaultValue, onChange, disabl
             ${isFocused ? "border-blue-500 bg-blue-50" : "border-gray-300"}
             
             `}
-            onFocus={()=> setIsFocused(true)}
-            onBlur={()=> setIsFocused(false)}
-            placeholder={defaultValue}
-            defaultValue={defaultValue}
-            onChange={(e) => onChange?.(e.target.value)}
+          onFocus={()=> setIsFocused(true)}
+          onBlur={()=> setIsFocused(false)}
+          placeholder={defaultValue}
+          value={defaultValue}
+          onChange={(e) => onChange?.(e.target.value)}
         />
       </div>
     </div>
