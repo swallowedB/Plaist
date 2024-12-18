@@ -20,7 +20,7 @@ export default function Pagination({
   };
 
   return (
-    <div className="flex justify-center mt-10">
+    <div className="flex justify-center mt-[60px]">
       {/* Previous Button */}
       <button
         onClick={handlePrevious}
