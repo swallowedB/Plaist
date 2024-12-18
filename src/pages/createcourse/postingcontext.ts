@@ -14,7 +14,7 @@ export type InputTagsContext = {
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId?: string;
+  channelIdList?: string[];
 };
 
 export type InputCourseDetailsContext = {
@@ -33,7 +33,7 @@ export type InputCourseDetailsContext = {
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId?: string;
+  channelIdList?: string[];
 };
 
 export type InputLocationContext = {
@@ -52,7 +52,7 @@ export type InputLocationContext = {
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId?: string;
+  channelIdList?: string[];
 };
 
 export type InputExplainationContext = {
@@ -71,5 +71,5 @@ export type InputExplainationContext = {
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId: string;
+  channelIdList: string[];
 };

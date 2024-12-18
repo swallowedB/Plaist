@@ -30,7 +30,17 @@ export default function AddedCoursebox({
       ? "네번째 코스"
       : index === 4
       ? "다섯번째 코스"
-      : "기타 코스"; // 기본값 처리
+      : index === 5
+      ? "여섯번째 코스"
+      : index === 6
+      ? "일곱번째 코스"
+      : index === 7
+      ? "여덟번째 코스"
+      : index === 8
+      ? "아홉번째 코스"
+      : index === 9
+      ? "열번째 코스"
+      : index;
 
   return (
     <div

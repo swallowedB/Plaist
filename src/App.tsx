@@ -23,11 +23,9 @@ import AuthTest from "./pages/test/AuthTest";
 import UserTest from "./pages/test/UserTest";
 import SearchTest from "./pages/test/SearchTest";
 import CreateChannel from "./pages/CreateChannel";
-
 // 권한 관련
 import CourseContent from "./pages/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
-
 //알림 관련
 import { useNotificationStore } from "./stores/notificationStore";
 
@@ -67,14 +65,11 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <Routes>
-        {/* Root Layout */}
         <Route path="/" element={<RootLayout />}>
-          {/* 블러 글레스 적용 페이지 */}
           <Route element={<LoginLayout />}>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
-          {/* Blur 적용하지 않은 페이지 */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<Main />} />
             <Route element={<CourseContentLayout />}>
@@ -83,14 +78,11 @@ export default function App() {
                 element={<CourseContent />}
               />
             </Route>
-
             <Route path="/notification" element={<Notification />} />
             {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
           </Route>
-
           <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
-
           <Route path="my-page" element={<MyPage />} />
           <Route path="user-info" element={<UserInfo />} />
           <Route path="category" element={<Category />} />
