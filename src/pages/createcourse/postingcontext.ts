@@ -71,6 +71,7 @@ export type InputExplainationContext = {
   withWhom: string[];
   styles: string[];
   image?: string;
+  courseImage?: string;
   channelIdList: string[];
 };
 
