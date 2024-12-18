@@ -11,7 +11,9 @@ import {
   InputCourseDetailsContext,
   InputLocationContext,
   InputExplainationContext,
+  PostResultContext,
 } from "./postingcontext";
+import { postMyCourse } from "../../api/postMyCourse";
 
 type ContextByStep = {
   태그입력: InputTagsContext;
@@ -22,8 +24,7 @@ type ContextByStep = {
 };
 
 export default function CreateMyCourse() {
-  const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에서 호출
-  // 진행 상태에 따른 이미지를 가져오는 함수
+  const navigate = useNavigate();
   const getProgressBarImage = (step: keyof ContextByStep) => {
     const stepNumber = {
       태그입력: 1,
@@ -33,10 +34,9 @@ export default function CreateMyCourse() {
       완료: 4,
     }[step];
 
-    return images[`progress_bar${stepNumber}`] || images["default_progress"]; // 안전한 접근
+    return images[`progress_bar${stepNumber}`] || images["default_progress"];
   };
 
-  // UseFunnelResults 타입 정의
   const funnel = useFunnel<ContextByStep>({
     id: "my-funnel-app",
     initial: {
@@ -45,8 +45,49 @@ export default function CreateMyCourse() {
     },
   });
 
-  console.log(funnel.step); // current step 확인
+  console.log(funnel.step);
 
+  const postCourseResult = async () => {
+    const {
+      courseTitle,
+      courseDescription,
+      locationObjs,
+      estimatedTime,
+      estimatedCost,
+      withWhom,
+      styles,
+      image,
+      channelIdList,
+    } = funnel.context as PostResultContext;
+
+    const titleObj = {
+      courseTitle,
+      courseDescription,
+      locationObjs,
+      estimatedTime,
+      estimatedCost,
+      withWhom,
+      styles,
+    };
+
+    const title = JSON.stringify(titleObj);
+
+    try {
+      // 각 channelId에 대해 API 호출
+      await Promise.all(
+        channelIdList.map(async (channelId: string) => {
+          const response = await postMyCourse({
+            title,
+            image,
+            channelId,
+          });
+          console.log(`Channel ID: ${channelId}, Response:`, response);
+        })
+      );
+    } catch (error) {
+      console.error("Course posting failed:", error);
+    }
+  };
   return (
     <div className="mt-[95px] max-w-[767px]  flex flex-col items-center">
       <aside>
@@ -132,13 +173,14 @@ export default function CreateMyCourse() {
                 styles={funnel.context.styles}
                 estimatedTime={funnel.context.estimatedTime}
                 estimatedCost={funnel.context.estimatedCost}
-                onNext={(courseTitle, courseDescription, image) =>
+                onNext={(courseTitle, courseDescription, image) => {
                   funnel.history.push("완료", {
                     courseTitle,
                     courseDescription,
                     image,
-                  })
-                }
+                  });
+                  postCourseResult(); // 함수 호출
+                }}
                 onBack={funnel.history.back}
               />
             );
@@ -157,4 +199,3 @@ export default function CreateMyCourse() {
     </div>
   );
 }
-
