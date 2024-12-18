@@ -74,3 +74,13 @@ export const postUserPoto = async (formData: FormData) => {
     console.error("/users/upload-photo 호출 중 오류 발생:", error);
   }
 };
+
+// ID에 따라 다른 사용자 정보를 가져옴
+export const getUserById = async (userId: string) => {
+  try {
+    const response = await axiosInstance.get(`/users/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

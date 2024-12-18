@@ -10,11 +10,9 @@ type CardData = {
   image: string;
 };
 
-
 type MypageCardItemProps = {
   data: CardData;
 };
-
 
 export default function MypageCardItem({ data }: MypageCardItemProps) {
   return (
