@@ -97,13 +97,13 @@ export default function CreateMyCourse() {
                   estimatedTime,
                   estimatedCost,
                   locationObjs,
-                  channelId
+                  channelIdList
                 ) => {
                   funnel.history.push("게시글작성", {
                     estimatedTime,
                     estimatedCost,
                     locationObjs,
-                    channelId,
+                    channelIdList,
                   });
                 }}
                 onBack={funnel.history.back}
@@ -157,3 +157,4 @@ export default function CreateMyCourse() {
     </div>
   );
 }
+
