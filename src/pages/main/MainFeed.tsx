@@ -7,7 +7,6 @@ import MainTitle from "../../components/main/MainTitle";
 import MainBestCourse from "../../components/main/MainBestCourse";
 import MainAllCourse from "../../components/main/MainAllCourse";
 
-
 export default function Main() {
   const { data: courseList, isLoading: isPostListLoading } = useQuery({
     queryKey: ["getPostList", allCourseChannelId],
