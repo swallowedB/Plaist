@@ -22,8 +22,10 @@ interface ICourseSortToggleProps {
   onSortChange: (sortType: "latest" | "popular") => void; // 콜백 함수 타입
 }
 
+// sebin -> author._id 추가
 interface ICommentListItemProps {
   userName: string;
+  userId: string;
   createdAt: string;
   comment: string;
 }

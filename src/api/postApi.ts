@@ -42,9 +42,9 @@ export const getCourseObj = async (
   }
 };
 
-export const getMyCourseObj = async (contentId: string) => {
+export const getMyCourseObj = async (userId: string) => {
   try {
-    const response = await axiosInstance.get(`/posts/author/${contentId}`);
+    const response = await axiosInstance.get(`/posts/author/${userId}`);
     return response.data;
   } catch (error) {
     console.error(error);
