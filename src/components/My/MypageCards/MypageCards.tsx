@@ -1,6 +1,6 @@
 import MypageCardItem from "./MypageCardItem";
 
-type LikeCardData = {
+type CardData = {
   id: string;
   courseTitle: string;
   courseDescription: string;
@@ -11,7 +11,7 @@ type LikeCardData = {
 
 
 type MypageCardsProps = {
-  data: LikeCardData[];
+  data: CardData[];
 };
 
 export default function MypageCards({ data= [] }: MypageCardsProps) {
