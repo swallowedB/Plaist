@@ -25,7 +25,10 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
       mapElement.scrollIntoView({ behavior: "smooth" });
     }
   };
-
+  const [active, setActive] = useState(false);
+  const isActive = () => {
+    setActive(true);
+  };
   // location 객체 정의 시 문법 오류 수정
   const [location, setLocation] = useState({
     locationName: "",
@@ -81,10 +84,14 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
       <section className="flex flex-col items-center">
         {/* 가이드 제목 컴포넌트 */}
         {/* 지도 및 검색 결과 표시 컴포넌트 */}
-        <MapDisplay goToTop={goToTop} locationChange={locationChange}>
+        <MapDisplay
+          goToTop={goToTop}
+          locationChange={locationChange}
+          isActive={isActive}
+        >
           <CreateMyCourseFlowButton
             onNext={handleNext}
-            isCompleteThisPage={true}
+            isCompleteThisPage={active}
           >
             선택
           </CreateMyCourseFlowButton>

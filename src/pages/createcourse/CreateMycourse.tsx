@@ -154,10 +154,13 @@ export default function CreateMyCourse() {
             return (
               <Mapview
                 onNext={(location) => {
-                  const updatedLocationObjs = [
-                    ...(funnel.context.locationObjs || []),
-                    location,
-                  ];
+                  const existingLocations = funnel.context.locationObjs || [];
+                  const isLocationExist = existingLocations.find(
+                    (loc) => loc.locationAddress === location.locationAddress
+                  );
+                  const updatedLocationObjs = isLocationExist
+                    ? existingLocations
+                    : [...existingLocations, location];
                   funnel.history.replace("코스상세입력", {
                     locationObjs: updatedLocationObjs,
                   });
