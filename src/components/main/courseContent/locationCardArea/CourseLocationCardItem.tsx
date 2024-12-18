@@ -1,4 +1,5 @@
 import images from "../../../../assets/images/importImages";
+import { useConvertIcon } from "../../../../utills/main/convertIcon";
 
 export default function CourseLocationCardItem({
   locationName,
@@ -6,10 +7,12 @@ export default function CourseLocationCardItem({
   locationPhoneNum,
   locationCategory,
 }: LocationObj) {
+  
+
   return (
     <div className="flex items-center">
       <div className="h-[74px] w-[74px] bg-primary-600 rounded-full flex px-4 shadow-default">
-        <img src={images.location_cafe_icon} alt={`location_cafe_icon`} />
+        <img src={useConvertIcon(locationCategory)} alt={`location_cafe_icon`} />
       </div>
       <div className="h-[3px] w-[14px] bg-primary-700"></div>
       <div className="w-[347px] h-[104px] bg-white rounded-3xl shadow-default flex items-center px-[20px] py-[15px]">
