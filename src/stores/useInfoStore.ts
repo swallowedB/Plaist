@@ -55,7 +55,7 @@ export const useUserStore = create<UserStore>((set) => ({
       if(data.username){
         try{
           const parsedUsername = JSON.parse(data.username);
-          console.log("Parsed Username:", parsedUsername); // 디버깅용
+          // console.log("Parsed Username:", parsedUsername); // 디버깅용
           region = parsedUsername.region || "";
         } catch (error){
           console.warn("username 파싱 실패:", error);
