@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
 import images from "../../../../assets/images/importImages";
-
+import { toast } from "react-toastify";
 export default function MapDisplay({
   goToTop,
   children,
@@ -46,7 +46,7 @@ export default function MapDisplay({
 
   function searchPlaces() {
     if (!keyword.trim()) {
-      alert("키워드를 입력해주세요!");
+      toast.success("키워드를 입력해주세요!");
       return;
     }
 
@@ -58,9 +58,9 @@ export default function MapDisplay({
     if (status === kakao.maps.services.Status.OK) {
       displayPlaces(data);
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-      alert("검색 결과가 존재하지 않습니다.");
+      toast.success("검색 결과가 존재하지 않습니다.");
     } else if (status === kakao.maps.services.Status.ERROR) {
-      alert("검색 중 오류가 발생했습니다.");
+      toast.success("검색 중 오류가 발생했습니다.");
     }
   }
 
