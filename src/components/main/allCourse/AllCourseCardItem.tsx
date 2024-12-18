@@ -1,6 +1,6 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
-import { splitBySpaceUntilIndex1 } from "../../../utills/main/fomatter";
+import { splitBySpaceUntilIndex1, trimStringWithEllipsis } from "../../../utills/main/fomatter";
 
 export default function AllCourseCardItem({
   courseItem,
@@ -49,7 +49,7 @@ export default function AllCourseCardItem({
         <div className="flex items-center justify-between">
           <NavLink to={`/course-content/${_id}`}>
             <span className="text-sm font-medium text-custom-black font-pretendard max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap flex-grow">
-              {courseDocData.courseTitle}
+              {trimStringWithEllipsis(courseDocData.courseTitle, 23)}
             </span>
           </NavLink>
           <div className="flex flex-row items-center">

@@ -39,3 +39,15 @@ export const sortByCreatedAtIncre = (data: Comment[]): Comment[] => {
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
   );
 };
+
+export const sortCoursesByLike = (data: Course[]) => {
+  const bestCourses = data
+    .sort((a, b) => b.likes.length - a.likes.length)
+    .map((item) => item)
+    .slice(0, 3);
+  return bestCourses;
+};
+
+export const trimStringWithEllipsis = (input: string, length: number) => {
+  return input.length <= length ? input : input.slice(0, length) + "...";
+};
