@@ -23,9 +23,6 @@ import OtherUserInfo from "./pages/OtherUserInfo";
 import Notification from "./pages/Notification";
 // import HamburgerMenu from "./pages/HamburgerMenu";
 // 테스트
-import AuthTest from "./pages/test/AuthTest";
-import UserTest from "./pages/test/UserTest";
-import SearchTest from "./pages/test/SearchTest";
 import CreateChannel from "./pages/CreateChannel";
 // 권한 관련
 import CourseContent from "./pages/main/CourseContent";
@@ -73,9 +70,6 @@ export default function App() {
           <Route path="my-page" element={<MyPage />} />
           <Route path="user-info" element={<UserInfo />} />
           <Route path="category" element={<Category />} />
-          <Route path="userTest" element={<UserTest />} />
-          <Route path="authTest" element={<AuthTest />} />
-          <Route path="searchTest" element={<SearchTest />} />
           <Route path="createChannel" element={<CreateChannel />} />
           {/* create-course 경로 */}
           <Route path="my-course-builder">
