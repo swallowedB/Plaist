@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 type ChannelType = {
   authRequired: boolean;
@@ -52,7 +53,7 @@ const ChannelTest = () => {
         throw new Error("Failed to create channel");
       }
       const data = await response.json();
-      alert(`Channel created: ${JSON.stringify(data, null, 2)}`);
+      toast.success(`Channel created: ${JSON.stringify(data, null, 2)}`);
       setFormData({
         authRequired: false,
         name: "",
@@ -60,7 +61,7 @@ const ChannelTest = () => {
       });
     } catch (error) {
       console.error(error);
-      alert("Failed to create channel. Please try again.");
+      toast.success("Failed to create channel. Please try again.");
     }
   };
 
@@ -74,7 +75,7 @@ const ChannelTest = () => {
       setChannelList(data);
     } catch (error) {
       console.error(error);
-      alert("Failed to fetch channels. Please try again.");
+      toast.success("Failed to fetch channels. Please try again.");
     }
   };
 
@@ -88,13 +89,13 @@ const ChannelTest = () => {
       {/* Create Channel */}
       <button
         onClick={() => onClickButton("create")}
-        className="block bg-blue-200 font-bold my-3 rounded-md p-2"
+        className="block p-2 my-3 font-bold bg-blue-200 rounded-md"
       >
         채널 생성
       </button>
       {createClicked ? (
         <div>
-          <form onSubmit={onSubmitCreate} className="bg-slate-200 p-3">
+          <form onSubmit={onSubmitCreate} className="p-3 bg-slate-200">
             <div>
               <label>
                 Channel Name:
@@ -143,7 +144,7 @@ const ChannelTest = () => {
       {/* Fetch and Display Channels */}
       <button
         onClick={() => onClickButton("channel")}
-        className="block bg-blue-200 font-bold my-3 rounded-md p-2"
+        className="block p-2 my-3 font-bold bg-blue-200 rounded-md"
       >
         채널 확인
       </button>
@@ -153,7 +154,7 @@ const ChannelTest = () => {
             <button
               key={channel._id}
               onClick={() => onClickChannelName(channel.name)}
-              className="border p-2 m-2"
+              className="p-2 m-2 border"
             >
               {channel.name}
             </button>

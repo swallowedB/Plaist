@@ -3,6 +3,7 @@ import images from "../../../../assets/images/importImages";
 import { postComment } from "../../../../api/commentApi";
 import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
 import { useUserStore } from "../../../../stores/useInfoStore";
+import { toast } from "react-toastify";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { comments, setComments } = useCommentStore();
@@ -28,7 +29,7 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
     setIsSubmitting(true);
 
     if (comment.trim() === "") {
-      alert("댓글 내용을 입력해 주세요.");
+      toast.success("댓글 내용을 입력해 주세요.");
       setIsSubmitting(false);
       return;
     }

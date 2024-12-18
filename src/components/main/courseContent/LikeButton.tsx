@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import images from "../../../assets/images/importImages";
 import { deleteLikes, postLikes } from "../../../api/react-query/likeApi";
 import { getUserIdFromToken } from "../../../api/userApi";
+import { toast } from "react-toastify";
 
 export default function LikeButton({
   courseObj,
@@ -44,7 +45,7 @@ export default function LikeButton({
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);
-      alert("좋아요 처리에 실패했습니다.");
+      toast.success("좋아요 처리에 실패했습니다.");
     }
   };
 

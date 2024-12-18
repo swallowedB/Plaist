@@ -3,6 +3,7 @@ import { axiosInstance } from "./axios";
 import { setCookie } from "../utills/Auth/setCookie";
 import { deleteCookie } from "../utills/Auth/deleteCookie";
 import { useNotificationStore } from "../stores/notificationStore";
+import { toast } from "react-toastify";
 
 // search
 // 사용자 혹은 게시물을 검색합니다.
@@ -99,7 +100,7 @@ export const postLogin = async (
       console.log("polling start");
     }
   } catch (error) {
-    alert("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
+    toast.success("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
     console.error("API 호출 중 오류 발생:", error);
   }
 };
