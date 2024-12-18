@@ -200,29 +200,32 @@ export default function ExplainCourse({
           </h3>
           <div className="relative flex items-center justify-center gap-[56px]">
             {/* 원들을 유동적으로 렌더링 */}
-            {locationObjs.map((location, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center justify-center"
-              >
-                {/* 아이콘 원 */}
+            {locationObjs.map((location, index) => {
+              return (
                 <div
-                  className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center"
-                  style={{
-                    backgroundImage: `url(${
-                      images[location.locationCategory]
-                    })`, // 아이콘 이미지가 categories에서 랜덤으로 선택되도록 수정
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
+                  key={index}
+                  className="flex flex-col items-center justify-center gap-2"
                 >
+                  {/* 아이콘 원 */}
+                  <div
+                    className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center"
+                    style={{
+                      backgroundImage: `url(${useConvertIcon(
+                        location.locationCategory
+                      )})`,
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
+                  ></div>
+
                   {/* 텍스트 */}
-                  <span className="text-white text-sm mt-2">
+                  <span className="font-pretendard text-sm text-primary-600 font-semibold text-center mt-2">
                     {location.locationName}
                   </span>
                 </div>
-              </div>
-            ))}
+              );
+            })}
 
             {/* 가로줄 */}
             <div
