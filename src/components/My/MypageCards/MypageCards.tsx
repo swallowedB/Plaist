@@ -1,14 +1,16 @@
 import MypageCardItem from "./MypageCardItem";
 
-type TestData = {
-  id: number | string;
-  title: string;
+type CardData = {
+  id: string;
+  courseTitle: string;
+  courseDescription: string;
+  locationName: string;
   likes: number;
-  location: string;
+  image: string;
 };
 
 type MypageCardsProps = {
-  data?: TestData[];
+  data: CardData[];
 };
 
 export default function MypageCards({ data = [] }: MypageCardsProps) {

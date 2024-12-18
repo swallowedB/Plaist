@@ -17,7 +17,6 @@ export const getUserIdFromToken = () => {
     throw new Error("사용자 토큰이 존재하지 않습니다.");
   }
   const decodedToken = jwtDecode<JwtPayload>(token);
-  // console.log("Decoded JWT:", decodedToken); // 디코딩된 토큰 확인
   return decodedToken.user._id; // 서버의 JWT 구조에 따라 키 확인
 };
 
@@ -25,9 +24,7 @@ export const getUserIdFromToken = () => {
 export const getUserInfo = async () => {
   try {
     const userId = getUserIdFromToken();
-    // console.log(userId);
     const response = await axiosInstance.get(`/users/${userId}`);
-    // console.log(response);
     return response.data;
   } catch (error) {
     console.error("/users/{id} 호출 중 오류 발생:", error);
@@ -38,16 +35,23 @@ export const getUserInfo = async () => {
 export const updateUserInfo = async ({
   fullName,
   email,
+  region,
 }: {
   fullName: string;
   email: string;
+  region?: string;
 }) => {
   try {
+    const jsonRegion = JSON.stringify({region})
+    console.log("Updating user info with:", { fullName, email, jsonRegion });
+
     const response = await axiosInstance.put(`/settings/update-user`, {
       headers: { "Cache-Control": "no-cache" },
       fullName,
       email,
+      username: jsonRegion,
     });
+    
     return response.data;
   } catch (error) {
     console.error("/settings/update-user 호출 중 오류 발생:", error);

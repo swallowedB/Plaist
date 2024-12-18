@@ -1,30 +1,22 @@
-import images from "../../../assets/images/importImages";
+import { useMemo } from "react";
 import BestCourseCardItem from "./BestCourseCardItem";
+import { sortCoursesByLike } from "../../../utills/main/fomatter";
 
-export default function BestCourseCards() {
+export default function BestCourseCards({
+  courseList,
+}: {
+  courseList: Course[];
+}) {
+  const bestCourses = useMemo(
+    () => sortCoursesByLike(courseList, 3),
+    [courseList]
+  );
+
   return (
     <div className="flex gap-5">
-      <BestCourseCardItem
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-        contentId={"10"}
-      />
-      <BestCourseCardItem
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-        contentId={"20"}
-      />
-      <BestCourseCardItem
-        title={"✨ 2025 새해 모임"}
-        rating={4.7}
-        location={"Seoul, GangNam"}
-        imageUrl={images.course_img}
-        contentId={"30"}
-      />
+      {bestCourses.map((item) => {
+        return <BestCourseCardItem key={item._id} courseData={item} />;
+      })}
     </div>
   );
 }

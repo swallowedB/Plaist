@@ -1,19 +1,24 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
+import {
+  splitBySpaceUntilIndex1,
+  trimStringWithEllipsis,
+} from "../../../utills/main/fomatter";
 
 export default function BestCourseCardItem({
-  title,
-  rating,
-  location,
-  imageUrl,
-  contentId,
-}: ICourseCardItemProps) {
+  courseData,
+}: {
+  courseData: Course;
+}) {
+  const { _id, title, image, likes } = courseData;
+  const doc = JSON.parse(title);
+
   return (
-    <div className="w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
+    <div className="min-w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
       <div className="relative">
         <img
-          src={imageUrl}
+          src={image}
           alt="Course Image"
           className="w-[186px] h-[222px] mt-[10.93px] rounded-2xl object-cover"
         />
@@ -31,9 +36,9 @@ export default function BestCourseCardItem({
       <div className="w-full px-4 mt-2">
         {/* 제목과 평점 */}
         <div className="flex items-center justify-between">
-          <NavLink to={`/view-course-content/${contentId}`}>
+          <NavLink to={`/course-content/${_id}`}>
             <p className="text-sm font-medium text-custom-black font-pretendard">
-              {title}
+              {trimStringWithEllipsis(doc.courseTitle, 12)}
             </p>
           </NavLink>
           <div className="flex flex-row items-center">
@@ -44,7 +49,7 @@ export default function BestCourseCardItem({
                 alt="Like Filled Icon"
                 className="h-[9px] w-[10px]"
               />
-              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-[2px]">{`${rating}k`}</p>
+              <p className="font-pretendard text-[13px] font-regular text-custom-black pl-[2px]">{`${likes.length}`}</p>
             </div>
           </div>
         </div>
@@ -58,7 +63,7 @@ export default function BestCourseCardItem({
             className="w-4 h-4 mr-1"
           />
           <p className="font-pretendard text-[13px] text-custom-gray">
-            {location}
+            {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
           </p>
         </div>
       </div>

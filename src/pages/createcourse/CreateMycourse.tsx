@@ -11,7 +11,9 @@ import {
   InputCourseDetailsContext,
   InputLocationContext,
   InputExplainationContext,
+  PostResultContext,
 } from "./postingcontext";
+import { postMyCourse } from "../../api/postMyCourse";
 
 type ContextByStep = {
   태그입력: InputTagsContext;
@@ -22,8 +24,7 @@ type ContextByStep = {
 };
 
 export default function CreateMyCourse() {
-  const navigate = useNavigate(); // useNavigate를 컴포넌트 최상단에서 호출
-  // 진행 상태에 따른 이미지를 가져오는 함수
+  const navigate = useNavigate();
   const getProgressBarImage = (step: keyof ContextByStep) => {
     const stepNumber = {
       태그입력: 1,
@@ -33,22 +34,62 @@ export default function CreateMyCourse() {
       완료: 4,
     }[step];
 
-    return images[`progress_bar${stepNumber}`] || images["default_progress"]; // 안전한 접근
+    return images[`progress_bar${stepNumber}`] || images["default_progress"];
   };
 
-  // UseFunnelResults 타입 정의
   const funnel = useFunnel<ContextByStep>({
     id: "my-funnel-app",
     initial: {
       step: "태그입력",
-      context: { withWhom: [], styles: [] },
+      context: { withWhom: [], styles: [], locationObjs: [] },
     },
   });
 
-  console.log(funnel.step); // current step 확인
+  console.log(funnel.step);
 
+  const postCourseResult = async () => {
+    const {
+      courseTitle,
+      courseDescription,
+      locationObjs,
+      estimatedTime,
+      estimatedCost,
+      withWhom,
+      styles,
+      image,
+      channelIdList,
+    } = funnel.context as PostResultContext;
+
+    const titleObj = {
+      courseTitle,
+      courseDescription,
+      locationObjs,
+      estimatedTime,
+      estimatedCost,
+      withWhom,
+      styles,
+    };
+
+    const title = JSON.stringify(titleObj);
+
+    try {
+      // 각 channelId에 대해 API 호출
+      await Promise.all(
+        channelIdList.map(async (channelId: string) => {
+          const response = await postMyCourse({
+            title,
+            image,
+            channelId,
+          });
+          console.log(`Channel ID: ${channelId}, Response:`, response);
+        })
+      );
+    } catch (error) {
+      console.error("Course posting failed:", error);
+    }
+  };
   return (
-    <div className="mt-[95px] max-w-[767px] mb-8 flex flex-col items-center">
+    <div className="mt-[95px] max-w-[767px]  flex flex-col items-center">
       <aside>
         <figure>
           <img src={getProgressBarImage(funnel.step)} alt="Progress bar" />
@@ -73,6 +114,19 @@ export default function CreateMyCourse() {
             return (
               <SelectCourseMain
                 locationObjs={funnel.context.locationObjs || []}
+                locationObjDelete={(id: number) => {
+                  const updatedLocationObjs =
+                    funnel.context.locationObjs?.filter(
+                      (_, index) => index !== id
+                    );
+
+                  funnel.history.replace("코스상세입력", {
+                    ...funnel.context,
+                    locationObjs: updatedLocationObjs,
+                  });
+
+                  console.log(updatedLocationObjs);
+                }}
                 onPlus={(estimatedTime, estimatedCost, locationObjs) => {
                   funnel.history.push("장소선택", {
                     estimatedTime,
@@ -84,13 +138,13 @@ export default function CreateMyCourse() {
                   estimatedTime,
                   estimatedCost,
                   locationObjs,
-                  channelId
+                  channelIdList
                 ) => {
                   funnel.history.push("게시글작성", {
                     estimatedTime,
                     estimatedCost,
                     locationObjs,
-                    channelId,
+                    channelIdList,
                   });
                 }}
                 onBack={funnel.history.back}
@@ -100,10 +154,13 @@ export default function CreateMyCourse() {
             return (
               <Mapview
                 onNext={(location) => {
-                  const updatedLocationObjs = [
-                    ...(funnel.context.locationObjs || []),
-                    location,
-                  ];
+                  const existingLocations = funnel.context.locationObjs || [];
+                  const isLocationExist = existingLocations.find(
+                    (loc) => loc.locationAddress === location.locationAddress
+                  );
+                  const updatedLocationObjs = isLocationExist
+                    ? existingLocations
+                    : [...existingLocations, location];
                   funnel.history.replace("코스상세입력", {
                     locationObjs: updatedLocationObjs,
                   });
@@ -119,14 +176,17 @@ export default function CreateMyCourse() {
                 styles={funnel.context.styles}
                 estimatedTime={funnel.context.estimatedTime}
                 estimatedCost={funnel.context.estimatedCost}
-                onNext={(courseTitle, courseDescription, image) =>
+                onNext={(courseTitle, courseDescription, image) => {
                   funnel.history.push("완료", {
                     courseTitle,
                     courseDescription,
                     image,
-                  })
-                }
+                  });
+                  postCourseResult(); // 함수 호출
+                  // 데이터를 보내고 history를 초기화 시켜줘야 할까?
+                }}
                 onBack={funnel.history.back}
+
               />
             );
           case "완료":

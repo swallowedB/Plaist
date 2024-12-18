@@ -2,10 +2,12 @@
 import MypageCards from "../My/MypageCards/MypageCards";
 
 type PostData = {
-  id: number | string;
-  title: string;
+  id: string;
+  courseTitle: string;
+  courseDescription: string;
+  locationName: string;
   likes: number;
-  location: string;
+  image: string;
 };
 
 export default function OtherUserCourse({

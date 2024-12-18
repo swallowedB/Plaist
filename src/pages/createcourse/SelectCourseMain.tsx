@@ -7,6 +7,7 @@ import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/sele
 import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 import { useSliderStore } from "./../../stores/sliderStore";
+import useBackWithHistory from "../../hooks/useBackWithHistory";
 
 interface LocationObj {
   locationName: string;
@@ -14,11 +15,12 @@ interface LocationObj {
   locationCategory: string;
   locationPhoneNum: string;
   location_id: string;
-  like: string;
+  like: number;
 }
 
 interface SelectCourseMainProps {
   locationObjs: LocationObj[];
+  locationObjDelete: (id: number) => void;
   onPlus: (
     estimatedTime: number,
     estimatedCost: number,
@@ -28,61 +30,85 @@ interface SelectCourseMainProps {
     estimatedTime: number,
     estimatedCost: number,
     locationObjs: LocationObj[],
-    channelId: string
+    channelIdList: string[]
   ) => void;
   onBack: () => void;
 }
 
 export default function SelectCourseMain({
   locationObjs,
+  locationObjDelete,
   onPlus,
   onNext,
   onBack,
 }: SelectCourseMainProps) {
-  // 가상 데이터
-  locationObjs = [
-    {
-      locationName: "솔레미오",
-      locationAddress: "서울특별시 용산구",
-      locationCategory: "서울",
-      locationPhoneNum: "번호",
-      location_id: "1239484",
-      like: "12",
-    },
-  ];
+  const [courseBoxes, setCourseBoxes] = useState(locationObjs);
 
-  const [courseBoxes, setCourseBoxes] = useState([
-    {
-      brand: "솔레미오",
-      address: "서울 용산구 이태원동 용산구",
-      category: "음식점",
-    },
-    {
-      brand: "명랑핫도구 1호점",
-      address: "서울 용산구 이태원동 용산구",
-      category: "카페",
-    },
-    {
-      brand: "디너서울",
-      address: "서울 용산구 이태원동 용산구",
-      category: "관광지",
-    },
-  ]);
-
-  const [isCompletedThisPage, setIsCompletedThisPage] = useState(true);
+  const [isCompletedThisPage, setIsCompletedThisPage] = useState(false);
   const handleDelete = (id: number) => {
     setCourseBoxes((prev) => prev.filter((_, index) => index !== id));
+    locationObjDelete(id);
   };
   const { estimatedTime, estimatedCost } = useSliderStore();
   const handlePlus = () => {
     onPlus(estimatedTime, estimatedCost, locationObjs);
   };
-  const channelId = "121244"; // 타입 애러때문에 넣어둠
-  const handleNext = () => {
-    onNext(estimatedTime, estimatedCost, locationObjs, channelId);
+
+  const getchannelIdList = () => {
+    // locationObjs에서 locationAddress만 골라서 새로운 배열을 만듦
+    const addressList = locationObjs.map(
+      (location) => location.locationAddress
+    );
+    const channelList = addressList.map((address) => {
+      switch (address.slice(0, 2)) {
+        case "서울":
+          return "675bef7e09a5266ae560fdd2";
+        case "경기":
+          return "675bef8b09a5266ae560fdd6";
+        case "인천":
+          return "675befd809a5266ae560fddd";
+        case "강원":
+          return "675befdf09a5266ae560fde1";
+        case "충남":
+          return "675befe909a5266ae560fde5";
+        case "대전":
+          return "675befee09a5266ae560fde9";
+        case "충북":
+          return "675beffa09a5266ae560fded";
+        case "세종":
+          return "675bf00109a5266ae560fdf1";
+        case "부산":
+          return "675bf00709a5266ae560fdf5";
+        case "울산":
+          return "675bf00b09a5266ae560fdf9";
+        case "대구":
+          return "675bf01109a5266ae560fdfd";
+        case "경북":
+          return "675bf01709a5266ae560fe01";
+        case "경남":
+          return "675bf01a09a5266ae560fe05";
+        case "전남":
+          return "675bf02109a5266ae560fe09";
+        case "광주":
+          return "675bf02b09a5266ae560fe0d";
+        case "전북":
+          return "675bf03009a5266ae560fe13";
+        case "제주":
+          return "675bf03409a5266ae560fe17";
+        default:
+          return "";
+      }
+    });
+    console.log(channelList);
+    return channelList;
   };
 
-  // courseBoxes 길이가 1 이상이고 estimatedTime, estimatedCost가 0보다 클 때만 완료 상태 true로 설정
+  const channelIdList = getchannelIdList();
+
+  const handleNext = () => {
+    onNext(estimatedTime, estimatedCost, locationObjs, channelIdList);
+  };
+
   useEffect(() => {
     if (courseBoxes.length > 0 && estimatedTime > 0 && estimatedCost > 0) {
       setIsCompletedThisPage(true);
@@ -91,15 +117,7 @@ export default function SelectCourseMain({
     }
   }, [courseBoxes, estimatedTime, estimatedCost]);
 
-  useEffect(() => {
-    const handlePopState = () => {
-      onBack();
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState); // 컴포넌트가 unmount될 때 이벤트 리스너 제거
-    };
-  }, [onBack]);
+  useBackWithHistory(onBack);
 
   return (
     <div>
@@ -111,10 +129,11 @@ export default function SelectCourseMain({
       >
         {courseBoxes.map((box, index) => (
           <AddedCoursebox
-            brand={box.brand}
+            key={Math.random()}
+            locationName={box.locationName}
             index={index}
-            address={box.address}
-            category={box.category}
+            locationAddress={box.locationAddress}
+            locationCategory={box.locationCategory}
             onDelete={handleDelete}
           />
         ))}
@@ -129,7 +148,10 @@ export default function SelectCourseMain({
       </div>
 
       <div className="flex flex-col items-center justify-center mb-[100px]">
-        <CreateMyCourseFlowButton onNext={handleNext} isCompleteThisPage={true}>
+        <CreateMyCourseFlowButton
+          onNext={handleNext}
+          isCompleteThisPage={isCompletedThisPage}
+        >
           완료
         </CreateMyCourseFlowButton>
       </div>

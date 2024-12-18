@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import images from "../../../../assets/images/importImages";
 import { postComment } from "../../../../api/commentApi";
 import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
-import { useUserStore } from "../../../../stores/userInfoStore";
+import { useUserStore } from "../../../../stores/useInfoStore";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { comments, setComments } = useCommentStore();
@@ -11,10 +11,13 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { _id } = courseObj;
   const contentId = _id;
 
-  const { userInfo, fetchUserInfo } = useUserStore();
+  const { userInfo, userProfilePic, fetchUserInfo } = useUserStore();
+  const [profilePic, setProfilePic] = useState(userProfilePic);
+
   useEffect(() => {
     fetchUserInfo();
-  }, [fetchUserInfo]);
+    setProfilePic(userProfilePic);
+  }, [fetchUserInfo, userProfilePic]);
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -37,10 +40,10 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
         createdAt: new Date().toISOString(),
         comment,
       } as Comment;
+
       setComments([newComment, ...comments]);
 
       await postComment({ contentId, comment });
-      console.log("댓글 입력 완료");
 
       setComment("");
     } catch (error) {
@@ -70,9 +73,9 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
         {/* 네임카드 */}
         <div className="flex items-center gap-[10px]">
           <img
-            src={images.course_user_profile_img}
-            alt=""
-            className="w-10 h-10 rounded-full bg-primary-200"
+            src={profilePic}
+            alt="유저 프로필 이미지"
+            className="w-10 h-10 overflow-hidden bg-center bg-cover rounded-full bg-primary-200"
           />
           <div className="text-base font-bold text-primary-800">
             {userInfo.fullName}

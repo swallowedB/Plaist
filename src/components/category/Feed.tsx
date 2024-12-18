@@ -15,7 +15,6 @@ export default function Feed() {
     let allPostList: Course[] = [];
     let uniquePostList: Course[] = [];
 
-
     // location filtering
     if (location.name === "전국" && spot.name === "전체") {
       try {

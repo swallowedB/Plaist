@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useState } from "react";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import useGoBackWithHistory from "../../hooks/useBackWithHistory";
 
 interface LocationProps {
   locationName: string;
@@ -9,7 +10,7 @@ interface LocationProps {
   locationCategory: string;
   locationPhoneNum: string;
   location_id: string;
-  like: string;
+  like: number;
 }
 
 interface MapviewProps {
@@ -25,50 +26,64 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
       mapElement.scrollIntoView({ behavior: "smooth" });
     }
   };
-
+  const [active, setActive] = useState(false);
+  const isActive = () => {
+    setActive(true);
+  };
   // location 객체 정의 시 문법 오류 수정
-  const location = {
-    locationName: "피자집",
-    locationAddress: "서울특별시 용산구",
-    locationCategory: "음식점",
-    locationPhoneNum: "121-3313-1111",
-    location_id: "12434355",
-    like: "12",
+  const [location, setLocation] = useState({
+    locationName: "",
+    locationAddress: "",
+    locationCategory: "",
+    locationPhoneNum: "",
+    location_id: "",
+    like: 0,
+  });
+
+  const locationChange = (
+    locationName: string,
+    locationAddress: string,
+    locationCategory: string,
+    locationPhoneNum: string
+  ) => {
+    setLocation({
+      locationName,
+      locationAddress,
+      locationCategory,
+      locationPhoneNum,
+      location_id: "",
+      like: 0,
+    });
   };
 
   const handleNext: () => void = () => {
     onNext(location); // location 객체 전달
   };
 
-  useEffect(() => {
-    // 뒤로 가기 이벤트 감지
-    const handlePopState = () => {
-      onBack(); // 뒤로 가기 시 onBack 함수 호출
-    };
-
-    // popstate 이벤트 리스너 등록
-    window.addEventListener("popstate", handlePopState);
-
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [onBack]);
+  useGoBackWithHistory(onBack);
 
   return (
     <div id="top">
       <PostingGuideTitle
         alignClass="flex justify-center"
-        titleText="첫번째 코스를 선택"
+        titleText="지도에서 코스를 선택해주세요"
         mt={80}
       />
       <section className="flex flex-col items-center">
         {/* 가이드 제목 컴포넌트 */}
         {/* 지도 및 검색 결과 표시 컴포넌트 */}
-        <MapDisplay goToTop={goToTop} />
-        <CreateMyCourseFlowButton onNext={handleNext} isCompleteThisPage={true}>
-          선택
-        </CreateMyCourseFlowButton>
+        <MapDisplay
+          goToTop={goToTop}
+          locationChange={locationChange}
+          isActive={isActive}
+        >
+          <CreateMyCourseFlowButton
+            onNext={handleNext}
+            isCompleteThisPage={active}
+          >
+            선택
+          </CreateMyCourseFlowButton>
+        </MapDisplay>
       </section>
     </div>
   );

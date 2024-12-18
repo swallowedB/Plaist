@@ -1,15 +1,23 @@
 import { NavLink } from "react-router";
 import images from "../../../assets/images/importImages";
+import {
+  splitBySpaceUntilIndex1,
+  trimStringWithEllipsis,
+} from "../../../utills/main/fomatter";
 
 export default function AllCourseCardItem({
   courseItem,
 }: {
   courseItem: Course;
-  }) {
-  if(!courseItem) {return <div>loading...</div>}
+}) {
+  if (!courseItem) {
+    return <div>loading...</div>;
+  }
   const { image, likes, _id } = courseItem || {};
   const courseDocData = JSON.parse(courseItem?.title);
 
+  if(!courseDocData) return (<h1>404</h1>)
+  
   return (
     <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
@@ -19,14 +27,6 @@ export default function AllCourseCardItem({
           alt="Course Image"
           className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
         />
-        {/* 좋아요 버튼 */}
-        <button className="absolute flex items-center justify-center bg-[#2E2E2E] opacity-20 rounded-full top-[18px] right-[8.71px] h-7 w-7">
-          <img
-            src={images.like_icon}
-            alt="Like Icon"
-            className="h-[13px] w-[14px]"
-          />
-        </button>
       </div>
 
       {/* 텍스트 정보 */}
@@ -35,7 +35,7 @@ export default function AllCourseCardItem({
         <div className="flex items-center justify-between">
           <NavLink to={`/course-content/${_id}`}>
             <span className="text-sm font-medium text-custom-black font-pretendard max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap flex-grow">
-              {courseDocData.courseTitle}
+              {trimStringWithEllipsis(courseDocData.courseTitle, 23)}
             </span>
           </NavLink>
           <div className="flex flex-row items-center">
@@ -62,7 +62,9 @@ export default function AllCourseCardItem({
             className="w-4 h-4 mr-1"
           />
           <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
-            {/* {courseDocData.locationObjs[0].locationAddress} */}
+            {courseDocData.locationObjs ? splitBySpaceUntilIndex1(
+              courseDocData.locationObjs[0].locationAddress
+            ):"입력 없음"}
           </p>
         </div>
       </div>

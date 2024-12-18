@@ -9,9 +9,11 @@ import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
 
 type PostData = {
   id: string;
-  title: string;
+  courseTitle: string;
+  courseDescription: string;
+  locationName: string;
   likes: number;
-  location: string;
+  image: string;
 };
 
 export default function OtherUserInfo() {
@@ -40,9 +42,10 @@ export default function OtherUserInfo() {
 
             return {
               id: post?._id || "",
-              title: titleData.courseTitle || "제목",
+              courseTitle: titleData.courseTitle || "제목",
+              courseDescription: titleData.courseDescription || "",
               likes: post?.likes?.length || 0,
-              location: location,
+              locationName: location,
             } as PostData;
           });
 

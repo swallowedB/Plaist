@@ -7,14 +7,14 @@ export type InputTagsContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime?: number;
   estimatedCost?: number;
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId?: string;
+  channelIdList?: string[];
 };
 
 export type InputCourseDetailsContext = {
@@ -26,14 +26,14 @@ export type InputCourseDetailsContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime?: number;
   estimatedCost?: number;
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId?: string;
+  channelIdList?: string[];
 };
 
 export type InputLocationContext = {
@@ -45,14 +45,14 @@ export type InputLocationContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId?: string;
+  channelIdList?: string[];
 };
 
 export type InputExplainationContext = {
@@ -64,12 +64,31 @@ export type InputExplainationContext = {
     locationCategory: string;
     locationPhoneNum: string;
     location_id: string;
-    like: string;
+    like: number;
   }[];
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
   styles: string[];
   image?: string;
-  channelId: string;
+  channelIdList: string[];
+};
+
+export type PostResultContext = {
+  courseTitle: string;
+  courseDescription: string;
+  locationObjs: {
+    locationName: string;
+    locationAddress: string;
+    locationCategory: string;
+    locationPhoneNum: string;
+    location_id: string;
+    like: number;
+  }[];
+  estimatedTime: number;
+  estimatedCost: number;
+  withWhom: string[];
+  styles: string[];
+  image: string;
+  channelIdList: string[];
 };

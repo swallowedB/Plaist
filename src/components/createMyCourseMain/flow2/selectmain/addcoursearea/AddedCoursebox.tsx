@@ -2,18 +2,18 @@ import { useState } from "react";
 import images from "../../../../../assets/images/importImages";
 
 interface AddedCourseboxProps {
-  brand: string;
+  locationName: string;
   index: number;
-  address: string;
-  category: string;
+  locationAddress: string;
+  locationCategory: string;
   onDelete: (id: number) => void; // 삭제 콜백 함수
 }
 
 export default function AddedCoursebox({
-  brand,
+  locationName,
   index,
-  address,
-  category,
+  locationAddress,
+  locationCategory,
   onDelete,
 }: AddedCourseboxProps) {
   const [isHovered, setIsHovered] = useState(false);
@@ -30,7 +30,17 @@ export default function AddedCoursebox({
       ? "네번째 코스"
       : index === 4
       ? "다섯번째 코스"
-      : "기타 코스"; // 기본값 처리
+      : index === 5
+      ? "여섯번째 코스"
+      : index === 6
+      ? "일곱번째 코스"
+      : index === 7
+      ? "여덟번째 코스"
+      : index === 8
+      ? "아홉번째 코스"
+      : index === 9
+      ? "열번째 코스"
+      : index;
 
   return (
     <div
@@ -64,16 +74,16 @@ export default function AddedCoursebox({
         {/* 주소와 제목 */}
         <div className="flex flex-col justify-center items-start w-[302px]">
           <h2 className="w-[302px] font-semiBold overflow-hidden whitespace-nowrap truncate">
-            {brand}
+            {locationName}
           </h2>
           <p className="w-[302px] font-regular text-overflow: ellipsis">
-            {address}
+            {locationAddress}
           </p>
         </div>
 
         {/* 카테고리 */}
         <div className="flex items-center justify-center w-[113px] font-regular">
-          <p>{category}</p>
+          <p>{locationCategory}</p>
         </div>
       </div>
     </div>

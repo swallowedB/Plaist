@@ -16,6 +16,11 @@ export const convertDateFormatt = (isoDate: string) => {
   return formattedDate.slice(0, -1);
 };
 
+export const splitBySpaceUntilIndex1 = (input: string): string => {
+  const splitResult = input.split(" ");
+  return splitResult.slice(0, 2).join(" ");
+};
+
 export const formatPrice = (price: number): string => {
   if (isNaN(price)) {
     throw new Error("Invalid number input");
@@ -33,4 +38,16 @@ export const sortByCreatedAtIncre = (data: Comment[]): Comment[] => {
   return data.sort(
     (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
   );
+};
+
+export const sortCoursesByLike = (data: Course[], length:number) => {
+  const bestCourses = data
+    .sort((a, b) => b.likes.length - a.likes.length)
+    .map((item) => item)
+    .slice(0, length);
+  return bestCourses;
+};
+
+export const trimStringWithEllipsis = (input: string = "제목 없음", length: number) => {
+  return input.length <= length ? input : input.slice(0, length) + "...";
 };
