@@ -51,9 +51,6 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
       like: 0,
     });
   };
-  useEffect(() => {
-    console.log(location);
-  }, [location]);
 
   const handleNext: () => void = () => {
     onNext(location); // location 객체 전달

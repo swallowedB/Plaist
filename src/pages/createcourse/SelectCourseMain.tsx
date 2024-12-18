@@ -19,6 +19,7 @@ interface LocationObj {
 
 interface SelectCourseMainProps {
   locationObjs: LocationObj[];
+  locationObjDelete: (id: number) => void;
   onPlus: (
     estimatedTime: number,
     estimatedCost: number,
@@ -35,43 +36,17 @@ interface SelectCourseMainProps {
 
 export default function SelectCourseMain({
   locationObjs,
+  locationObjDelete,
   onPlus,
   onNext,
   onBack,
 }: SelectCourseMainProps) {
-  // 가상 데이터
-  locationObjs = [
-    {
-      locationName: "솔레미오",
-      locationAddress: "서울특별시 용산구",
-      locationCategory: "음식점",
-      locationPhoneNum: "번호",
-      location_id: "1239484",
-      like: 1,
-    },
-    {
-      locationName: "솔레미오",
-      locationAddress: "서울특별시 용산구",
-      locationCategory: "카페",
-      locationPhoneNum: "번호",
-      location_id: "1239484",
-      like: 121,
-    },
-    {
-      locationName: "솔레미오",
-      locationAddress: "서울특별시 용산구",
-      locationCategory: "음식점",
-      locationPhoneNum: "번호",
-      location_id: "1239484",
-      like: 112,
-    },
-  ];
-
   const [courseBoxes, setCourseBoxes] = useState(locationObjs);
 
   const [isCompletedThisPage, setIsCompletedThisPage] = useState(false);
   const handleDelete = (id: number) => {
     setCourseBoxes((prev) => prev.filter((_, index) => index !== id));
+    locationObjDelete(id);
   };
   const { estimatedTime, estimatedCost } = useSliderStore();
   const handlePlus = () => {
@@ -110,6 +85,7 @@ export default function SelectCourseMain({
       >
         {courseBoxes.map((box, index) => (
           <AddedCoursebox
+            key={Math.random()}
             locationName={box.locationName}
             index={index}
             locationAddress={box.locationAddress}
