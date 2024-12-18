@@ -23,10 +23,10 @@ export default function SearchResultOfCreateMyItems({
         ${isActive ? "border-2 border-solid border-[#3B89E2]" : ""}`}
     >
       <div className="text-custom-black leading-5 flex flex-row justify-between ml-[21px] mr-[26px] mt-[15px] mb-[5px]">
-        <p className="overflow-hidden max-w-48 font-semiBold text-ellipsis whitespace-nowrap">
+        <p className="overflow-hidden max-w-44 font-semiBold text-ellipsis whitespace-nowrap">
           {placeName}
         </p>
-        <p className="overflow-hidden max-w-48 text-ellipsis whitespace-nowrap">
+        <p className="overflow-hidden max-w-44 text-ellipsis whitespace-nowrap">
           {category}
         </p>
       </div>

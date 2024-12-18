@@ -1,4 +1,5 @@
 import images from "../../../assets/images/importImages";
+import { NavLink } from "react-router";
 import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
 import CourseLocationCards from "./locationCardArea/CourseLocationCards";
 
@@ -19,10 +20,14 @@ export default function CourseContentDoc({
 
   return (
     <div className="mb-20 font-pretendard text-custom-black">
-      <div className="flex items-center gap-[11px] font-pretendard">
+      <NavLink
+        to={`/other-user-info/${courseObj.author._id}`}
+        className="flex items-center gap-[11px] font-pretendard"
+      >
+        {" "}
         <img
           src={images.course_user_profile_img}
-          alt=""
+          alt="profile-image"
           className="w-10 h-10 rounded-full bg-primary-200"
         />
         <div className="flex flex-col gap-1">
@@ -33,7 +38,7 @@ export default function CourseContentDoc({
             {convertDateFormatt(courseObj.createdAt)}
           </p>
         </div>
-      </div>
+      </NavLink>
 
       <div className="mt-[43px]">
         <div className="flex justify-between">
