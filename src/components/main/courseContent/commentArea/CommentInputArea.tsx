@@ -11,7 +11,7 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { _id } = courseObj;
   const contentId = _id;
 
-  const { userInfo, fetchUserInfo } = useUserStore();
+  const { userInfo, userProfilePic, fetchUserInfo } = useUserStore();
   useEffect(() => {
     fetchUserInfo();
   }, [fetchUserInfo]);
@@ -37,10 +37,10 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
         createdAt: new Date().toISOString(),
         comment,
       } as Comment;
+      
       setComments([newComment, ...comments]);
 
       await postComment({ contentId, comment });
-      console.log("댓글 입력 완료");
 
       setComment("");
     } catch (error) {
@@ -70,8 +70,8 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
         {/* 네임카드 */}
         <div className="flex items-center gap-[10px]">
           <img
-            src={images.course_user_profile_img}
-            alt=""
+            src={userProfilePic}
+            alt="유저 프로필 이미지"
             className="w-10 h-10 rounded-full bg-primary-200"
           />
           <div className="text-base font-bold text-primary-800">
