@@ -15,7 +15,6 @@ export default function AllCourseCardItem({
   }
   const { image, likes, _id } = courseItem || {};
   const courseDocData = JSON.parse(courseItem?.title);
-  console.log(courseDocData.locationObj);
 
   if(!courseDocData) return (<h1>404</h1>)
   
