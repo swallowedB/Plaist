@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
+import { useConvertIcon } from "../../utills/main/convertIcon";
 import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
-import { deleteFollow } from "../../api/api";
 import useBackWithHistory from "../../hooks/useBackWithHistory";
 
 // props로 setCurrentStep을 받기 위한 타입 정의
@@ -13,6 +13,7 @@ interface ExplainCourseProps {
     locationPhoneNum: string;
     location_id: string;
     like: number;
+    locationImage?: string;
   }[];
   withWhom: string[];
   styles: string[];
@@ -44,30 +45,35 @@ export default function ExplainCourse({
   const [courseCount, setCourseCount] = useState(categories.length);
   const tags: string[] = [...withWhom, ...styles];
 
-  const handleSave = () => {
-    setIsSaved(true);
-    setTimeout(() => setIsVisible(false), 100); // 메인 컨텐츠 숨기기
-  };
+  // 이미지 업로드
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   // 가짜 데이터
   const image =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7LpapIl8DITfz4_Y2z7pqs7FknPkjReAZCg&s";
 
   const handleNextClick = () => {
-    onNext(title, description, image); // 제목, 설명, 이미지 전달
+    if (!imagePreview) return;
+    onNext(title, description, imagePreview);
+  };
+
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedImage(file);
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        setImagePreview(base64String);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await deleteFollow("jade");
-        console.log("API 응답 데이터:", data);
-      } catch (error) {
-        console.error("API 호출 중 오류 발생:", error);
-      }
-    };
-    fetchData();
-    setTimeout(() => setIsVisible(true), 200); // 메인 컨텐츠 나타나기
+    setTimeout(() => setIsVisible(true), 200);
   }, []);
 
   useBackWithHistory(onBack);
@@ -90,7 +96,7 @@ export default function ExplainCourse({
           paddingLeft: "60px",
           paddingTop: "82px",
           paddingRight: "59px",
-        }} // 패딩값 추가
+        }}
       >
         <div className="flex justify-between relative">
           <div className="flex flex-col gap-6">
@@ -123,7 +129,14 @@ export default function ExplainCourse({
                   alt="이동시간 아이콘"
                   className="w-4 h-4"
                 />
-                <span>이동시간 {estimatedTime}시간</span>
+                <span>
+                  이동시간{" "}
+                  {(estimatedTime / 60).toLocaleString(undefined, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 1,
+                  })}
+                  시간
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <img
@@ -131,17 +144,38 @@ export default function ExplainCourse({
                   alt="예상금액 아이콘"
                   className="w-4 h-4"
                 />
-                <span>예상금액 {estimatedCost}만원</span>
+                <span>
+                  예상금액{" "}
+                  {estimatedCost.toLocaleString(undefined, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 1,
+                  })}
+                  원
+                </span>
               </div>
             </div>
           </div>
 
           {/* 이미지 업로드 */}
-          <div className="absolute top-[20px] right-0 w-[136px] h-[136px] bg-primary-50 rounded-lg flex items-center justify-center border">
-            <img
-              src={images.plus_icon}
-              alt="플러스 아이콘"
-              className="w-4 h-4"
+          <div className="absolute top-[20px] right-0 w-[136px] h-[136px] bg-primary-50 rounded-lg flex flex-col items-center justify-center border bg-center bg-cover">
+            {imagePreview ? (
+              <img
+                src={imagePreview}
+                alt="업로드된 이미지 미리보기"
+                className="w-full h-full object-cover rounded-lg"
+              />
+            ) : (
+              <img
+                src={images.plus_icon}
+                alt="플러스 아이콘"
+                className="w-4 h-4"
+              />
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="absolute inset-0 opacity-0 cursor-pointer"
             />
           </div>
         </div>
@@ -166,11 +200,28 @@ export default function ExplainCourse({
           </h3>
           <div className="relative flex items-center justify-center gap-[56px]">
             {/* 원들을 유동적으로 렌더링 */}
-            {Array.from({ length: courseCount }).map((_, index) => (
+            {locationObjs.map((location, index) => (
               <div
                 key={index}
-                className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center z-10"
-              ></div>
+                className="flex flex-col items-center justify-center"
+              >
+                {/* 아이콘 원 */}
+                <div
+                  className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center"
+                  style={{
+                    backgroundImage: `url(${
+                      images[location.locationCategory]
+                    })`, // 아이콘 이미지가 categories에서 랜덤으로 선택되도록 수정
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  {/* 텍스트 */}
+                  <span className="text-white text-sm mt-2">
+                    {location.locationName}
+                  </span>
+                </div>
+              </div>
             ))}
 
             {/* 가로줄 */}
@@ -190,11 +241,17 @@ export default function ExplainCourse({
         <div className="mt-10 text-center">
           <CreateMyCourseFlowButton
             onNext={handleNextClick}
-            isCompleteThisPage={true} // 페이지 완료 여부
+            isCompleteThisPage={
+              title.trim() !== "" && description.trim() !== ""
+            }
           >
             <button
-              onClick={handleSave}
-              className="w-full h-full text-white rounded-[30px] "
+              className={`w-full h-full text-white rounded-[30px] ${
+                title.trim() !== "" && description.trim() !== ""
+                  ? "bg-primary-600 cursor-pointer"
+                  : "bg-primary-200 cursor-not-allowed"
+              }`}
+              disabled={title.trim() === "" || description.trim() === ""}
             >
               저장
             </button>

@@ -177,16 +177,15 @@ export default function CreateMyCourse() {
                 estimatedTime={funnel.context.estimatedTime}
                 estimatedCost={funnel.context.estimatedCost}
                 onNext={(courseTitle, courseDescription, image) => {
+                  funnel.context.courseImage = image; // Base64 이미지 저장 {
                   funnel.history.push("완료", {
                     courseTitle,
                     courseDescription,
-                    image,
                   });
                   postCourseResult(); // 함수 호출
                   // 데이터를 보내고 history를 초기화 시켜줘야 할까?
                 }}
                 onBack={funnel.history.back}
-
               />
             );
           case "완료":
