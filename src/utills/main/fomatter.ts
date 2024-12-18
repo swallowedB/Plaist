@@ -48,6 +48,6 @@ export const sortCoursesByLike = (data: Course[], length:number) => {
   return bestCourses;
 };
 
-export const trimStringWithEllipsis = (input: string, length: number) => {
+export const trimStringWithEllipsis = (input: string = "제목 없음", length: number) => {
   return input.length <= length ? input : input.slice(0, length) + "...";
 };
