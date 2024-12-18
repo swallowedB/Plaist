@@ -40,11 +40,11 @@ export const sortByCreatedAtIncre = (data: Comment[]): Comment[] => {
   );
 };
 
-export const sortCoursesByLike = (data: Course[]) => {
+export const sortCoursesByLike = (data: Course[], length:number) => {
   const bestCourses = data
     .sort((a, b) => b.likes.length - a.likes.length)
     .map((item) => item)
-    .slice(0, 3);
+    .slice(0, length);
   return bestCourses;
 };
 

@@ -14,7 +14,7 @@ export default function BestCourseCardItem({
   const doc = JSON.parse(title);
 
   return (
-    <div className="w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
+    <div className="min-w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center">
       {/* 이미지 컨테이너 */}
       <div className="relative">
         <img
