@@ -45,10 +45,11 @@ import location_cultural_facility_icon from "../images/course/location/location_
 import location_parking_lot_icon from "../images/course/location/location_parking_lot_icon.svg";
 import location_restaurant_icon from "../images/course/location/location_restaurant_icon.svg";
 import location_cafe_icon from "../images/course/location/location_cafe_icon.svg";
+import location_logo_icon from "../images/course/location/location_logo_icon.svg";
 
 import white_heart_filled_icon from "../images/course/white_heart_filled_icon.svg";
 import white_heart_not_filled_icon from "../images/course/white_heart_not_filled_icon.svg";
-import like_small_not_filled_icon from "../images/like_small_not_filled_icon.svg"
+import like_small_not_filled_icon from "../images/like_small_not_filled_icon.svg";
 
 const images: {
   [key: string]: string;
@@ -102,6 +103,7 @@ const images: {
   white_heart_filled_icon,
   white_heart_not_filled_icon,
   like_small_not_filled_icon,
+  location_logo_icon,
 };
 
 export default images;
