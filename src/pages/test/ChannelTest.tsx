@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { getChannelList, setChannel } from "../api/channelApi";
 import { toast } from "react-toastify";
 
-const CreateChannel = () => {
+type ChannelType = {
+  authRequired: boolean;
+  posts: string[];
+  _id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+const ChannelTest = () => {
   const [channelList, setChannelList] = useState<ChannelType[]>([]);
   const [selectedChannel, setSelectedChannel] = useState<ChannelType | null>(
     null
@@ -20,7 +29,7 @@ const CreateChannel = () => {
       setCreateClicked((state) => !state);
     } else if (action === "channel") {
       setChannelClicked((state) => !state);
-      if (channelClicked === true) getChannelList();
+      if (channelClicked === true) fetchChannelList();
     }
   };
 
@@ -35,8 +44,15 @@ const CreateChannel = () => {
   const onSubmitCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await setChannel(formData);
-      const data = response.data;
+      const response = await fetch("/channels/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to create channel");
+      }
+      const data = await response.json();
       toast.success(`Channel created: ${JSON.stringify(data, null, 2)}`);
       setFormData({
         authRequired: false,
@@ -49,13 +65,27 @@ const CreateChannel = () => {
     }
   };
 
+  const fetchChannelList = async () => {
+    try {
+      const response = await fetch("/channels/");
+      if (!response.ok) {
+        throw new Error("Error: Unable to fetch mock data");
+      }
+      const data: ChannelType[] = await response.json();
+      setChannelList(data);
+    } catch (error) {
+      console.error(error);
+      toast.success("Failed to fetch channels. Please try again.");
+    }
+  };
+
   const onClickChannelName = (channelName: string) => {
     const channel = channelList.find((ch) => ch.name === channelName) || null;
     setSelectedChannel(channel);
   };
 
   return (
-    <div className="mt-[140px]">
+    <div>
       {/* Create Channel */}
       <button
         onClick={() => onClickButton("create")}
@@ -81,7 +111,7 @@ const CreateChannel = () => {
             </div>
             <div>
               <label>
-                {`Description(스팟/지역):`}
+                Description:
                 <input
                   type="text"
                   name="description"
@@ -143,4 +173,4 @@ const CreateChannel = () => {
   );
 };
 
-export default CreateChannel;
+export default ChannelTest;
