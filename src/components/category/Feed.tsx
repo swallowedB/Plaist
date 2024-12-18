@@ -92,38 +92,16 @@ export default function Feed() {
     }
   }, [channelList, location, spot]);
 
+  if (!postList) return <p>로딩중...</p>;
+  if (postList.length === 0)
+    return <p className="font-pretendard">게시물이 없습니다.</p>;
   return (
     <section className="grid grid-cols-2 gap-5 w-full h-full auto-rows-[258px]">
-      {/* {postList.map((post) => {
-        const title: TitleType = JSON.parse(post.title);
-        const locationAddressSet = new Set(
-          title.locationObjs.map((location) => {
-            return location.locationAddress.split(" ")[0] === "서울특별시"
-              ? `서울 ${location.locationAddress.split(" ")[1]}`
-              : `${location.locationAddress.split(" ")[0]}`;
-          })
-        );
-
-        const locationAddress = Array.from(locationAddressSet).join(" ");
-
-        return (
-          <AllCourseCardItem
-            key={title.id}
-            title={title.courseTitle}
-            rating={
-              post.likes.length / 1000 > 1
-                ? post.likes.length
-                : (post.likes.length / 1000).toFixed(1)
-            }
-            location={locationAddress}
-            imageUrl={post.image}
-            contentId={post._id}
-          />
-        );
-      })} */}
-      {postList.map((post) => (
-        <AllCourseCardItem key={post._id} courseItem={post} />
-      ))}
+      {postList.map((post) => {
+        if (post) return <AllCourseCardItem key={post._id} courseItem={post} />;
+        // TODO: skeletonCard 추가
+        else return <></>;
+      })}
     </section>
   );
 }
