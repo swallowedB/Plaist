@@ -3,7 +3,13 @@ import images from "../../../assets/images/importImages";
 import { deleteLikes, postLikes } from "../../../api/react-query/likeApi";
 import { getUserIdFromToken } from "../../../api/userApi";
 
-export default function LikeButton({ courseObj }: { courseObj: Course }) {
+export default function LikeButton({
+  courseObj,
+  onLike,
+}: {
+  courseObj: Course;
+  onLike: (calc: 1 | -1) => void;
+}) {
   const [isLiked, setIsLiked] = useState(false);
   const [likeId, setLikeId] = useState<string | null>(null);
   const { _id } = courseObj || {};
@@ -27,14 +33,14 @@ export default function LikeButton({ courseObj }: { courseObj: Course }) {
       if (!isLiked) {
         const res = await postLikes(_id);
         setLikeId(res._id);
+        onLike(1);
         setIsLiked(true);
-        console.log(courseObj);
       } else {
         if (!likeId) return;
         await deleteLikes(likeId);
         setLikeId(null);
+        onLike(-1);
         setIsLiked(false);
-        console.log(courseObj);
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);

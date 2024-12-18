@@ -2,20 +2,7 @@ import { AxiosRequestConfig } from "axios";
 import { axiosInstance } from "./axios";
 import { getToken } from "../utills/Auth/getTokenWithCloser";
 
-type Comment = {
-  id: string;
-  content: string;
-  createdAt: string;
-  postId: string;
-};
-
-interface postCommentProps {
-  contentId: string;
-  comment: Comment[];
-}
-
 const token = getToken();
-
 const headers = {
   Authorization: `Bearer ${token}`,
 };
