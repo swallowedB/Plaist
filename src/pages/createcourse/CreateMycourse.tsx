@@ -183,8 +183,10 @@ export default function CreateMyCourse() {
                     image,
                   });
                   postCourseResult(); // 함수 호출
+                  // 데이터를 보내고 history를 초기화 시켜줘야 할까?
                 }}
                 onBack={funnel.history.back}
+
               />
             );
           case "완료":
