@@ -1,10 +1,11 @@
-import MainBestCourse from "../components/main/MainBestCourse";
-import MainTitle from "../components/main/MainTitle";
-import MainAllCourse from "../components/main/MainAllCourse";
 import { useQuery } from "@tanstack/react-query";
-import { allCourseChannelId } from "../utills/constants/channelId";
-import { getChannelPostList } from "../api/postApi";
-import Loader from "../components/skeletonUI/Loader";
+import { allCourseChannelId } from "../../utills/constants/channelId";
+import { getChannelPostList } from "../../api/postApi";
+
+import Loader from "../../components/skeletonUI/Loader";
+import MainTitle from "../../components/main/MainTitle";
+import MainBestCourse from "../../components/main/MainBestCourse";
+import MainAllCourse from "../../components/main/MainAllCourse";
 
 export default function Main() {
   const { data: courseList, isLoading: isPostListLoading } = useQuery({

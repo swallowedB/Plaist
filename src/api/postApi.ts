@@ -4,7 +4,7 @@ import { axiosInstance } from "./axios";
 export const getChannelPostList = async (
   channelId: string,
   offset = 0,
-  limit = 10
+  limit = 1000
 ) => {
   try {
     const response = await axiosInstance.get(`/posts/channel/${channelId}`, {

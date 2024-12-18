@@ -1,11 +1,11 @@
 import { useParams } from "react-router";
-import CourseContentDoc from "../components/main/courseContent/CourseContentDoc";
+import CourseContentDoc from "../../components/main/courseContent/CourseContentDoc";
 import { useQuery } from "@tanstack/react-query";
-import { getCourses } from "../api/react-query/courseApi";
-import Loader from "../components/skeletonUI/Loader";
+import { getCourses } from "../../api/react-query/courseApi";
+import Loader from "../../components/skeletonUI/Loader";
 import { useEffect, useState } from "react";
-import { useCommentStore } from "../stores/main/comment/useCommentStore";
-import LikeButton from "../components/main/courseContent/LikeButton";
+import { useCommentStore } from "../../stores/main/comment/useCommentStore";
+import LikeButton from "../../components/main/courseContent/LikeButton";
 
 export default function CourseContent() {
   const { contentId } = useParams<{ contentId: string }>();
@@ -51,10 +51,7 @@ export default function CourseContent() {
           </div>
           <div className="absolute bottom-0 left-0 w-full h-full top-[419px]">
             <div className="py-[38px] bg-[#F9FBFE] rounded-t-[40px]  shadow-[0_-8px_10px_0_rgba(48,72,100,0.25)] h-auto min-h-[1800px]">
-              <LikeButton
-                courseObj={courseData}
-                onLike={handleLike}
-              />
+              <LikeButton courseObj={courseData} onLike={handleLike} />
               <div className="px-[61px] h-auto overflow-y-auto ">
                 <CourseContentDoc
                   courseObj={courseData}
