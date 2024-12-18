@@ -128,7 +128,7 @@ interface Title {
 }
 
 interface Course {
-  locationObjs: never[];
+  locationObjs?: never[];
   courseDescription: string;
   courseTitle: string;
   likes: Like[];

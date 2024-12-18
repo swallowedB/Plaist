@@ -13,6 +13,7 @@ export default function ViewMyAllCourse() {
     const currentUserId = getUserIdFromToken();
     setUserId(currentUserId);
   }, []);
+
   useEffect(() => {
     if (userId) {
       const fetchData = async () => {
@@ -29,7 +30,7 @@ export default function ViewMyAllCourse() {
   const onSearch = () => {
     const fetchData = async () => {
       const res = await getMyCourseObj(userId);
-      const filteredCourses = res.filter((course: any) => {
+      const filteredCourses = res.filter((course: Course) => {
         const parsedTitle = JSON.parse(course["title"]);
         return parsedTitle.courseTitle.includes(searchCourseList);
       });
@@ -40,7 +41,7 @@ export default function ViewMyAllCourse() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="px-[60px]">
       <MyCourseSearch setSearch={setSearch} onSearch={onSearch} />
       <MyCourseCards courseList={courseList} />
     </div>

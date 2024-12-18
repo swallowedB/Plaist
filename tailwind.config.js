@@ -52,4 +52,5 @@ export default {
   future: {
     hoverOnlyWhenSupported: true,
   },
+  mode: "jit",
 };

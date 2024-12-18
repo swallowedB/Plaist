@@ -5,17 +5,16 @@ import "../../css/index.css";
 
 export default function CreateCourse() {
   return (
-    <div className="relative flex flex-col items-center">
-      <div className="absolute blur-bg-center" />
+    <div className="flex justify-center">
       <div
         id="relative content-area-container"
-        className="absolute flex flex-col items-center h-screen min-w-[767px] z-30 mt-[166px]"
+        className="flex flex-col h-screen min-w-[767px] items-center"
       >
-        <div className="z-10">
-          <ViewMyCourseHeader />
-          <ViewMyAllCourse />
-          <FixedCreateButton />
-        </div>
+        <div className="absolute blur-bg-center z-[-1]" />
+
+        <ViewMyCourseHeader />
+        <ViewMyAllCourse />
+        <FixedCreateButton />
       </div>
     </div>
   );
