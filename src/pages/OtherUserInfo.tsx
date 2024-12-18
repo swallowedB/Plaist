@@ -46,6 +46,7 @@ export default function OtherUserInfo() {
               courseDescription: titleData.courseDescription || "",
               likes: post?.likes?.length || 0,
               locationName: location,
+              image: post.image,
             } as PostData;
           });
 
