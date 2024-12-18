@@ -6,6 +6,7 @@ export default function MapDisplay({
   goToTop,
   children,
   locationChange,
+  isActive,
 }: {
   goToTop: () => void;
   children: React.ReactNode;
@@ -15,6 +16,7 @@ export default function MapDisplay({
     locationCategory: string,
     locationPhoneNum: string
   ) => void;
+  isActive: () => void;
 }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
   const infowindowRef = useRef<kakao.maps.InfoWindow | null>(null);
@@ -143,6 +145,7 @@ export default function MapDisplay({
         if (markers[index]) {
           displayInfowindow(markers[index], place.place_name);
         }
+        isActive();
       }}
     />
   ));
