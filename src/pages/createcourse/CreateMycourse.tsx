@@ -41,7 +41,7 @@ export default function CreateMyCourse() {
     id: "my-funnel-app",
     initial: {
       step: "태그입력",
-      context: { withWhom: [], styles: [] },
+      context: { withWhom: [], styles: [], locationObjs: [] },
     },
   });
 
@@ -73,6 +73,13 @@ export default function CreateMyCourse() {
             return (
               <SelectCourseMain
                 locationObjs={funnel.context.locationObjs || []}
+                locationObjDelete={(id: number) => {
+                  funnel.context.locationObjs =
+                    funnel.context.locationObjs?.filter(
+                      (_, index) => index !== id
+                    );
+                  console.log(funnel.context.locationObjs);
+                }}
                 onPlus={(estimatedTime, estimatedCost, locationObjs) => {
                   funnel.history.push("장소선택", {
                     estimatedTime,
