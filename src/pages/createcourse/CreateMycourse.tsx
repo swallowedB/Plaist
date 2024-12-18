@@ -74,11 +74,17 @@ export default function CreateMyCourse() {
               <SelectCourseMain
                 locationObjs={funnel.context.locationObjs || []}
                 locationObjDelete={(id: number) => {
-                  funnel.context.locationObjs =
+                  const updatedLocationObjs =
                     funnel.context.locationObjs?.filter(
                       (_, index) => index !== id
                     );
-                  console.log(funnel.context.locationObjs);
+
+                  funnel.history.replace("코스상세입력", {
+                    ...funnel.context,
+                    locationObjs: updatedLocationObjs,
+                  });
+
+                  console.log(updatedLocationObjs);
                 }}
                 onPlus={(estimatedTime, estimatedCost, locationObjs) => {
                   funnel.history.push("장소선택", {
