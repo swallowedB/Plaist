@@ -6,7 +6,7 @@ import LoginLayout from "./layouts/LoginLayout";
 import Category from "./pages/Category";
 // 메인
 import MainLayout from "./layouts/MainLayout";
-import Main from "./pages/MainFeed";
+import Main from "./pages/main/MainFeed";
 // 코스 생성 관련
 import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
@@ -25,7 +25,7 @@ import SearchTest from "./pages/test/SearchTest";
 import CreateChannel from "./pages/CreateChannel";
 
 // 권한 관련
-import CourseContent from "./pages/CourseContent";
+import CourseContent from "./pages/main/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
 
 //알림 관련
