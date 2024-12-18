@@ -74,7 +74,7 @@ export default function OtherUserInfo() {
           <div className="absolute blur-bg-center" />
 
           {/* glass 창 */}
-          <div className={`absolute z-[100] top-[117px]`}>
+          <div className={`absolute z-[100]`}>
             <div
               className={`flex flex-col items-center w-[647px] h-full bg-primary-300/15 rounded-t-[25px] 
                       border-2 border-white z-10 shadow-default py-20 min-h-[960px] `}

@@ -18,7 +18,7 @@ export default function OtherUserCourse({
   return (
     <div className="mt-[35px]">
       <div className={`flex flex-col items-center`}>
-        <div className="mt-8 flex flex-col">
+        <div className="flex flex-col">
           {targetUserData.length > 0 ? (
             <MypageCards data={targetUserData} />
           ) : (
