@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import useGoBackWithHistory from "../../hooks/useBackWithHistory";
 
 interface LocationProps {
   locationName: string;
@@ -59,26 +60,13 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
     onNext(location); // location 객체 전달
   };
 
-  useEffect(() => {
-    // 뒤로 가기 이벤트 감지
-    const handlePopState = () => {
-      onBack(); // 뒤로 가기 시 onBack 함수 호출
-    };
-
-    // popstate 이벤트 리스너 등록
-    window.addEventListener("popstate", handlePopState);
-
-    // 컴포넌트 언마운트 시 이벤트 리스너 제거
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [onBack]);
+  useGoBackWithHistory(onBack);
 
   return (
     <div id="top">
       <PostingGuideTitle
         alignClass="flex justify-center"
-        titleText="첫번째 코스를 선택"
+        titleText="지도에서 코스를 선택해주세요"
         mt={80}
       />
       <section className="flex flex-col items-center">

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
 import { deleteFollow } from "../../api/api";
+import useBackWithHistory from "../../hooks/useBackWithHistory";
 
 // props로 setCurrentStep을 받기 위한 타입 정의
 interface ExplainCourseProps {
@@ -69,18 +70,7 @@ export default function ExplainCourse({
     setTimeout(() => setIsVisible(true), 200); // 메인 컨텐츠 나타나기
   }, []);
 
-  // 뒤로가기 이벤트 감지
-  useEffect(() => {
-    const handlePopState = () => {
-      onBack();
-    };
-
-    window?.addEventListener("popstate", handlePopState);
-
-    return () => {
-      window?.removeEventListener("popstate", handlePopState);
-    };
-  }, [onBack]);
+  useBackWithHistory(onBack);
 
   return (
     <div className="flex flex-col items-center min-h-screen">

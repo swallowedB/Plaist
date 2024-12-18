@@ -7,6 +7,7 @@ import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/sele
 import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 import { useSliderStore } from "./../../stores/sliderStore";
+import useBackWithHistory from "../../hooks/useBackWithHistory";
 
 interface LocationObj {
   locationName: string;
@@ -116,15 +117,7 @@ export default function SelectCourseMain({
     }
   }, [courseBoxes, estimatedTime, estimatedCost]);
 
-  useEffect(() => {
-    const handlePopState = () => {
-      onBack();
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [onBack]);
+  useBackWithHistory(onBack);
 
   return (
     <div>
