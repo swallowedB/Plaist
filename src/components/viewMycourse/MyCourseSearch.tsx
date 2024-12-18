@@ -21,7 +21,7 @@ export default function MyCourseSearch({
       onSubmit={(e) => {
         formSubmit(e);
       }}
-      className="z-10 text-center relative mb-[42px]"
+      className="text-center relative mb-[42px]"
     >
       <label
         htmlFor="search"

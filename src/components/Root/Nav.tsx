@@ -21,7 +21,7 @@ export default function Nav() {
 
   return (
     <footer
-      className={`relative w-full h-20 bg-transparent border-t shadow-lg backdrop-blur-md border-zinc-200 ${
+      className={`fixed bottom-0 w-full h-20 border-t shadow-lg bg-white border-zinc-200 z-50 ${
         shouldHideFooter ? "hidden" : ""
       }`}
     >

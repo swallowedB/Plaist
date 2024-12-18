@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import ScrollToTop from "./layouts/ScrollToTop";
+import ScrollToTop from "./layouts/utils/ScrollToTop";
 import Router from "./Router";
 
 export default function App() {

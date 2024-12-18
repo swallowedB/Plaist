@@ -12,7 +12,7 @@ import MainLayout from "./layouts/MainLayout";
 import Main from "./pages/main/MainFeed";
 
 // 코스 생성 관련
-import ViewMyCourseLayout from "./layouts/ViewMyCourseLayout";
+import MyCourseLayout from "./layouts/MyCourseLayout";
 import ViewMycourse from "./pages/createcourse/ViewMycourse";
 import CreateMyCourse from "./pages/createcourse/CreateMycourse";
 
@@ -39,12 +39,11 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<RootLayout />}>
-        
         <Route element={<LoginLayout />}>
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
         </Route>
-        
+
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
           <Route element={<CourseContentLayout />}>
@@ -57,16 +56,19 @@ export default function Router() {
           <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
-        
-        <Route path="/notification" element={<Notification />} />
+
+        {/* 반복되는 라우팅 */}
+        {/* <Route path="/notification" element={<Notification />} /> */}
+
         {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         <Route path="my-page" element={<MyPage />} />
         <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />
         <Route path="createChannel" element={<CreateChannel />} />
+
         {/* create-course 경로 */}
         <Route path="my-course-builder">
-          <Route element={<ViewMyCourseLayout />}>
+          <Route element={<MyCourseLayout />}>
             {/* view-my-course 경로 */}
             <Route path="viewer" element={<ViewMycourse />} />
             {/* createMycourse */}

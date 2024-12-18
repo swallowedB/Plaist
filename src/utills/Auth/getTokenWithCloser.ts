@@ -3,7 +3,7 @@ import { getCookie } from "./getCookie";
 const createTokenManager = () => {
   const TOKEN = getCookie("token");
   if (!TOKEN) {
-    alert("로그인 후 이용해 주세요.");
+    // alert("로그인 후 이용해 주세요.");
     return null;
   }
 
