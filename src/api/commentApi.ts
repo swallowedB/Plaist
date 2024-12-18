@@ -23,28 +23,13 @@ export const postComment = async ({ contentId, comment }: postCommentProps) => {
   }
 };
 
-// 댓글 가져오기
-export const fetchCommentsApi = async () => {
-  try {
-    const response = await axiosInstance.get(`/comments`, { headers });
-    console.log("Fetched comments:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching comments:", error);
-    throw error;
-  }
-};
-
-// 댓글 삭제하기
-export const deleteCommentApi = async (id: string) => {
+export const deleteComment = async (id: string) => {
   try {
     const response = await axiosInstance.delete(`/comments/delete`,{
       data: {id},
     });
-    console.log(`Deleted comment ID: ${id}`);
-    return response;
+    console.log(response);
   } catch(error){
     console.error("댓글 삭제 중 오류:", error);
-    throw error;
   }
 }
