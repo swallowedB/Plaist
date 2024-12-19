@@ -71,7 +71,7 @@ export default function Feed() {
       (postA, postB) => postB.likes.length - postA.likes.length
     );
 
-    setPostList((_) => uniquePostList);
+    setPostList(uniquePostList);
     console.log(channelList);
   };
 
@@ -94,7 +94,7 @@ export default function Feed() {
 
   if (!postList) return <p>로딩중...</p>;
   if (postList.length === 0)
-    return <p className="font-pretendard">게시물이 없습니다.</p>;
+    return <p className="font-pretendard text-white">게시물이 없습니다.</p>;
   return (
     <section className="grid grid-cols-2 gap-5 w-full h-full auto-rows-[258px]">
       {postList.map((post) => {
