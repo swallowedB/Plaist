@@ -61,7 +61,7 @@ export default function ExplainCourse({
   return (
     <div className="flex flex-col items-center min-h-screen">
       {!isSaved && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40"></div>
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50"></div>
       )}
 
       <div
@@ -76,7 +76,7 @@ export default function ExplainCourse({
           paddingRight: "59px",
         }}
       >
-        <div className="flex justify-between relative">
+        <div className="relative flex justify-between">
           <div className="flex flex-col gap-6">
             <input
               type="text"
@@ -139,7 +139,7 @@ export default function ExplainCourse({
               <img
                 src={imagePreview}
                 alt="업로드된 이미지 미리보기"
-                className="w-full h-full object-cover rounded-lg"
+                className="object-cover w-full h-full rounded-lg"
               />
             ) : (
               <img
@@ -161,8 +161,9 @@ export default function ExplainCourse({
           style={{ backgroundColor: "rgba(180, 184, 201, 0.2)" }}
         />
 
-        <div className="mt-10">
-          <h3 className="text-custom-black font-semibold mb-4 text-base">
+        
+          <div className="mt-10">
+          <h3 className="mb-4 text-base font-semibold text-custom-black">
             선택한 코스
           </h3>
           <div className="relative flex items-center justify-center gap-[56px]">
@@ -171,25 +172,39 @@ export default function ExplainCourse({
                 key={index}
                 className="flex flex-col items-center justify-center gap-2"
               >
-                <div
-                  className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center"
-                  style={{
-                    backgroundImage: `url(${useConvertIcon(
-                      location.locationCategory
-                    )})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                  }}
-                ></div>
-                <span className="font-pretendard text-sm text-primary-600 font-semibold text-center mt-2">
+                <div className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center">
+                  <div
+                    className="w-[74px] h-[74px]"
+                    style={{
+                      backgroundImage: `url(${useConvertIcon(
+                        location.locationCategory
+                      )})`,
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
+                    }}
+                  ></div>
+                </div>
+                <span className="mt-2 text-sm font-semibold text-center font-pretendard text-primary-600">
                   {location.locationName}
                 </span>
               </div>
             ))}
+            {/* 가로줄 추가 */}
+            <div
+              className="absolute top-[60px] border-t-2 border-dashed border-primary-600 z-[-1]"
+              style={{
+                width: `${
+                  120 * locationObjs.length + 56 * (locationObjs.length - 1)
+                }px`,
+                left: `calc(50% - ${
+                  (120 * locationObjs.length) / 2 +
+                  (56 * (locationObjs.length - 1)) / 2
+                }px)`,
+              }}
+            ></div>
           </div>
         </div>
-
         <div className="mt-10 text-center">
           <CreateMyCourseFlowButton
             onNext={handleNextClick}
