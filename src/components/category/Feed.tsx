@@ -4,7 +4,6 @@ import { getChannelPostList } from "../../api/postApi";
 import { useEffect } from "react";
 import AllCourseCardItem from "../main/allCourse/AllCourseCardItem";
 
-// TODO 처음 진입시 컨텐츠 보이도록
 export default function Feed() {
   const location = useChannelStore((state) => state.location);
   const spot = useChannelStore((state) => state.spot);
@@ -23,12 +22,16 @@ export default function Feed() {
             async (ch) => await getChannelPostList(ch._id)
           )
         );
+        console.log("location", locationData);
         allPostList.push(...locationData.flat());
         const spotData = await Promise.all(
           channelList.spot.map(async (ch) => await getChannelPostList(ch._id))
         );
+        console.log("spot", spot);
+
         allPostList.push(...spotData.flat());
         uniquePostList = uniquePostById(allPostList);
+        console.log(uniquePostList);
       } catch (error) {
         console.error(error);
       }
@@ -79,9 +82,11 @@ export default function Feed() {
   const uniquePostById = (arr: Course[]) => {
     const idMap = new Map();
     arr.forEach((item) => {
-      const title: TitleType = JSON.parse(item.title);
-      idMap.set(title.id, item);
+      // const title: TitleType = JSON.parse(item.title);
+      idMap.set(item._id, item);
     });
+    // console.log("arr", arr);
+    // console.log("idMap", idMap);
     return Array.from(idMap.values());
   };
 

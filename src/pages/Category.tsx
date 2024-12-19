@@ -22,7 +22,7 @@ export default function Category() {
           </h1>
         </header>
         <Menu />
-        <section className="category--glassbox mt-[32px] px-[30px] py-[30px] overflow-hidden relative">
+        <section className="category--glassbox mt-[32px] px-[30px] py-[30px] overflow-hidden relative mb-[150px]">
           {/* 임시 포스트 */}
           <Feed />
         </section>
