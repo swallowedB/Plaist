@@ -8,7 +8,7 @@ type CardData = {
   id: string;
   courseTitle: string;
   courseDescription: string;
-  locationName: string;
+  locationAddress: string;
   likes: number;
   image: string;
 };

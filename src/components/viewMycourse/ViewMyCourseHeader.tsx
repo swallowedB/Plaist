@@ -13,7 +13,7 @@ export default function ViewMyCourseHeader() {
         My Course
       </h1>
       <NavLink
-        to="../"
+        to=".."
         className={`text-center w-[285px] h-[50px] bg-primary-500 border-2 border-white/65 text-white 
           font-pretendard text-[20px] font-semiBold rounded-[30px] shadow-backblue border-white leading-[47px]`}
       >

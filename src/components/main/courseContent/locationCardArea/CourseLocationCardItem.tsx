@@ -11,7 +11,7 @@ export default function CourseLocationCardItem({
 
   return (
     <div className="flex items-center">
-      <div className="h-[74px] w-[74px] bg-primary-600 rounded-full flex px-4 shadow-default">
+      <div className="h-[74px] w-[74px] bg-primary-600 rounded-full flex px-[21px] shadow-default">
         <img src={useConvertIcon(locationCategory)} alt={`location_cafe_icon`} />
       </div>
       <div className="h-[3px] w-[14px] bg-primary-700"></div>
