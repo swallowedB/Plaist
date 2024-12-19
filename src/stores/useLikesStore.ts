@@ -1,6 +1,7 @@
 import { getCourseObj } from "../api/postApi";
 import { getUserInfo } from "../api/userApi";
 import { create } from 'zustand';
+import defaultImg from "../assets/images/basicImg.jpg";
 
 type Like = {
   _id: string;
@@ -61,9 +62,9 @@ export const useLikesStore = create<LikesStore>((set, get) => ({
           [postId]: {
             likes: postData.likes.length,
             title: parsedTitle,
-            courseTitle: parsedTitle .courseTitle || "No Title",
+            courseTitle: parsedTitle .courseTitle || "제목 없음",
             locationObjs: parsedTitle .locationObjs || [],
-            image: postData.image || " ", // 기본 이미지 추가
+            image: postData.image || defaultImg, // 기본 이미지 추가
           },
         },
       }));

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { getMyCourseObj } from "../api/postApi";
+import defaultImg from "../assets/images/basicImg.jpg";
 
 type CardData = {
   id: string;
@@ -31,7 +32,6 @@ export const useMyCourseStore = create<MyCourseState>((set) => ({
       const parsedData: CardData[] = data.map((item: any) => {
         try{
           const parsedTitle = JSON.parse(item.title);
-          console.log("위치정보확인 :", parsedTitle);
 
           const getFirstTwoWords = (input: string) => input.split(" ").slice(0, 2).join(" ");
 
@@ -42,7 +42,7 @@ export const useMyCourseStore = create<MyCourseState>((set) => ({
             courseDescription: parsedTitle.courseDescription || " ",
             locationAddress: getFirstTwoWords(parsedTitle.locationObjs[0]?.locationAddress) || "위치 정보 없음",
             likes: item.likes?.length || 0,
-            image: item.image || "",
+            image: item.image || defaultImg,
           };
         } catch (error){
           console.warn("JSON parsing error:", item.title);

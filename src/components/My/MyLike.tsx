@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../utills/SearchBar";
 import MypageCards from "./MypageCards/MypageCards";
 import { useLikesStore } from "../../stores/useLikesStore";
+import defaultImg from "../../assets/images/basicImg.jpg";
 
 type CardData = {
   id: string;
@@ -45,7 +46,7 @@ export default function MyLike() {
             courseDescription: post.title?.courseDescription || " ",
             locationAddress: getFirstTwoWords(post.title?.locationObjs?.[0]?.locationAddress) || "위치 정보 없음",
             likes: post.likes || 0,
-            image: post.image || " ", // to-do 기본 이미지 추가
+            image: post.image || {defaultImg}, // to-do 기본 이미지 추가
           }; 
         }
         return null; 
@@ -81,7 +82,7 @@ export default function MyLike() {
           ) : likeCardData.length > 0 ? (
             <MypageCards data={likeCardData} />
           ) : (
-            <div className="mt-10 col-span-3 font-semiBold text-center text-primary-700 font-pretendard text-sm">
+            <div className="mt-10 col-span-3 font-medium text-center text-primary-700 font-pretendard text-sm">
               좋아요를 누른 게시물이 없어요 இ௰இ
             </div>
           )}
