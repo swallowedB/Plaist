@@ -17,12 +17,11 @@ const Notification = () => {
   }, []);
 
   return (
-    <div className="relative inset-0 flex flex-col items-center font-pretendard">
-      <div className="absolute blur-bg-center" />
+    <div className="relative font-pretendard flex flex-col items-center">
+      <div className="absolute blur-bg-center h-[100vh]" /* 필요하면 조정 */ />
       <div
         className={`
-        absolute z-30 w-[647px] bg-white/25 rounded-t-[25px] shadow-default flex flex-col
-        mt-[115px] h-full border-2 border-white
+        mt-[100px] absolute z-30 w-[647px] bg-white/25 rounded-[25px] shadow-default flex flex-col min-h-[75vh] mb-[100px] border-2 border-white
         `}
       >
         {/* 창 안의 컨텐츠 */}
@@ -40,7 +39,7 @@ const Notification = () => {
           </header>
 
           {/* 알림 리스트 */}
-          <div className="flex flex-col space-y-4 max-h-[700px] max-w-[100%] mr-[10px] overflow-y-scroll hide-scrollbar">
+          <div className="flex flex-col space-y-4 max-h-[60vh] max-w-[100%] mr-[10px] overflow-y-auto hide-scrollbar">
             <NotificationList />
           </div>
         </div>
