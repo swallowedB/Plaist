@@ -75,7 +75,11 @@ export const useNotificationStore = create<
 
     polling = true;
     const pollingNotifications = async () => {
-      while (polling) {
+      while (true) {
+        if (!polling) {
+          console.log("Polling stopped");
+          break; // polling이 false가 되면 루프 종료
+        }
         try {
           await fetchNotifications();
           console.log("polling");
@@ -90,7 +94,10 @@ export const useNotificationStore = create<
   },
   stopLongPolling: () => {
     const { setIconActivated } = useNotificationStore.getState();
-    polling = false;
-    setIconActivated(false);
+    if (polling) {
+      polling = false; // polling 중단
+      setIconActivated(false);
+      console.log("Polling stopped by stopLongPolling");
+    }
   },
 }));
