@@ -77,3 +77,9 @@ interface EditMyCourseProps {
   imageToDeletePublicId?: string;
   channelId: string;
 }
+
+interface ImageUploadFieldProps {
+  imagePreview: string | null;
+  handleImageUpload: () => void;
+  originImagePreview?: string | null;
+}
