@@ -45,7 +45,8 @@ export default function LikeButton({
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);
-      toast.success("좋아요 처리에 실패했습니다.");
+      toast.error(<span dangerouslySetInnerHTML={{ __html: '좋아요 처리에 실패했습니다.<br /> 로그인 여부를 확인해 주세요.' }} />);
+
     }
   };
 

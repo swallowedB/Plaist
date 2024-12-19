@@ -14,13 +14,15 @@ export default function BestCourseCardItem({
   const doc = JSON.parse(title);
 
   return (
-    <div className="min-w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center hover:scale-105 hover:shadow-strong
-    duration-[0.2s] ease-in-out">
+    <div
+      className="min-w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center hover:scale-105 hover:shadow-strong
+    duration-[0.2s] ease-in-out"
+    >
       <NavLink to={`/course-content/${_id}`}>
         {/* 이미지 컨테이너 */}
         <div className="relative">
           <img
-            src={image}
+            src={image ? image : images.course_background_img}
             alt="Course Image"
             className="w-[186px] h-[222px] mt-[10.93px] rounded-2xl object-cover"
           />

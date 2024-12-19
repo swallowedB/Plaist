@@ -19,20 +19,22 @@ export default function AllCourseCardItem({
   if (!courseDocData) return <h1>404</h1>;
 
   return (
-    <div className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center hover:scale-105 hover:shadow-strong
-    duration-[0.2s] ease-in-out">
+    <div
+      className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center hover:scale-105 hover:shadow-strong
+    duration-[0.2s] ease-in-out"
+    >
       <NavLink to={`/course-content/${_id}`}>
         {/* 이미지 컨테이너 */}
         <div className="relative">
           <img
-            src={image}
+            src={image ? image : images.course_background_img}
             alt="Course Image"
             className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
           />
         </div>
 
         {/* 텍스트 정보 */}
-        <div className="w-full px-5 mt-3">
+        <div className="w-full px-2 mt-3">
           {/* 제목과 평점 */}
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium text-custom-black font-pretendard max-w-[230px] overflow-hidden text-ellipsis whitespace-nowrap flex-grow">
