@@ -1,12 +1,23 @@
 import "../css/blur.css";
 import NotificationList from "../components/notification/NotificationList";
 import { useNotificationStore } from "../stores/notificationStore";
+import { useCookie } from "../hooks/useCookie";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const Notification = () => {
   const deleteAll = useNotificationStore((state) => state.deleteAll);
+  const isLoggedIn = useCookie();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login?page=notification");
+    }
+  }, []);
 
   return (
-    <div className="relative font-pretendard inset-0 flex flex-col items-center">
+    <div className="relative inset-0 flex flex-col items-center font-pretendard">
       <div className="absolute blur-bg-center" />
       <div
         className={`

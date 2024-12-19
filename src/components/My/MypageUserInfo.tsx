@@ -1,11 +1,19 @@
-import {  useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { postLogout } from "../../api/api";
 import UserInfoProfile from "./userInfo/UserInfoProfile";
 import UserInfoNav from "./userInfo/UserInfoNav";
 import UserInfoUpdate from "./userInfo/UserInfoUpdate";
+import { useCookie } from "../../hooks/useCookie";
+import { useEffect } from "react";
 
 export default function MypageUserInfo() {
   const navigate = useNavigate();
+  const isLoggedIn = useCookie();
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login?page=my-page");
+    }
+  }, []);
   return (
     <div className={`absolute z-[100] top-[117px]`}>
       <div
@@ -14,23 +22,26 @@ export default function MypageUserInfo() {
       >
         {/*창 안의 요소*/}
         <div className="flex flex-col items-center mt-[43px] h-full">
-            {/* 프로필 수정 상단네비 */}
-            <UserInfoNav />
-            {/* 프로필 사진 및 이름 */}
-            <UserInfoProfile />
+          {/* 프로필 수정 상단네비 */}
+          <UserInfoNav />
+          {/* 프로필 사진 및 이름 */}
+          <UserInfoProfile />
 
-            {/* 사용자 정보 변경 */}
-            <div className="my-[58px]">
-              <UserInfoUpdate />
-            </div>
+          {/* 사용자 정보 변경 */}
+          <div className="my-[58px]">
+            <UserInfoUpdate />
+          </div>
 
-            {/*로그아웃 버튼*/}
-            <button
-              className="font-pretendard font-medium text-primary-700 text-[13px]"
-              onClick={() => {
-                postLogout(navigate);
-              }}> 로그아웃 </button>
-
+          {/*로그아웃 버튼*/}
+          <button
+            className="font-pretendard font-medium text-primary-700 text-[13px]"
+            onClick={() => {
+              postLogout(navigate);
+            }}
+          >
+            {" "}
+            로그아웃{" "}
+          </button>
         </div>
       </div>
     </div>

@@ -21,6 +21,6 @@ interface Place {
   place_name: string;
   place_url: string;
   road_address_name: string;
-  x: number;
-  y: number;
+  x: string;
+  y: string;
 }
