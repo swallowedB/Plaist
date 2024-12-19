@@ -77,6 +77,7 @@ export default function Router() {
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />
+      <Route path="/404" element={<NotFound />} />
     </Routes>
   );
 }

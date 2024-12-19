@@ -23,7 +23,7 @@ export default function UserInfoUpdate() {
       toast.success("성공적으로 저장되었습니다!");
     } catch (error) {
       console.error("업데이트에 실패했습니다", error);
-      toast.success("실패했습니다..o(TヘTo)");
+      toast.error("실패했습니다..o(TヘTo)");
     }
   };
 
