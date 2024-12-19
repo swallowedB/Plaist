@@ -7,7 +7,6 @@ import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/sele
 import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 import { useSliderStore } from "./../../stores/sliderStore";
-import useBackWithHistory from "../../hooks/useBackWithHistory";
 
 interface LocationObj {
   locationName: string;
@@ -32,7 +31,6 @@ interface SelectCourseMainProps {
     locationObjs: LocationObj[],
     channelIdList: string[]
   ) => void;
-  onBack: () => void;
 }
 
 export default function SelectCourseMain({
@@ -40,7 +38,6 @@ export default function SelectCourseMain({
   locationObjDelete,
   onPlus,
   onNext,
-  onBack,
 }: SelectCourseMainProps) {
   const [courseBoxes, setCourseBoxes] = useState(locationObjs);
 
@@ -116,8 +113,6 @@ export default function SelectCourseMain({
       setIsCompletedThisPage(false);
     }
   }, [courseBoxes, estimatedTime, estimatedCost]);
-
-  useBackWithHistory(onBack);
 
   return (
     <div>

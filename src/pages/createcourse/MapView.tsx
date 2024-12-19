@@ -2,7 +2,6 @@ import { useState } from "react";
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
-import useGoBackWithHistory from "../../hooks/useBackWithHistory";
 
 interface LocationProps {
   locationName: string;
@@ -15,10 +14,9 @@ interface LocationProps {
 
 interface MapviewProps {
   onNext: (location: LocationProps) => void;
-  onBack: () => void;
 }
 
-export default function Mapview({ onNext, onBack }: MapviewProps) {
+export default function Mapview({ onNext }: MapviewProps) {
   // 페이지 상단으로 스크롤 이동
   const goToTop = () => {
     const mapElement = document.getElementById("top");
@@ -59,8 +57,6 @@ export default function Mapview({ onNext, onBack }: MapviewProps) {
   const handleNext: () => void = () => {
     onNext(location); // location 객체 전달
   };
-
-  useGoBackWithHistory(onBack);
 
   return (
     <div id="top">

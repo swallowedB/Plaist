@@ -47,13 +47,13 @@ export default function CreateMyCourse() {
 
   console.log(funnel.step);
 
-  const postCourseResult = async () => {
+  const handlePostCourseResult = async () => {
     const {
       courseTitle,
       courseDescription,
-      locationObjs,
       estimatedTime,
       estimatedCost,
+      locationObjs,
       withWhom,
       styles,
       image,
@@ -63,14 +63,19 @@ export default function CreateMyCourse() {
     const titleObj = {
       courseTitle,
       courseDescription,
-      locationObjs,
       estimatedTime,
       estimatedCost,
+      locationObjs,
       withWhom,
       styles,
     };
 
+    console.log(titleObj, "타이틀obj 잘 들어갔는지");
     const title = JSON.stringify(titleObj);
+    console.log(title, "title 변수 잘 들어갔는지");
+    channelIdList.push("675e6ed26ada400ee6bec120");
+    console.log(channelIdList, "channel리스트는 제대로 들어갔는지");
+    console.log(image, "이미지 잘 들어갔는지");
 
     try {
       // 각 channelId에 대해 API 호출
@@ -147,7 +152,6 @@ export default function CreateMyCourse() {
                     channelIdList,
                   });
                 }}
-                onBack={funnel.history.back}
               />
             );
           case "장소선택":
@@ -165,7 +169,6 @@ export default function CreateMyCourse() {
                     locationObjs: updatedLocationObjs,
                   });
                 }}
-                onBack={funnel.history.back}
               />
             );
           case "게시글작성":
@@ -177,15 +180,12 @@ export default function CreateMyCourse() {
                 estimatedTime={funnel.context.estimatedTime}
                 estimatedCost={funnel.context.estimatedCost}
                 onNext={(courseTitle, courseDescription, image) => {
-                  funnel.context.courseImage = image; // Base64 이미지 저장 {
                   funnel.history.push("완료", {
                     courseTitle,
                     courseDescription,
+                    image,
                   });
-                  postCourseResult(); // 함수 호출
-                  // 데이터를 보내고 history를 초기화 시켜줘야 할까?
                 }}
-                onBack={funnel.history.back}
               />
             );
           case "완료":
@@ -193,6 +193,7 @@ export default function CreateMyCourse() {
               <SucessMyPost
                 onNext={() => {
                   navigate("/"); // 홈으로 이동
+                  handlePostCourseResult();
                 }}
               />
             );
