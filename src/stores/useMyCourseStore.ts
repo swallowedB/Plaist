@@ -5,7 +5,7 @@ type CardData = {
   id: string;
   courseTitle: string;
   courseDescription: string;
-  locationName: string;
+  locationAddress: string;
   likes: number;
   image: string;
 };
@@ -31,12 +31,16 @@ export const useMyCourseStore = create<MyCourseState>((set) => ({
       const parsedData: CardData[] = data.map((item: any) => {
         try{
           const parsedTitle = JSON.parse(item.title);
+          console.log("위치정보확인 :", parsedTitle);
+
+          const getFirstTwoWords = (input: string) => input.split(" ").slice(0, 2).join(" ");
+
           return {
             id: item._id,
             title: parsedTitle,
             courseTitle: parsedTitle.courseTitle || "제목 없음",
             courseDescription: parsedTitle.courseDescription || " ",
-            locationName: parsedTitle.locationObjs?.[0]?.name || "위치 정보 없음",
+            locationAddress: getFirstTwoWords(parsedTitle.locationObjs[0]?.locationAddress) || "위치 정보 없음",
             likes: item.likes?.length || 0,
             image: item.image || "",
           };
@@ -46,7 +50,7 @@ export const useMyCourseStore = create<MyCourseState>((set) => ({
             id: "unknown",
             courseTitle: "제목 없음",
             courseDescription: " ",
-            locationName: "위치 정보 없음",
+            locationAddress: "위치 정보 없음",
             likes: 0,
             image: "",
           };

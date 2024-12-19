@@ -7,7 +7,7 @@ type CardData = {
   id: string;
   courseTitle: string;
   courseDescription: string;
-  locationName: string;
+  locationAddress: string;
   likes: number;
   image: string;
 };
@@ -33,14 +33,17 @@ export default function MyLike() {
 
   const likeCardData = useMemo<CardData[]>(() => {
     return likes
-      .map((like) => {
+
+    
+    .map((like) => {
+        const getFirstTwoWords = (input: string) => input.split(" ").slice(0, 2).join(" ");
         const post = posts[like.post]; 
         if (post) {
           return { 
             id: like._id,
             courseTitle: post.courseTitle || "제목없음",
             courseDescription: post.title?.courseDescription || " ",
-            locationName: post.title?.locationObjs?.[0]?.name || "위치 정보 없음",
+            locationAddress: getFirstTwoWords(post.title?.locationObjs?.[0]?.locationAddress) || "위치 정보 없음",
             likes: post.likes || 0,
             image: post.image || " ", // to-do 기본 이미지 추가
           }; 
