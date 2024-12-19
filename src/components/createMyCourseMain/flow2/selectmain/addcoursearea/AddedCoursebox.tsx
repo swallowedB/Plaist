@@ -1,5 +1,6 @@
 import { useState } from "react";
 import images from "../../../../../assets/images/importImages";
+import { formatLocationCategory } from "../../../../../utills/main/fomatter";
 
 interface AddedCourseboxProps {
   locationName: string;
@@ -42,6 +43,8 @@ export default function AddedCoursebox({
       ? "열번째 코스"
       : index;
 
+  const formattedLocationCategory = formatLocationCategory(locationCategory);
+
   return (
     <div
       id="box-unit"
@@ -83,7 +86,7 @@ export default function AddedCoursebox({
 
         {/* 카테고리 */}
         <div className="flex items-center justify-center w-[113px] font-regular">
-          <p>{locationCategory}</p>
+          <p>{formattedLocationCategory}</p>
         </div>
       </div>
     </div>

@@ -48,7 +48,10 @@ export const sortCoursesByLike = (data: Course[], targetLength: number) => {
   return bestCourses;
 };
 
-export const sortCoursesByCreatedAt = (data: Course[], targetLength: number) => {
+export const sortCoursesByCreatedAt = (
+  data: Course[],
+  targetLength: number
+) => {
   const latestCourses = data
     .sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
@@ -64,4 +67,9 @@ export const trimStringWithEllipsis = (
   length: number
 ) => {
   return input.length <= length ? input : input.slice(0, length) + "...";
+};
+
+export const formatLocationCategory = (category: string) => {
+  const categories = category.split(" > ");
+  return categories.length > 1 ? categories[1] : category; // 두 번째 카테고리가 있으면 그 값을, 없으면 원본 값을 반환
 };
