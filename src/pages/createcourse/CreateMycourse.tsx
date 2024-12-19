@@ -41,7 +41,7 @@ export default function CreateMyCourse() {
     id: "my-funnel-app",
     initial: {
       step: "태그입력",
-      context: { withWhom: [], styles: [], locationObjs: [] },
+      context: { withWhom: [], style: [], locationObjs: [] },
     },
   });
 
@@ -55,7 +55,7 @@ export default function CreateMyCourse() {
       estimatedCost,
       locationObjs,
       withWhom,
-      styles,
+      style,
       image,
       channelIdList,
     } = funnel.context as PostResultContext;
@@ -67,7 +67,7 @@ export default function CreateMyCourse() {
       estimatedCost,
       locationObjs,
       withWhom,
-      styles,
+      style,
     };
 
     console.log(titleObj, "타이틀obj 잘 들어갔는지");
@@ -107,10 +107,10 @@ export default function CreateMyCourse() {
           case "태그입력":
             return (
               <SelectTag
-                onNext={(withWhom, styles) =>
+                onNext={(withWhom, style) =>
                   funnel.history.push("코스상세입력", {
                     withWhom,
-                    styles,
+                    style,
                   })
                 }
               />
@@ -176,7 +176,7 @@ export default function CreateMyCourse() {
               <ExplainCourse
                 locationObjs={funnel.context.locationObjs}
                 withWhom={funnel.context.withWhom}
-                styles={funnel.context.styles}
+                style={funnel.context.style}
                 estimatedTime={funnel.context.estimatedTime}
                 estimatedCost={funnel.context.estimatedCost}
                 onNext={(courseTitle, courseDescription, image) => {
