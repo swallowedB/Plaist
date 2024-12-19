@@ -2,18 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
 import images from "../../../../assets/images/importImages";
 import { toast } from "react-toastify";
-interface LocationProps {
-  locationName: string;
-  locationAddress: string;
-  locationCategory: string;
-  locationPhoneNum: string;
-  location_id: string;
-  like: number;
-}
+
 export default function MapDisplay({
   onNext,
 }: {
-  onNext: (location: LocationProps) => void;
+  onNext: (location: LocationObj) => void;
 }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
 

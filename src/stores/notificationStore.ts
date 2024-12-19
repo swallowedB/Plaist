@@ -5,6 +5,7 @@ let polling = false;
 
 interface NotificationState {
   notifications: Notification[];
+  clickedNotifications: Set<string>;
   isIconActivated: boolean;
 }
 
@@ -21,48 +22,50 @@ export const useNotificationStore = create<
   NotificationAction & NotificationState
 >((set) => ({
   notifications: [],
+  clickedNotifications: new Set<string>(),
   isIconActivated: false,
   fetchNotifications: async () => {
-    const { setIconActivated } = useNotificationStore.getState();
+    const { setIconActivated, notifications, clickedNotifications } =
+      useNotificationStore.getState();
+    const prevNotification = [...notifications];
     try {
       const data = await getNotification();
-      const result = data.filter((item) => !item.seen);
-      console.log(result);
-      if (result.length === 0) setIconActivated(false);
-      else {
-        setIconActivated(true);
+      const result = data.filter(
+        (item) => !item.seen && !clickedNotifications.has(item._id)
+      );
+      if (JSON.stringify(prevNotification) != JSON.stringify(result)) {
+        console.log("prev", prevNotification);
+        console.log("curr", result);
+        if (result.length === 0) setIconActivated(false);
+        else {
+          setIconActivated(true);
+        }
+        useNotificationStore.setState({ notifications: result });
       }
-      set({ notifications: result });
+      // console.log("after change2Seen", notifications);
     } catch (error) {
       console.error(error);
     }
   },
 
   change2Seen: async (notificationId) => {
-    const { notifications } = useNotificationStore.getState();
-    try {
-      await seenNotification(notificationId);
-      // list 업데이트
-      const result = notifications.filter((item) => item._id != notificationId);
-      set({ notifications: result });
-    } catch (error) {
-      console.error("Error marking notifications as seen:", error);
-    }
+    set((state) => {
+      const updatedSet = new Set(state.clickedNotifications);
+      updatedSet.add(notificationId);
+      return { clickedNotifications: updatedSet };
+    });
   },
+
   deleteAll: async () => {
-    const { notifications, change2Seen } = useNotificationStore.getState();
     try {
-      await Promise.all(
-        notifications.map(async (item) => {
-          await change2Seen(item._id); // 비동기 상태 업데이트
-        })
-      );
+      await seenNotification();
       console.log("All notifications marked as seen.");
     } catch {
       console.log("No items to delete.");
     }
     set({ notifications: [] });
   },
+
   setIconActivated: (value) => {
     set({ isIconActivated: value });
   },
@@ -72,7 +75,11 @@ export const useNotificationStore = create<
 
     polling = true;
     const pollingNotifications = async () => {
-      while (polling) {
+      while (true) {
+        if (!polling) {
+          console.log("Polling stopped");
+          break; // polling이 false가 되면 루프 종료
+        }
         try {
           await fetchNotifications();
           console.log("polling");
@@ -87,7 +94,10 @@ export const useNotificationStore = create<
   },
   stopLongPolling: () => {
     const { setIconActivated } = useNotificationStore.getState();
-    polling = false;
-    setIconActivated(false);
+    if (polling) {
+      polling = false; // polling 중단
+      setIconActivated(false);
+      console.log("Polling stopped by stopLongPolling");
+    }
   },
 }));

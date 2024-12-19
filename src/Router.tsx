@@ -34,6 +34,7 @@ import CourseContent from "./pages/main/CourseContent";
 import CourseContentLayout from "./layouts/CourseContentLayout";
 import UserInfo from "./components/My/userInfo/UserInfo";
 import NotFound from "./pages/NotFound";
+import PostEditor from "./pages/PostEditor";
 
 export default function Router() {
   return (
@@ -50,17 +51,16 @@ export default function Router() {
             <Route
               path="/course-content/:contentId"
               element={<CourseContent />}
-            />
+            >
+              <Route path="edit" element={<PostEditor />} />
+            </Route>
             <Route path="other-user-info/:userId" element={<OtherUserInfo />} />
           </Route>
-          <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
 
-        {/* 반복되는 라우팅 */}
-        {/* <Route path="/notification" element={<Notification />} /> */}
-
         {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
+        <Route path="/notification" element={<Notification />} />
         <Route path="my-page" element={<MyPage />} />
         <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />

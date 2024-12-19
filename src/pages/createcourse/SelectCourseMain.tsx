@@ -8,31 +8,6 @@ import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/slid
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 import { useSliderStore } from "./../../stores/sliderStore";
 
-interface LocationObj {
-  locationName: string;
-  locationAddress: string;
-  locationCategory: string;
-  locationPhoneNum: string;
-  location_id: string;
-  like: number;
-}
-
-interface SelectCourseMainProps {
-  locationObjs: LocationObj[];
-  locationObjDelete: (id: number) => void;
-  onPlus: (
-    estimatedTime: number,
-    estimatedCost: number,
-    locationObjs: LocationObj[]
-  ) => void;
-  onNext: (
-    estimatedTime: number,
-    estimatedCost: number,
-    locationObjs: LocationObj[],
-    channelIdList: string[]
-  ) => void;
-}
-
 export default function SelectCourseMain({
   locationObjs,
   locationObjDelete,
