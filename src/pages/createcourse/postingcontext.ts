@@ -12,7 +12,7 @@ export type InputTagsContext = {
   estimatedTime?: number;
   estimatedCost?: number;
   withWhom: string[];
-  styles: string[];
+  style: string[];
   image?: File | undefined;
   channelIdList?: string[];
 };
@@ -31,7 +31,7 @@ export type InputCourseDetailsContext = {
   estimatedTime?: number;
   estimatedCost?: number;
   withWhom: string[];
-  styles: string[];
+  style: string[];
   image?: File | undefined;
   channelIdList?: string[];
 };
@@ -50,7 +50,7 @@ export type InputLocationContext = {
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
-  styles: string[];
+  style: string[];
   image?: File | undefined;
   channelIdList?: string[];
 };
@@ -69,7 +69,7 @@ export type InputExplainationContext = {
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
-  styles: string[];
+  style: string[];
   image?: File | undefined;
   courseImage?: string;
   channelIdList: string[];
@@ -89,7 +89,7 @@ export type PostResultContext = {
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
-  styles: string[];
+  style: string[];
   image: File | undefined;
   channelIdList: string[];
 };

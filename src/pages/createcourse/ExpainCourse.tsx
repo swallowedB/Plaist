@@ -14,7 +14,7 @@ interface ExplainCourseProps {
     locationImage?: string;
   }[];
   withWhom: string[];
-  styles: string[];
+  style: string[];
   estimatedTime: number;
   estimatedCost: number;
   onNext: (
@@ -27,7 +27,7 @@ interface ExplainCourseProps {
 export default function ExplainCourse({
   locationObjs,
   withWhom,
-  styles,
+  style,
   estimatedTime,
   estimatedCost,
   onNext,
@@ -79,7 +79,6 @@ export default function ExplainCourse({
     setTimeout(() => setIsVisible(true), 200);
   }, []);
 
-
   return (
     <div className="flex flex-col items-center min-h-screen">
       {!isSaved && (
@@ -109,7 +108,7 @@ export default function ExplainCourse({
             />
 
             <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[12px]">
-              {[...withWhom, ...styles].map((item, index) => (
+              {[...withWhom, ...style].map((item, index) => (
                 <li
                   key={index}
                   className="w-[72px] h-[34px] text-[14px] rounded-[30px] border-2 border-primary-600 font-pretendard text-center flex items-center justify-center"
@@ -164,7 +163,11 @@ export default function ExplainCourse({
                 className="w-full h-full object-cover rounded-lg"
               />
             ) : (
-              <img src={images.plus_icon} alt="플러스 아이콘" className="w-4 h-4" />
+              <img
+                src={images.plus_icon}
+                alt="플러스 아이콘"
+                className="w-4 h-4"
+              />
             )}
           </div>
         </div>
