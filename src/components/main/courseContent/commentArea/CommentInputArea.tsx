@@ -4,6 +4,7 @@ import { postComment } from "../../../../api/commentApi";
 import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
 import { useUserStore } from "../../../../stores/useInfoStore";
 import { toast } from "react-toastify";
+import { useIsLoginStore } from "../../../../stores/login/useIsLoginStore";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { comments, setComments } = useCommentStore();
@@ -13,12 +14,11 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const contentId = _id;
 
   const { userInfo, userProfilePic, fetchUserInfo } = useUserStore();
-  const [profilePic, setProfilePic] = useState(userProfilePic);
-
+  const [profilePic] = useState(userProfilePic);
+  const { isLogin } = useIsLoginStore();
   useEffect(() => {
     fetchUserInfo();
-    setProfilePic(userProfilePic);
-  }, [fetchUserInfo, userProfilePic]);
+  }, [fetchUserInfo]);
 
   const onInputChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setComment(e.target.value);
@@ -73,13 +73,16 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
       <div className="flex items-center justify-between">
         {/* 네임카드 */}
         <div className="flex items-center gap-[10px]">
-          <img
-            src={profilePic}
-            alt="유저 프로필 이미지"
-            className="w-10 h-10 overflow-hidden bg-center bg-cover rounded-full bg-primary-200"
-          />
+          {isLogin && (
+            <img
+              src={profilePic}
+              alt="유저 프로필 이미지"
+              className="w-10 h-10 overflow-hidden bg-center bg-cover rounded-full bg-primary-200"
+            />
+          )}
+
           <div className="text-base font-bold text-primary-800">
-            {userInfo.fullName}
+            {isLogin ? userInfo.fullName : ""}
           </div>
         </div>
         {/* 코맨트 개수 */}
@@ -94,23 +97,30 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
           </p>
         </div>
       </div>
-      <div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            onCommentSubmitHandler();
-          }}
-        >
-          <textarea
-            spellCheck="true"
-            onChange={onInputChangeHandler}
-            onKeyDown={onEnterKeyDownHandler}
-            placeholder="타자를 두들길 준비 되셨나요? (｡･∀･)ﾉﾞ"
-            className="w-[558px] h-[107px] bg-[#F3F2F3] rounded-[15px] px-5 py-6 text-[13px] "
-            value={comment}
-          />
-        </form>
-      </div>
+      {
+        <div>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              onCommentSubmitHandler();
+            }}
+          >
+            <textarea
+              spellCheck="true"
+              onChange={onInputChangeHandler}
+              onKeyDown={onEnterKeyDownHandler}
+              placeholder={`${
+                isLogin
+                  ? `타자를 두들길 준비 되셨나요?:} (｡･∀･)ﾉﾞ`
+                  : `로그인 후 댓글을 남겨보세요. (｡･∀･)ﾉﾞ`
+              }`}
+              className="w-[558px] h-[107px] bg-[#F3F2F3] rounded-[15px] px-5 py-6 text-[13px] "
+              value={comment}
+              disabled={isLogin ? false : true}
+            />
+          </form>
+        </div>
+      }
     </div>
   );
 }

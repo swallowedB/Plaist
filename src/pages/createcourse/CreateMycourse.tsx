@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useFunnel } from "@use-funnel/react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { postMyCourse } from "../../api/postMyCourse";
@@ -37,6 +38,13 @@ export default function CreateMyCourse() {
       context: { withWhom: [], style: [], locationObjs: [] },
     },
   });
+
+  useEffect(() => {
+    const mainElement = document.querySelector("main");
+    if (mainElement) {
+      mainElement.scrollTo(0, 0);
+    }
+  }, [funnel.step]);
 
   console.log(funnel.step);
 

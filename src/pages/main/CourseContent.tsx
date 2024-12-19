@@ -6,6 +6,7 @@ import Loader from "../../components/skeletonUI/Loader";
 import { useEffect, useState } from "react";
 import { useCommentStore } from "../../stores/main/comment/useCommentStore";
 import LikeButton from "../../components/main/courseContent/LikeButton";
+import images from "../../assets/images/importImages";
 
 export default function CourseContent() {
   const { contentId } = useParams<{ contentId: string }>();
@@ -41,10 +42,14 @@ export default function CourseContent() {
           <Loader />
         </div>
       ) : (
-        <div className="relative w-full h-auto hadow-lg hrounded-lg">
+        <div className="relative w-full h-auto rounded-lg shadow-lg">
           <div className="relative">
             <img
-              src={courseData?.image}
+              src={
+                courseData.image
+                  ? courseData.image
+                  : images.course_background_img
+              }
               alt="background"
               className="object-cover w-full"
             />
