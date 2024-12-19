@@ -2,22 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
 import images from "../../../../assets/images/importImages";
 import { toast } from "react-toastify";
-
+interface LocationProps {
+  locationName: string;
+  locationAddress: string;
+  locationCategory: string;
+  locationPhoneNum: string;
+  location_id: string;
+  like: number;
+}
 export default function MapDisplay({
-  goToTop,
-  children,
-  locationChange,
-  isActive,
+  onNext,
 }: {
-  goToTop: () => void;
-  children: React.ReactNode;
-  locationChange: (
-    locationName: string,
-    locationAddress: string,
-    locationCategory: string,
-    locationPhoneNum: string
-  ) => void;
-  isActive: () => void;
+  onNext: (location: LocationProps) => void;
 }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
@@ -25,9 +21,6 @@ export default function MapDisplay({
   const [markers, setMarkers] = useState<kakao.maps.Marker[]>([]);
   const [keyword, setKeyword] = useState("");
   const [result, setResult] = useState<Place[]>([]); // 검색 결과 배열 타입 수정
-  const [selectedItemIndex, setSelectedItemIndex] = useState<number | null>(
-    null
-  );
 
   useEffect(() => {
     if (mapRef.current) return; // 이미 맵이 생성되어 있다면 early return
@@ -121,39 +114,23 @@ export default function MapDisplay({
     setMarkers([]);
   }
 
-  // 지도에 가게 이름을 표시하는 함수
-  function displayInfowindow(marker: kakao.maps.Marker, title: string) {
-    if (!infowindowRef.current || !mapRef.current) return;
-
-    infowindowRef.current.setContent(
-      `<div style="padding:5px;z-index:1;">${title}</div>`
-    );
-    infowindowRef.current.open(mapRef.current, marker);
-
-    mapRef.current.setCenter(marker.getPosition());
-  }
-
   const searchResults = result.map((place: any, index: number) => (
     <SearchResultOfCreateMyItems
       key={index}
+      index={index}
       placeName={place.place_name}
       category={place.category_name}
       contact={place.phone}
       location={place.address_name}
-      isActive={selectedItemIndex === index}
       onSelect={() => {
-        locationChange(
-          place.place_name,
-          place.address_name,
-          place.category_name,
-          place.phone
-        );
-        setSelectedItemIndex(index);
-        goToTop();
-        if (markers[index]) {
-          displayInfowindow(markers[index], place.place_name);
-        }
-        isActive();
+        onNext({
+          locationName: place.place_name,
+          locationAddress: place.address_name,
+          locationCategory: place.category_name,
+          locationPhoneNum: place.phone,
+          location_id: "",
+          like: 0,
+        });
       }}
     />
   ));
@@ -195,7 +172,6 @@ export default function MapDisplay({
         <section className="w-[416px] min-h-[11vh] flex flex-col items-center gap-[19px] mt-[39px] mb-[79px]">
           {searchResults}
         </section>
-        {children}
       </section>
     </>
   );

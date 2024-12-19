@@ -13,12 +13,14 @@ export default function ViewMyAllCourse() {
     const currentUserId = getUserIdFromToken();
     setUserId(currentUserId);
   }, []);
-
   useEffect(() => {
     if (userId) {
       const fetchData = async () => {
         const res = await getMyCourseObj(userId);
-        setCourseList(res);
+        const filteringRes = res.filter(
+          (val: any) => val.channel.name === "전체"
+        );
+        setCourseList(filteringRes);
       };
       fetchData();
     }
@@ -30,7 +32,10 @@ export default function ViewMyAllCourse() {
   const onSearch = () => {
     const fetchData = async () => {
       const res = await getMyCourseObj(userId);
-      const filteredCourses = res.filter((course: Course) => {
+      const filteringRes = res.filter(
+        (val: any) => val.channel.name === "전체"
+      );
+      const filteredCourses = filteringRes.filter((course: any) => {
         const parsedTitle = JSON.parse(course["title"]);
         return parsedTitle.courseTitle.includes(searchCourseList);
       });
@@ -41,7 +46,7 @@ export default function ViewMyAllCourse() {
   };
 
   return (
-    <div className="px-[60px]">
+    <div className="flex flex-col items-center justify-center">
       <MyCourseSearch setSearch={setSearch} onSearch={onSearch} />
       <MyCourseCards courseList={courseList} />
     </div>
