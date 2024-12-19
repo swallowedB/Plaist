@@ -6,7 +6,7 @@ import { useNotificationStore } from "../../stores/notificationStore";
 type NotificationType = "COMMENT" | "LIKE" | "FOLLOW" | "NULL";
 
 export default function NotificationList() {
-  const notifications = useNotificationStore((state) => state.notifications); // 상태 구독
+  const notifications = useNotificationStore((state) => state.notifications);
   const fetchNotifications = useNotificationStore(
     (state) => state.fetchNotifications
   );
@@ -24,7 +24,6 @@ export default function NotificationList() {
       try {
         // 상태 업데이트
         fetchNotifications();
-        console.log("Not", notifications);
         const titleMap: { [key: string]: string } = {};
         await Promise.all(
           useNotificationStore.getState().notifications.map(async (item) => {
@@ -45,19 +44,21 @@ export default function NotificationList() {
       }
     };
     getData();
-  }, []);
+  }, [notifications]);
 
+  // 알림 클릭시 페이지 이동
   const clickNotification = async (
     notificationId: string,
     notificationType: NotificationType,
-    postId: string
+    postId: string,
+    otherUserId: string
   ) => {
     try {
-      await change2Seen(notificationId);
+      change2Seen(notificationId);
       if (notificationType === "COMMENT" || notificationType === "LIKE") {
         navigate(`/course-content/${postId}`);
       } else if (notificationType === "FOLLOW") {
-        navigate(`/`);
+        navigate(`/other-user-info/${otherUserId}`);
       } else {
         navigate("/");
       }
@@ -104,7 +105,12 @@ export default function NotificationList() {
             key={item._id}
             className="w-[528px] h-[64px] flex items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px]"
             onClick={() =>
-              clickNotification(item._id, notificationType, item.post)
+              clickNotification(
+                item._id,
+                notificationType,
+                item.post,
+                item.author._id
+              )
             }
           >
             <div className="flex flex-row items-center">

@@ -13,11 +13,10 @@ export const getNotification = async () => {
 };
 
 // 알림 확인
-export const seenNotification = async (notificationId: string) => {
+export const seenNotification = async () => {
   try {
-    await axiosInstance.put("/notifications/seen", {
-      id: notificationId,
-    });
+    await axiosInstance.put("/notifications/seen");
+    console.log("seen");
   } catch (error) {
     console.error("notification update 중 오류", error);
   }

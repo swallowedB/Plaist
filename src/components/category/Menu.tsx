@@ -10,6 +10,7 @@ export default function Menu() {
     location: false,
     spot: false,
   });
+
   // global state
   const location = useChannelStore((state) => state.location);
   const spot = useChannelStore((state) => state.spot);
@@ -33,12 +34,14 @@ export default function Menu() {
       location: menu === "location" ? !state.location : false,
       spot: menu === "spot" ? !state.spot : false,
     }));
+    console.log("toggleMenu");
   };
 
   const menuClicked = async (menu: "location" | "spot") => {
     try {
-      fetchChannelList();
+      // fetchChannelList();
       toggleMenu(menu);
+      console.log("menuClicked");
     } catch (error) {
       console.log(error);
     }
@@ -53,8 +56,10 @@ export default function Menu() {
       location: false,
       spot: false,
     });
-    if (type === "지역") setLocation(channelId, channelName);
-    else if (type === "스팟") setSpot(channelId, channelName);
+    if (type === "지역" && location.name !== channelName)
+      setLocation(channelId, channelName);
+    else if (type === "스팟" && location.name !== channelName)
+      setSpot(channelId, channelName);
   };
 
   useEffect(() => {
@@ -83,7 +88,7 @@ export default function Menu() {
           src={arrowIcon}
           alt="arrow icon"
           className={`w-[10px] h-[24px] transform transition-transform duration-300 mx-[12px] ${
-            isMenuClicked.location ? "rotate-180" : ""
+            isMenuClicked.location ? "" : "rotate-180"
           }`}
         />
       </div>
@@ -104,7 +109,7 @@ export default function Menu() {
           src={arrowIcon}
           alt="arrow icon"
           className={`w-[10px] h-[24px] absolute right-0 transform transition-transform duration-300 ${
-            isMenuClicked.spot ? "rotate-180" : ""
+            isMenuClicked.spot ? "" : "rotate-180"
           }`}
         />
       </div>
