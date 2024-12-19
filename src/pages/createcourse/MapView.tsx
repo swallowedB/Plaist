@@ -1,19 +1,6 @@
 import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
 import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
 
-interface LocationProps {
-  locationName: string;
-  locationAddress: string;
-  locationCategory: string;
-  locationPhoneNum: string;
-  location_id: string;
-  like: number;
-}
-
-interface MapviewProps {
-  onNext: (location: LocationProps) => void;
-}
-
 export default function Mapview({ onNext }: MapviewProps) {
   return (
     <div>
@@ -24,7 +11,7 @@ export default function Mapview({ onNext }: MapviewProps) {
       />
       <section className="flex flex-col items-center">
         <MapDisplay
-          onNext={(location: LocationProps) => {
+          onNext={(location: LocationObj) => {
             onNext(location);
           }}
         />
