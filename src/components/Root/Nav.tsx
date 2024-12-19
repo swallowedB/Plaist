@@ -1,14 +1,33 @@
 import { useCookie } from "../../hooks/useCookie";
+import { useEffect } from "react";
 import FooterNavLink from "../FooterNavLink";
 import { useLocation } from "react-router";
 import images from "../../assets/images/importImages";
+import { useAuthStore } from "../../stores/authStore";
+import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function Nav() {
-  const isLoggedIn = useCookie();
+  const { isLoggedIn, setIsLoggedIn } = useAuthStore();
   const location = useLocation();
-
+  // notification
+  const { startLongPolling, stopLongPolling } = useNotificationStore();
   const hiddenPaths = ["/my-course-builder"];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
+  const cookieValue = useCookie(); // useCookie 값을 가져옵니다.
+
+  useEffect(() => {
+    setIsLoggedIn(cookieValue);
+    console.log("isLoggedIn", isLoggedIn);
+  }, [cookieValue]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      startLongPolling();
+      console.log("start isLoggedIn", isLoggedIn);
+    } else {
+      stopLongPolling();
+      console.log("stop isLoggedIn", isLoggedIn);
+    }
+  }, [isLoggedIn]);
 
   const getIcon = (
     path: string,

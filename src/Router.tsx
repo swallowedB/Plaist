@@ -53,14 +53,11 @@ export default function Router() {
             />
             <Route path="other-user-info/:userId" element={<OtherUserInfo />} />
           </Route>
-          <Route path="/notification" element={<Notification />} />
           {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         </Route>
 
-        {/* 반복되는 라우팅 */}
-        {/* <Route path="/notification" element={<Notification />} /> */}
-
         {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
+        <Route path="/notification" element={<Notification />} />
         <Route path="my-page" element={<MyPage />} />
         <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />
