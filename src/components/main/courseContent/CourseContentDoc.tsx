@@ -21,6 +21,13 @@ export default function CourseContentDoc({
   const doc: Title = JSON.parse(courseObj.title);
   const [userId, setUserId] = useState<string | undefined>(undefined);
   const [isEditAppear, setIsEditAppear] = useState<boolean>(false);
+  const [authorProfileImg, setAuthorProfileImg] = useState(
+    images.course_user_profile_img
+  );
+
+  useEffect(() => {
+    if (courseObj.author.image) setAuthorProfileImg(courseObj.author.image);
+  }, [courseObj.author.image]);
 
   // 현재 사용자 ID 설정
   useEffect(() => {
@@ -51,7 +58,7 @@ export default function CourseContentDoc({
           className="flex items-center gap-[11px] font-pretendard"
         >
           <img
-            src={images.course_user_profile_img}
+            src={authorProfileImg}
             alt="profile-image"
             className="w-10 h-10 rounded-full bg-primary-200"
           />

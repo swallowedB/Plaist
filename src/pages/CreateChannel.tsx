@@ -45,7 +45,7 @@ const CreateChannel = () => {
       });
     } catch (error) {
       console.error(error);
-      toast.success("Failed to create channel. Please try again.");
+      toast.success("채널 생성에 실패했습니다. 다시 시도해주세요.");
     }
   };
 

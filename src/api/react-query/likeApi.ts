@@ -17,6 +17,7 @@ export const postLikes = async (postId: string) => {
     return response.data;
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
+    throw error
   }
 };
 
@@ -29,5 +30,6 @@ export const deleteLikes = async (likeId: string) => {
     return response.data;
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
+    throw error
   }
 };

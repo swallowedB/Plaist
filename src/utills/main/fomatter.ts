@@ -52,7 +52,7 @@ export const sortCoursesByCreatedAt = (
   data: Course[],
   targetLength: number
 ) => {
-  const latestCourses = data
+  const latestCourses = [...data]
     .sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();

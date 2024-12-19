@@ -1,12 +1,14 @@
-export default function Pagination({
-  totalPages = 10,
-  currentPage,
-  onPageChange,
-}: {
+interface PagenationProps {
   totalPages?: number;
   currentPage: number;
   onPageChange: (page: number) => void;
-}) {
+}
+
+export default function Pagination({
+  totalPages = 100,
+  currentPage,
+  onPageChange,
+}: PagenationProps) {
   const handlePrevious = () => {
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
