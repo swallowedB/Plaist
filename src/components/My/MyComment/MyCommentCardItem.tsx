@@ -66,7 +66,8 @@ export default function MyCommentCardItem({
             <div className="flex items-start w-full">
               {/* 댓글 본문 미리보기 */}
               <p className="w-[419px] font-pretendard font-regular text-xs text-custom-gray">
-                {comment.comment  || "내용 없음"}
+                {comment.comment.length > 35 ? `${comment.comment.slice(0,35)}...더보기`
+                : comment.comment  || "내용 없음" }
               </p>
             </div>
 
