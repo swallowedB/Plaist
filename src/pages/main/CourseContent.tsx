@@ -41,7 +41,7 @@ export default function CourseContent() {
           <Loader />
         </div>
       ) : (
-        <div className="relative w-full h-auto hadow-lg hrounded-lg">
+        <div className="relative w-full h-auto rounded-lg shadow-lg">
           <div className="relative">
             <img
               src={courseData?.image}
