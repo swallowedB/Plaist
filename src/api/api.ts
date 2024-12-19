@@ -13,7 +13,7 @@ export const getSearchByUserAndPost = async (searchQuery: string) => {
     return response.data;
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
-    throw error; // 오류를 호출자에게 전달
+    
   }
 };
 
@@ -100,7 +100,7 @@ export const postLogin = async (
       console.log("polling start");
     }
   } catch (error) {
-    toast.success("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
+    toast.error("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
     console.error("API 호출 중 오류 발생:", error);
   }
 };
