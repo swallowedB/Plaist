@@ -1,10 +1,7 @@
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
-interface ExplainCourseProps {
-  onNext: () => void;
-}
 
-export default function SuccessMyPost({ onNext }: ExplainCourseProps) {
+export default function SuccessMyPost({ onNext }: SuccessMyPostProps) {
   const handleNext: () => void = () => {
     onNext();
   };

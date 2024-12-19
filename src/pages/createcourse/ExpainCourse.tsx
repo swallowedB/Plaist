@@ -3,27 +3,6 @@ import images from "../../assets/images/importImages";
 import { useConvertIcon } from "../../utills/main/convertIcon";
 import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
-interface ExplainCourseProps {
-  locationObjs: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-    locationImage?: string;
-  }[];
-  withWhom: string[];
-  style: string[];
-  estimatedTime: number;
-  estimatedCost: number;
-  onNext: (
-    courseTitle: string,
-    courseDescription: string,
-    image: File | null
-  ) => void;
-}
-
 export default function ExplainCourse({
   locationObjs,
   withWhom,

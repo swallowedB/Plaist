@@ -1,19 +1,12 @@
 import { useFunnel } from "@use-funnel/react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { postMyCourse } from "../../api/postMyCourse";
 import images from "../../assets/images/importImages";
 import SelectTag from "./SelectTag";
 import SelectCourseMain from "./SelectCourseMain";
 import ExplainCourse from "./ExpainCourse";
 import SucessMyPost from "./SucessMyPost";
 import Mapview from "./MapView";
-import {
-  InputTagsContext,
-  InputCourseDetailsContext,
-  InputLocationContext,
-  InputExplainationContext,
-  PostResultContext,
-} from "./postingcontext";
-import { postMyCourse } from "../../api/postMyCourse";
 
 type ContextByStep = {
   태그입력: InputTagsContext;

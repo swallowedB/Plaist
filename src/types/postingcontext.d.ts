@@ -1,4 +1,4 @@
-export type InputTagsContext = {
+type InputTagsContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs?: {
@@ -17,7 +17,7 @@ export type InputTagsContext = {
   channelIdList?: string[];
 };
 
-export type InputCourseDetailsContext = {
+type InputCourseDetailsContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs?: {
@@ -36,7 +36,7 @@ export type InputCourseDetailsContext = {
   channelIdList?: string[];
 };
 
-export type InputLocationContext = {
+type InputLocationContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs: {
@@ -55,7 +55,7 @@ export type InputLocationContext = {
   channelIdList?: string[];
 };
 
-export type InputExplainationContext = {
+type InputExplainationContext = {
   courseTitle?: string;
   courseDescription?: string;
   locationObjs: {
@@ -75,7 +75,7 @@ export type InputExplainationContext = {
   channelIdList: string[];
 };
 
-export type PostResultContext = {
+type PostResultContext = {
   courseTitle: string;
   courseDescription: string;
   locationObjs: {

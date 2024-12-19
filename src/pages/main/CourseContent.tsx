@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Outlet } from "react-router";
 import CourseContentDoc from "../../components/main/courseContent/CourseContentDoc";
 import { useQuery } from "@tanstack/react-query";
 import { getCourses } from "../../api/react-query/courseApi";
@@ -57,6 +57,7 @@ export default function CourseContent() {
                   courseObj={courseData}
                   likeCount={likeCount}
                 />
+                <Outlet /> {/*edit 페이지 렌더링 */}
               </div>
             </div>
           </div>
