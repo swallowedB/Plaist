@@ -2,7 +2,6 @@ import { useCookie } from "../../hooks/useCookie";
 import FooterNavLink from "../FooterNavLink";
 import { useLocation } from "react-router";
 import images from "../../assets/images/importImages";
-import { useEffect, useState } from "react";
 import { useEffect } from "react";
 import { useNotificationStore } from "../../stores/notificationStore";
 
