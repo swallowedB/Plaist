@@ -5,7 +5,7 @@ type CardData = {
   id: string;
   courseTitle: string;
   courseDescription: string;
-  locationName: string;
+  locationAddress: string;
   likes: number;
   image: string;
 };
@@ -56,7 +56,7 @@ export default function MypageCardItem({ data }: MypageCardItemProps) {
               className="w-4 h-4 mr-1"
             />
             <p className="font-pretendard text-[12px] text-custom-gray font-regular">
-            {data.locationName || "위치 정보 없음"}
+            {data.locationAddress || "위치 정보 없음"}
             </p>
           </div>
         </div>

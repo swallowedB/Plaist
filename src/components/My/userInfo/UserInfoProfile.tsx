@@ -4,8 +4,7 @@ import { useUserStore } from "../../../stores/useInfoStore";
 import { postUserPoto } from "../../../api/userApi";
 
 export default function UserInfoProfile() {
-  const { userProfilePic, updateUserPic, userInfo, fetchUserInfo } =
-    useUserStore();
+  const { userProfilePic, updateUserPic, userInfo, fetchUserInfo } = useUserStore();
   const [profilePic, setProfilePic] = useState(userProfilePic);
 
   useEffect(() => {
