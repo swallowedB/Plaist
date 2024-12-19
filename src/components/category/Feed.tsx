@@ -72,7 +72,6 @@ export default function Feed() {
     );
 
     setPostList(uniquePostList);
-    console.log(channelList);
   };
 
   // 중복 id 제거
@@ -87,10 +86,10 @@ export default function Feed() {
 
   // channelList, location 또는 spot이 변경될 때 게시물 리스트 업데이트
   useEffect(() => {
-    if (channelList) {
+    if (location && spot) {
       getPostList();
     }
-  }, [channelList, location, spot]);
+  }, [location, spot]);
 
   if (!postList) return <p>로딩중...</p>;
   if (postList.length === 0)
