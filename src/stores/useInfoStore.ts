@@ -42,7 +42,7 @@ export const useUserStore = create<UserStore>((set) => ({
   },
 
   fetchUserInfo: async () => {
-    try{
+    try {
       const data = await getUserInfo();
 
       if (!data.fullName) {

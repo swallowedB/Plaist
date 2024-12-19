@@ -1,3 +1,4 @@
+import { useIsLoginStore } from "../stores/login/useIsLoginStore";
 import { getCookie } from "../utills/Auth/getCookie";
 import { axiosInstance } from "./axios";
 import { jwtDecode } from "jwt-decode";
@@ -14,18 +15,25 @@ type JwtPayload = {
 export const getUserIdFromToken = () => {
   const token = getCookie("token");
   if (!token) {
-    throw new Error("사용자 토큰이 존재하지 않습니다.");
+    console.log("로그인 상태가 아닙니다.")
+    return null;
   }
   const decodedToken = jwtDecode<JwtPayload>(token);
+
   return decodedToken.user._id; // 서버의 JWT 구조에 따라 키 확인
 };
 
 // 사용자 정보 불러오기
 export const getUserInfo = async () => {
+  const { setLoginState } = useIsLoginStore.getState();
   try {
     const userId = getUserIdFromToken();
-    const response = await axiosInstance.get(`/users/${userId}`);
-    return response.data;
+    if (userId) {
+      const response = await axiosInstance.get(`/users/${userId}`);
+      setLoginState(true);
+      return response.data;
+    }
+    setLoginState(false);
   } catch (error) {
     console.error("/users/{id} 호출 중 오류 발생:", error);
   }
@@ -42,7 +50,7 @@ export const updateUserInfo = async ({
   region?: string;
 }) => {
   try {
-    const jsonRegion = JSON.stringify({region})
+    const jsonRegion = JSON.stringify({ region });
     console.log("Updating user info with:", { fullName, email, jsonRegion });
 
     const response = await axiosInstance.put(`/settings/update-user`, {
@@ -51,7 +59,7 @@ export const updateUserInfo = async ({
       email,
       username: jsonRegion,
     });
-    
+
     return response.data;
   } catch (error) {
     console.error("/settings/update-user 호출 중 오류 발생:", error);

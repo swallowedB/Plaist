@@ -4,7 +4,7 @@ export default function MainLayout() {
   return (
     <div
       id="background"
-      className="relative flex items-center justify-center min-h-[2000px] bg-white mb-[350px]"
+      className="relative flex justify-center min-h-[2000px] bg-white mb-[250px]"
     >
       <section
         id="main-content-box"
