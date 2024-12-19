@@ -1,5 +1,6 @@
 import images from "../../../../assets/images/importImages";
 import { useConvertIcon } from "../../../../utills/main/convertIcon";
+import { formatLocationCategory, trimStringWithEllipsis } from "../../../../utills/main/fomatter";
 
 export default function CourseLocationCardItem({
   locationName,
@@ -23,12 +24,12 @@ export default function CourseLocationCardItem({
           <div className="flex items-center gap-[6px]">
             <div className={`flex items-end gap-[6px] leading-6`}>
               <p className="text-[18px] font-medium text-custom-black font-pretendard ">
-                {locationName}
+                {trimStringWithEllipsis(locationName, 16)}
               </p>
               <p
                 className={`text-custom-gray text-[13px] font-medium leading-5`}
               >
-                {locationCategory}
+                {formatLocationCategory(locationCategory)}
               </p>
             </div>
           </div>
