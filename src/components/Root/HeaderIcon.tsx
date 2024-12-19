@@ -1,23 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCookie } from "../../hooks/useCookie";
 import HeaderIconLink from "../HeaderNavLink";
 import { useLocation } from "react-router";
-import { useAuthStore } from "../../stores/authStore";
-
 // 알림 상태 업데이트
 import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function HeaderIcon() {
-  const { isLoggedIn, setIsLoggedIn } = useAuthStore();
-  const cookieValue = useCookie();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
   const isNotificationActivated = useNotificationStore(
     (state) => state.isIconActivated
   );
 
   useEffect(() => {
-    setIsLoggedIn(cookieValue);
-  }, [location, cookieValue]);
+    setIsLoggedIn(useCookie());
+  }, [location]);
   return (
     // 상단바 블러 backdrop-blur-sm
     <header className="w-full h-16 fixed top-0 left-0 z-[999] backdrop-blur-sm">
