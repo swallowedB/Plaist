@@ -1,9 +1,21 @@
 import { usePostStore } from "../../stores/postStore";
 import PostingGuideTitle from "../../components/createMyCourseMain/PostingGuideTitle";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import { useCookie } from "../../hooks/useCookie";
+import { useNavigate } from "react-router";
+import { useEffect } from "react";
 type OnNextInputTags = (withWhom: string[], styles: string[]) => void;
 
 export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
+  const isLoggedIn = useCookie();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login?page=my-course-builder/viewer");
+    }
+  }, []);
+
   const withWhomList = [
     "친구",
     "연인",
