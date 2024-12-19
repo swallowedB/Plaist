@@ -1,4 +1,4 @@
-import AllCourseSortToggle from "../utils/CourseSortToggle";
+import CourseAllCourseSortToggle from "../utils/CourseAllCourseSortToggle";
 import SearchInputFeild from "./SearchInputFeild";
 
 export default function AllCourseHeader() {
@@ -9,7 +9,7 @@ export default function AllCourseHeader() {
       </p>
       <SearchInputFeild />
       <div className="flex justify-end w-full mt-[18px] mb-[19px]">
-        <AllCourseSortToggle />
+        <CourseAllCourseSortToggle />
       </div>
     </>
   );
