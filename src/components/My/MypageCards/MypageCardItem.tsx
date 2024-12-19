@@ -17,7 +17,8 @@ type MypageCardItemProps = {
 export default function MypageCardItem({ data }: MypageCardItemProps) {
   return (
     <Link to={`/course-content/${data.id}`}>
-      <div className="mt-3">
+      <div className="mt-3 hover:scale-105 
+    duration-[0.2s] ease-in-out">
         <div className={`
           w-[177px] h-[194px] rounded-2xl bg-white shadow-blue
           relative flex flex-col items-center p-2
@@ -41,19 +42,19 @@ export default function MypageCardItem({ data }: MypageCardItemProps) {
             {/* 좋아요 수 */}
             <div className="flex flex-row items-center">
               <img src={images.like_filled_icon} alt="좋아요 아이콘" />
-              <p className="ml-[2px] font-pretendard text-[13px] font-regular text-custom-black">
+              <p className="ml-[3px] font-pretendard text-[12px] font-regular text-custom-black">
                 {data.likes}
               </p>
             </div>
           </div>
           
           {/* 위치 */}
-          <div className="flex flex-row items-center mt-[3px] w-[154px] ">
+          <div className="flex flex-row items-center mt-[3px] w-[154px] mr-[3px] ">
             {/* 주소 아이콘 */}
             <img
               src={images.location_icon}
               alt="Location Icon"
-              className="w-4 h-4 mr-1"
+              className="w-4 h-4 mr-[1px] mt-[1px]"
             />
             <p className="font-pretendard text-[12px] text-custom-gray font-regular">
             {data.locationAddress || "위치 정보 없음"}

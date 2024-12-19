@@ -25,7 +25,7 @@ export default function HeaderIcon() {
             icon="playlist_logo"
             className="w-[100px] md:pl-[30px]"
           />
-          <div className="flex items-center gap-4 md:pr-[61px]">
+          <div className="flex items-center gap-4 md:pr-[40px]">
             <HeaderIconLink
               to={isLoggedIn ? "/notification" : "/login?page=notification"}
               icon={

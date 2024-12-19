@@ -28,7 +28,7 @@ export default function MypageUserInfo() {
           <UserInfoProfile />
 
           {/* 사용자 정보 변경 */}
-          <div className="my-[58px]">
+          <div className="mt-[58px] mb-[40px]">
             <UserInfoUpdate />
           </div>
 
