@@ -40,14 +40,28 @@ export const sortByCreatedAtIncre = (data: Comment[]): Comment[] => {
   );
 };
 
-export const sortCoursesByLike = (data: Course[], length:number) => {
+export const sortCoursesByLike = (data: Course[], targetLength: number) => {
   const bestCourses = data
     .sort((a, b) => b.likes.length - a.likes.length)
     .map((item) => item)
-    .slice(0, length);
+    .slice(0, targetLength);
   return bestCourses;
 };
 
-export const trimStringWithEllipsis = (input: string = "제목 없음", length: number) => {
+export const sortCoursesByCreatedAt = (data: Course[], targetLength: number) => {
+  const latestCourses = data
+    .sort((a, b) => {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return dateB - dateA; // 최신순 정렬
+    })
+    .slice(0, targetLength); // 원하는 길이만큼 자르기
+  return latestCourses;
+};
+
+export const trimStringWithEllipsis = (
+  input: string = "제목 없음",
+  length: number
+) => {
   return input.length <= length ? input : input.slice(0, length) + "...";
 };

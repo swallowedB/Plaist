@@ -1,6 +1,6 @@
 import { useSortStore } from "../../../stores/main/comment/useSortStore";
 
-export default function CourseSortToggle() {
+export default function CourseCommentSortToggle() {
   const { activeSort, setActiveSort } = useSortStore();
 
   const onSortChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -16,7 +16,7 @@ export default function CourseSortToggle() {
       <button
         className={`py-2 text-[14px] font-pretendard font-regular ${
           activeSort === "latest"
-            ? "text-primary-600 leading-5"
+            ? "text-primary-600"
             : "text-custom-gray"
         }`}
         onClick={onSortChange}
@@ -26,12 +26,12 @@ export default function CourseSortToggle() {
       <button
         className={`py-2 text-[14px] font-pretendard font-regular ${
           activeSort === "oldest"
-            ? "text-primary-600 leading-5"
+            ? "text-primary-600"
             : "text-custom-gray"
         }`}
         onClick={onSortChange}
       >
-        작성순
+      작성순
       </button>
     </div>
   );

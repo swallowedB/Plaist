@@ -1,5 +1,6 @@
 import images from "../../../../assets/images/importImages";
-import CourseSortToggle from "../../utils/CourseSortToggle";
+import CourseCommentSortToggle from "../../utils/CourseCommentSortToggle";
+
 import CommentInputArea from "./CommentInputArea";
 import CommentList from "./CommentList";
 
@@ -8,7 +9,6 @@ export default function CourseContentCommentArea({
 }: {
   courseObj: Course;
 }) {
-  
   return (
     <div className="flex mx-[45px] mb-[90px] flex-col gap-[45px] text-custom-black font-pretendard">
       <CommentInputArea courseObj={courseObj} />
@@ -17,7 +17,7 @@ export default function CourseContentCommentArea({
         {/* 댓글 헤더 */}
         <div className="flex justify-between">
           <p className="text-[21px] font-semibold text-primary-600">댓글</p>
-          <CourseSortToggle />
+          <CourseCommentSortToggle />
         </div>
         {/* 댓글 바디 */}
         <CommentList />
