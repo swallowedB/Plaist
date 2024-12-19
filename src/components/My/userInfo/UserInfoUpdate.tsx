@@ -5,20 +5,11 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 export default function UserInfoUpdate() {
-  const { userInfo, setUserInfo } = useUserStore();
+  const { userInfo, setUserInfo, fetchUserInfo } = useUserStore();
 
   useEffect(() => {
-    const loadUserInfo = async () => {
-      try {
-        const userData = await getUserInfo();
-        setUserInfo(userData);
-      } catch (error) {
-        console.error("loadUserInfo 호출 중 에러 발생 :", error);
-      }
-    };
-    loadUserInfo();
-    console.log("Updated UserInfo:", userInfo);
-  }, [setUserInfo]);
+    fetchUserInfo();
+  }, [fetchUserInfo]);
 
   const handleUpdate = async (updatedInfo: {
     fullName: string;
@@ -29,7 +20,7 @@ export default function UserInfoUpdate() {
       await updateUserInfo(updatedInfo);
       const refreshedData = await getUserInfo();
       setUserInfo(refreshedData);
-      toast.success("성공적으로 저장되었습니다! (((o(*ﾟ▽ﾟ*)o)))");
+      toast.success("성공적으로 저장되었습니다!");
     } catch (error) {
       console.error("업데이트에 실패했습니다", error);
       toast.success("실패했습니다..o(TヘTo)");

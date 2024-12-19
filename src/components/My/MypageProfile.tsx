@@ -19,7 +19,8 @@ export default function MypageProfile() {
       <nav>
         <Link to="/user-info">
           <img
-            className="absolute top-[70px] left-[300px]"
+            className="absolute top-[70px] left-[300px] opacity-80 hover:scale-105 hover:opacity-100
+            duration-[0.2s] ease-in-out"
             src={profileICon}
             alt="회원 정보 변경"
           />

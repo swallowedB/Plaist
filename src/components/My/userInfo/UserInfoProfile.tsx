@@ -2,6 +2,7 @@ import profileImg_N from "../../../assets/images/profileImg_N_icon.svg";
 import { useEffect, useState } from "react";
 import { useUserStore } from "../../../stores/useInfoStore";
 import { postUserPoto } from "../../../api/userApi";
+import { toast } from "react-toastify";
 
 export default function UserInfoProfile() {
   const { userProfilePic, updateUserPic, userInfo, fetchUserInfo } = useUserStore();
@@ -32,6 +33,7 @@ export default function UserInfoProfile() {
           const uploadedImageUrl = await postUserPoto(formData);
           if (uploadedImageUrl) {
             updateUserPic(uploadedImageUrl);
+            toast.success("프로필 사진 저장 완료!");
           }
         } catch (error) {
           console.error("프로필 사진 업로드 실패:", error);
@@ -49,7 +51,8 @@ export default function UserInfoProfile() {
       />
 
       <img
-        className="absolute top-[254px] left-[340px] cursor-pointer"
+        className="absolute top-[254px] left-[340px] cursor-pointer opacity-80 hover:scale-105 hover:opacity-100
+            duration-[0.2s] ease-in-out"
         src={profileImg_N}
         alt="프로필 수정 아이콘"
         onClick={handlePicUpload}

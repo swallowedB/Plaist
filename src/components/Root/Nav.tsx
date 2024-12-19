@@ -21,11 +21,11 @@ export default function Nav() {
 
   return (
     <footer
-      className={`fixed bottom-0 w-full h-20 border-t shadow-lg bg-white border-zinc-200 z-50 ${
+      className={`fixed bottom-0 w-full h-20  shadow-lg bg-white/80 border-zinc-200 z-50 ${
         shouldHideFooter ? "hidden" : ""
       }`}
     >
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center backdrop-blur-sm">
         <nav className="relative flex items-center justify-around w-full h-full max-w-3xl px-4">
           <FooterNavLink
             to="/category"
