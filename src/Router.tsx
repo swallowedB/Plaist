@@ -46,15 +46,17 @@ export default function Router() {
 
         <Route element={<MainLayout />}>
           <Route path="/" element={<Main />} />
-          <Route element={<CourseContentLayout />}>
+          
+          
+          {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
+        </Route>
+        <Route element={<CourseContentLayout />}>
             <Route
               path="/course-content/:contentId"
               element={<CourseContent />}
             />
             <Route path="other-user-info/:userId" element={<OtherUserInfo />} />
           </Route>
-          {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
-        </Route>
 
         {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         <Route path="/notification" element={<Notification />} />
