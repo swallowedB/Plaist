@@ -1,4 +1,4 @@
-export const getChannelIdList = (locationObjs: LocationObj[]) => {
+export const getChannelIdList = (locationObjs: LocationObjs) => {
   const addressToChannelMap: { [key: string]: string } = {
     서울: "675bef7e09a5266ae560fdd2",
     경기: "675bef8b09a5266ae560fdd6",
