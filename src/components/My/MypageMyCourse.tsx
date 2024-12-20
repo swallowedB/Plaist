@@ -18,7 +18,7 @@ export default function MypageMyCourse() {
         fetchMyCourses(currentUserId);
       }
     };
-  
+
     if (!userId) {
       initializeUser();
     } else {
@@ -54,7 +54,7 @@ export default function MypageMyCourse() {
         ) : myCourseList.length > 0 ? (
           <MypageCards data={myCourseList} />
         ) : (
-          <div className="col-span-3 mt-10 font-medium text-center text-primary-700 font-pretendard text-sm">
+          <div className="col-span-3 mt-10 text-sm font-medium text-center text-primary-700 font-pretendard">
             아직 등록된 코스가 없어요 இ௰இ
           </div>
         )}
