@@ -27,5 +27,5 @@ export default function AllCourseCards({
         onPageChange={handlePageChange}
       />
     </div>
-  );
+  ); 
 }
