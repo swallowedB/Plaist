@@ -23,12 +23,21 @@ export const useNotificationStore = create<
   NotificationAction & NotificationState
 >((set, get) => ({
   notifications: [],
-  clickedNotifications: new Set<string>(), // 초기값 비워두기
+  clickedNotifications: new Set<string>(),
   isIconActivated: false,
 
   fetchNotifications: async () => {
-    const userId = useUserStore.getState().userId || ""; // 동적으로 userId 가져오기
+    const userId = useUserStore.getState().userId || "";
+
     const { setIconActivated, notifications, clickedNotifications } = get();
+    const prevNotificationData = localStorage.getItem(
+      `clickedNotifications_${userId}`
+    );
+    const prevNotificationsSet = prevNotificationData
+      ? new Set<string>(JSON.parse(prevNotificationData) as string[])
+      : new Set<string>();
+    set({ clickedNotifications: prevNotificationsSet });
+
     const prevNotification = [...notifications];
     try {
       const data = await getNotification();

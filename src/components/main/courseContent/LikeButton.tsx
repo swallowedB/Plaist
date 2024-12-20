@@ -41,7 +41,7 @@ export default function LikeButton({
     if (!_id) return;
     try {
       if (!isLiked) {
-        const res = await postLikes(_id);
+        const res: ResponseType = await postLikes(_id);
         setLikeId(res._id);
         onLike(1);
         setIsLiked(true);
@@ -50,7 +50,7 @@ export default function LikeButton({
         const result = await createNotification(
           "LIKE",
           res._id,
-          res.author._id,
+          courseObj.author._id,
           res.post
         );
         console.log("created Notification", result);

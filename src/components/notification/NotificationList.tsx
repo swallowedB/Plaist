@@ -108,8 +108,7 @@ export default function NotificationList() {
 
           return (
             <div
-              key={item._id}
-              className="w-[528px] h-[64px] flex items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px] hover:scale-105 hover:opacity-100 hover:cursor-pointer"
+              className="w-[528px] min-h-[64px] flex items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px] hover:scale-105 hover:opacity-100 hover:cursor-pointer relative z-10"
               onClick={() =>
                 clickNotification(
                   item._id,
