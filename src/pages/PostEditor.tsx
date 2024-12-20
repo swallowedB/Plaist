@@ -58,11 +58,14 @@ export default function PostEditor({
     const postId = courseObj._id;
     const imageToDeletePublicId = null;
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
-
+    channelIdList.push("675e6ed26ada400ee6bec120");
+    const validChannelIdList = channelIdList.filter(
+      (channelId: string | null) => channelId !== null
+    );
 
     try {
       const results = await Promise.allSettled(
-        channelIdList.map((channelId) =>
+        validChannelIdList.map((channelId: string) =>
           selectedImage
             ? editMyCourse({
                 postId,
@@ -79,15 +82,15 @@ export default function PostEditor({
         )
       );
 
-      results.forEach((result, index) => {
+      results.forEach((result: any, index: number) => {
         if (result.status === "fulfilled") {
           console.log(
-            `Success for channelId ${channelIdList[index]}:`,
+            `Success for channelId ${validChannelIdList[index]}:`,
             result.value
           );
         } else {
           console.error(
-            `Error for channelId ${channelIdList[index]}:`,
+            `Error for channelId ${validChannelIdList[index]}:`,
             result.reason
           );
         }

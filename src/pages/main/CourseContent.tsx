@@ -69,8 +69,13 @@ export default function CourseContent() {
 
     let postIdsToDelete = [];
 
+    // channelIdList에서 null을 제거한 후 진행
+    const validChannelIdList = channelIdList.filter(
+      (channelId: string | null) => channelId !== null
+    );
+
     await Promise.all(
-      channelIdList.map(async (channelId) => {
+      validChannelIdList.map(async (channelId: string) => {
         try {
           const postList = await getChannelPostList(channelId); // 현재 게시물의 코스 지역에 해당하는 채널의 모든 게시물
           const matchedPost = postList.find(
@@ -88,7 +93,7 @@ export default function CourseContent() {
       })
     );
 
-    channelIdList.push("675e6ed26ada400ee6bec120");
+    validChannelIdList.push("675e6ed26ada400ee6bec120");
 
     if (contentId) {
       postIdsToDelete.push(contentId);
