@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useNotificationStore } from "../../stores/notificationStore";
 
 type NotificationType = "COMMENT" | "LIKE" | "FOLLOW" | "NULL";
-
+//TODO: Memoization 사용하기
 export default function NotificationList() {
   const notifications = useNotificationStore((state) => state.notifications);
   const fetchNotifications = useNotificationStore(
@@ -103,7 +103,7 @@ export default function NotificationList() {
         return (
           <div
             key={item._id}
-            className="w-[528px] h-[64px] flex items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px]"
+            className="w-[528px] h-[64px] flex items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px] hover:scale-105 hover:opacity-100 hover:cursor-pointer"
             onClick={() =>
               clickNotification(
                 item._id,

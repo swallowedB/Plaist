@@ -4,22 +4,14 @@ import { getUserById } from "../api/userApi";
 import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";
 import { useEffect, useState } from "react";
 import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
+import defaultImage from "../assets/images/basicImg.jpg";
 
 // test Page : http://localhost:5173/other-user-info/675fd765c8bfa141c295e5c1
-
-type PostData = {
-  id: string;
-  courseTitle: string;
-  courseDescription: string;
-  locationName: string;
-  likes: number;
-  image: string;
-};
 
 export default function OtherUserInfo() {
   const { userId } = useParams();
   const [userInfo, setUserInfo] = useState<User | null>(null);
-  const [cardsData, setCardsData] = useState<PostData[]>([]);
+  const [cardsData, setCardsData] = useState<CardData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,30 +20,32 @@ export default function OtherUserInfo() {
         setUserInfo(userData);
 
         if (Array.isArray(userData?.posts)) {
-          const data = userData.posts.map((post: Post) => {
+          const data = userData.posts.map((post: Course) => {
             const titleData: Title = JSON.parse(post?.title || "{}");
             const location =
-              titleData.locationObjs
-                ?.map((item) => {
-                  const locationArr = item.locationAddress.split(" ");
-                  if (locationArr[0] === "서울특별시")
-                    return `${locationArr[0]} ${locationArr[1]}`;
-                  else return `${locationArr[0]}`;
-                })
-                .join(", ") || "주소";
+              Array.from(
+                new Set(
+                  titleData.locationObjs?.map((item) => {
+                    const locationArr = item.locationAddress.split(" ");
+                    if (locationArr[0] === "서울특별시")
+                      return `${locationArr[0]} ${locationArr[1]}`;
+                    else return `${locationArr[0]}`;
+                  }) || []
+                )
+              ).join(", ") || "주소";
 
             return {
               id: post?._id || "",
               courseTitle: titleData.courseTitle || "제목",
               courseDescription: titleData.courseDescription || "",
               likes: post?.likes?.length || 0,
-              locationName: location,
-              image: post.image,
-            } as PostData;
+              locationAddress: location,
+              image: post.image || defaultImage,
+            } as CardData;
           });
 
           setCardsData(
-            data.filter((item: PostData): item is PostData => item !== null)
+            data.filter((item: CardData): item is CardData => item !== null)
           );
         } else {
           console.warn("Posts is not an array or undefined:", userData?.posts);
@@ -95,7 +89,7 @@ export default function OtherUserInfo() {
                       className={`absolute z-10 bg-white/70 rounded-[17px] w-[88px] h-[33px]`}
                     />
                     <div
-                      className={`hover:cursor-pointer rounded-[17px] w-[88px] h-[33px] flex items-center justify-center z-20`}
+                      className={`rounded-[17px] w-[88px] h-[33px] flex items-center justify-center z-20`}
                     >
                       <p
                         className={`font-pretendard font-semiBold text-[16px] text-primary-700`}

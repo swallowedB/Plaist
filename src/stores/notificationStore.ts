@@ -63,7 +63,7 @@ export const useNotificationStore = create<
     } catch {
       console.log("No items to delete.");
     }
-    set({ notifications: [] });
+    set({ notifications: [], isIconActivated: false });
   },
 
   setIconActivated: (value) => {

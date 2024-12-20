@@ -39,7 +39,7 @@ const Notification = () => {
           </header>
 
           {/* 알림 리스트 */}
-          <div className="flex flex-col space-y-4 max-h-[60vh] max-w-[100%] mr-[10px] overflow-y-auto hide-scrollbar">
+          <div className="mt-[15px] mb-[30px] flex flex-col space-y-4 h-[60vh] max-w-[100%] mr-[10px] overflow-y-auto hide-scrollbar">
             <NotificationList />
           </div>
         </div>
