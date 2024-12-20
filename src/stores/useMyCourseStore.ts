@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { getMyCourseObj } from "../api/postApi";
-import defaultImg from "../assets/images/basicImg.jpg";
+import defaultImg from "../assets/images/default.png"
 
 type CardData = {
   id: string;

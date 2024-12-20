@@ -2,6 +2,7 @@ import { useState } from "react";
 import SearchBar from "../utills/SearchBar";
 import AllCourseCards from "./allCourse/AllCourseCards";
 import AllCourseHeader from "./allCourse/AllCourseHeader";
+import CourseAllCourseSortToggle from "./utils/CourseAllCourseSortToggle";
 
 export default function MainAllCourse({
   courseList,
@@ -18,9 +19,12 @@ export default function MainAllCourse({
 
   return (
     <div className="flex flex-col items-center justify-center mt-[60px]">
-      <AllCourseHeader />
+      <p className="text-2xl font-extrabold leading-7 font-pretendard text-primary-500 mt-[10px] mb-8">
+        All Course
+      </p>
       {/* 검색바 */}
-      <div className="mb-10">
+      <div className="">
+        
       <SearchBar 
         data={courseList} 
         searchKey={["courseTitle","courseDescription", "author", "title"]}
@@ -31,7 +35,9 @@ export default function MainAllCourse({
           `}
         />
       </div>
-      
+      <div className="flex justify-end w-full mb-[15px]">
+        <CourseAllCourseSortToggle />
+      </div>
       {/* 필터링된 데이터 렌더링 */}
       {isSearching ? (
         filteredData.length > 0 ? (
@@ -44,7 +50,7 @@ export default function MainAllCourse({
       ): courseList.length > 0 ? (
         <AllCourseCards courseList={courseList} />
       ) : (
-        <div className="col-span-3 mt-10 font-medium text-center text-primary-700 font-pretendard text-sm">
+        <div className="col-span-3 mt-10 text-sm font-medium text-center text-primary-700 font-pretendard">
           첫 코스러가 되어 보세요! o(*￣▽￣*)ブ
         </div>
       )}

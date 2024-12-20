@@ -1,7 +1,7 @@
 import { getCourseObj } from "../api/postApi";
 import { getUserInfo } from "../api/userApi";
 import { create } from 'zustand';
-import defaultImg from "../assets/images/basicImg.jpg";
+import defaultImg from "../assets/images/default.png"
 
 type Like = {
   _id: string;

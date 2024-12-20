@@ -11,13 +11,8 @@ export const convertDateFormatt = (isoDate: string) => {
     month: "2-digit",
     day: "2-digit",
   });
-  const formattedTime = date.toLocaleTimeString("ko-KR", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
 
-  return `${formattedDate.replace(/\./g, ".").slice(0, -1)} | ${formattedTime}`;
+  return `${formattedDate.replace(/\./g, ".").slice(0, -1)}`;
 };
 
 export const splitBySpaceUntilIndex1 = (input: string): string => {

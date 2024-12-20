@@ -43,7 +43,7 @@ export default function CourseLocationCardItem({
                   alt="Location Icon"
                   className="w-4 h-4 mr-1"
                 />
-                <p className="text-xs font-pretendard text-custom-black">
+                <p className="text-xs font-pretendard text-primary-800">
                   {locationPhoneNum}
                 </p>
               </div>
@@ -55,7 +55,7 @@ export default function CourseLocationCardItem({
                   alt="Location Icon"
                   className="w-4 h-4 mr-1"
                 />
-                <p className="text-xs font-pretendard text-custom-gray">
+                <p className="text-xs font-pretendard text-custom-gray font-regular">
                   {locationAddress}
                 </p>
               </div>
