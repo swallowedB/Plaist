@@ -21,7 +21,7 @@ export default function CreateCourse() {
         id="relative content-area-container"
         className="flex flex-col h-screen min-w-[767px] items-center"
       >
-        <div className="absolute blur-bg-my-page z-[-1]" />
+        <div className="absolute blur-bg-my-page z-[-1] mt-[200px]" />
 
         <ViewMyCourseHeader />
         <ViewMyAllCourse />
