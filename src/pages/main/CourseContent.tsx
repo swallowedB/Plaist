@@ -12,6 +12,7 @@ import { useUserStore } from "../../stores/useInfoStore";
 import { deleteMyCourse } from "./../../api/postMyCourse";
 import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
 import { getChannelPostList } from "./../../api/postApi";
+import { toast } from "react-toastify";
 
 export default function CourseContent() {
   const navigate = useNavigate();
@@ -59,7 +60,6 @@ export default function CourseContent() {
   const onExitEditor = () => {
     setEditorOpened(false);
     refetch();
-    console.log("테스트");
   };
 
   const onDeleteClicked = async () => {
@@ -114,7 +114,7 @@ export default function CourseContent() {
   return (
     <>
       {isCourseLoading ? (
-        <div className="flex flex-col items-center justify-center h-[1000px]">
+        <div className="flex flex-col items-center justify-center h-[1500px]">
           <Loader />
         </div>
       ) : (
@@ -128,11 +128,11 @@ export default function CourseContent() {
                     : images.course_background_img
                 }
                 alt="background"
-                className="object-cover w-full"
+                className="object-cover w-full h-[500px] object-center"
               />
             </div>
             <div className="absolute bottom-0 left-0 w-full h-full top-[419px]">
-              <div className="py-[38px] bg-[#F9FBFE] rounded-t-[40px]  shadow-[0_-8px_10px_0_rgba(48,72,100,0.25)] h-auto min-h-[1800px]">
+              <div className="py-[38px] bg-[#F9FBFE] rounded-t-[40px]  shadow-[0_-8px_10px_0_rgba(48,72,100,0.25)] h-auto min-h-[1200px] pb-[120px]">
                 <LikeButton courseObj={courseData} onLike={handleLike} />
                 <div className="px-[61px] h-auto overflow-y-auto ">
                   <CourseContentDoc

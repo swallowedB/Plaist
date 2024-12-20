@@ -50,7 +50,7 @@ export default function MyComment() {
       {/* 검색바 */}
       <SearchBar
         data={commentCardData}
-        searchKey="comment"
+        searchKey={["comment","author","post"]}
         onSearch={handleSearch}
         placeholder="내가 남긴 흔적 찾아보기 (oﾟvﾟ)ノ"
       />
@@ -62,7 +62,7 @@ export default function MyComment() {
           data={filteredData.length > 0 ? filteredData : comments} 
           postTitles={posts} />
       ) : (
-        <div className="mt-10 text-center font-pretendard font-medium text-primary-700 text-sm">
+        <div className="mt-7 text-center font-pretendard font-medium text-primary-700 text-sm">
           아직 댓글이 없네요 o(TヘTo)
         </div>
       )}

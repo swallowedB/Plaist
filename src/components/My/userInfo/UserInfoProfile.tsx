@@ -13,7 +13,6 @@ export default function UserInfoProfile() {
   }, []);
 
   useEffect(() => {
-    console.log("userProfilePic state changed:", userProfilePic);
     setProfilePic(userProfilePic);
   }, [userProfilePic]);
 
