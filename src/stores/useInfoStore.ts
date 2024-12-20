@@ -22,9 +22,7 @@ interface UserStore {
 
 export const useUserStore = create<UserStore>((set) => ({
   userId: null,
-
   userProfilePic: "",
-
   userInfo: {
     fullName: "",
     email: "",
@@ -44,6 +42,7 @@ export const useUserStore = create<UserStore>((set) => ({
   fetchUserInfo: async () => {
     try {
       const data = await getUserInfo();
+      console.log("API로 받은 데이터:", data);
 
       if (!data.fullName) {
         console.warn(
@@ -63,7 +62,6 @@ export const useUserStore = create<UserStore>((set) => ({
           console.warn("username 파싱 실패:", error);
         }
       }
-
       set(() => ({
         userInfo: {
           fullName: data.fullName || "Unknown",
