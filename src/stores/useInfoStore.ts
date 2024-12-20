@@ -7,11 +7,10 @@ interface UserInfo {
   email: string;
   region: string;
   image?: string;
-
 }
 
 interface UserStore {
-  logout: () => void
+  logout: () => void;
   userId: string | null;
   userProfilePic: string;
   userInfo: UserInfo;
@@ -23,9 +22,7 @@ interface UserStore {
 
 export const useUserStore = create<UserStore>((set) => ({
   userId: null,
-
   userProfilePic: "",
-
   userInfo: {
     fullName: "",
     email: "",
@@ -34,10 +31,10 @@ export const useUserStore = create<UserStore>((set) => ({
   },
 
   setUserId: async () => {
-    try{
+    try {
       const userId = await getUserIdFromToken();
-      set(() => ({userId}));
-    } catch (error){
+      set(() => ({ userId }));
+    } catch (error) {
       console.error("UserId 추출 실패:", error);
     }
   },
@@ -45,48 +42,55 @@ export const useUserStore = create<UserStore>((set) => ({
   fetchUserInfo: async () => {
     try {
       const data = await getUserInfo();
+      console.log("API로 받은 데이터:", data);
 
       if (!data.fullName) {
-        console.warn('fullname 값이 비어 있습니다. API 응답을 확인하세요:', data);
+        console.warn(
+          "fullname 값이 비어 있습니다. API 응답을 확인하세요:",
+          data
+        );
       }
 
       const profilePicUrl = data.image || exprofilImg;
       let region = "";
 
-      if(data.username){
-        try{
+      if (data.username) {
+        try {
           const parsedUsername = JSON.parse(data.username);
           region = parsedUsername.region || "";
-        } catch (error){
+        } catch (error) {
           console.warn("username 파싱 실패:", error);
         }
       }
 
-      set (() => ({
-        userInfo: {
-          fullName: data.fullName || "Unknown",
-          email: data.email,
-          region,
-          image: data.image || "",
-        },
+      const updatedUserInfo = {
+        fullName: data.fullName || "",
+        email: data.email,
+        region,
+        image: data.image || "",
+      };
+
+      console.log("업데이트할 userInfo:", updatedUserInfo);
+
+      set(() => ({
+        userInfo: updatedUserInfo,
         userProfilePic: profilePicUrl,
       }));
-    } catch (error){
-      console.error('사용자 정보 가져오기 오류 발생', error);
+    } catch (error) {
+      console.error("사용자 정보 가져오기 오류 발생", error);
     }
   },
-  
+
   updateUserPic: (newPic: string) => {
-    set ((state) => ({
+    set((state) => ({
       userProfilePic: newPic,
-      userInfo: {...state.userInfo, image: newPic},
+      userInfo: { ...state.userInfo, image: newPic },
     }));
   },
-    
-    
+
   setUserInfo: (updatedInfo: Partial<UserInfo>) =>
     set((state) => ({
-      userInfo: {...state.userInfo, ...updatedInfo},
+      userInfo: { ...state.userInfo, ...updatedInfo },
     })),
 
   logout: () => {
@@ -96,5 +100,4 @@ export const useUserStore = create<UserStore>((set) => ({
       userInfo: { fullName: "", email: "", region: "", image: "" },
     }));
   },
-
 }));
