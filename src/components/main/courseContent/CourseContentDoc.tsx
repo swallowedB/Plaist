@@ -8,6 +8,7 @@ import {
   convertTime,
   formatPrice,
 } from "../../../utills/main/fomatter";
+import { getUserIdFromToken } from "../../../api/userApi";
 import CourseBadge from "./CourseBadge";
 
 export default function CourseContentDoc({
@@ -42,7 +43,6 @@ export default function CourseContentDoc({
       setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
-  
 
   return (
     <div className="mb-20 font-pretendard text-custom-black">
@@ -112,7 +112,7 @@ export default function CourseContentDoc({
             <p>{doc.courseDescription}</p>
           </div>
 
-          <div className="flex gap-[14px] h-6 mb-10">
+          <div className="flex gap-[14px] h-6 mb-5">
             <div className="flex items-center gap-[11px]">
               <img
                 src={images.course_estimated_time_icon}
@@ -138,7 +138,7 @@ export default function CourseContentDoc({
         </div>
       </div>
 
-      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
+      <div className="flex flex-row gap-3">
         <CourseBadge target={doc.withWhom} />
         <CourseBadge target={doc.style} />
       </div>
