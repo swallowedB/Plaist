@@ -19,6 +19,8 @@ interface NotificationAction {
   setIconActivated: (vale: boolean) => void;
 }
 
+// TODO 새로고침시 userId 없어짐
+// 새로고침시 notification 초기화
 export const useNotificationStore = create<
   NotificationAction & NotificationState
 >((set, get) => ({
