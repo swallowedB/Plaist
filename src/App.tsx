@@ -23,7 +23,7 @@ export default function App() {
 
   useEffect(() => {
     if (userId) {
-      startExpirationCheck("token", 0.5, navigate);
+      startExpirationCheck("token", 60, navigate);
     }
   }, [userId]);
 

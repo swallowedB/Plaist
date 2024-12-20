@@ -6,10 +6,16 @@ export const axiosInstance = axios.create({
     "Content-Type": "application/json",
   },
 });
+
 axiosInstance.interceptors.request.use((config) => {
-  const token = getToken();
-  if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+  const tokenObj = getToken();
+  if (tokenObj) {
+    const token = JSON.parse(tokenObj).token;
+    console.log(token);
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
   }
+
   return config;
 });
