@@ -10,7 +10,7 @@ export default function CourseContentCommentArea({
   courseObj: Course;
 }) {
   return (
-    <div className="flex mx-[45px] mb-[90px] flex-col gap-[45px] text-custom-black font-pretendard">
+    <div className="flex mx-[45px] flex-col gap-[45px] text-custom-black font-pretendard">
       <CommentInputArea courseObj={courseObj} />
       <img src={images.course_comment_line_img} alt="" />
       <div>

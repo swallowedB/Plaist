@@ -82,7 +82,7 @@ export default function CourseContent() {
   return (
     <>
       {isCourseLoading ? (
-        <div className="flex flex-col items-center justify-center h-[1000px]">
+        <div className="flex flex-col items-center justify-center h-[1500px]">
           <Loader />
         </div>
       ) : (

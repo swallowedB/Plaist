@@ -8,7 +8,7 @@ export default function MainLayout() {
     >
       <section
         id="main-content-box"
-        className="relative flex justify-center w-[100vw] min-h-[1800px] bg-transparent"
+        className="relative flex justify-center w-[100vw] bg-transparent"
       >
         <Outlet />
       </section>
