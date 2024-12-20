@@ -3,7 +3,7 @@ import { useConvertIcon } from "./../../utills/main/convertIcon";
 export default function SelectedLocationsDisplay({
   locationObjs,
 }: {
-  locationObjs: LocationObj[];
+  locationObjs: FullLocationObjs;
 }) {
   return (
     <div className="mt-10">

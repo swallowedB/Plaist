@@ -8,8 +8,8 @@ import {
   convertTime,
   formatPrice,
 } from "../../../utills/main/fomatter";
-import { getUserIdFromToken } from "../../../api/userApi";
 import CourseBadge from "./CourseBadge";
+
 
 export default function CourseContentDoc({
   courseObj,
@@ -43,7 +43,7 @@ export default function CourseContentDoc({
       setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
-
+  
   return (
     <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex justify-between">
@@ -138,7 +138,7 @@ export default function CourseContentDoc({
         </div>
       </div>
 
-      <div className="flex flex-row gap-3">
+      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
         <CourseBadge target={doc.withWhom} />
         <CourseBadge target={doc.style} />
       </div>
