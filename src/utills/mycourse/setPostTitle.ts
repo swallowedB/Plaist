@@ -20,9 +20,10 @@ export const getChannelIdList = (locationObjs: LocationObj[]) => {
   };
 
   const addressList = locationObjs.map((location) => location.locationAddress);
+
   const channelList = addressList.map((address) => {
-    if (!address || address.length < 2) return "unknown_channel"; 
+    if (!address || address.length < 2) return "unknown_channel";
     return addressToChannelMap[address.slice(0, 2)] || "unknown_channel";
   });
-  return channelList.concat("675e6ed26ada400ee6bec120");
+  return channelList;
 };

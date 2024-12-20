@@ -71,6 +71,8 @@ export default function CreateMyCourse() {
       style,
     };
 
+    channelIdList.push("675e6ed26ada400ee6bec120");
+  
     console.log(titleObj, "타이틀obj 잘 들어갔는지");
     const title = JSON.stringify(titleObj);
     console.log(title, "title 변수 잘 들어갔는지");
@@ -86,7 +88,10 @@ export default function CreateMyCourse() {
             image,
             channelId,
           });
-          console.log(`Channel ID: ${channelId}, Response:`, response);
+          console.log(
+            `Sucess for Channel ID: ${channelId}, Response:`,
+            response
+          );
         })
       );
     } catch (error) {

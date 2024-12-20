@@ -59,6 +59,7 @@ export default function PostEditor({
     const imageToDeletePublicId = null;
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
 
+
     try {
       const results = await Promise.allSettled(
         channelIdList.map((channelId) =>

@@ -10,6 +10,8 @@ import images from "../../assets/images/importImages";
 import PostEditor from "./../PostEditor";
 import { useUserStore } from "../../stores/useInfoStore";
 import { deleteMyCourse } from "./../../api/postMyCourse";
+import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
+import { getChannelPostList } from "./../../api/postApi";
 
 export default function CourseContent() {
   const navigate = useNavigate();
@@ -61,15 +63,46 @@ export default function CourseContent() {
   };
 
   const onDeleteClicked = async () => {
+    const titleStringtoObj = JSON.parse(courseData.title);
+    const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
+    console.log(channelIdList, "채널리스트");
+
+    let postIdsToDelete = [];
+
+    await Promise.all(
+      channelIdList.map(async (channelId) => {
+        try {
+          const postList = await getChannelPostList(channelId); // 현재 게시물의 코스 지역에 해당하는 채널의 모든 게시물
+          const matchedPost = postList.find(
+            (post: CourseData) => post.title === courseData.title
+          );
+          if (matchedPost) {
+            postIdsToDelete.push(matchedPost._id); // 삭제 대상 ID 추가
+          }
+        } catch (error) {
+          console.error(
+            `채널 ID ${channelId}에서 게시물 가져오기 실패:`,
+            error
+          );
+        }
+      })
+    );
+
+    channelIdList.push("675e6ed26ada400ee6bec120");
+
     if (contentId) {
-      try {
-        await deleteMyCourse(contentId);
-        refetch();
-        alert("해당 게시물이 삭제되었습니다");
-        navigate("/");
-      } catch (error) {
-        console.error("삭제 실패:", error);
-      }
+      postIdsToDelete.push(contentId);
+    }
+
+    try {
+      await Promise.all(
+        postIdsToDelete.map((postId) => deleteMyCourse(postId))
+      );
+      refetch();
+      alert("해당 게시물이 삭제되었습니다");
+      navigate("/my-page"); // 마이페이지로 이동
+    } catch (error) {
+      console.error("삭제 실패:", error);
     }
   };
 
