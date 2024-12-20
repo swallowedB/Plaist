@@ -6,6 +6,7 @@ import defaultProfile from "../../assets/images/exProfileImg.svg";
 
 type NotificationType = "COMMENT" | "LIKE" | "FOLLOW" | "NULL";
 //TODO: Memoization 사용하기
+//TODO: Memoization 사용하기
 export default function NotificationList() {
   const notifications = useNotificationStore((state) => state.notifications);
   const fetchNotifications = useNotificationStore(
