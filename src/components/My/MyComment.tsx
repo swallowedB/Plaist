@@ -50,7 +50,7 @@ export default function MyComment() {
       {/* 검색바 */}
       <SearchBar
         data={commentCardData}
-        searchKey="comment"
+        searchKey={["comment","author","post"]}
         onSearch={handleSearch}
         placeholder="내가 남긴 흔적 찾아보기 (oﾟvﾟ)ノ"
       />
