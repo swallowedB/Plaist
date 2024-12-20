@@ -66,7 +66,7 @@ export const postSingUp = async (
     });
 
     if (status === 200) {
-      navigate("/login?page=my-page");
+      navigate("/login");
       console.log(data);
     } else {
       console.log("failed");
@@ -95,7 +95,9 @@ export const postLogin = async (
     });
     if (status === 200) {
       setCookie("token", data.token);
-      navigate(`/${page}`);
+      if (page) navigate(`/${page}`);
+      else navigate(`/`);
+
       startNotificationPolling();
       console.log("polling start");
     }

@@ -15,7 +15,7 @@ type JwtPayload = {
 export const getUserIdFromToken = () => {
   const token = getCookie("token");
   if (!token) {
-    console.log("로그인 상태가 아닙니다.")
+    console.log("로그인 상태가 아닙니다.");
     return null;
   }
   const decodedToken = jwtDecode<JwtPayload>(token);
