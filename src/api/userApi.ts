@@ -29,7 +29,9 @@ export const getUserInfo = async () => {
   try {
     const userId = getUserIdFromToken();
     if (userId) {
-      const response = await axiosInstance.get(`/users/${userId}`);
+      const response = await axiosInstance.get(`/users/${userId}`, {
+        headers: { "Cache-Control": "no-cache" },
+      });
       setLoginState(true);
       return response.data;
     }
@@ -51,7 +53,6 @@ export const updateUserInfo = async ({
 }) => {
   try {
     const jsonRegion = JSON.stringify({ region });
-    console.log("Updating user info with:", { fullName, email, jsonRegion });
 
     const response = await axiosInstance.put(`/settings/update-user`, {
       headers: { "Cache-Control": "no-cache" },
@@ -59,7 +60,7 @@ export const updateUserInfo = async ({
       email,
       username: jsonRegion,
     });
-
+    console.log("response:", response.data);
     return response.data;
   } catch (error) {
     console.error("/settings/update-user 호출 중 오류 발생:", error);
