@@ -10,6 +10,7 @@ import images from "../../assets/images/importImages";
 import PostEditor from "./../PostEditor";
 import { useUserStore } from "../../stores/useInfoStore";
 import { deleteMyCourse } from "./../../api/postMyCourse";
+import { toast } from "react-toastify";
 
 export default function CourseContent() {
   const navigate = useNavigate();
@@ -57,7 +58,6 @@ export default function CourseContent() {
   const onExitEditor = () => {
     setEditorOpened(false);
     refetch();
-    console.log("테스트");
   };
 
   const onDeleteClicked = async () => {
@@ -65,10 +65,10 @@ export default function CourseContent() {
       try {
         await deleteMyCourse(contentId);
         refetch();
-        alert("해당 게시물이 삭제되었습니다");
+        toast.success("해당 게시물이 삭제되었습니다");
         navigate("/");
       } catch (error) {
-        console.error("삭제 실패:", error);
+        toast.error("삭제 실패:", error);
       }
     }
   };
