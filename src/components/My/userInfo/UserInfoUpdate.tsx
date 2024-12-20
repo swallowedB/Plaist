@@ -1,15 +1,15 @@
 import { useUserStore } from "../../../stores/useInfoStore";
 import UserInfoForm from "./UserInfoForm";
-import { getUserInfo, updateUserInfo } from "../../../api/userApi";
+import { updateUserInfo } from "../../../api/userApi";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 export default function UserInfoUpdate() {
-  const { userInfo, setUserInfo, fetchUserInfo } = useUserStore();
+  const { userInfo, fetchUserInfo } = useUserStore();
 
   useEffect(() => {
     fetchUserInfo();
-  }, [fetchUserInfo]);
+  }, []);
 
   const handleUpdate = async (updatedInfo: {
     fullName: string;
@@ -18,14 +18,17 @@ export default function UserInfoUpdate() {
   }) => {
     try {
       await updateUserInfo(updatedInfo);
-      const refreshedData = await getUserInfo();
-      setUserInfo(refreshedData);
+      await fetchUserInfo();
       toast.success("성공적으로 저장되었습니다!");
     } catch (error) {
       console.error("업데이트에 실패했습니다", error);
       toast.error("실패했습니다..o(TヘTo)");
     }
   };
+
+  useEffect(() => {
+    console.log("userInfo 상태 변경 감지:", userInfo);
+  }, [userInfo]);
 
   return (
     <div>

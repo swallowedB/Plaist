@@ -3,12 +3,13 @@ import { useState } from "react";
 interface UserInfoInputProps {
   label: string;
   id: string;
+  placeholder?: string;
   disabled?: boolean;
-  defaultValue?: string;
+  value: string;
   onChange?: (value: string) => void;
 }
 
-export default function UserInfoInput({label, id, defaultValue, onChange, disabled}:UserInfoInputProps) {
+export default function UserInfoInput({label, id, placeholder, value, onChange, disabled}:UserInfoInputProps) {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <div className="flex flex-col items-center">
@@ -31,8 +32,8 @@ export default function UserInfoInput({label, id, defaultValue, onChange, disabl
             `}
           onFocus={()=> setIsFocused(true)}
           onBlur={()=> setIsFocused(false)}
-          placeholder={defaultValue}
-          value={defaultValue}
+          placeholder={placeholder}
+          value={value}
           onChange={(e) => onChange?.(e.target.value)}
         />
       </div>
