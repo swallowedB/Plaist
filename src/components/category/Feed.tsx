@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react";
 import { useChannelStore } from "../../stores/channelStore";
-import { useState } from "react";
 import { getChannelPostList } from "../../api/postApi";
-import { useEffect } from "react";
 import AllCourseCardItem from "../main/allCourse/AllCourseCardItem";
+import Pagenation from "../../components/main/utils/Pagenation";
 
-// TODO 처음 진입시 컨텐츠 보이도록
-export default function Feed() {
+type Sort = "최신순" | "인기순";
+
+export default function Feed({ sort }: { sort: Sort }) {
   const location = useChannelStore((state) => state.location);
   const spot = useChannelStore((state) => state.spot);
   const channelList = useChannelStore((state) => state.channelList);
@@ -16,19 +17,14 @@ export default function Feed() {
     let uniquePostList: Course[] = [];
 
     // location filtering
+    // TODO : Use Memo
     if (location.name === "전국" && spot.name === "전체") {
       try {
-        const locationData = await Promise.all(
-          channelList.location.map(
-            async (ch) => await getChannelPostList(ch._id)
-          )
-        );
-        allPostList.push(...locationData.flat());
-        const spotData = await Promise.all(
-          channelList.spot.map(async (ch) => await getChannelPostList(ch._id))
-        );
-        allPostList.push(...spotData.flat());
+        const ALL_CHANNEL_ID = "675e6ed26ada400ee6bec120";
+        const Data = await getChannelPostList(ALL_CHANNEL_ID);
+        allPostList = [...Data.flat()];
         uniquePostList = uniquePostById(allPostList);
+        console.log("전체", allPostList);
       } catch (error) {
         console.error(error);
       }
@@ -67,11 +63,12 @@ export default function Feed() {
       }
     }
 
-    uniquePostList.sort(
-      (postA, postB) => postB.likes.length - postA.likes.length
-    );
+    uniquePostList.sort((postA, postB) => {
+      return sortPages(postA, postB);
+    });
 
     setPostList(uniquePostList);
+    setPages(uniquePostList.length);
     console.log(channelList);
   };
 
@@ -79,29 +76,82 @@ export default function Feed() {
   const uniquePostById = (arr: Course[]) => {
     const idMap = new Map();
     arr.forEach((item) => {
-      const title: TitleType = JSON.parse(item.title);
-      idMap.set(title.id, item);
+      idMap.set(item._id, item);
     });
     return Array.from(idMap.values());
   };
 
-  // channelList, location 또는 spot이 변경될 때 게시물 리스트 업데이트
+  // 포스트 정렬
+  const sortPages = (postA: Course, postB: Course) => {
+    if (sort === "인기순") return postB.likes.length - postA.likes.length;
+    else {
+      // 최신순
+      const dateB = new Date(postB.createdAt).getTime();
+      const dateA = new Date(postA.createdAt).getTime();
+      return dateB - dateA;
+    }
+  };
+
+  // 페이지 설정
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [currentPostList, setCurrentPostList] = useState<Course[]>([]);
+
+  const setPages = (postListLength: number) => {
+    if (postListLength > 0) {
+      const POSTS_PER_PAGE = 10;
+      setTotalPages(Math.ceil(postListLength / POSTS_PER_PAGE));
+    } else setTotalPages(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    if (page < 1 || page > totalPages) return;
+    setCurrentPage(page);
+    const startPage = (page - 1) * 8;
+    setCurrentPostList([...postList.slice(startPage, startPage + 8)]);
+  };
+
+  //Post List API 호출이 변경되는 경우
   useEffect(() => {
     if (channelList) {
       getPostList();
+      // handlePageChange(currentPage);
     }
-  }, [channelList, location, spot]);
+  }, [location, spot]);
 
+  // 화면 렌더링이 변경되는 경우
+  useEffect(() => {
+    if (postList) {
+      postList.sort((postA, postB) => {
+        return sortPages(postA, postB);
+      });
+    }
+    setCurrentPostList([
+      ...postList.slice((currentPage - 1) * 8, currentPage * 8),
+    ]);
+  }, [sort, postList, currentPage]);
+
+  // 렌더링 반환
   if (!postList) return <p>로딩중...</p>;
-  if (postList.length === 0)
-    return <p className="font-pretendard text-white">게시물이 없습니다.</p>;
-  return (
-    <section className="grid grid-cols-2 gap-5 w-full h-full auto-rows-[258px]">
-      {postList.map((post) => {
-        if (post) return <AllCourseCardItem key={post._id} courseItem={post} />;
-        // TODO: skeletonCard 추가
-        else return <></>;
-      })}
-    </section>
-  );
+  else
+    return (
+      <>
+        <section className="category--glassbox mt-[10px] px-[30px] py-[30px] overflow-hidden relative">
+          <article className="grid grid-cols-2 gap-5 w-full h-full auto-rows-[258px]">
+            {currentPostList.map((post) => {
+              if (post)
+                return <AllCourseCardItem key={post._id} courseItem={post} />;
+              // TODO: skeletonCard 추가
+              else return <></>;
+            })}
+          </article>
+        </section>
+        <Pagenation
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+          marginStyle="mt-[0px] mb-[200px]"
+        />
+      </>
+    );
 }

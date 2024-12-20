@@ -88,7 +88,7 @@ export default function Menu() {
           src={arrowIcon}
           alt="arrow icon"
           className={`w-[10px] h-[24px] transform transition-transform duration-300 mx-[12px] ${
-            isMenuClicked.location ? "" : "rotate-180"
+            isMenuClicked.location ? "rotate-360" : "rotate-180"
           }`}
         />
       </div>
@@ -100,7 +100,7 @@ export default function Menu() {
         onClick={() => menuClicked("spot")}
       >
         {/* 가운데 정렬 */}
-        <p className="absolute left-1/2 transform -translate-x-1/2">
+        <p className="absolute transform -translate-x-1/2 left-1/2">
           {spot.name}
         </p>
 
@@ -109,7 +109,7 @@ export default function Menu() {
           src={arrowIcon}
           alt="arrow icon"
           className={`w-[10px] h-[24px] absolute right-0 transform transition-transform duration-300 ${
-            isMenuClicked.spot ? "" : "rotate-180"
+            isMenuClicked.spot ? "rotate-360" : "rotate-180"
           }`}
         />
       </div>

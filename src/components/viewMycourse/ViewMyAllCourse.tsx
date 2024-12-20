@@ -6,7 +6,7 @@ import { getUserIdFromToken } from "../../api/userApi";
 
 export default function ViewMyAllCourse() {
   const [courseList, setCourseList] = useState([]);
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState<string | null>("");
   const [searchCourseList, setsearchCourseList] = useState("");
 
   useEffect(() => {
@@ -17,10 +17,7 @@ export default function ViewMyAllCourse() {
     if (userId) {
       const fetchData = async () => {
         const res = await getMyCourseObj(userId);
-        const filteringRes = res.filter(
-          (val: any) => val.channel.name === "전체"
-        );
-        setCourseList(filteringRes);
+        setCourseList(res);
       };
       fetchData();
     }
@@ -31,7 +28,7 @@ export default function ViewMyAllCourse() {
   };
   const onSearch = () => {
     const fetchData = async () => {
-      const res = await getMyCourseObj(userId);
+      const res = await getMyCourseObj(userId!);
       const filteringRes = res.filter(
         (val: any) => val.channel.name === "전체"
       );

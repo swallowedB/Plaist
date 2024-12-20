@@ -1,8 +1,12 @@
+import "../css/index.css";
+import { useState } from "react";
 import Menu from "../components/category/Menu";
 import Feed from "../components/category/Feed";
-import "../css/index.css";
 
+type Sort = "최신순" | "인기순";
 export default function Category() {
+  const [sortFeed, setSortFeed] = useState<Sort>("최신순");
+
   return (
     <div className="relative w-[767px] flex flex-col items-center h-screen mx-auto mb-[100px]">
       <div className="absolute blur-bg-center" />
@@ -22,10 +26,29 @@ export default function Category() {
           </h1>
         </header>
         <Menu />
-        <section className="category--glassbox mt-[32px] px-[30px] py-[30px] overflow-hidden relative">
-          {/* 임시 포스트 */}
-          <Feed />
-        </section>
+        <ul
+          role="button"
+          className="mt-[30px] w-[690px] flex justify-end font-pretendard text-[14px] gap-3 font-regular text-custom-gray"
+        >
+          <li
+            className={`inline ${
+              sortFeed === "최신순" ? "text-primary-600" : "text-custom-gray"
+            } font-medium`}
+            onClick={() => setSortFeed("최신순")}
+          >
+            최신순
+          </li>
+          <li
+            className={`inline ${
+              sortFeed === "인기순" ? "text-primary-600" : "text-custom-gray"
+            } font-medium`}
+            onClick={() => setSortFeed("인기순")}
+          >
+            인기순
+          </li>
+        </ul>
+        {/* 임시 포스트 */}
+        <Feed sort={sortFeed} />
       </section>
     </div>
   );
