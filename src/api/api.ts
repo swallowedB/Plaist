@@ -2,7 +2,7 @@ import axios from "axios";
 import { axiosInstance } from "./axios";
 import { setCookie } from "../utills/Auth/setCookie";
 import { deleteCookie } from "../utills/Auth/deleteCookie";
-// import { useNotificationStore, useNotificationStore } from "../stores/notificationStore";
+// import { useNotificationStore } from "../stores/notificationStore";
 import { toast } from "react-toastify";
 
 // search
@@ -106,8 +106,6 @@ export const postLogout = async (navigate: NavigateFunction) => {
     if (status === 200) {
       deleteCookie("token");
       navigate("/login?page=my-page");
-      // stopNotificationPolling();
-      console.log("polling end");
     }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
