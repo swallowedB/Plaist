@@ -1,4 +1,3 @@
-
 import { create } from "zustand";
 import exprofilImg from "../assets/images/exProfileImg.svg";
 import { getUserIdFromToken, getUserInfo } from "../api/userApi";
@@ -11,7 +10,7 @@ interface UserInfo {
 }
 
 interface UserStore {
-  logout: () => void
+  logout: () => void;
   userId: string | null;
   userProfilePic: string;
   userInfo: UserInfo;
@@ -34,10 +33,10 @@ export const useUserStore = create<UserStore>((set) => ({
   },
 
   setUserId: async () => {
-    try{
+    try {
       const userId = await getUserIdFromToken();
-      set(() => ({userId}));
-    } catch (error){
+      set(() => ({ userId }));
+    } catch (error) {
       console.error("UserId 추출 실패:", error);
     }
   },
@@ -98,5 +97,4 @@ export const useUserStore = create<UserStore>((set) => ({
       userInfo: { fullName: "", email: "", region: "", image: "" },
     }));
   },
-
 }));
