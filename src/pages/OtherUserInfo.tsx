@@ -4,7 +4,7 @@ import { getUserById } from "../api/userApi";
 import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";
 import { useEffect, useState } from "react";
 import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
-import defaultImage from "../assets/images/basicImg.jpg";
+import defaultImage from "../assets/images/default.png";
 
 // test Page : http://localhost:5173/other-user-info/675fd765c8bfa141c295e5c1
 
@@ -25,7 +25,7 @@ export default function OtherUserInfo() {
             const location =
               Array.from(
                 new Set(
-                  titleData.locationObjs?.map((item) => {
+                  titleData.locationObjs?.map((item: LocationObj) => {
                     const locationArr = item.locationAddress.split(" ");
                     if (locationArr[0] === "서울특별시")
                       return `${locationArr[0]} ${locationArr[1]}`;
