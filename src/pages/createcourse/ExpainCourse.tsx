@@ -27,14 +27,14 @@ export default function ExplainCourse({
     setTimeout(() => setIsVisible(true), 200);
   }, []);
 
-  const { imagePreview, selectedImage, handleImageUpload, errorMessage } =
-    useImageUpload();
+  const { imagePreview, selectedImage, handleImageUpload } = useImageUpload();
 
   const handleNextClick = () => {
     if (!title.trim() || !description.trim()) {
       alert("제목과 설명을 입력해주세요.");
       return;
     }
+    setIsSaved(true);
     onNext(title, description, selectedImage);
   };
 

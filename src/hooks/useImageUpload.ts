@@ -17,9 +17,7 @@ export default function useImageUpload() {
         // 이미지 용량 체크 (3MB 제한)
         if (file.size > 3 * 1024 * 1024) {
           // 3MB = 3 * 1024 * 1024 bytes
-          setErrorMessage(
-            "파일 크기가 너무 큽니다. 3MB 이하의 파일을 선택해주세요."
-          );
+          alert("파일 크기가 너무 큽니다. 3MB 이하의 파일을 선택해주세요.");
           return;
         } else {
           setErrorMessage(null); // 용량 부합 시 에러 메시지 초기화

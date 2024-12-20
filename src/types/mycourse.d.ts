@@ -73,8 +73,8 @@ interface PostMyCourseProps {
 interface EditMyCourseProps {
   postId: string | undefined;
   title: string;
-  image: File | undefined;
-  imageToDeletePublicId?: string;
+  image?: File | undefined;
+  imageToDeletePublicId?: string | null;
   channelId: string;
 }
 
@@ -82,4 +82,36 @@ interface ImageUploadFieldProps {
   imagePreview: string | null;
   handleImageUpload: () => void;
   originImagePreview?: string | null;
+}
+
+interface CourseData {
+  author: {
+    role: string;
+    emailVerified: boolean;
+    banned: boolean;
+    isOnline: boolean;
+    posts: string[];
+  };
+  channel: {
+    authRequired: boolean;
+    posts: string[];
+    _id: string;
+    name: string;
+    description: string;
+  };
+  comments: string[];
+  createdAt: string;
+  likes: {
+    reatedAt: string;
+    post: string;
+    updatedAt: string;
+    user: string;
+    __v: number;
+    _id: string;
+  };
+  title: string; // JSON 문자열
+  updatedAt: string;
+  _id: string;
+  image: string | File | undefined;
+  imagePublicId: string;
 }
