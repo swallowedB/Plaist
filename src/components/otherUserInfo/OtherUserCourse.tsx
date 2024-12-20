@@ -1,19 +1,19 @@
 // OtherUserCourse.tsx
 import MypageCards from "../My/MypageCards/MypageCards";
 
-type PostData = {
-  id: string;
-  courseTitle: string;
-  courseDescription: string;
-  locationName: string;
-  likes: number;
-  image: string;
-};
+// type PostData = {
+//   id: string;
+//   courseTitle: string;
+//   courseDescription: string;
+//   locationAddress: string;
+//   likes: number;
+//   image: string;
+// };
 
 export default function OtherUserCourse({
   targetUserData,
 }: {
-  targetUserData: PostData[];
+  targetUserData: CardData[];
 }) {
   return (
     <div className="mt-[35px]">

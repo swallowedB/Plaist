@@ -21,8 +21,11 @@ interface Author {
   comment: string[];
   followers: string[];
   following: string[];
+  image: string;
   notifications: string[];
   messages: string[];
   _id: string;
   fullName: string;
 }
+
+type NotificationType = "LIKE" | "COMMENT" | "FOLLOW";

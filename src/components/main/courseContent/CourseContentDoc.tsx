@@ -44,7 +44,6 @@ export default function CourseContentDoc({
       setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
-
   return (
     <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex justify-between">
@@ -107,7 +106,6 @@ export default function CourseContentDoc({
               {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
             </p>
           </div>
-
           <div className="flex gap-[14px] h-6 mb-5">
             <div className="flex items-center gap-[6px]">
               <img
@@ -138,7 +136,7 @@ export default function CourseContentDoc({
           <CourseBadge target={doc.style} />
         </div>
       </div>
-
+      
       <CourseLocationCards doc={doc} />
       <CourseContentCommentArea courseObj={courseObj} />
     </div>

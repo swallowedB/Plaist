@@ -12,9 +12,9 @@ export default function Nav() {
   const hiddenPaths = ["/my-course-builder"];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
 
-  //notification
-  //const startPolling = useNotificationStore((state) => state.startLongPolling);
-  //const stopPolling = useNotificationStore((state) => state.stopLongPolling);
+  // notification
+  const startPolling = useNotificationStore((state) => state.startLongPolling);
+  const stopPolling = useNotificationStore((state) => state.stopLongPolling);
 
   const getIcon = (
     path: string,
@@ -24,15 +24,14 @@ export default function Nav() {
     if (path === "/login") return defaultIcon;
     return location.pathname === path ? activeIcon : defaultIcon;
   };
-  {/*
-    useEffect(() => {
+
+  useEffect(() => {
     if (isLoggedIn) {
       startPolling();
     } else {
       stopPolling();
     }
-    }, [isLoggedIn]);
-  */}
+  }, [isLoggedIn]);
 
   return (
     <footer
