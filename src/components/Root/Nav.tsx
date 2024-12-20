@@ -2,8 +2,6 @@ import { useCookie } from "../../hooks/useCookie";
 import FooterNavLink from "../FooterNavLink";
 import { useLocation } from "react-router";
 import images from "../../assets/images/importImages";
-import { useEffect } from "react";
-import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function Nav() {
   const isLoggedIn = useCookie();
@@ -24,7 +22,8 @@ export default function Nav() {
     if (path === "/login") return defaultIcon;
     return location.pathname === path ? activeIcon : defaultIcon;
   };
-  {/*
+  {
+    /*
     useEffect(() => {
     if (isLoggedIn) {
       startPolling();
@@ -32,7 +31,8 @@ export default function Nav() {
       stopPolling();
     }
     }, [isLoggedIn]);
-  */}
+  */
+  }
 
   return (
     <footer
