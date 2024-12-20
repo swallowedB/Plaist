@@ -5,6 +5,7 @@ import { useCommentStore } from "../../../../stores/main/comment/useCommentStore
 import { useUserStore } from "../../../../stores/useInfoStore";
 import { toast } from "react-toastify";
 import { useIsLoginStore } from "../../../../stores/login/useIsLoginStore";
+import { createNotification } from "../../../../api/notificationApi";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { comments, setComments } = useCommentStore();
@@ -44,8 +45,17 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
 
       setComments([newComment, ...comments]);
 
-      await postComment({ contentId, comment });
-
+      const commentResult: CommentCreateResult = await postComment({
+        contentId,
+        comment,
+      });
+      console.log(commentResult);
+      await createNotification(
+        "COMMENT",
+        commentResult._id,
+        courseObj.author._id,
+        commentResult.post
+      );
       setComment("");
     } catch (error) {
       console.error("댓글 제출 중 오류 발생:", error);
