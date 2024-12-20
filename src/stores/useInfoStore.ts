@@ -11,17 +11,18 @@ interface UserInfo {
 }
 
 interface UserStore {
-  userId: string;
+  logout: () => void
+  userId: string | null;
   userProfilePic: string;
   userInfo: UserInfo;
   fetchUserInfo: () => Promise<void>;
   updateUserPic: (newPic: string) => void;
   setUserInfo: (updatedInfo: Partial<UserInfo>) => void;
-  setUserId: () => void;
+  setUserId: () => Promise<void>;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
-  userId: "",
+  userId: null,
 
   userProfilePic: "",
 
@@ -32,9 +33,9 @@ export const useUserStore = create<UserStore>((set) => ({
     image: "",
   },
 
-  setUserId: () => {
+  setUserId: async () => {
     try{
-      const userId = getUserIdFromToken();
+      const userId = await getUserIdFromToken();
       set(() => ({userId}));
     } catch (error){
       console.error("UserId 추출 실패:", error);
@@ -87,5 +88,13 @@ export const useUserStore = create<UserStore>((set) => ({
     set((state) => ({
       userInfo: {...state.userInfo, ...updatedInfo},
     })),
+
+  logout: () => {
+    set(() => ({
+      userId: null,
+      userProfilePic: "",
+      userInfo: { fullName: "", email: "", region: "", image: "" },
+    }));
+  },
 
 }));
