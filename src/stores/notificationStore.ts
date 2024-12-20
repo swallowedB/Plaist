@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { getNotification, seenNotification } from "../api/notificationApi";
 
+
 let polling = false;
 
 interface NotificationState {
@@ -22,7 +23,10 @@ export const useNotificationStore = create<
   NotificationAction & NotificationState
 >((set) => ({
   notifications: [],
-  clickedNotifications: new Set<string>(),
+  // 초기 로드시 클릭된 데이터 가져오기
+  clickedNotifications: new Set<string>(
+    JSON.parse(localStorage.getItem("clickedNotifications") || "[]")
+  ),
   isIconActivated: false,
   fetchNotifications: async () => {
     const { setIconActivated, notifications, clickedNotifications } =
@@ -52,6 +56,10 @@ export const useNotificationStore = create<
     set((state) => {
       const updatedSet = new Set(state.clickedNotifications);
       updatedSet.add(notificationId);
+      localStorage.setItem(
+        "clickedNotifications",
+        JSON.stringify(Array.from(updatedSet))
+      );
       return { clickedNotifications: updatedSet };
     });
   },
@@ -63,6 +71,7 @@ export const useNotificationStore = create<
     } catch {
       console.log("No items to delete.");
     }
+    localStorage.removeItem("clickedNotifications");
     set({ notifications: [], isIconActivated: false });
   },
 

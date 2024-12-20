@@ -5,6 +5,14 @@ import { getUserIdFromToken } from "../../../api/userApi";
 import { createNotification } from "../../../api/notificationApi";
 import { toast } from "react-toastify";
 
+type ResponseType = {
+  createdAt: string;
+  post: string;
+  updatedAt: string;
+  user: string;
+  __v: 0;
+  _id: string;
+};
 export default function LikeButton({
   courseObj,
   onLike,
