@@ -2,10 +2,12 @@ export default function Pagination({
   totalPages = 10,
   currentPage,
   onPageChange,
+  marginStyle
 }: {
   totalPages?: number;
   currentPage: number;
   onPageChange: (page: number) => void;
+  marginStyle?: string
 }) {
   const handlePrevious = () => {
     if (currentPage > 1) {
@@ -20,7 +22,7 @@ export default function Pagination({
   };
 
   return (
-    <div className="flex justify-center mt-[60px]">
+    <div className={`flex justify-center mt-[60px] ${marginStyle}`}>
       {/* Previous Button */}
       <button
         onClick={handlePrevious}

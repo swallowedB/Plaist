@@ -26,5 +26,5 @@ export default function AllCourseCards({
         return <AllCourseCardItem key={idx} courseItem={courseItem} />;
       })}
     </div>
-  );
+  ); 
 }
