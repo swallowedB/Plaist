@@ -2,8 +2,17 @@ import { useEffect, useState } from "react";
 import images from "../../../assets/images/importImages";
 import { deleteLikes, postLikes } from "../../../api/react-query/likeApi";
 import { getUserIdFromToken } from "../../../api/userApi";
+import { createNotification } from "../../../api/notificationApi";
 import { toast } from "react-toastify";
 
+type ResponseType = {
+  createdAt: string;
+  post: string;
+  updatedAt: string;
+  user: string;
+  __v: 0;
+  _id: string;
+};
 export default function LikeButton({
   courseObj,
   onLike,
@@ -32,10 +41,19 @@ export default function LikeButton({
     if (!_id) return;
     try {
       if (!isLiked) {
-        const res = await postLikes(_id);
+        const res: ResponseType = await postLikes(_id);
         setLikeId(res._id);
         onLike(1);
         setIsLiked(true);
+
+        console.log(res);
+        const result = await createNotification(
+          "LIKE",
+          res._id,
+          courseObj.author._id,
+          res.post
+        );
+        console.log("created Notification", result);
       } else {
         if (!likeId) return;
         await deleteLikes(likeId);
@@ -45,8 +63,14 @@ export default function LikeButton({
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);
-      toast.error(<span dangerouslySetInnerHTML={{ __html: '좋아요 처리에 실패했습니다.<br /> 로그인 여부를 확인해 주세요.' }} />);
-
+      toast.error(
+        <span
+          dangerouslySetInnerHTML={{
+            __html:
+              "좋아요 처리에 실패했습니다.<br /> 로그인 여부를 확인해 주세요.",
+          }}
+        />
+      );
     }
   };
 

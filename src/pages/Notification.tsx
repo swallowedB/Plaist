@@ -25,9 +25,9 @@ const Notification = () => {
         `}
       >
         {/* 창 안의 컨텐츠 */}
-        <div className="flex flex-col pl-[53px]">
+        <div className="flex flex-col overflow-x-visible">
           {/* 타이틀 및 삭제 버튼 */}
-          <header className="flex flex-row items-center justify-between mt-[95px] pr-[53px]">
+          <header className="flex flex-row items-center justify-between mt-[95px] px-[53px]">
             <p className="text-[36px] font-bold text-primary-700">알림</p>
             <p
               className="text-[14px] font-medium text-primary-700 hover:text-primary-500 block"
@@ -39,7 +39,7 @@ const Notification = () => {
           </header>
 
           {/* 알림 리스트 */}
-          <div className="flex flex-col space-y-4 max-h-[60vh] max-w-[100%] mr-[10px] overflow-y-auto hide-scrollbar">
+          <div className="mt-[15px] mb-[30px] flex flex-col space-y-4 h-[60vh] max-w-[100%] mr-[10px] overflow-x-visible overflow-y-auto hide-scrollbar relative z-10 px-[53px]">
             <NotificationList />
           </div>
         </div>

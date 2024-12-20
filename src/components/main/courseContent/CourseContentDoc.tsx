@@ -44,7 +44,6 @@ export default function CourseContentDoc({
     }
   }, [userId, courseObj.author._id]);
   
-
   return (
     <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex justify-between">
@@ -113,7 +112,7 @@ export default function CourseContentDoc({
             <p>{doc.courseDescription}</p>
           </div>
 
-          <div className="flex gap-[14px] h-6 mb-10">
+          <div className="flex gap-[14px] h-6 mb-5">
             <div className="flex items-center gap-[11px]">
               <img
                 src={images.course_estimated_time_icon}
@@ -143,7 +142,7 @@ export default function CourseContentDoc({
         <CourseBadge target={doc.withWhom} />
         <CourseBadge target={doc.style} />
       </div>
-
+      
       <CourseLocationCards doc={doc} />
       <CourseContentCommentArea courseObj={courseObj} />
     </div>

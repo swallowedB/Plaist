@@ -20,9 +20,9 @@ interface PostType {
 }
 
 type CommentsState = {
-  comments: CommentType[]; 
+  comments: CommentType[];
   posts: PostType;
-  fetchComments: () => Promise<void>; 
+  fetchComments: () => Promise<void>;
   fetchPostById: (postId: string) => Promise<void>;
 };
 
@@ -33,28 +33,34 @@ export const useCommentsStore = create<CommentsState>((set, get) => ({
   // 댓글 목록 가져오기
   fetchComments: async () => {
     try {
-      const data = await getUserInfo()
+      const data = await getUserInfo();
 
       if (!data || !data.comments) {
-        console.warn("댓글 데이터가 비어 있습니다. API 응답을 확인하세요:", data);
-        set({ comments: [] }); 
+        console.warn(
+          "댓글 데이터가 비어 있습니다. API 응답을 확인하세요:",
+          data
+        );
+        set({ comments: [] });
         return;
       }
 
-      const formattedComments: CommentType[] = data.comments.map((item: any) => ({
-        author: item.author || "Unknown",
-        comment: item.comment || "No content",
-        createdAt: item.createdAt || new Date().toISOString(),
-        post: item.post || "Unknown",
-        _id: item._id || "Unknown",
-      }));
-
-      const sortedComments = formattedComments.sort(
-        (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      const formattedComments: CommentType[] = data.comments.map(
+        (item: any) => ({
+          author: item.author || "Unknown",
+          comment: item.comment || "No content",
+          createdAt: item.createdAt || new Date().toISOString(),
+          post: item.post || "Unknown",
+          _id: item._id || "Unknown",
+        })
       );
 
-      set({comments: sortedComments});
-    } catch (error){
+      const sortedComments = formattedComments.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+
+      set({ comments: sortedComments });
+    } catch (error) {
       console.error("fetch Comments 실패:", error);
       set({ comments: [] });
     }
@@ -62,7 +68,7 @@ export const useCommentsStore = create<CommentsState>((set, get) => ({
 
   fetchPostById: async (postId: string) => {
     const { posts } = get();
-    if (posts[postId]) return; 
+    if (posts[postId]) return;
 
     try {
       const postData = await getCourseObj(postId);
@@ -79,8 +85,8 @@ export const useCommentsStore = create<CommentsState>((set, get) => ({
           [postId]: {
             likes: postData.likes.length,
             title: parsedTitle,
-            courseTitle: parsedTitle .courseTitle || "제목 없음",
-            locationObjs: parsedTitle .locationObjs || [],
+            courseTitle: parsedTitle.courseTitle || "제목 없음",
+            locationObjs: parsedTitle.locationObjs || [],
           },
         },
       }));
@@ -88,5 +94,4 @@ export const useCommentsStore = create<CommentsState>((set, get) => ({
       console.error(`게시물 ${postId} 불러오기 실패`, error);
     }
   },
-
 }));
