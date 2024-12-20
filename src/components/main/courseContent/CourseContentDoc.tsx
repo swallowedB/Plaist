@@ -8,6 +8,8 @@ import {
   convertTime,
   formatPrice,
 } from "../../../utills/main/fomatter";
+import CourseBadge from "./CourseBadge";
+
 
 export default function CourseContentDoc({
   courseObj,
@@ -137,27 +139,9 @@ export default function CourseContentDoc({
         </div>
       </div>
 
-      <div className="min-h-[31px] flex flex-row gap-3 text-[14px] text-primary-500 font-medium leading-[10px] ">
-        {(doc.withWhom || []).map((item, idx) => {
-          return (
-            <span
-              key={idx}
-              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
-            >
-              {item}
-            </span>
-          );
-        })}
-        {(doc.style || []).map((item, idx) => {
-          return (
-            <span
-              key={idx}
-              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
-            >
-              {item}
-            </span>
-          );
-        })}
+      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
+        <CourseBadge target={doc.withWhom} />
+        <CourseBadge target={doc.style} />
       </div>
 
       <CourseLocationCards doc={doc} />

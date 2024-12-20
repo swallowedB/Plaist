@@ -4,11 +4,11 @@ export default function MainLayout() {
   return (
     <div
       id="background"
-      className="relative flex justify-center min-h-[2000px] bg-white mb-[250px]"
+      className="relative flex justify-center min-h-[1500px] bg-white mb-[750px]"
     >
       <section
         id="main-content-box"
-        className="relative flex justify-center w-[100vw] min-h-[1800px] bg-transparent"
+        className="relative flex justify-center w-[100vw] bg-transparent"
       >
         <Outlet />
       </section>
