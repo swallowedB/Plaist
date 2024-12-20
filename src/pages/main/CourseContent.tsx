@@ -96,7 +96,7 @@ export default function CourseContent() {
                     : images.course_background_img
                 }
                 alt="background"
-                className="object-cover w-full"
+                className="object-cover w-full h-[500px] object-center"
               />
             </div>
             <div className="absolute bottom-0 left-0 w-full h-full top-[419px]">
