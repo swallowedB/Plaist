@@ -63,7 +63,7 @@ export const useLikesStore = create<LikesStore>((set, get) => ({
             title: parsedTitle,
             courseTitle: parsedTitle.courseTitle || "제목 없음",
             locationObjs: parsedTitle.locationObjs || [],
-            image: postData.image || defaultImg, // 기본 이미지 추가
+            image: postData.image || defaultImg,
           },
         },
       }));
