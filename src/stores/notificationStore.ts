@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { getNotification, seenNotification } from "../api/notificationApi";
-
+import { useUserStore } from "./useInfoStore";
 
 let polling = false;
 
@@ -21,43 +21,38 @@ interface NotificationAction {
 
 export const useNotificationStore = create<
   NotificationAction & NotificationState
->((set) => ({
+>((set, get) => ({
   notifications: [],
-  // 초기 로드시 클릭된 데이터 가져오기
-  clickedNotifications: new Set<string>(
-    JSON.parse(localStorage.getItem("clickedNotifications") || "[]")
-  ),
+  clickedNotifications: new Set<string>(), // 초기값 비워두기
   isIconActivated: false,
+
   fetchNotifications: async () => {
-    const { setIconActivated, notifications, clickedNotifications } =
-      useNotificationStore.getState();
+    const userId = useUserStore.getState().userId || ""; // 동적으로 userId 가져오기
+    const { setIconActivated, notifications, clickedNotifications } = get();
     const prevNotification = [...notifications];
     try {
       const data = await getNotification();
       const result = data.filter(
         (item) => !item.seen && !clickedNotifications.has(item._id)
       );
-      if (JSON.stringify(prevNotification) != JSON.stringify(result)) {
+      if (JSON.stringify(prevNotification) !== JSON.stringify(result)) {
         console.log("prev", prevNotification);
         console.log("curr", result);
-        if (result.length === 0) setIconActivated(false);
-        else {
-          setIconActivated(true);
-        }
-        useNotificationStore.setState({ notifications: result });
+        setIconActivated(result.length > 0);
+        set({ notifications: result });
       }
-      // console.log("after change2Seen", notifications);
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching notifications:", error);
     }
   },
 
   change2Seen: async (notificationId) => {
+    const userId = useUserStore.getState().userId || ""; // 동적으로 userId 가져오기
     set((state) => {
       const updatedSet = new Set(state.clickedNotifications);
       updatedSet.add(notificationId);
       localStorage.setItem(
-        "clickedNotifications",
+        `clickedNotifications_${userId}`,
         JSON.stringify(Array.from(updatedSet))
       );
       return { clickedNotifications: updatedSet };
@@ -65,13 +60,14 @@ export const useNotificationStore = create<
   },
 
   deleteAll: async () => {
+    const userId = useUserStore.getState().userId || ""; // 동적으로 userId 가져오기
     try {
       await seenNotification();
       console.log("All notifications marked as seen.");
-    } catch {
-      console.log("No items to delete.");
+    } catch (error) {
+      console.error("Error deleting all notifications:", error);
     }
-    localStorage.removeItem("clickedNotifications");
+    localStorage.removeItem(`clickedNotifications_${userId}`);
     set({ notifications: [], isIconActivated: false });
   },
 
@@ -80,33 +76,28 @@ export const useNotificationStore = create<
   },
 
   startLongPolling: async () => {
-    const { fetchNotifications } = useNotificationStore.getState();
-
     polling = true;
+    const { fetchNotifications } = get();
+
     const pollingNotifications = async () => {
-      while (true) {
-        if (!polling) {
-          console.log("Polling stopped");
-          break; // polling이 false가 되면 루프 종료
-        }
+      while (polling) {
         try {
           await fetchNotifications();
-          console.log("polling");
+          console.log("Polling...");
         } catch (error) {
-          console.error("Long Polling 중 오류 발생", error);
+          console.error("Error during long polling:", error);
         }
-        const IDLE_TIME = 5 * 1000;
+        const IDLE_TIME = 5 * 1000; // 5초 대기
         await new Promise((resolve) => setTimeout(resolve, IDLE_TIME));
       }
     };
+
     pollingNotifications();
   },
+
   stopLongPolling: () => {
-    const { setIconActivated } = useNotificationStore.getState();
-    if (polling) {
-      polling = false; // polling 중단
-      setIconActivated(false);
-      console.log("Polling stopped by stopLongPolling");
-    }
+    polling = false;
+    set({ isIconActivated: false });
+    console.log("Polling stopped.");
   },
 }));

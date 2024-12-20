@@ -49,9 +49,9 @@ export default function LikeButton({
         console.log(res);
         const result = await createNotification(
           "LIKE",
-          res.data._id,
-          res.data.author._id,
-          res.data.post
+          res._id,
+          res.author._id,
+          res.post
         );
         console.log("created Notification", result);
       } else {
