@@ -45,15 +45,22 @@ export default function LikeButton({
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);
-      toast.error(<span dangerouslySetInnerHTML={{ __html: '좋아요 처리에 실패했습니다.<br /> 로그인 여부를 확인해 주세요.' }} />);
-
+      toast.error(
+        <span
+          dangerouslySetInnerHTML={{
+            __html:
+              "좋아요 처리에 실패했습니다.<br /> 로그인 여부를 확인해 주세요.",
+          }}
+        />
+      );
     }
   };
 
   return (
     <button
       onClick={onLikeButtonClickHandler}
-      className="absolute h-[49px] w-[49px] bg-custom-black opacity-80 rounded-full right-[60px] top-[-79px] flex justify-center items-center cursor-pointer pt-[6px]"
+      className={`absolute h-[49px] w-[49px] bg-custom-black opacity-80 rounded-full 
+        right-[60px] top-[-79px] flex justify-center items-center cursor-pointer pt-[4px]`}
     >
       {isLiked ? (
         <img src={images.white_heart_filled_icon} alt="" className="" />

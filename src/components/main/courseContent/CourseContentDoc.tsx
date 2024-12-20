@@ -7,9 +7,9 @@ import {
   convertDateFormatt,
   convertTime,
   formatPrice,
+  splitBySpaceUntilIndex1,
 } from "../../../utills/main/fomatter";
 import CourseBadge from "./CourseBadge";
-
 
 export default function CourseContentDoc({
   courseObj,
@@ -43,7 +43,6 @@ export default function CourseContentDoc({
       setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
-  
 
   return (
     <div className="mb-20 font-pretendard text-custom-black">
@@ -104,16 +103,16 @@ export default function CourseContentDoc({
               alt="장소 아이콘"
               className="w-[14.66px] h-4"
             />
-            <p className="text-xs leading-5 font-regular text-custom-gray">
-              {doc.locationObjs[0].locationAddress}
+            <p className="text-base leading-5 font-regular text-custom-gray">
+              {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
             </p>
           </div>
 
-          <div className="text-[14px] font-medium leading-5 text-custom-gray">
+          <div className="text-sm font-medium leading-5 text-custom-gray">
             <p>{doc.courseDescription}</p>
           </div>
 
-          <div className="flex gap-[14px] h-6 mb-10">
+          <div className="flex gap-[14px] h-6 mb-5">
             <div className="flex items-center gap-[11px]">
               <img
                 src={images.course_estimated_time_icon}
@@ -137,11 +136,11 @@ export default function CourseContentDoc({
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
-        <CourseBadge target={doc.withWhom} />
-        <CourseBadge target={doc.style} />
+        <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
+          <CourseBadge target={doc.withWhom} />
+          <CourseBadge target={doc.style} />
+        </div>
       </div>
 
       <CourseLocationCards doc={doc} />
