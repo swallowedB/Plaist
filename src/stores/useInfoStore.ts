@@ -10,7 +10,7 @@ interface UserInfo {
 }
 
 interface UserStore {
-  logout: () => void;
+  logout: () => void
   userId: string | null;
   userProfilePic: string;
   userInfo: UserInfo;
@@ -97,4 +97,5 @@ export const useUserStore = create<UserStore>((set) => ({
       userInfo: { fullName: "", email: "", region: "", image: "" },
     }));
   },
+
 }));
