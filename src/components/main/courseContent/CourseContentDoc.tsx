@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import images from "../../../assets/images/importImages";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
 import CourseLocationCards from "./locationCardArea/CourseLocationCards";
 import {
@@ -8,19 +8,22 @@ import {
   convertTime,
   formatPrice,
 } from "../../../utills/main/fomatter";
-import { getUserIdFromToken } from "../../../api/userApi";
 
 export default function CourseContentDoc({
   courseObj,
   likeCount,
+  userId,
+  onEditClicked,
+  onDeleteClicked,
 }: {
   courseObj: Course;
   likeCount: number;
+  userId: string | undefined;
+  onEditClicked: () => void;
+  onDeleteClicked: () => void;
 }) {
-  const navigate = useNavigate();
   const doc: Title = JSON.parse(courseObj.title);
-  const [userId, setUserId] = useState<string | undefined>(undefined);
-  const [isEditAppear, setIsEditAppear] = useState<boolean>(false);
+
   const [authorProfileImg, setAuthorProfileImg] = useState(
     images.course_user_profile_img
   );
@@ -29,26 +32,16 @@ export default function CourseContentDoc({
     if (courseObj.author.image) setAuthorProfileImg(courseObj.author.image);
   }, [courseObj.author.image]);
 
-  // 현재 사용자 ID 설정
-  useEffect(() => {
-    const currentUserId = getUserIdFromToken();
-    setUserId(currentUserId);
-  }, []);
-
   // 수정/삭제 버튼 표시 여부 결정
+  const [isEditButtonsVisable, setEditButtonVisable] = useState<boolean>(false);
   useEffect(() => {
     if (userId && courseObj.author._id === userId) {
-      setIsEditAppear(true);
+      setEditButtonVisable(true);
     } else {
-      setIsEditAppear(false);
+      setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
-
-  const handleEditClick = () => {
-    navigate(`/course-content/${courseObj._id}/edit`);
-  };
-
-  const onDeleteCurrentPost = () => {};
+  
 
   return (
     <div className="mb-20 font-pretendard text-custom-black">
@@ -71,15 +64,15 @@ export default function CourseContentDoc({
             </p>
           </div>
         </NavLink>
-        <div className={isEditAppear ? "inline-block" : "invisible"}>
+        <div className={isEditButtonsVisable ? "inline-block" : "invisible"}>
           <button
-            onClick={handleEditClick}
+            onClick={onEditClicked}
             className="bg-[#EFEFEF] w-[54px] h-[24px] rounded-[30px] mr-[10px]"
           >
             수정
           </button>
           <button
-            onClick={onDeleteCurrentPost}
+            onClick={onDeleteClicked}
             className="bg-[#EFEFEF] w-[54px] h-[24px] rounded-[30px]"
           >
             삭제

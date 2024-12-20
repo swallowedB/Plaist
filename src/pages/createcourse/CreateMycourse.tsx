@@ -74,7 +74,6 @@ export default function CreateMyCourse() {
     console.log(titleObj, "타이틀obj 잘 들어갔는지");
     const title = JSON.stringify(titleObj);
     console.log(title, "title 변수 잘 들어갔는지");
-    channelIdList.push("675e6ed26ada400ee6bec120");
     console.log(channelIdList, "channel리스트는 제대로 들어갔는지");
     console.log(image, "이미지 잘 들어갔는지");
 
