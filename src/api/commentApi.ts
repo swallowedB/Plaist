@@ -31,5 +31,6 @@ export const deleteComment = async (id: string) => {
     console.log(response);
   } catch(error){
     console.error("댓글 삭제 중 오류:", error);
+    
   }
 }

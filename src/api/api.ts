@@ -116,6 +116,7 @@ export const postLogout = async (navigate: NavigateFunction) => {
       navigate("/login?page=my-page");
       stopNotificationPolling();
       console.log("polling end");
+      
     }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);

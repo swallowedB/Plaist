@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import UserInfoInput from "./UserInfoInput";
 
 interface UserInfoFormProps {
@@ -23,7 +23,6 @@ export default function UserInfoForm({
   const [fullName, setFullName] = useState(defaultFullName);
   const [email, setEmail] = useState(defaultEmail);
   const [region, setRegion] = useState(defaultRegion);
-  const [isChanged, setIsChanged] = useState(false);
 
   useEffect(() => {
     setFullName(defaultFullName);
@@ -31,9 +30,9 @@ export default function UserInfoForm({
     setRegion(defaultRegion);
 }, [defaultFullName, defaultEmail, defaultRegion]);
 
-  useEffect(() => {
-    setIsChanged( region !== defaultRegion || fullName !== defaultFullName || email !== defaultEmail );
-  }, [fullName, email, region, defaultRegion, defaultFullName, defaultEmail]);
+const isChanged = useMemo(() => {
+  return region !== defaultRegion || fullName !== defaultFullName || email !== defaultEmail;
+}, [fullName, email, region, defaultRegion, defaultFullName, defaultEmail]);
 
   const handleSubmit = () => {
     if(isChanged){

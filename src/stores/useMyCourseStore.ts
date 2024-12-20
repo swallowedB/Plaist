@@ -23,6 +23,7 @@ export const useMyCourseStore = create<MyCourseState>((set) => ({
   fetchMyCourses: async (userId: string) => {
     try{
       const data = await getMyCourseObj(userId);
+      console.log("data:", data);
 
       if (!data || !Array.isArray(data)) {
         console.warn("Invalid data format:", data);

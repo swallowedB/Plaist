@@ -5,9 +5,22 @@ import UserInfoNav from "./userInfo/UserInfoNav";
 import UserInfoUpdate from "./userInfo/UserInfoUpdate";
 import { useCookie } from "../../hooks/useCookie";
 import { useEffect } from "react";
+import { useUserStore } from "../../stores/useInfoStore";
 
 export default function MypageUserInfo() {
   const navigate = useNavigate();
+  const { logout } = useUserStore();
+
+  const handleLogout = async() => {
+    try {
+      await postLogout(navigate);
+      logout();
+
+    } catch (error){
+      console.error("logout error:", error);
+      }
+    };
+
   const isLoggedIn = useCookie();
   useEffect(() => {
     if (!isLoggedIn) {
@@ -35,9 +48,7 @@ export default function MypageUserInfo() {
           {/*로그아웃 버튼*/}
           <button
             className="font-pretendard font-medium text-primary-700 text-[13px]"
-            onClick={() => {
-              postLogout(navigate);
-            }}
+            onClick={handleLogout}
           >
             {" "}
             로그아웃{" "}
