@@ -101,11 +101,14 @@ export const postLogin = async (
 // 로그아웃
 export const postLogout = async (navigate: NavigateFunction) => {
   try {
-    // const startLongPolling = useNotificationStore((state.startLongPolling))
+    // const stopNotificationPolling = useNotificationStore(
+    //   (state) => state.stopLongPolling
+    // );
     const { status } = await axiosInstance.post(`/logout`);
     if (status === 200) {
       deleteCookie("token");
       navigate("/login?page=my-page");
+      // stopNotificationPolling();
     }
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);

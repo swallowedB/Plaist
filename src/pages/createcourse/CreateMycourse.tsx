@@ -99,7 +99,7 @@ export default function CreateMyCourse() {
     }
   };
   return (
-    <div className="mt-[95px] max-w-[767px]  flex flex-col items-center">
+    <div className="mt-[84px] max-w-[767px] flex flex-col items-center">
       <aside>
         <figure>
           <img src={getProgressBarImage(funnel.step)} alt="Progress bar" />
