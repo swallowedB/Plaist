@@ -15,7 +15,8 @@ export default function ViewMyCourseHeader() {
       <NavLink
         to=".."
         className={`text-center w-[285px] h-[50px] bg-primary-500 border-2 border-white/65 text-white 
-          font-pretendard text-[20px] font-semiBold rounded-[30px] shadow-backblue border-white leading-[47px]`}
+          font-pretendard text-[20px] font-semiBold rounded-[30px] shadow-backblue border-white leading-[47px]
+          hover:bg-primary-600`}
       >
         나만의 코스 만들기
       </NavLink>
