@@ -8,9 +8,11 @@ export default function CourseLocationCardItem({
   locationPhoneNum,
   locationCategory,
 }: LocationObj) {
+  console.log(locationCategory)
   return (
     <div className="flex items-center">
       <div className="h-[74px] w-[74px] bg-primary-600 rounded-full flex px-[21px] shadow-default">
+        
         <img
           src={useConvertIcon(locationCategory)}
           alt={`location_cafe_icon`}

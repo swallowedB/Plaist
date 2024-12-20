@@ -9,6 +9,7 @@ import useImageUpload from "../hooks/useImageUpload";
 import { useEffect, useState } from "react";
 import { editMyCourse } from "../api/postMyCourse";
 import { getChannelIdList } from "../utills/mycourse/setPostTitle";
+import { toast } from "react-toastify";
 
 export default function PostEditor({
   isEditorOpened,
@@ -84,6 +85,7 @@ export default function PostEditor({
 
       results.forEach((result: any, index: number) => {
         if (result.status === "fulfilled") {
+          
           console.log(
             `Success for channelId ${validChannelIdList[index]}:`,
             result.value

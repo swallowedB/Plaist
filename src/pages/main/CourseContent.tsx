@@ -18,7 +18,6 @@ export default function CourseContent() {
   const navigate = useNavigate();
   const { contentId } = useParams<{ contentId: string }>();
   const { setComments } = useCommentStore();
-
   const {
     data: courseData,
     isLoading: isCourseLoading,
@@ -32,7 +31,6 @@ export default function CourseContent() {
       return getCourses(contentId!);
     },
   });
-
   const [likeCount, setLikeCount] = useState<number>(0);
 
   useEffect(() => {
@@ -67,10 +65,11 @@ export default function CourseContent() {
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
     console.log(channelIdList, "채널리스트");
 
-    let postIdsToDelete = [];
+    const postIdsToDelete = [];
 
     // channelIdList에서 null을 제거한 후 진행
-    const validChannelIdList = channelIdList.filter(
+    const validChannelIdList = channelIdList.filter( 
+    
       (channelId: string | null) => channelId !== null
     );
 
@@ -104,7 +103,8 @@ export default function CourseContent() {
         postIdsToDelete.map((postId) => deleteMyCourse(postId))
       );
       refetch();
-      alert("해당 게시물이 삭제되었습니다");
+      // alert("해당 게시물이 삭제되었습니다");
+      toast.success("게시물을 삭제에 성공하였습니다.")
       navigate("/my-page"); // 마이페이지로 이동
     } catch {
       toast.error("게시물 삭제에 실패했습니다. 다시 시도해주세요.");

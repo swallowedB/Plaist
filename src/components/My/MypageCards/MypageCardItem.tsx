@@ -15,6 +15,7 @@ type MypageCardItemProps = {
 };
 
 export default function MypageCardItem({ data }: MypageCardItemProps) {
+  
   return (
     <Link to={`/course-content/${data.id}`}>
       <div

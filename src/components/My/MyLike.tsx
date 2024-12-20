@@ -32,7 +32,7 @@ export default function MyLike() {
         const post = posts[like.post];
         if (post) {
           return {
-            id: like._id,
+            id: like.post,
             courseTitle: post.courseTitle || "제목없음",
             courseDescription: post.title?.courseDescription || " ",
             locationAddress:
