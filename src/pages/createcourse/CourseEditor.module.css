@@ -19,6 +19,7 @@
   border-left: 2px dashed #007bff;
   z-index: -1;
   width: 0;
+  opacity: 60%;
 }
 
 /* 전체 컨테이너 스타일 */
@@ -41,4 +42,5 @@
   height: 70%;
   border-left: 2px dashed #007bff; /* 세로줄 색상 */
   z-index: -1; /* 세로줄이 박스들 뒤에 위치하도록 설정 */
+  opacity: 60%;
 }

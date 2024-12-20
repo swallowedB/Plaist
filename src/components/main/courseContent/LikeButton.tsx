@@ -77,7 +77,8 @@ export default function LikeButton({
   return (
     <button
       onClick={onLikeButtonClickHandler}
-      className="absolute h-[49px] w-[49px] bg-custom-black opacity-80 rounded-full right-[60px] top-[-79px] flex justify-center items-center cursor-pointer pt-[6px]"
+      className={`absolute h-[49px] w-[49px] bg-custom-black opacity-80 rounded-full 
+        right-[60px] top-[-79px] flex justify-center items-center cursor-pointer pt-[4px]`}
     >
       {isLiked ? (
         <img src={images.white_heart_filled_icon} alt="" className="" />

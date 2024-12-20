@@ -49,7 +49,7 @@ export default function CourseContent() {
   const { setUserId, userId } = useUserStore();
   useEffect(() => {
     setUserId();
-  }, [userId]);
+  }, [setUserId, userId]);
 
   const [isEditorOpened, setEditorOpened] = useState<boolean>(false);
 
@@ -106,8 +106,8 @@ export default function CourseContent() {
       refetch();
       alert("해당 게시물이 삭제되었습니다");
       navigate("/my-page"); // 마이페이지로 이동
-    } catch (error) {
-      console.error("삭제 실패:", error);
+    } catch {
+      toast.error("게시물 삭제에 실패했습니다. 다시 시도해주세요.");
     }
   };
 
@@ -138,7 +138,7 @@ export default function CourseContent() {
                   <CourseContentDoc
                     courseObj={courseData}
                     likeCount={likeCount}
-                    userId={userId}
+                    userId={userId!}
                     onEditClicked={onEditClicked}
                     onDeleteClicked={onDeleteClicked}
                   />

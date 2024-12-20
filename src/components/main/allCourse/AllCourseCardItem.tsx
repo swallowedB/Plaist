@@ -4,6 +4,7 @@ import {
   splitBySpaceUntilIndex1,
   trimStringWithEllipsis,
 } from "../../../utills/main/fomatter";
+import defaultImg from "../../../assets/images/default.png"
 
 export default function AllCourseCardItem({
   courseItem,
@@ -20,14 +21,14 @@ export default function AllCourseCardItem({
 
   return (
     <div
-      className="w-[315px] h-[258px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center hover:scale-105 hover:shadow-strong
+      className="w-[315px] h-[258px] bg-white rounded-3xl shadow-strong relative flex flex-col items-center hover:scale-105
     duration-[0.2s] ease-in-out"
     >
       <NavLink to={`/course-content/${_id}`}>
         {/* 이미지 컨테이너 */}
         <div className="relative">
           <img
-            src={image ? image : images.course_background_img}
+            src={image ? image : defaultImg}
             alt="Course Image"
             className="w-[290px] h-[177px] mt-[10.93px] rounded-2xl object-cover"
           />

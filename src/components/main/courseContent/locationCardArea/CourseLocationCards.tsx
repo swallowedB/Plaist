@@ -10,7 +10,7 @@ export default function CourseLocationCards({ doc }: { doc: Title }) {
         "mx-[45px] mt-[60px] mb-[97px] flex flex-col gap-10 ml-[5px]"
       )}
     >
-      {doc.locationObjs.map((locationItem, idx) => {
+      {doc.locationObjs.map((locationItem: LocationObj, idx: number) => {
         return (
           <CourseLocationCardItem
             key={idx}

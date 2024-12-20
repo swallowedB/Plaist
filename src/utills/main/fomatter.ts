@@ -6,14 +6,13 @@ export const convertTime = (estimetedTime: string) => {
 export const convertDateFormatt = (isoDate: string) => {
   const date = new Date(isoDate);
 
-  const formattedDate = date
-    .toLocaleDateString("ko-KR", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .replace(/\./g, ".");
-  return formattedDate.slice(0, -1);
+  const formattedDate = date.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  return `${formattedDate.replace(/\./g, ".").slice(0, -1)}`;
 };
 
 export const splitBySpaceUntilIndex1 = (input: string): string => {
@@ -56,9 +55,9 @@ export const sortCoursesByCreatedAt = (
     .sort((a, b) => {
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();
-      return dateB - dateA; // 최신순 정렬
+      return dateB - dateA;
     })
-    .slice(0, targetLength); // 원하는 길이만큼 자르기
+    .slice(0, targetLength);
   return latestCourses;
 };
 
@@ -71,5 +70,5 @@ export const trimStringWithEllipsis = (
 
 export const formatLocationCategory = (category: string) => {
   const categories = category.split(" > ");
-  return categories.length > 1 ? categories[1] : category; // 두 번째 카테고리가 있으면 그 값을, 없으면 원본 값을 반환
+  return categories.length > 1 ? categories[1] : category;
 };

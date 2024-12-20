@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../utills/SearchBar";
 import MypageCards from "./MypageCards/MypageCards";
 import { useLikesStore } from "../../stores/useLikesStore";
-import defaultImg from "../../assets/images/basicImg.jpg";
+import defaultImg from "../../assets/images/default.png";
 
 export default function MyLike() {
   const { likes, fetchLikes, posts, fetchPostById } = useLikesStore();
@@ -58,7 +58,7 @@ export default function MyLike() {
       {/* 검색바 */}
       <SearchBar
         data={likeCardData}
-        searchKey={["courseTitle","courseDescription","locationAddress"]}
+        searchKey={["courseTitle", "courseDescription", "locationAddress"]}
         onSearch={handleSearch}
         placeholder="나의 취향을 찾아보세요 (oﾟvﾟ)ノ"
       />
@@ -69,7 +69,7 @@ export default function MyLike() {
           filteredData.length > 0 ? (
             <MypageCards data={filteredData} />
           ) : (
-            <div className="mt-10 col-span-3 font-medium text-center text-primary-700 font-pretendard text-sm">
+            <div className="col-span-3 mt-10 text-sm font-medium text-center text-primary-700 font-pretendard">
               좋아요를 누른 게시물이 없어요 இ௰இ
             </div>
           )
