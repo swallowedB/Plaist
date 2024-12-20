@@ -1,25 +1,29 @@
 import { useState } from "react";
 import images from "../../assets/images/importImages";
+import { twMerge } from "tailwind-merge";
 
 interface SearchBarProps<T> {
   data: T[]; 
-  searchKey: keyof T;
+  searchKey: (keyof T)[];
   onSearch: (result: T[]) => void; // 필터링 결과 전달
   placeholder?: string;
+  className?: string;
 }
-export default function SearchBar<T>({data, searchKey, onSearch, placeholder, ...rest }: SearchBarProps<T>) {
+export default function SearchBar<T>({data, className, searchKey, onSearch, placeholder, ...rest }: SearchBarProps<T>) {
 
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     if (query.trim() === "") {
-      onSearch(data); // 검색어가 없으면 전체 데이터 반환
+      onSearch(data);
     } else {
-      const filtered = data.filter((item) =>
-        item[searchKey]?.toString().toLowerCase().includes(query.toLowerCase())
-      );
-      onSearch(filtered); // 필터링된 데이터 반환
+      const filtered = data.filter((item) => {
+        return searchKey.some((key) =>
+          item[key]?.toString().toLowerCase().includes(query.toLowerCase())
+        );
+      });
+      onSearch(filtered); 
     }
   };
 
@@ -39,11 +43,12 @@ export default function SearchBar<T>({data, searchKey, onSearch, placeholder, ..
         placeholder={placeholder || "어떤 것을 찾고 계신가요?"}
         onChange={(e) => handleSearch(e.target.value)}
         {...rest}
-        className={`
+        className={twMerge(`
           w-[415px] h-[47px] px-6 py-3 font-pretendard bg-custom-input/70 shadow-default rounded-[30px] 
           outline-none focus:outline-none focus:bg-white transition-all placeholder:text-sm placeholder:text-custom-gray/70
-          placeholder:font-medium
-          `}/>
+          placeholder:font-medium`, 
+          className
+          )}/>
       
     </div>
   )

@@ -58,7 +58,7 @@ export default function MyLike() {
       {/* 검색바 */}
       <SearchBar
         data={likeCardData}
-        searchKey="courseTitle"
+        searchKey={["courseTitle","courseDescription","locationAddress"]}
         onSearch={handleSearch}
         placeholder="나의 취향을 찾아보세요 (oﾟvﾟ)ノ"
       />
