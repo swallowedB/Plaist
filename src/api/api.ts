@@ -88,7 +88,7 @@ export const postLogin = async (
       password,
     });
     if (status === 200) {
-      setCookie("token", data.token);
+      setCookie("token", data.token, navigate);
       if (page) navigate(`/${page}`);
       else navigate(`/`);
     }

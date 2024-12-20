@@ -5,9 +5,27 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ScrollToTop from "./layouts/utils/ScrollToTop";
 import Router from "./Router";
+import { useEffect, useState } from "react";
+
+import { getUserIdFromToken } from "./api/userApi";
+import { startExpirationCheck } from "./utills/Auth/setCookie";
+import { useNavigate } from "react-router";
 
 export default function App() {
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState<string | null>(null);
   const queryClient = new QueryClient();
+
+  useEffect(() => {
+    const currentUserId = getUserIdFromToken();
+    setUserId(currentUserId);
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      startExpirationCheck("token", 0.5, navigate);
+    }
+  }, [userId]);
 
   return (
     <QueryClientProvider client={queryClient}>
