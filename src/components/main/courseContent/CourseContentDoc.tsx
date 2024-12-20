@@ -119,7 +119,7 @@ export default function CourseContentDoc({
             <p>{doc.courseDescription}</p>
           </div>
 
-          <div className="flex gap-[14px] h-6 mb-5">
+          <div className="flex gap-[14px] h-6 mb-10">
             <div className="flex items-center gap-[11px]">
               <img
                 src={images.course_estimated_time_icon}
@@ -145,11 +145,11 @@ export default function CourseContentDoc({
         </div>
       </div>
 
-      <div className="flex flex-row gap-3">
+      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
         <CourseBadge target={doc.withWhom} />
         <CourseBadge target={doc.style} />
       </div>
-      
+
       <CourseLocationCards doc={doc} />
       <CourseContentCommentArea courseObj={courseObj} />
     </div>
