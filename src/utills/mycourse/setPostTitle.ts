@@ -1,5 +1,8 @@
+import { toast } from "react-toastify";
+import { findValueByKeyInString } from "./findValueByKeyInSpot";
+
 export const getChannelIdList = (locationObjs: LocationObj[]) => {
-  const addressToChannelMap: { [key: string]: string } = {
+  const addressToChannelMap: ChannelList = {
     서울: "675bef7e09a5266ae560fdd2",
     경기: "675bef8b09a5266ae560fdd6",
     인천: "675befd809a5266ae560fddd",
@@ -19,10 +22,41 @@ export const getChannelIdList = (locationObjs: LocationObj[]) => {
     제주: "675bf03409a5266ae560fe17",
   };
 
+  const spotToChannelMap: ChannelList = {
+    음식점: "676169231c8bf50ad13bee81",
+    문화시설: "676169291c8bf50ad13bee95",
+    숙박: "6761692f1c8bf50ad13beea3",
+    카페: "676169341c8bf50ad13beeb1",
+    주차장: "6761693e1c8bf50ad13beede",
+    편의점: "67640eac49fcc75c41c89066",
+    관광: "675bf44b09a5266ae560fe37",
+  };
+
   const addressList = locationObjs.map((location) => location.locationAddress);
-  const channelList = addressList.map((address) => {
-    if (!address || address.length < 2) return "unknown_channel"; 
-    return addressToChannelMap[address.slice(0, 2)] || "unknown_channel";
+  const spotList = locationObjs.map((location) => location.locationCategory);
+
+  const selectedAddressChannels = addressList.map((address) => {
+    if (!address || address.length < 2)
+      return toast.error("유효하지 않은 지역 카테고리입니다.");
+    return (
+      addressToChannelMap[address.slice(0, 2)] ||
+      toast.error("유효하지 않은 입력 형식입니다.")
+    );
   });
-  return channelList.concat("675e6ed26ada400ee6bec120");
+
+  const selectedSpotChannels = spotList.map((spot) => {
+    if (!spot) return toast.error("장소 형식이 입력되지 않았습니다.");
+    const filteredSpotChannelId = findValueByKeyInString(
+      spot,
+      spotToChannelMap
+    );
+    return filteredSpotChannelId && filteredSpotChannelId;
+  });
+
+  const targetChannelList = [
+    ...selectedAddressChannels,
+    ...selectedSpotChannels,
+  ];
+
+  return targetChannelList;
 };
