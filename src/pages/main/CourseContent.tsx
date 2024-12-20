@@ -10,6 +10,8 @@ import images from "../../assets/images/importImages";
 import PostEditor from "./../PostEditor";
 import { useUserStore } from "../../stores/useInfoStore";
 import { deleteMyCourse } from "./../../api/postMyCourse";
+import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
+import { getChannelPostList } from "./../../api/postApi";
 import { toast } from "react-toastify";
 
 export default function CourseContent() {
@@ -61,15 +63,51 @@ export default function CourseContent() {
   };
 
   const onDeleteClicked = async () => {
+    const titleStringtoObj = JSON.parse(courseData.title);
+    const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
+    console.log(channelIdList, "채널리스트");
+
+    let postIdsToDelete = [];
+
+    // channelIdList에서 null을 제거한 후 진행
+    const validChannelIdList = channelIdList.filter(
+      (channelId: string | null) => channelId !== null
+    );
+
+    await Promise.all(
+      validChannelIdList.map(async (channelId: string) => {
+        try {
+          const postList = await getChannelPostList(channelId); // 현재 게시물의 코스 지역에 해당하는 채널의 모든 게시물
+          const matchedPost = postList.find(
+            (post: CourseData) => post.title === courseData.title
+          );
+          if (matchedPost) {
+            postIdsToDelete.push(matchedPost._id); // 삭제 대상 ID 추가
+          }
+        } catch (error) {
+          console.error(
+            `채널 ID ${channelId}에서 게시물 가져오기 실패:`,
+            error
+          );
+        }
+      })
+    );
+
+    validChannelIdList.push("675e6ed26ada400ee6bec120");
+
     if (contentId) {
-      try {
-        await deleteMyCourse(contentId);
-        refetch();
-        toast.success("해당 게시물이 삭제되었습니다");
-        navigate("/");
-      } catch {
-        toast.error("게시물 삭제에 실패했습니다. 다시 시도해주세요.");
-      }
+      postIdsToDelete.push(contentId);
+    }
+
+    try {
+      await Promise.all(
+        postIdsToDelete.map((postId) => deleteMyCourse(postId))
+      );
+      refetch();
+      alert("해당 게시물이 삭제되었습니다");
+      navigate("/my-page"); // 마이페이지로 이동
+    } catch {
+      toast.error("게시물 삭제에 실패했습니다. 다시 시도해주세요.");
     }
   };
 

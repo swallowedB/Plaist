@@ -1,14 +1,7 @@
 type InputTagsContext = {
   courseTitle?: string;
   courseDescription?: string;
-  locationObjs?: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-  }[];
+  locationObjs?: FullLocationObjs;
   estimatedTime?: number;
   estimatedCost?: number;
   withWhom: string[];
@@ -20,14 +13,7 @@ type InputTagsContext = {
 type InputCourseDetailsContext = {
   courseTitle?: string;
   courseDescription?: string;
-  locationObjs?: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-  }[];
+  locationObjs?: FullLocationObjs;
   estimatedTime?: number;
   estimatedCost?: number;
   withWhom: string[];
@@ -39,14 +25,7 @@ type InputCourseDetailsContext = {
 type InputLocationContext = {
   courseTitle?: string;
   courseDescription?: string;
-  locationObjs: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-  }[];
+  locationObjs: FullLocationObjs;
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
@@ -58,14 +37,7 @@ type InputLocationContext = {
 type InputExplainationContext = {
   courseTitle?: string;
   courseDescription?: string;
-  locationObjs: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-  }[];
+  locationObjs: FullLocationObjs;
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];
@@ -78,14 +50,7 @@ type InputExplainationContext = {
 type PostResultContext = {
   courseTitle: string;
   courseDescription: string;
-  locationObjs: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-  }[];
+  locationObjs: FullLocationObjs;
   estimatedTime: number;
   estimatedCost: number;
   withWhom: string[];

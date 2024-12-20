@@ -11,7 +11,7 @@ export default function Mapview({ onNext }: MapviewProps) {
       />
       <section className="flex flex-col items-center">
         <MapDisplay
-          onNext={(location: LocationObj) => {
+          onNext={(location: FullLocationObj) => {
             onNext(location);
           }}
         />

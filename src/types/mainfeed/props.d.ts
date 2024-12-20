@@ -109,7 +109,7 @@ interface Title {
   courseDescription: string;
   estimatedTime: string;
   estimatedCost: number;
-  locationObjs: LocationObj[];
+  locationObjs: LocationObjs;
   withWhom: string[];
   style: string[];
 }
