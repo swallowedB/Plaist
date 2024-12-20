@@ -9,6 +9,7 @@ import {
   formatPrice,
 } from "../../../utills/main/fomatter";
 import { getUserIdFromToken } from "../../../api/userApi";
+import CourseBadge from "./courseBadge";
 
 export default function CourseContentDoc({
   courseObj,
@@ -118,7 +119,7 @@ export default function CourseContentDoc({
             <p>{doc.courseDescription}</p>
           </div>
 
-          <div className="flex gap-[14px] h-6 mb-10">
+          <div className="flex gap-[14px] h-6 mb-5">
             <div className="flex items-center gap-[11px]">
               <img
                 src={images.course_estimated_time_icon}
@@ -144,29 +145,11 @@ export default function CourseContentDoc({
         </div>
       </div>
 
-      <div className="min-h-[31px] flex flex-row gap-3 text-[14px] text-primary-500 font-medium leading-[10px] ">
-        {(doc.withWhom || []).map((item, idx) => {
-          return (
-            <span
-              key={idx}
-              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
-            >
-              {item}
-            </span>
-          );
-        })}
-        {(doc.style || []).map((item, idx) => {
-          return (
-            <span
-              key={idx}
-              className="pt-[10px] pb-[11px] px-6 border-[2px] border-primary-500 border-solid rounded-[30px]"
-            >
-              {item}
-            </span>
-          );
-        })}
+      <div className="flex flex-row gap-3">
+        <CourseBadge target={doc.withWhom} />
+        <CourseBadge target={doc.style} />
       </div>
-
+      
       <CourseLocationCards doc={doc} />
       <CourseContentCommentArea courseObj={courseObj} />
     </div>
