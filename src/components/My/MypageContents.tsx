@@ -4,9 +4,22 @@ import offLogin from "../../assets/images/offLogout.svg";
 import onLogin from "../../assets/images/onLogout.svg";
 import { useNavigate } from "react-router";
 import { postLogout } from "../../api/api";
+import { useUserStore } from "../../stores/useInfoStore";
 
 export default function MypageContents() {
   const navigate = useNavigate();
+  const { logout } = useUserStore();
+
+  const handleLogout = async() => {
+    try {
+      await postLogout(navigate);
+      logout();
+
+    } catch (error){
+      console.error("logout error:", error);
+    }
+  };
+
   return (
     <div className={`absolute top-[117px] pb-[150px]`}>
       <div
@@ -18,7 +31,7 @@ export default function MypageContents() {
           <div 
             className={`absolute top-[-55px] left-[545px] group hover:bg-white
             flex flex-col items-center justify-center bg-primary-700/10 rounded-full w-[30px] h-[30px]`}
-            onClick={() => {postLogout(navigate);}}
+            onClick={handleLogout}
           >
             <img src={offLogin} alt="로그아웃" className="group-hover:hidden"/>
             <img src={onLogin} alt="로그아웃" className="hidden group-hover:block"/>

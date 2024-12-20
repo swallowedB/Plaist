@@ -41,8 +41,9 @@ export const getCourseObj = async (
 
 export const getMyCourseObj = async (userId: string) => {
   try {
+    console.log("userId:", userId);
     const response = await axiosInstance.get(`/posts/author/${userId}`);
-
+    console.log("getMyobj:", response);
     return response.data.filter((val: any) => val.channel.name === "전체");
   } catch (error) {
     console.error(error);

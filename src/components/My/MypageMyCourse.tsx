@@ -11,10 +11,17 @@ export default function MypageMyCourse() {
   const { userId, setUserId } = useUserStore();
 
   useEffect(() => {
+    const initializeUser = async () => {
+      await setUserId();
+      const currentUserId = useUserStore.getState().userId;
+      if (currentUserId) {
+        fetchMyCourses(currentUserId);
+      }
+    };
+  
     if (!userId) {
-      setUserId();
-    }
-    if (userId) {
+      initializeUser();
+    } else {
       fetchMyCourses(userId);
     }
   }, [userId, setUserId, fetchMyCourses]);

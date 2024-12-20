@@ -46,8 +46,8 @@ export default function MypageCardItem({ data }: MypageCardItemProps) {
             </p>
             {/* 좋아요 수 */}
             <div className="flex flex-row items-center">
-              <img src={images.like_filled_icon} alt="좋아요 아이콘" />
-              <p className="ml-[3px] font-pretendard text-[12px] font-regular text-custom-black">
+              <img src={images.like_filled_icon} alt="좋아요 아이콘" className="pb-[1px]"/>
+              <p className="ml-[3px] font-pretendard text-[12px] font-regular text-custom-black pt-[1px]">
                 {data.likes}
               </p>
             </div>
