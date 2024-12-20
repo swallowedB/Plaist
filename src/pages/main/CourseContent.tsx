@@ -50,29 +50,23 @@ export default function CourseContent() {
 
   const [isEditorOpened, setEditorOpened] = useState<boolean>(false);
 
-  // 수정 창 열기
   const onEditClicked = () => {
     setEditorOpened(true);
   };
 
-  // 수정 완료 후 Editor 종료 및 데이터 갱신을 위해 refetch 호출
   const onExitEditor = () => {
     setEditorOpened(false);
-    refetch(); // 데이터 갱신을 위해 refetch 호출
+    refetch();
     console.log("테스트");
   };
 
-  // 삭제 버튼 클릭 시
   const onDeleteClicked = async () => {
     if (contentId) {
       try {
-        // 삭제 요청
         await deleteMyCourse(contentId);
-
-        // 삭제 후 데이터 갱신
         refetch();
         alert("해당 게시물이 삭제되었습니다");
-        navigate("/"); // -1로 설정하면 이전 페이지로 이동
+        navigate("/");
       } catch (error) {
         console.error("삭제 실패:", error);
       }
@@ -108,17 +102,17 @@ export default function CourseContent() {
                     likeCount={likeCount}
                     userId={userId}
                     onEditClicked={onEditClicked}
-                    onDeleteClicked={onDeleteClicked} // 삭제 함수 연결
+                    onDeleteClicked={onDeleteClicked}
                   />
                 </div>
               </div>
             </div>
+            <PostEditor
+              isEditorOpened={isEditorOpened}
+              onExitEditor={onExitEditor}
+              courseObj={courseData}
+            />
           </div>
-          <PostEditor
-            isEditorOpened={isEditorOpened}
-            onExitEditor={onExitEditor}
-            courseObj={courseData}
-          />
         </>
       )}
     </>

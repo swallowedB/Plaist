@@ -60,26 +60,24 @@ export default function PostEditor({
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
 
     try {
-      // `selectedImage` 여부에 따라 요청 생성
       const results = await Promise.allSettled(
         channelIdList.map((channelId) =>
           selectedImage
             ? editMyCourse({
                 postId,
                 title,
-                image: selectedImage, // 이미지 추가
+                image: selectedImage,
                 imageToDeletePublicId,
                 channelId,
               })
             : editMyCourse({
                 postId,
                 title,
-                channelId, // 이미지 제외
+                channelId,
               })
         )
       );
 
-      // 결과 처리
       results.forEach((result, index) => {
         if (result.status === "fulfilled") {
           console.log(
@@ -112,11 +110,11 @@ export default function PostEditor({
         }`}
       />
       <section
-        className={`w-[767px] h-[1000px] bg-white shadow-lg rounded-3xl p-8 relative z-50 transform transition-all duration-700 ease-in-out ${
+        className={`absolute top-[300px] w-[767px] h-[1000px] bg-white shadow-lg rounded-3xl p-8 z-50 transform transition-all duration-700 ease-in-out ${
           isVisible
             ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-[1000px]"
-        }`}
+            : " opacity-0 translate-y-[1000px]"
+        } ${isEditorOpened ? "" : "hidden"}`}
         style={{
           paddingLeft: "60px",
           paddingTop: "82px",
