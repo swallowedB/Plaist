@@ -138,7 +138,7 @@ export default function CourseContentDoc({
         </div>
       </div>
 
-      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
+      <div className="flex flex-row gap-3">
         <CourseBadge target={doc.withWhom} />
         <CourseBadge target={doc.style} />
       </div>
