@@ -7,9 +7,10 @@ import {
   convertDateFormatt,
   convertTime,
   formatPrice,
+  splitBySpaceUntilIndex1,
 } from "../../../utills/main/fomatter";
 import CourseBadge from "./CourseBadge";
-
+import ModifyButton from "../utils/ModifyButton";
 
 export default function CourseContentDoc({
   courseObj,
@@ -43,14 +44,12 @@ export default function CourseContentDoc({
       setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
-  
-
   return (
     <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex justify-between">
         <NavLink
           to={`/other-user-info/${courseObj.author._id}`}
-          className="flex items-center gap-[11px] font-pretendard"
+          className="flex items-center gap-[11px] font-pretendard]"
         >
           <img
             src={authorProfileImg}
@@ -66,19 +65,14 @@ export default function CourseContentDoc({
             </p>
           </div>
         </NavLink>
+
         <div className={isEditButtonsVisable ? "inline-block" : "invisible"}>
-          <button
-            onClick={onEditClicked}
-            className="bg-[#EFEFEF] w-[54px] h-[24px] rounded-[30px] mr-[10px]"
-          >
-            수정
-          </button>
-          <button
-            onClick={onDeleteClicked}
-            className="bg-[#EFEFEF] w-[54px] h-[24px] rounded-[30px]"
-          >
-            삭제
-          </button>
+          <div className="text-xs font-pretendard leading-[10px] flex gap-1 relative">
+            <div className="absolute flex flex-row items-center right-[-11px] top-[16px]">
+              <ModifyButton onClicked={onEditClicked}>수정</ModifyButton>
+              <ModifyButton onClicked={onDeleteClicked}>삭제</ModifyButton>
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-[43px]">
@@ -97,53 +91,52 @@ export default function CourseContentDoc({
           </div>
         </div>
 
-        <div className="mt-[25px] flex flex-col gap-5">
-          <div className="flex items-center justify-start">
+        <div className="mt-[25px] flex flex-col">
+          <div className="font-medium leading-6 text-[15px] text-custom-gray mb-[18px]">
+            <p className="w-[580px]">{doc.courseDescription}</p>
+          </div>
+
+          <div className="flex items-center justify-start mb-[10px]">
             <img
               src={images.location_icon}
               alt="장소 아이콘"
               className="w-[14.66px] h-4"
             />
-            <p className="text-xs leading-5 font-regular text-custom-gray">
-              {doc.locationObjs[0].locationAddress}
+            <p className="text-sm leading-5 font-regular text-custom-gray">
+              {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
             </p>
           </div>
-
-          <div className="text-[14px] font-medium leading-5 text-custom-gray">
-            <p>{doc.courseDescription}</p>
-          </div>
-
-          <div className="flex gap-[14px] h-6 mb-10">
-            <div className="flex items-center gap-[11px]">
+          <div className="flex gap-[14px] h-6 mb-5">
+            <div className="flex items-center gap-[6px]">
               <img
                 src={images.course_estimated_time_icon}
                 alt="예상 이동 시간 아이콘"
                 className="w-[14px] h-[14px]"
               />
-              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 시간 ${convertTime(
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 시간: ${convertTime(
                 doc.estimatedTime
               )}H`}</p>
             </div>
 
-            <div className="flex items-center gap-[11px]">
+            <div className="flex items-center gap-[6px]">
               <img
                 src={images.course_budget_icon}
                 alt="예상 예산 아이콘"
                 className="w-[14px] h-[14px]"
               />
-              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 금액 ${formatPrice(
+              <p className="text-[14px] text-primary-600 font-medium leading-[10px]">{`예상 금액: ${formatPrice(
                 doc.estimatedCost
               )}`}</p>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
-        <CourseBadge target={doc.withWhom} />
-        <CourseBadge target={doc.style} />
+        <div className="gap-x-[15px] gap-y-2 text-[14px] text-primary-500 font-medium flex flex-wrap">
+          <CourseBadge target={doc.withWhom} />
+          <CourseBadge target={doc.style} />
+        </div>
       </div>
-
+      
       <CourseLocationCards doc={doc} />
       <CourseContentCommentArea courseObj={courseObj} />
     </div>

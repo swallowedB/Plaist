@@ -1,7 +1,7 @@
 import { getCourseObj } from "../api/postApi";
 import { getUserInfo } from "../api/userApi";
-import { create } from 'zustand';
-import defaultImg from "../assets/images/basicImg.jpg";
+import { create } from "zustand";
+import defaultImg from "../assets/images/default.png";
 
 type Like = {
   _id: string;
@@ -19,8 +19,7 @@ type PostType = {
     courseTitle: string;
     locationObjs: any[];
   };
-}
-
+};
 
 type LikesStore = {
   likes: Like[];
@@ -35,19 +34,19 @@ export const useLikesStore = create<LikesStore>((set, get) => ({
 
   // 좋아요 목록 가져오기
   fetchLikes: async () => {
-    try{
+    try {
       const userInfo = await getUserInfo();
       set({ likes: userInfo.likes });
-    } catch (error){
+    } catch (error) {
       console.error("Error fetching likes:", error);
     }
   },
 
-  fetchPostById: async(postId: string) => {
+  fetchPostById: async (postId: string) => {
     const { posts } = get();
-    if (posts[postId]) return; 
+    if (posts[postId]) return;
 
-    try{
+    try {
       const postData = await getCourseObj(postId);
 
       if (!postData) {
@@ -62,14 +61,14 @@ export const useLikesStore = create<LikesStore>((set, get) => ({
           [postId]: {
             likes: postData.likes.length,
             title: parsedTitle,
-            courseTitle: parsedTitle .courseTitle || "제목 없음",
-            locationObjs: parsedTitle .locationObjs || [],
-            image: postData.image || defaultImg, // 기본 이미지 추가
+            courseTitle: parsedTitle.courseTitle || "제목 없음",
+            locationObjs: parsedTitle.locationObjs || [],
+            image: postData.image || defaultImg,
           },
         },
       }));
     } catch (error) {
       console.error(`게시물 ${postId} 불러오기 실패`, error);
     }
-  }
+  },
 }));

@@ -62,18 +62,13 @@ export const useUserStore = create<UserStore>((set) => ({
           console.warn("username 파싱 실패:", error);
         }
       }
-
-      const updatedUserInfo = {
-        fullName: data.fullName || "",
-        email: data.email,
-        region,
-        image: data.image || "",
-      };
-
-      console.log("업데이트할 userInfo:", updatedUserInfo);
-
       set(() => ({
-        userInfo: updatedUserInfo,
+        userInfo: {
+          fullName: data.fullName || "Unknown",
+          email: data.email,
+          region,
+          image: data.image || "",
+        },
         userProfilePic: profilePicUrl,
       }));
     } catch (error) {

@@ -21,3 +21,24 @@ export const seenNotification = async () => {
     console.error("notification update 중 오류", error);
   }
 };
+
+// 알림 생성
+export const createNotification = async (
+  notificationType: NotificationType,
+  notificationTypeId: string,
+  userId: string,
+  postId: string
+) => {
+  try {
+    const response = await axiosInstance.post("/notifications/create", {
+      notificationType: notificationType,
+      notificationTypeId: notificationTypeId,
+      userId: userId,
+      postId: postId,
+    });
+    console.log("notification Created");
+    console.log(response);
+  } catch (error) {
+    console.error("notification update 중 오류", error);
+  }
+};

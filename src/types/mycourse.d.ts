@@ -1,27 +1,37 @@
-interface LocationObj {
+type FullLocationObj = {
   locationName: string;
   locationAddress: string;
   locationCategory: string;
   locationPhoneNum: string;
   location_id: string;
   like: number;
-}
+};
+
+type FullLocationObjs = {
+  locationName: string;
+  locationAddress: string;
+  locationCategory: string;
+  locationPhoneNum: string;
+  location_id: string;
+  like: number;
+}[];
+
 interface MapviewProps {
-  onNext: (location: LocationObj) => void;
+  onNext: (location: FullLocationObj) => void;
 }
 
 interface SelectCourseMainProps {
-  locationObjs: LocationObj[];
+  locationObjs: FullLocationObjs;
   locationObjDelete: (id: number) => void;
   onPlus: (
     estimatedTime: number,
     estimatedCost: number,
-    locationObjs: LocationObj[]
+    locationObjs: FullLocationObjs
   ) => void;
   onNext: (
     estimatedTime: number,
     estimatedCost: number,
-    locationObjs: LocationObj[],
+    locationObjs: FullLocationObjs,
     channelIdList: string[]
   ) => void;
 }
@@ -32,22 +42,14 @@ interface TitleObj {
   courseDescription: string;
   estimatedTime: number;
   estimatedCost: number;
-  locationObjs: LocationObj;
+  locationObjs: FullLocationObjs;
   withWhom: string[];
   style: string[];
 }
 
 // 컴포넌트 별 props 타입
 interface ExplainCourseProps {
-  locationObjs: {
-    locationName: string;
-    locationAddress: string;
-    locationCategory: string;
-    locationPhoneNum: string;
-    location_id: string;
-    like: number;
-    locationImage?: string;
-  }[];
+  locationObjs: FullLocationObjs;
   withWhom: string[];
   style: string[];
   estimatedTime: number;
@@ -112,6 +114,6 @@ interface CourseData {
   title: string; // JSON 문자열
   updatedAt: string;
   _id: string;
-  image: string | File | undefined;
+  image: string | undefined | null;
   imagePublicId: string;
 }
