@@ -21,8 +21,8 @@ import progress_bar3 from "../images/progress_bar3.svg";
 import progress_bar4 from "../images/progress_bar4.svg";
 import dropdown_icon_up from "../images/dropdowm_icon_down.svg";
 import dropdown_icon_down from "../images/dropdowm_icon_up.svg";
-import start_create_button from "../images/start_to_create_button.svg";
 import plus_icon from "../images/plus_icon.svg";
+import plus_white_icon from "../images/plus_white_icon.svg";
 import congratulation_icon from "../images/congratulation_icon.svg";
 import big_logo_after_posting from "../images/big_logo_after_posting.svg";
 import like_not_filled_border_icon from "../images/like_not_filled_border_icon.svg";
@@ -77,8 +77,8 @@ const images: {
   progress_bar4,
   dropdown_icon_up,
   dropdown_icon_down,
-  start_create_button,
   plus_icon,
+  plus_white_icon,
   course_selected_icon,
   course_delete_icon,
   congratulation_icon,
