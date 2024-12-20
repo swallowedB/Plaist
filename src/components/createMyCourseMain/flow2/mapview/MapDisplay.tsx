@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 export default function MapDisplay({
   onNext,
 }: {
-  onNext: (location: LocationObj) => void;
+  onNext: (location: FullLocationObj) => void;
 }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
