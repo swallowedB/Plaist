@@ -36,7 +36,7 @@ export default function MypageMyCourse() {
       {/* 검색바 */}
       <SearchBar
         data={myCourseList}
-        searchKey="courseTitle"
+        searchKey={["courseTitle","courseDescription", "locationAddress"]}
         onSearch={handleSearch}
         placeholder="무엇이든 검색해보세요 (oﾟvﾟ)ノ"
       />
@@ -51,8 +51,6 @@ export default function MypageMyCourse() {
               검색 결과를 찾지 못했어요 ψ(´´∀´´)ψ
             </div>
           )
-        ) : myCourseList.length > 0 ? (
-          <MypageCards data={myCourseList} />
         ) : myCourseList.length > 0 ? (
           <MypageCards data={myCourseList} />
         ) : (
