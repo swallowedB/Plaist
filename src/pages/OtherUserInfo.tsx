@@ -63,15 +63,15 @@ export default function OtherUserInfo() {
   if (userInfo) {
     return (
       <>
-        <div className="relative w-[767px] flex flex-col items-center h-screen mx-auto">
-          {/* blur blue */}
-          <div className="absolute blur-bg-center" />
+        <div className="relative flex flex-col items-center min-h-[1000px] mx-auto mb-[200px]">
+          {/* blur blue*/}
+          <div className="absolute blur-bg-center z-[-10]" />
 
           {/* glass 창 */}
-          <div className={`absolute z-[100]`}>
+          <div className={`absolute top-[117px] pb-[150px]`}>
             <div
-              className={`flex flex-col items-center w-[647px] h-full bg-primary-300/15 rounded-t-[25px] 
-                      border-2 border-white z-10 shadow-default py-20 min-h-[960px] `}
+              className={`flex flex-col items-center w-[647px] h-full bg-primary-300/15 rounded-[25px] 
+            border-2 border-white z-10 shadow-default py-20 min-h-[960px]`}
             >
               {/* 창 안의 요소 */}
               <div className="relative flex flex-col items-center mt-[35px] h-full w-[555px]">

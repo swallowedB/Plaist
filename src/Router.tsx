@@ -54,12 +54,12 @@ export default function Router() {
             path="/course-content/:contentId"
             element={<CourseContent />}
           />
-          <Route path="other-user-info/:userId" element={<OtherUserInfo />} />
         </Route>
 
         {/* <Route path="/hamburger-meuu" element={<HamburgerMenu />} /> */}
         <Route path="/notification" element={<Notification />} />
         <Route path="my-page" element={<MyPage />} />
+        <Route path="other-user-info/:userId" element={<OtherUserInfo />} />
         <Route path="user-info" element={<UserInfo />} />
         <Route path="category" element={<Category />} />
         <Route path="createChannel" element={<CreateChannel />} />
