@@ -61,6 +61,10 @@ export default function CreateMyCourse() {
       channelIdList,
     } = funnel.context as PostResultContext;
 
+    const validChannelIdList = channelIdList.filter(
+      (channelId) => channelId !== null
+    );
+
     const titleObj = {
       courseTitle,
       courseDescription,
@@ -71,18 +75,18 @@ export default function CreateMyCourse() {
       style,
     };
 
-    channelIdList.push("675e6ed26ada400ee6bec120");
-  
+    validChannelIdList.push("675e6ed26ada400ee6bec120");
+
     console.log(titleObj, "타이틀obj 잘 들어갔는지");
     const title = JSON.stringify(titleObj);
     console.log(title, "title 변수 잘 들어갔는지");
-    console.log(channelIdList, "channel리스트는 제대로 들어갔는지");
+    console.log(validChannelIdList, "channel리스트는 제대로 들어갔는지");
     console.log(image, "이미지 잘 들어갔는지");
 
     try {
       // 각 channelId에 대해 API 호출
       await Promise.all(
-        channelIdList.map(async (channelId: string) => {
+        validChannelIdList.map(async (channelId: string) => {
           const response = await postMyCourse({
             title,
             image,

@@ -9,7 +9,7 @@ export const useConvertIcon = (locationCategory: string) => {
       case locationCategory.includes("음식점"):
         return images.location_restaurant_icon;
       case locationCategory.includes("숙박"):
-        return images.location_accomodation_icon;
+        return images.location_accommodation_icon;
       case locationCategory.includes("관광명소"):
         return images.location_tourist_attraction_icon;
       case locationCategory.includes("문화거리"):
