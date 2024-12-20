@@ -56,19 +56,6 @@ interface Follower {
   updatedAt: string;
 }
 
-// interface Notification {
-//   seen: boolean;
-//   _id: string;
-//   author: string;
-//   user: string;
-//   post: string;
-//   follow: string;
-//   comment: string;
-//   message: string;
-//   createdAt: string;
-//   updatedAt: string;
-// }
-
 interface Message {
   _id: string;
   message: string;
