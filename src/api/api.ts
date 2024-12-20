@@ -13,7 +13,7 @@ export const getSearchByUserAndPost = async (searchQuery: string) => {
     return response.data;
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
-    throw error; // 오류를 호출자에게 전달
+    
   }
 };
 
@@ -66,7 +66,7 @@ export const postSingUp = async (
     });
 
     if (status === 200) {
-      navigate("/login?page=my-page");
+      navigate("/login");
       console.log(data);
     } else {
       console.log("failed");
@@ -95,12 +95,14 @@ export const postLogin = async (
     });
     if (status === 200) {
       setCookie("token", data.token);
-      navigate(`/${page}`);
+      if (page) navigate(`/${page}`);
+      else navigate(`/`);
+
       startNotificationPolling();
       console.log("polling start");
     }
   } catch (error) {
-    toast.success("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
+    toast.error("이메일 또는 비밀번호를 잘못 입력하셨습니다.");
     console.error("API 호출 중 오류 발생:", error);
   }
 };

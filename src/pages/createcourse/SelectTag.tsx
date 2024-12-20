@@ -4,7 +4,6 @@ import CreateMyCourseFlowButton from "../../components/createMyCourseMain/Create
 import { useCookie } from "../../hooks/useCookie";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
-type OnNextInputTags = (withWhom: string[], style: string[]) => void;
 
 export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
   const isLoggedIn = useCookie();

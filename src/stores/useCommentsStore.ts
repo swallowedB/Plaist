@@ -79,7 +79,7 @@ export const useCommentsStore = create<CommentsState>((set, get) => ({
           [postId]: {
             likes: postData.likes.length,
             title: parsedTitle,
-            courseTitle: parsedTitle .courseTitle || "No Title",
+            courseTitle: parsedTitle .courseTitle || "제목 없음",
             locationObjs: parsedTitle .locationObjs || [],
           },
         },

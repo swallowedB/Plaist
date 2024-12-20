@@ -30,7 +30,7 @@ export default function MypageCardItem({ data }: MypageCardItemProps) {
             <img 
               src={data.image}
               alt={data.courseTitle}
-              className="w-[158px] h-[125px] overflow-hidden bg-cover bg-center rounded-[10px]" 
+              className="w-[158px] h-[125px] object-cover object-center rounded-[10px]" 
             />
           
           {/* card texts */}

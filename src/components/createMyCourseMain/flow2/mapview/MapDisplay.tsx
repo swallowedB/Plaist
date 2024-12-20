@@ -2,18 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
 import images from "../../../../assets/images/importImages";
 import { toast } from "react-toastify";
-interface LocationProps {
-  locationName: string;
-  locationAddress: string;
-  locationCategory: string;
-  locationPhoneNum: string;
-  location_id: string;
-  like: number;
-}
+
 export default function MapDisplay({
   onNext,
 }: {
-  onNext: (location: LocationProps) => void;
+  onNext: (location: LocationObj) => void;
 }) {
   const mapRef = useRef<kakao.maps.Map | null>(null);
 
@@ -43,7 +36,7 @@ export default function MapDisplay({
   // 검색 유효성 검사 (입력하지 않음)
   function searchPlaces() {
     if (!keyword.trim()) {
-      toast.success("키워드를 입력해주세요!");
+      toast.error("키워드를 입력해주세요!");
       return;
     }
     const ps = new kakao.maps.services.Places();
@@ -55,9 +48,9 @@ export default function MapDisplay({
     if (status === kakao.maps.services.Status.OK) {
       displayPlaces(data);
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-      toast.success("검색 결과가 존재하지 않습니다.");
+      toast.error("검색 결과가 존재하지 않습니다.");
     } else if (status === kakao.maps.services.Status.ERROR) {
-      toast.success("검색 중 오류가 발생했습니다.");
+      toast.error("검색 중 오류가 발생했습니다.");
     }
   }
 

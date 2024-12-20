@@ -1,13 +1,14 @@
+import { useEffect, useState } from "react";
 import images from "../../../assets/images/importImages";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
 import CourseLocationCards from "./locationCardArea/CourseLocationCards";
-
 import {
   convertDateFormatt,
   convertTime,
   formatPrice,
 } from "../../../utills/main/fomatter";
+import { getUserIdFromToken } from "../../../api/userApi";
 
 export default function CourseContentDoc({
   courseObj,
@@ -16,30 +17,75 @@ export default function CourseContentDoc({
   courseObj: Course;
   likeCount: number;
 }) {
+  const navigate = useNavigate();
   const doc: Title = JSON.parse(courseObj.title);
+  const [userId, setUserId] = useState<string | undefined>(undefined);
+  const [isEditAppear, setIsEditAppear] = useState<boolean>(false);
+  const [authorProfileImg, setAuthorProfileImg] = useState(
+    images.course_user_profile_img
+  );
+
+  useEffect(() => {
+    if (courseObj.author.image) setAuthorProfileImg(courseObj.author.image);
+  }, [courseObj.author.image]);
+
+  // 현재 사용자 ID 설정
+  useEffect(() => {
+    const currentUserId = getUserIdFromToken();
+    setUserId(currentUserId);
+  }, []);
+
+  // 수정/삭제 버튼 표시 여부 결정
+  useEffect(() => {
+    if (userId && courseObj.author._id === userId) {
+      setIsEditAppear(true);
+    } else {
+      setIsEditAppear(false);
+    }
+  }, [userId, courseObj.author._id]);
+
+  const handleEditClick = () => {
+    navigate(`/course-content/${courseObj._id}/edit`);
+  };
+
+  const onDeleteCurrentPost = () => {};
 
   return (
     <div className="mb-20 font-pretendard text-custom-black">
-      <NavLink
-        to={`/other-user-info/${courseObj.author._id}`}
-        className="flex items-center gap-[11px] font-pretendard"
-      >
-        {" "}
-        <img
-          src={images.course_user_profile_img}
-          alt="profile-image"
-          className="w-10 h-10 rounded-full bg-primary-200"
-        />
-        <div className="flex flex-col gap-1">
-          <p className="text-xs font-semibold text-primary-900">
-            {courseObj.author.fullName}
-          </p>
-          <p className="text-xs text-custom-gray">
-            {convertDateFormatt(courseObj.createdAt)}
-          </p>
+      <div className="flex justify-between">
+        <NavLink
+          to={`/other-user-info/${courseObj.author._id}`}
+          className="flex items-center gap-[11px] font-pretendard"
+        >
+          <img
+            src={authorProfileImg}
+            alt="profile-image"
+            className="w-10 h-10 rounded-full bg-primary-200"
+          />
+          <div className="flex flex-col gap-1">
+            <p className="text-xs font-semibold text-primary-900">
+              {courseObj.author.fullName}
+            </p>
+            <p className="text-xs text-custom-gray">
+              {convertDateFormatt(courseObj.createdAt)}
+            </p>
+          </div>
+        </NavLink>
+        <div className={isEditAppear ? "inline-block" : "invisible"}>
+          <button
+            onClick={handleEditClick}
+            className="bg-[#EFEFEF] w-[54px] h-[24px] rounded-[30px] mr-[10px]"
+          >
+            수정
+          </button>
+          <button
+            onClick={onDeleteCurrentPost}
+            className="bg-[#EFEFEF] w-[54px] h-[24px] rounded-[30px]"
+          >
+            삭제
+          </button>
         </div>
-      </NavLink>
-
+      </div>
       <div className="mt-[43px]">
         <div className="flex justify-between">
           <h1 className="text-4xl font-semibold leading-8">
@@ -99,7 +145,7 @@ export default function CourseContentDoc({
       </div>
 
       <div className="min-h-[31px] flex flex-row gap-3 text-[14px] text-primary-500 font-medium leading-[10px] ">
-        {doc.withWhom.map((item, idx) => {
+        {(doc.withWhom || []).map((item, idx) => {
           return (
             <span
               key={idx}
@@ -109,7 +155,7 @@ export default function CourseContentDoc({
             </span>
           );
         })}
-        {doc.style.map((item, idx) => {
+        {(doc.style || []).map((item, idx) => {
           return (
             <span
               key={idx}

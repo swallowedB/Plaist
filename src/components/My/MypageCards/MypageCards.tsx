@@ -1,14 +1,5 @@
 import MypageCardItem from "./MypageCardItem";
 
-type CardData = {
-  id: string;
-  courseTitle: string;
-  courseDescription: string;
-  locationAddress: string;
-  likes: number;
-  image: string;
-};
-
 type MypageCardsProps = {
   data: CardData[];
 };

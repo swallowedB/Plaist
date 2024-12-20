@@ -2,24 +2,16 @@ import { useEffect, useMemo, useState } from "react";
 import SearchBar from "../utills/SearchBar";
 import MypageCards from "./MypageCards/MypageCards";
 import { useLikesStore } from "../../stores/useLikesStore";
-
-type CardData = {
-  id: string;
-  courseTitle: string;
-  courseDescription: string;
-  locationAddress: string;
-  likes: number;
-  image: string;
-};
+import defaultImg from "../../assets/images/basicImg.jpg";
 
 export default function MyLike() {
-  const {likes, fetchLikes, posts, fetchPostById } = useLikesStore();
+  const { likes, fetchLikes, posts, fetchPostById } = useLikesStore();
   const [isFetched, setIsFetched] = useState<boolean>(false);
   const [filteredData, setFilteredData] = useState<CardData[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
-  useEffect(() =>{
-    if(!isFetched) {
+  useEffect(() => {
+    if (!isFetched) {
       fetchLikes();
       setIsFetched(true);
     }
@@ -29,33 +21,36 @@ export default function MyLike() {
     likes.forEach((like) => {
       fetchPostById(like.post);
     });
-  }, [likes, fetchPostById])
+  }, [likes, fetchPostById]);
 
   const likeCardData = useMemo<CardData[]>(() => {
     return likes
 
-    
-    .map((like) => {
-        const getFirstTwoWords = (input: string) => input.split(" ").slice(0, 2).join(" ");
-        const post = posts[like.post]; 
+      .map((like) => {
+        const getFirstTwoWords = (input: string) =>
+          input.split(" ").slice(0, 2).join(" ");
+        const post = posts[like.post];
         if (post) {
-          return { 
+          return {
             id: like._id,
             courseTitle: post.courseTitle || "제목없음",
             courseDescription: post.title?.courseDescription || " ",
-            locationAddress: getFirstTwoWords(post.title?.locationObjs?.[0]?.locationAddress) || "위치 정보 없음",
+            locationAddress:
+              getFirstTwoWords(
+                post.title?.locationObjs?.[0]?.locationAddress
+              ) || "위치 정보 없음",
             likes: post.likes || 0,
-            image: post.image || " ", // to-do 기본 이미지 추가
-          }; 
+            image: post.image || { defaultImg }, // to-do 기본 이미지 추가
+          };
         }
-        return null; 
+        return null;
       })
-      .filter((data): data is CardData => data !== null); 
+      .filter((data): data is CardData => data !== null);
   }, [likes, posts]);
 
   const handleSearch = (result: CardData[]) => {
-    setIsSearching(result.length > 0 || result.length === 0); 
-    setFilteredData(result); 
+    setIsSearching(result.length > 0 || result.length === 0);
+    setFilteredData(result);
   };
 
   return (
@@ -69,22 +64,22 @@ export default function MyLike() {
       />
 
       {/* 필터링된 데이터 렌더링 */}
-      <div className="mt-8 flex flex-col">
+      <div className="flex flex-col mt-8">
         {isSearching ? (
-            filteredData.length > 0 ? (
-              <MypageCards data={filteredData} />
-            ) : (
-              <div className="mt-10 col-span-3 font-semiBold text-center text-primary-700 font-pretendard text-sm">
-                검색 결과를 찾지 못했어요 ψ(｀∇´)ψ
-              </div>
-            )
-          ) : likeCardData.length > 0 ? (
-            <MypageCards data={likeCardData} />
+          filteredData.length > 0 ? (
+            <MypageCards data={filteredData} />
           ) : (
-            <div className="mt-10 col-span-3 font-semiBold text-center text-primary-700 font-pretendard text-sm">
+            <div className="mt-10 col-span-3 font-medium text-center text-primary-700 font-pretendard text-sm">
               좋아요를 누른 게시물이 없어요 இ௰இ
             </div>
-          )}
+          )
+        ) : likeCardData.length > 0 ? (
+          <MypageCards data={likeCardData} />
+        ) : (
+          <div className="col-span-3 mt-10 text-sm text-center font-semiBold text-primary-700 font-pretendard">
+            좋아요를 누른 게시물이 없어요 இ௰இ
+          </div>
+        )}
       </div>
     </div>
   );

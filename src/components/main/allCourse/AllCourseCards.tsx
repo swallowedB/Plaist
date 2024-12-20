@@ -1,10 +1,8 @@
-import { useMemo } from "react";
 import AllCourseCardItem from "./AllCourseCardItem";
 import { useSortMainStore } from "../../../stores/main/comment/useSortStore";
-import {
-  sortCoursesByCreatedAt,
-  sortCoursesByLike,
-} from "../../../utills/main/fomatter";
+import Pagenation from "../utils/Pagenation";
+import { useSortedCourses } from "../../../hooks/mainFeed/useSortedCourses";
+import { usePagination } from "../../../hooks/mainFeed/usePagenation";
 
 export default function AllCourseCards({
   courseList,
@@ -12,19 +10,22 @@ export default function AllCourseCards({
   courseList: Course[];
 }) {
   const { activeSort } = useSortMainStore();
-  const sortedCourses = useMemo(() => {
-    if (activeSort === "popular") {
-      return sortCoursesByLike(courseList, 2000);
-    } else if (activeSort === "latest") {
-      return sortCoursesByCreatedAt(courseList, 2000);
-    }
-    return courseList;
-  }, [courseList, activeSort]);
+  const sortedCourses = useSortedCourses(courseList, activeSort);
+  const { paginatedData, currentPage, totalPages, handlePageChange } =
+    usePagination(sortedCourses, 8);
+
   return (
-    <div className="grid grid-cols-2 gap-x-[17px] gap-y-[36px] ">
-      {sortedCourses?.map((courseItem: Course, idx: number) => {
-        return <AllCourseCardItem key={idx} courseItem={courseItem} />;
-      })}
+    <div>
+      <div className="grid grid-cols-2 gap-x-[17px] gap-y-[36px] ">
+        {paginatedData.map((courseItem, idx) => (
+          <AllCourseCardItem key={idx} courseItem={courseItem} />
+        ))}
+      </div>
+      <Pagenation
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   ); 
 }

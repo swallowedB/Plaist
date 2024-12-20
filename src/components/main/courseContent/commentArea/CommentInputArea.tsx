@@ -29,7 +29,7 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
     setIsSubmitting(true);
 
     if (comment.trim() === "") {
-      toast.success("댓글 내용을 입력해 주세요.");
+      toast.error("댓글 내용을 입력해 주세요.");
       setIsSubmitting(false);
       return;
     }

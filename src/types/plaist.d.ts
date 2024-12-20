@@ -24,3 +24,12 @@ interface Place {
   x: string;
   y: string;
 }
+
+type CardData = {
+  id: string;
+  courseTitle: string;
+  courseDescription: string;
+  locationAddress: string;
+  likes: number;
+  image: string;
+};
