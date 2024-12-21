@@ -1,21 +1,38 @@
-import { Route, Routes } from "react-router";
-import Main from "./pages/Main";
-import RootLayout from "./layoutes/RootLayout";
-import Category from "./pages/Category";
-import CreateCourse from "./pages/CreateCourse";
-import MyPage from "./pages/MyPage";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import ScrollToTop from "./layouts/utils/ScrollToTop";
+import Router from "./Router";
+import { useEffect, useState } from "react";
+
+import { getUserIdFromToken } from "./api/userApi";
+import { startExpirationCheck } from "./utills/Auth/setCookie";
+import { useNavigate } from "react-router";
 
 export default function App() {
+  const navigate = useNavigate();
+  const [userId, setUserId] = useState<string | null>(null);
+  const queryClient = new QueryClient();
+
+  useEffect(() => {
+    const currentUserId = getUserIdFromToken();
+    setUserId(currentUserId);
+  }, []);
+
+  useEffect(() => {
+    if (userId) {
+      startExpirationCheck("token", 60, navigate);
+    }
+  }, [userId]);
+
   return (
-    <>
-      <Routes>
-        <Route element={<RootLayout />}>
-          <Route path="/" element={<Main />} />
-          <Route path="/category" element={<Category />} />
-          <Route path="/createCourse" element={<CreateCourse />} />
-          <Route path="/my-page" element={<MyPage />} />
-        </Route>
-      </Routes>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
+      <ScrollToTop />
+      <Router />
+      <ToastContainer />
+    </QueryClientProvider>
   );
 }
