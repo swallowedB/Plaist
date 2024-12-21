@@ -9,7 +9,6 @@ import useImageUpload from "../hooks/useImageUpload";
 import { useEffect, useState } from "react";
 import { editMyCourse } from "../api/postMyCourse";
 import { getChannelIdList } from "../utills/mycourse/setPostTitle";
-import { toast } from "react-toastify";
 
 export default function PostEditor({
   isEditorOpened,
@@ -61,7 +60,7 @@ export default function PostEditor({
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
     channelIdList.push("675e6ed26ada400ee6bec120");
     const validChannelIdList = channelIdList.filter(
-      (channelId: string | null) => channelId !== null
+      (channelId): channelId is string => channelId !== null
     );
 
     try {
@@ -82,10 +81,9 @@ export default function PostEditor({
               })
         )
       );
-
+      console.log("results: ",results);
       results.forEach((result: any, index: number) => {
         if (result.status === "fulfilled") {
-          
           console.log(
             `Success for channelId ${validChannelIdList[index]}:`,
             result.value

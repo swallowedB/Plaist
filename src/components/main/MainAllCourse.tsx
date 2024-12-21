@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SearchBar from "../utills/SearchBar";
 import AllCourseCards from "./allCourse/AllCourseCards";
-import AllCourseHeader from "./allCourse/AllCourseHeader";
 import CourseAllCourseSortToggle from "./utils/CourseAllCourseSortToggle";
 
 export default function MainAllCourse({
@@ -24,13 +23,12 @@ export default function MainAllCourse({
       </p>
       {/* 검색바 */}
       <div className="">
-        
-      <SearchBar 
-        data={courseList} 
-        searchKey={["courseTitle","courseDescription", "author", "title"]}
-        onSearch={handleSearch}
-        placeholder="어떤 코스를 즐기고 싶으신가요?(｡･∀･)ﾉﾞ" 
-        className={`bg-custom-gray/10 shadow-none hover:bg-custom-gray/10 hover:shadow-default
+        <SearchBar
+          data={courseList}
+          searchKey={["courseTitle", "courseDescription", "author", "title"]}
+          onSearch={handleSearch}
+          placeholder="어떤 코스를 즐기고 싶으신가요?(｡･∀･)ﾉﾞ"
+          className={`bg-custom-gray/10 shadow-none hover:bg-custom-gray/10 hover:shadow-default
           focus:bg-custom-gray/10
           `}
         />
@@ -47,7 +45,7 @@ export default function MainAllCourse({
             검색 결과를 찾지 못했어요 ψ(´´∀´´)ψ
           </div>
         )
-      ): courseList.length > 0 ? (
+      ) : courseList.length > 0 ? (
         <AllCourseCards courseList={courseList} />
       ) : (
         <div className="col-span-3 mt-10 text-sm font-medium text-center text-primary-700 font-pretendard">
