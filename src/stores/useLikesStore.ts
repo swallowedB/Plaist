@@ -36,7 +36,10 @@ export const useLikesStore = create<LikesStore>((set, get) => ({
   fetchLikes: async () => {
     try {
       const userInfo = await getUserInfo();
-      set({ likes: userInfo.likes });
+      const sortedLikes = userInfo.likes.sort(
+        (a: Like, b: Like) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      set({ likes: sortedLikes });
     } catch (error) {
       console.error("Error fetching likes:", error);
       throw error;
