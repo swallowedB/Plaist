@@ -11,9 +11,12 @@ import PostEditor from "./../PostEditor";
 import { useUserStore } from "../../stores/useInfoStore";
 import { deleteMyCourse } from "./../../api/postMyCourse";
 import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
-import { getChannelPostList } from "./../../api/postApi";
 import { toast } from "react-toastify";
-import { deletePosts, fetchPostIdsFromChannels, getValidChannelIdList } from "./handleDeletePost";
+import {
+  deletePosts,
+  fetchPostIdsFromChannels,
+  getValidChannelIdList,
+} from "./handleDeletePost";
 
 export default function CourseContent() {
   const navigate = useNavigate();
@@ -68,8 +71,6 @@ export default function CourseContent() {
     refetch();
   };
 
-
-  
   const onDeleteClicked = async () => {
     const titleStringtoObj = JSON.parse(courseData.title);
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
