@@ -32,8 +32,12 @@ export default function SearchResultOfCreateMyItems({
         </p>
       </div>
       <div className="text-custom-gray flex flex-row justify-between ml-[21px] mr-[21px] mb-[10px]">
-        <p>{contact}</p>
-        <p>{location}</p>
+        <p className="overflow-hidden max-w-44 text-ellipsis whitespace-nowrap">
+          {contact}
+        </p>
+        <p className="overflow-hidden max-w-44 text-ellipsis whitespace-nowrap">
+          {location}
+        </p>
       </div>
     </div>
   );

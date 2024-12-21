@@ -77,7 +77,7 @@ export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
     <div className="mb-8">
       <PostingGuideTitle titleText="어떤 코스인가요?" mt={80} />
       <fieldset className="tag--withWhom mb-[80px] mt-[123px]">
-        <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[10px] block">
+        <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[16px] block">
           누구와
         </legend>
         <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[15px]">
@@ -98,7 +98,7 @@ export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
       </fieldset>
 
       <fieldset className="tag--style">
-        <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[10px] block">
+        <legend className="font-pretendard text-[21px] font-semibold text-[#7D848D] mb-[16px] block">
           스타일
         </legend>
         <ul className="list-none p-0 m-0 w-[545px] flex flex-wrap gap-[15px]">
@@ -117,7 +117,7 @@ export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
           ))}
         </ul>
       </fieldset>
-      <div className="flex justify-center items-center mt-[140px]">
+      <div className="flex justify-center items-center mt-[146px]">
         <CreateMyCourseFlowButton
           onNext={handleNext}
           isCompleteThisPage={Boolean(style.length && withWhom.length)}
