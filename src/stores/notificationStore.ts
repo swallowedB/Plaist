@@ -16,7 +16,7 @@ interface NotificationAction {
   deleteAll: () => void;
   startLongPolling: () => void;
   stopLongPolling: () => void;
-  setIconActivated: (vale: boolean) => void;
+  setIconActivated: (value: boolean) => void;
 }
 
 // TODO 새로고침시 userId 없어짐
@@ -29,6 +29,7 @@ export const useNotificationStore = create<
   isIconActivated: false,
 
   fetchNotifications: async () => {
+    await useUserStore.getState().setUserId();
     const userId = useUserStore.getState().userId || "";
 
     const { setIconActivated, notifications, clickedNotifications } = get();
@@ -44,12 +45,16 @@ export const useNotificationStore = create<
     try {
       const data = await getNotification();
       const result = data.filter(
+        // seen 속성 true && 확인 기록 있는 경우
         (item) => !item.seen && !clickedNotifications.has(item._id)
       );
       if (JSON.stringify(prevNotification) !== JSON.stringify(result)) {
         console.log("prev", prevNotification);
         console.log("curr", result);
         setIconActivated(result.length > 0);
+        if (result.length === 0) {
+          useNotificationStore.getState().deleteAll();
+        }
         set({ notifications: result });
       }
     } catch (error) {
@@ -94,8 +99,6 @@ export const useNotificationStore = create<
       while (polling) {
         try {
           await fetchNotifications();
-          console.log("Polling...");
-          console.log("icon activated", )
         } catch (error) {
           console.error("Error during long polling:", error);
         }

@@ -79,7 +79,8 @@ export default function NotificationList() {
     return "NULL";
   };
 
-  if (loading) return <p>로딩 중...</p>;
+  //TODO
+  if (loading) return <></>;
   else if (error) {
     stopNotificationPolling();
     return <p>에러 발생: {error}</p>;
@@ -103,14 +104,14 @@ export default function NotificationList() {
                 courseTitles[item.post] || "로딩 중..."
               } 포스트에 댓글을 남겼습니다.`;
               break;
-            default:
-              notificationText = `알림을 확인할 수 없습니다.`;
           }
 
           return (
             <div
-            key={item._id}
-              className="w-[528px] min-h-[64px] flex items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px] hover:scale-105 hover:opacity-100 hover:cursor-pointer relative z-10"
+              key={item._id}
+              className={`w-[528px] min-h-[64px] items-center p-4 rounded-[15px] text-base text-custom-black bg-white shadow-default m-[10px] hover:scale-105 hover:opacity-100 hover:cursor-pointer relative z-10 ${
+                notificationType === "NULL" ? "hidden" : "flex"
+              }`}
               onClick={() =>
                 clickNotification(
                   item._id,

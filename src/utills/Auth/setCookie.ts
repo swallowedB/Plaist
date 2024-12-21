@@ -1,6 +1,7 @@
 import CryptoJS from "crypto-js";
 import Cookies from "js-cookie";
 import { NavigateFunction } from "react-router-dom";
+import { useNotificationStore } from "../../stores/notificationStore";
 
 const cryptoKey = import.meta.env.CRYPTO_KEY || "";
 
@@ -113,8 +114,12 @@ function showExpirationModal(
   document.body.appendChild(modalContainer);
 
   const autoLogoutTimer = setTimeout(() => {
+    const stopLongPolling = useNotificationStore(
+      (state) => state.stopLongPolling
+    );
     modalContainer.remove();
     Cookies.remove(key);
+    stopLongPolling();
     navigate("/login");
   }, remainingMinutes * 60000);
 
