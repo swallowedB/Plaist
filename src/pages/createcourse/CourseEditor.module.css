@@ -16,7 +16,7 @@
   left: 50%;
   transform: translateX(-50%); /* 수평 중앙 정렬 */
   height: calc(100% - 76px); /* 전체 높이에서 상단,하단의 38,38 제외 */
-  border-left: 2px dashed #007bff;
+  border-left: 3px dashed #007bff;
   z-index: -1;
   width: 0;
   opacity: 60%;

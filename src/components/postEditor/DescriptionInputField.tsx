@@ -9,7 +9,7 @@ export default function DescriptionInputField({
 }) {
   return (
     <>
-      <div className="mt-6 text-base font-semibold text-[#2E2E2E] font-pretendard text-[16px]">
+      <div className="text-base font-semibold text-[#2E2E2E] font-pretendard text-[16px] mt-[50px]">
         <p className="mb-[18px]">{guidanceMessage}</p>
         <textarea
           value={value}

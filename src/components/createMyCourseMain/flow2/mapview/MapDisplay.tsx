@@ -134,7 +134,7 @@ export default function MapDisplay({
         id="map"
         className="w-[571px] h-[338px] mt-[38px] mb-[51px] shadow-default rounded-t-[20px]"
       ></div>
-      <section className="w-[767px] rounded-t-[50px] bg-primary-100 flex flex-col items-center font-pretendard pt-[62px] ">
+      <section className="w-[767px] rounded-t-[50px] bg-primary-100 flex flex-col items-center font-pretendard pt-[62px] min-h-[500px]">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -162,7 +162,7 @@ export default function MapDisplay({
             </button>
           </div>
         </form>
-        <section className="w-[416px] min-h-[11vh] flex flex-col items-center gap-[19px] mt-[39px] mb-[79px]">
+        <section className="w-[416px] min-h-[11vh] flex flex-col items-center gap-[19px] mt-[39px]">
           {searchResults}
         </section>
       </section>
