@@ -22,7 +22,11 @@ export default function CommentListItem({
             {createdAt}
           </p>
         </div>
-        <p className="text-[14px] font-regular leading-5 text-custom-black">{comment}</p>
+        <div className="w-[560px]">
+          <p className="text-[14px] font-regular leading-5 text-custom-black break-words">
+            {comment}
+          </p>
+        </div>
       </div>
     </li>
   );

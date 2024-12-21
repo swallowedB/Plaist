@@ -15,7 +15,7 @@ export default function AllCourseCards({
     usePagination(sortedCourses, 8);
 
   return (
-    <div>
+    <div className="pb-[100px]">
       <div className="grid grid-cols-2 gap-x-[17px] gap-y-[36px] ">
         {paginatedData.map((courseItem, idx) => (
           <AllCourseCardItem key={idx} courseItem={courseItem} />
