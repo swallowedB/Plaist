@@ -32,11 +32,16 @@ export default function ViewMyAllCourse() {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="mt-20 mb-12">
-        <SearchBar 
+        <SearchBar
           data={courseList}
-          searchKey={["courseTitle","courseDescription","locationObjs","title"]}
+          searchKey={[
+            "courseTitle",
+            "courseDescription",
+            "locationObjs",
+            "title",
+          ]}
           onSearch={handleSearch}
-          placeholder="무엇이든 찾아보세요 (∩^o^)⊃━☆"  
+          placeholder="무엇이든 찾아보세요 (∩^o^)⊃━☆"
         />
       </div>
       {/* 데이터 렌더링 */}
@@ -45,12 +50,12 @@ export default function ViewMyAllCourse() {
           <MyCourseCards courseList={filteredData} />
         ) : (
           <div className="col-span-3 mt-10 text-sm text-center font-semiBold text-primary-700 font-pretendard">
-          검색 결과를 찾지 못했어요 ψ(´´∀´´)ψ
+            검색 결과를 찾지 못했어요 ψ(´´∀´´)ψ
           </div>
         )
       ) : courseList.length > 0 ? (
         <MyCourseCards courseList={courseList} />
-      ): (
+      ) : (
         <div className="col-span-3 mt-10 text-sm text-center font-semiBold text-primary-700 font-pretendard">
           나만의 코스를 생성하고 자랑해보세요 (o゜▽゜)o☆
         </div>

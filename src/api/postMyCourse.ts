@@ -41,7 +41,7 @@ export const editMyCourse = async ({
 }: EditMyCourseProps) => {
   try {
     const formData = new FormData();
-    formData.append("postId", postId);
+    formData.append("postId", postId!);
     formData.append("title", title);
     if (image) {
       formData.append("image", image);

@@ -51,8 +51,15 @@ export default function CourseContent() {
 
   const [isEditorOpened, setEditorOpened] = useState<boolean>(false);
 
-  const onEditClicked = () => {
-    setEditorOpened(true);
+  const onEditClicked = async () => {
+    try {
+      setEditorOpened(true);
+      // 수정 작업 완료 후
+      await refetch();
+    } catch (error) {
+      console.error("수정 중 오류 발생:", error);
+      toast.error("수정 중 오류가 발생했습니다.");
+    }
   };
 
   const onExitEditor = () => {
@@ -61,53 +68,19 @@ export default function CourseContent() {
   };
 
   const onDeleteClicked = async () => {
-    const titleStringtoObj = JSON.parse(courseData.title);
-    const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
-    console.log(channelIdList, "채널리스트");
-
-    const postIdsToDelete = [];
-
-    // channelIdList에서 null을 제거한 후 진행
-    const validChannelIdList = channelIdList.filter( 
-    
-      (channelId: string | null) => channelId !== null
-    );
-
-    await Promise.all(
-      validChannelIdList.map(async (channelId: string) => {
-        try {
-          const postList = await getChannelPostList(channelId); // 현재 게시물의 코스 지역에 해당하는 채널의 모든 게시물
-          const matchedPost = postList.find(
-            (post: CourseData) => post.title === courseData.title
-          );
-          if (matchedPost) {
-            postIdsToDelete.push(matchedPost._id); // 삭제 대상 ID 추가
-          }
-        } catch (error) {
-          console.error(
-            `채널 ID ${channelId}에서 게시물 가져오기 실패:`,
-            error
-          );
-        }
-      })
-    );
-
-    validChannelIdList.push("675e6ed26ada400ee6bec120");
-
-    if (contentId) {
-      postIdsToDelete.push(contentId);
+    if (isEditorOpened) {
+      toast.warn("수정 중에는 삭제할 수 없습니다.");
+      return;
     }
 
     try {
-      await Promise.all(
-        postIdsToDelete.map((postId) => deleteMyCourse(postId))
-      );
-      refetch();
-      // alert("해당 게시물이 삭제되었습니다");
-      toast.success("게시물을 삭제에 성공하였습니다.")
-      navigate("/my-page"); // 마이페이지로 이동
-    } catch {
-      toast.error("게시물 삭제에 실패했습니다. 다시 시도해주세요.");
+      // 삭제 로직
+      await deleteMyCourse(contentId!);
+      toast.success("게시물이 삭제되었습니다.");
+      navigate("/my-page");
+    } catch (error) {
+      console.error("삭제 중 오류 발생:", error);
+      toast.error("삭제 중 오류가 발생했습니다.");
     }
   };
 
