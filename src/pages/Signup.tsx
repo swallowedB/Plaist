@@ -19,7 +19,8 @@ export default function Signup() {
   const nicknameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setNickname(value);
-    if (nickname.length < 3) {
+
+    if (value.length < 3) {
       setNicknameError("Nickname must be at least 3 characters long");
     } else {
       setNicknameError("");
