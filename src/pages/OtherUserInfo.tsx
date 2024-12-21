@@ -28,8 +28,8 @@ export default function OtherUserInfo() {
                   titleData.locationObjs?.map((item: LocationObj) => {
                     const locationArr = item.locationAddress.split(" ");
                     if (locationArr[0] === "서울특별시")
-                      return `${locationArr[0]} ${locationArr[1]}`;
-                    else return `${locationArr[0]}`;
+                      return `서울 ${locationArr[1]}`;
+                    else return `${locationArr[0]} ${locationArr[1]}`;
                   }) || []
                 )
               ).join(", ") || "주소";

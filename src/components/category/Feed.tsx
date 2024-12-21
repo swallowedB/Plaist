@@ -24,7 +24,6 @@ export default function Feed({ sort }: { sort: Sort }) {
         const Data = await getChannelPostList(ALL_CHANNEL_ID);
         allPostList = [...Data.flat()];
         uniquePostList = uniquePostById(allPostList);
-        console.log("전체", allPostList);
       } catch (error) {
         console.error(error);
       }
@@ -69,7 +68,6 @@ export default function Feed({ sort }: { sort: Sort }) {
 
     setPostList(uniquePostList);
     setPages(uniquePostList.length);
-    console.log(channelList);
   };
 
   // 중복 id 제거
@@ -109,15 +107,18 @@ export default function Feed({ sort }: { sort: Sort }) {
     setCurrentPage(page);
     const startPage = (page - 1) * 8;
     setCurrentPostList([...postList.slice(startPage, startPage + 8)]);
+    console.log("currentPage:", currentPage, "totalPages:", totalPages);
   };
 
-  //Post List API 호출이 변경되는 경우
+  //카테고리가 변경되는 경우
+  // API 호출 및 페이지 변경
   useEffect(() => {
     if (channelList) {
       getPostList();
-      // handlePageChange(currentPage);
+      setPages(postList.length);
+      handlePageChange(1);
     }
-  }, [location, spot]);
+  }, [location, spot, totalPages]);
 
   // 화면 렌더링이 변경되는 경우
   useEffect(() => {

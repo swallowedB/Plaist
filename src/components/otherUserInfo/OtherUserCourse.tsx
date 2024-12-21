@@ -1,15 +1,6 @@
 // OtherUserCourse.tsx
 import MypageCards from "../My/MypageCards/MypageCards";
 
-// type PostData = {
-//   id: string;
-//   courseTitle: string;
-//   courseDescription: string;
-//   locationAddress: string;
-//   likes: number;
-//   image: string;
-// };
-
 export default function OtherUserCourse({
   targetUserData,
 }: {
