@@ -95,6 +95,7 @@ export const useNotificationStore = create<
         try {
           await fetchNotifications();
           console.log("Polling...");
+          console.log("icon activated", )
         } catch (error) {
           console.error("Error during long polling:", error);
         }

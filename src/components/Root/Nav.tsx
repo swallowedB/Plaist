@@ -1,18 +1,21 @@
 import { useCookie } from "../../hooks/useCookie";
 import FooterNavLink from "../FooterNavLink";
 import { useLocation } from "react-router";
+import { useEffect } from "react";
+import { useNotificationStore } from "../../stores/notificationStore";
+
 import images from "../../assets/images/importImages";
 
 export default function Nav() {
-  const isLoggedIn = useCookie();
+  let isLoggedIn = useCookie();
+
   const location = useLocation();
 
   const hiddenPaths = ["/my-course-builder"];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
 
-  // notification
-  // const startPolling = useNotificationStore((state) => state.startLongPolling);
-  // const stopPolling = useNotificationStore((state) => state.stopLongPolling);
+  const startPolling = useNotificationStore((state) => state.startLongPolling);
+  const stopPolling = useNotificationStore((state) => state.stopLongPolling);
 
   const getIcon = (
     path: string,
@@ -23,13 +26,14 @@ export default function Nav() {
     return location.pathname === path ? activeIcon : defaultIcon;
   };
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     startPolling();
-  //   } else {
-  //     stopPolling();
-  //   }
-  // }, [isLoggedIn]);
+  useEffect(() => {
+    const isLoggedIn = useCookie();
+    if (isLoggedIn) {
+      startPolling();
+    } else {
+      stopPolling();
+    }
+  }, [useCookie()]);
 
   return (
     <footer
