@@ -29,10 +29,6 @@ export default function UserInfoForm({
   const [region, setRegion] = useState(defaultRegion);
 
   useEffect(() => {
-    console.log("defaultFullName 변경:", defaultFullName);
-    console.log("defaultEmail 변경:", defaultEmail);
-    console.log("defaultRegion 변경:", defaultRegion);
-
     setFullName(defaultFullName);
     setEmail(defaultEmail);
     setRegion(defaultRegion);

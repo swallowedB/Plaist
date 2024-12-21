@@ -76,7 +76,7 @@ export default function MyLike() {
         ) : likeCardData.length > 0 ? (
           <MypageCards data={likeCardData} />
         ) : (
-          <div className="col-span-3 mt-10 text-sm text-center font-semiBold text-primary-700 font-pretendard">
+          <div className="col-span-3 mt-10 text-sm text-center font-medium text-primary-700 font-pretendard">
             좋아요를 누른 게시물이 없어요 இ௰இ
           </div>
         )}

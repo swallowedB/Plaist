@@ -21,14 +21,11 @@ export default function UserInfoUpdate() {
       await fetchUserInfo();
       toast.success("성공적으로 저장되었습니다!");
     } catch (error) {
-      console.error("업데이트에 실패했습니다", error);
       toast.error("실패했습니다..o(TヘTo)");
+      throw error;
     }
   };
 
-  useEffect(() => {
-    console.log("userInfo 상태 변경 감지:", userInfo);
-  }, [userInfo]);
 
   return (
     <div>

@@ -42,7 +42,6 @@ export const useUserStore = create<UserStore>((set) => ({
   fetchUserInfo: async () => {
     try {
       const data = await getUserInfo();
-      console.log("API로 받은 데이터:", data);
 
       if (!data.fullName) {
         console.warn(
@@ -62,17 +61,20 @@ export const useUserStore = create<UserStore>((set) => ({
           console.warn("username 파싱 실패:", error);
         }
       }
+      const updatedUserInfo = {
+        fullName: data.fullName || "",
+        email: data.email,
+        region,
+        image: data.image || "",
+      };
+
       set(() => ({
-        userInfo: {
-          fullName: data.fullName || "Unknown",
-          email: data.email,
-          region,
-          image: data.image || "",
-        },
+        userInfo: updatedUserInfo,
         userProfilePic: profilePicUrl,
       }));
     } catch (error) {
       console.error("사용자 정보 가져오기 오류 발생", error);
+      throw error;
     }
   },
 

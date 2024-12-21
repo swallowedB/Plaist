@@ -39,6 +39,7 @@ export const useLikesStore = create<LikesStore>((set, get) => ({
       set({ likes: userInfo.likes });
     } catch (error) {
       console.error("Error fetching likes:", error);
+      throw error;
     }
   },
 
