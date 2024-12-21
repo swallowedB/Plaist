@@ -202,8 +202,8 @@ export default function CreateMyCourse() {
               <SucessMyPost
                 onNext={() => {
                   navigate("/"); // 홈으로 이동
+                  handlePostCourseResult();
                 }}
-                onSubmit={handlePostCourseResult}
               />
             );
           default:

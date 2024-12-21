@@ -4,12 +4,12 @@ import { getChannelPostList } from "../../api/postApi";
 
 // 유효한 채널 ID 목록 가져오기
 export const getValidChannelIdList = (
-  channelIdList: (string | null)[],
-  staticChannelId: string
+  channelIdList: (string | null)[]
 ): string[] => {
   return [
-    ...channelIdList.filter((channelId): channelId is string => channelId !== null),
-    staticChannelId,
+    ...channelIdList.filter(
+      (channelId): channelId is string => channelId !== null
+    ),
   ];
 };
 
@@ -24,7 +24,9 @@ export const fetchPostIdsFromChannels = async (
     validChannelIdList.map(async (channelId) => {
       try {
         const postList = await getChannelPostList(channelId);
-        const matchedPost = postList.find((post:Course) => post.title === courseData.title);
+        const matchedPost = postList.find(
+          (post: Course) => post.title === courseData.title
+        );
         if (matchedPost) {
           postIds.push(matchedPost._id);
         }
@@ -38,12 +40,11 @@ export const fetchPostIdsFromChannels = async (
 };
 
 // 게시물 삭제 처리
-export const deletePosts = async (contentId: string, postIdsToDelete: string[]) => {
+export const deletePosts = async (postIdsToDelete: string[]) => {
   try {
-    if (contentId) {
-      postIdsToDelete.push(contentId);
-    }
-    await deleteMyCourse(contentId!); // 삭제 로직 호출
+    await Promise.allSettled(
+      postIdsToDelete.map((postId: string) => deleteMyCourse(postId))
+    ); // 삭제 로직 호출
     toast.success("게시물이 삭제되었습니다.");
     return true;
   } catch (error) {
