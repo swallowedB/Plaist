@@ -36,6 +36,7 @@ export default function UserInfoProfile() {
           }
         } catch (error) {
           console.error("프로필 사진 업로드 실패:", error);
+          throw error;
         }
       }
     };

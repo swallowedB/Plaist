@@ -92,6 +92,7 @@ export const useCommentsStore = create<CommentsState>((set, get) => ({
       }));
     } catch (error) {
       console.error(`게시물 ${postId} 불러오기 실패`, error);
+      throw error;
     }
   },
 }));

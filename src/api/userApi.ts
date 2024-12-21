@@ -38,6 +38,7 @@ export const getUserInfo = async () => {
     setLoginState(false);
   } catch (error) {
     console.error("/users/{id} 호출 중 오류 발생:", error);
+    throw error;
   }
 };
 
@@ -60,10 +61,10 @@ export const updateUserInfo = async ({
       email,
       username: jsonRegion,
     });
-    console.log("response:", response.data);
     return response.data;
   } catch (error) {
     console.error("/settings/update-user 호출 중 오류 발생:", error);
+    throw error;
   }
 };
 
@@ -77,10 +78,10 @@ export const postUserPoto = async (formData: FormData) => {
     });
 
     const { image } = response.data;
-    console.log("업로드된 이미지 URL Check:", image);
     return image;
   } catch (error) {
     console.error("/users/upload-photo 호출 중 오류 발생:", error);
+    throw error;
   }
 };
 
