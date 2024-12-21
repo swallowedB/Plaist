@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import exprofilImg from "../assets/images/exProfileImg.svg";
 import { getUserIdFromToken, getUserInfo } from "../api/userApi";
+import images from "../assets/images/importImages";
 
 interface UserInfo {
   fullName: string;
@@ -22,7 +23,7 @@ interface UserStore {
 
 export const useUserStore = create<UserStore>((set) => ({
   userId: null,
-  userProfilePic: "",
+  userProfilePic: images.course_user_profile_img,
   userInfo: {
     fullName: "",
     email: "",
