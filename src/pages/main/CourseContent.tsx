@@ -9,7 +9,6 @@ import LikeButton from "../../components/main/courseContent/LikeButton";
 import images from "../../assets/images/importImages";
 import PostEditor from "./../PostEditor";
 import { useUserStore } from "../../stores/useInfoStore";
-import { deleteMyCourse } from "./../../api/postMyCourse";
 import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
 import { toast } from "react-toastify";
 import {
@@ -76,42 +75,24 @@ export default function CourseContent() {
     const channelIdList = getChannelIdList(titleStringtoObj.locationObjs);
     console.log(channelIdList, "채널리스트");
 
-    const staticChannelId = "675e6ed26ada400ee6bec120";
-
     // 유효한 채널 ID 목록 가져오기
-    const validChannelIdList = getValidChannelIdList(
-      channelIdList,
-      staticChannelId
-    );
+    const validChannelIdList = getValidChannelIdList(channelIdList);
 
     // 채널 ID에서 삭제 대상 게시물 ID 가져오기
     const postIdsToDelete = await fetchPostIdsFromChannels(
       validChannelIdList,
       courseData
     );
-
+    // 현재 포스트에 대한 ID 추가
+    if (contentId) {
+      postIdsToDelete.push(contentId);
+    }
     // 게시물 삭제 처리
-    const isDeleted = await deletePosts(contentId!, postIdsToDelete);
+    const isDeleted = await deletePosts(postIdsToDelete);
 
     // 삭제 성공 시 페이지 이동
     if (isDeleted) {
       navigate("/my-page");
-    }
-
-    validChannelIdList.push("675e6ed26ada400ee6bec120");
-
-    if (contentId) {
-      postIdsToDelete.push(contentId);
-    }
-
-    try {
-      // 삭제 로직
-      await deleteMyCourse(contentId!);
-      toast.success("게시물이 삭제되었습니다.");
-      navigate("/my-page");
-    } catch (error) {
-      console.error("삭제 중 오류 발생:", error);
-      toast.error("삭제 중 오류가 발생했습니다.");
     }
   };
 
