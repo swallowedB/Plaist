@@ -1,8 +1,7 @@
 import images from "../../assets/images/importImages";
 import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
 
-export default function SuccessMyPost({ onNext, onSubmit }: SuccessMyPostProps) {
-  onSubmit()
+export default function SuccessMyPost({ onNext }: SuccessMyPostProps) {
   const handleNext: () => void = () => {
     onNext();
   };

@@ -62,7 +62,6 @@ interface ExplainCourseProps {
 }
 interface SuccessMyPostProps {
   onNext: () => void;
-  onSubmit: () => void;
 }
 type OnNextInputTags = (withWhom: string[], style: string[]) => void;
 
