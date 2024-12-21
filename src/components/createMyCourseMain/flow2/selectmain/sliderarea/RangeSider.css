@@ -6,7 +6,7 @@
   border-radius: 5px;
   background: linear-gradient(
     to right,
-    #007bff var(--slider-value, 50%),
+    #3b89e2 var(--slider-value, 50%),
     #d7d7d7 var(--slider-value, 50%)
   );
   outline: none;
@@ -19,7 +19,7 @@
   width: 29px;
   height: 29px;
   background: #ffffff;
-  border: 2.5px solid #007bff;
+  border: 2.5px solid #3b89e2;
   border-radius: 50%;
   box-shadow: 0 4px 10px 0 rgba(49, 78, 141, 0.25);
   cursor: pointer;

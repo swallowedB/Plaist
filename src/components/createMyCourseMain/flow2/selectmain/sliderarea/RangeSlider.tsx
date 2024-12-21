@@ -22,7 +22,7 @@ const RangeSlider = ({ value, onChange, max, step }: RangeSliderProps) => {
   };
 
   return (
-    <div className="w-[476px] flex justify-center mt-4 slidecontainer font-pretendard">
+    <div className="w-[500px] flex justify-center mt-4 slidecontainer font-pretendard">
       <input
         type="range"
         max={max}

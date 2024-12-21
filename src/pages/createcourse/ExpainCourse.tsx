@@ -44,57 +44,59 @@ export default function ExplainCourse({
     setDescription(e.target.value);
 
   return (
-    <section className="flex flex-col items-center min-h-screen">
-      {!isSaved && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-50"></div>
-      )}
+    <div className="relative">
+      <section className="flex flex-col items-center min-h-screen">
+        {!isSaved && (
+          <div className="fixed inset-0 z-40 bg-black bg-opacity-50"></div>
+        )}
 
-      <div
-        className={`w-[767px] h-[1000px] bg-white shadow-lg rounded-3xl p-8 relative z-50 transform transition-all duration-700 ease-in-out ${
-          isVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-[1500px]"
-        }`}
-        style={{
-          paddingLeft: "60px",
-          paddingTop: "82px",
-          paddingRight: "59px",
-        }}
-      >
-        <div className="flex justify-between">
-          <div className="flex flex-col gap-6 w-[488px]">
-            <TitleInputField
-              value={title}
-              handleTitleChange={handleTitleChange}
-            />
-            <TagDisplay tags={[...withWhom, ...style]} />
-            <CourseDetailDisplay
-              estimatedTime={estimatedTime}
-              estimatedCost={estimatedCost}
+        <div
+          className={`absolute top-[40px] w-[767px] h-[1000px] bg-white shadow-lg rounded-3xl p-8  z-50 transform transition-all duration-700 ease-in-out ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-[1500px]"
+          }`}
+          style={{
+            paddingLeft: "60px",
+            paddingTop: "82px",
+            paddingRight: "59px",
+          }}
+        >
+          <div className="flex justify-between">
+            <div className="flex flex-col gap-6 w-[488px]">
+              <TitleInputField
+                value={title}
+                handleTitleChange={handleTitleChange}
+              />
+              <TagDisplay tags={[...withWhom, ...style]} />
+              <CourseDetailDisplay
+                estimatedTime={estimatedTime}
+                estimatedCost={estimatedCost}
+              />
+            </div>
+            <ImageUpLoadField
+              imagePreview={imagePreview}
+              handleImageUpload={handleImageUpload}
             />
           </div>
-          <ImageUpLoadField
-            imagePreview={imagePreview}
-            handleImageUpload={handleImageUpload}
+
+          <DescriptionInputField
+            guidanceMessage="내 코스를 임팩트 있게 설명해주세요"
+            value={description}
+            handleDescriptionChange={handleDescriptionChange}
           />
-        </div>
 
-        <DescriptionInputField
-          guidanceMessage="내 코스를 임팩트 있게 설명해주세요"
-          value={description}
-          handleDescriptionChange={handleDescriptionChange}
-        />
-
-        <SelectedLocationsDisplay locationObjs={locationObjs} />
-        <div className="mt-10 text-center">
-          <CreateMyCourseFlowButton
-            onNext={handleNextClick}
-            isCompleteThisPage={!!title.trim() && !!description.trim()}
-          >
-            저장
-          </CreateMyCourseFlowButton>
+          <SelectedLocationsDisplay locationObjs={locationObjs} />
+          <div className="mt-[90px] text-center">
+            <CreateMyCourseFlowButton
+              onNext={handleNextClick}
+              isCompleteThisPage={!!title.trim() && !!description.trim()}
+            >
+              저장
+            </CreateMyCourseFlowButton>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

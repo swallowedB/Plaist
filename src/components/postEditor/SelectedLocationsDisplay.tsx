@@ -6,17 +6,17 @@ export default function SelectedLocationsDisplay({
   locationObjs: FullLocationObjs;
 }) {
   return (
-    <div className="mt-10">
+    <div className="mt-[60px]">
       <h3 className="mb-4 text-base font-semibold text-custom-black font-pretendard">
         선택한 코스
       </h3>
-      <div className="relative flex items-center justify-center gap-[56px]">
+      <div className="relative flex items-center justify-center gap-[56px] mt-[70px]">
         {locationObjs.map((location, index) => (
           <div
             key={index}
             className="flex flex-col items-center justify-center gap-2"
           >
-            <div className="w-[120px] h-[120px] bg-primary-200 rounded-full flex items-center justify-center">
+            <div className="w-[120px] h-[120px] bg-primary-600 rounded-full flex items-center justify-center">
               <div
                 className="w-[74px] h-[74px]"
                 style={{
@@ -29,7 +29,7 @@ export default function SelectedLocationsDisplay({
                 }}
               ></div>
             </div>
-            <span className="mt-2 text-sm font-semibold text-center font-pretendard text-primary-600">
+            <span className="mt-2 text-sm font-semiBold text-center font-pretendard text-primary-600 ">
               {location.locationName}
             </span>
           </div>

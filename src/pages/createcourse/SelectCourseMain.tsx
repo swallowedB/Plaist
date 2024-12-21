@@ -43,7 +43,7 @@ export default function SelectCourseMain({
 
   return (
     <div>
-      <PostingGuideTitle titleText="나만의 코스를 생성" mt={81} />
+      <PostingGuideTitle titleText="나만의 코스를 생성" mt={50} />
 
       <section
         id="course-editor"
@@ -64,7 +64,7 @@ export default function SelectCourseMain({
 
       <div
         id="course-data-selector"
-        className="flex flex-col items-center mb-[155px]"
+        className="flex flex-col items-center mb-[110px]"
       >
         <SliderBox />
       </div>
