@@ -5,7 +5,7 @@ import { useNotificationStore } from "../../stores/notificationStore";
 import defaultProfile from "../../assets/images/exProfileImg.svg";
 
 type NotificationType = "COMMENT" | "LIKE" | "FOLLOW" | "NULL";
-//TODO: Memoization 사용하기
+
 //TODO: Memoization 사용하기
 export default function NotificationList() {
   const notifications = useNotificationStore((state) => state.notifications);
@@ -76,6 +76,7 @@ export default function NotificationList() {
     if (data.follow) return "FOLLOW";
     else if (data.like) return "LIKE";
     else if (data.comment) return "COMMENT";
+    change2Seen(data._id);
     return "NULL";
   };
 
