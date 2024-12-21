@@ -10,16 +10,14 @@ export default function CreateMyCourseFlowButton({
   children,
 }: CreateMyCourseFlowButtonProps) {
   return (
-    <div className="h-[100px]">
-      <button
-        onClick={onNext}
-        disabled={!isCompleteThisPage}
-        className={`w-[364px] h-[58px] rounded-[30px] border-primary-500 font-pretendard text-white mb-[] ${
-          isCompleteThisPage ? "bg-primary-500" : "bg-primary-300"
-        }`}
-      >
-        {children}
-      </button>
-    </div>
+    <button
+      onClick={onNext}
+      disabled={!isCompleteThisPage}
+      className={`w-[364px] h-[58px] rounded-[30px] border-primary-500 font-pretendard text-white mb-[] ${
+        isCompleteThisPage ? "bg-primary-500" : "bg-primary-300"
+      }`}
+    >
+      {children}
+    </button>
   );
 }

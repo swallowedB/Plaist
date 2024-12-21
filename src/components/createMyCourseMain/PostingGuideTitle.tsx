@@ -15,7 +15,7 @@ export default function PostingGuideTitle({
 
   return (
     <div className={containerClass}>
-      <h1 className="text-[36px] font-bold text-primary-800">{titleText}</h1>
+      <h1 className="text-[36px] font-bold text-primary-800 font-pretendard">{titleText}</h1>
     </div>
   );
 }
