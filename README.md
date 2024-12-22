@@ -1,24 +1,109 @@
-### ✅ 브랜치 사용 방법
-- main은 최종 배포용 브랜치 이므로 모든 개발 작업은 이슈 발행 후 dev 브랜치 하위의 feat 브랜치를 각각 생성해 진행부탁드립니다.
-- 개발 진행시 반드시 dev 브랜치가 아닌 본인이 생성한 feat 브랜치에서 작업 중인지 자주 확인 부탁드립니다. 깃 충돌이 발생하는 가장 큰 원인입니다.
----
+# 🚗 PLAIST - 위치 기반 여정 공유 플랫폼 서비스
+<img src="https://ifh.cc/g/z7hZqK.jpg">
 
-### ✅ Issue & PR
-- 이슈 생성시 이슈 템플릿에 맞춰 본인이 작업할 내용을 간단히 기록해 주세요. 팀원간의 진행 상황 파악과 버그 발생시 코드 파악을 원할히 하기 위한 장치입니다.
-- PR 진행시 모든 멤버들에게 PR 사실을 알려 주세요. merge는 2명 이상의 승인을 받아야 가능합니다. (PR 역시 main 브랜치가 아닌 dev 브랜치로 해주셔야 해요!)
----
+- 프로젝트 기간 : 2024-12-05 ~ 2024-12-23 
+- 배포 URL : https://gentle-frangollo-611b8c.netlify.app/
+- Test ID : readme@test.com
+- Test PW : 123123qwer
 
-### ✅ 충돌 방지 & 대응 방법
-- dev 브랜치로 새로운 변경사항이 merge 되었을 때 마찬가지로 모든 팀원에게 공유해 주세요.
-- 새로운 merge가 발생하면 모든 팀원은 작업중이던 자신의 로컬 브랜치를 최신 상태로 업데이트 해야 합니다. 그렇지 않으면 충돌이 발생할 수 있어요.
-- 새로운 변경사항을 pull 했을 때 본인의 작업 내용과 충돌이 발생한다면, 변경된 코드를 작성한 팀원과 상황을 공유하고 충돌을 해결합니다.
----
+</br>
+
+## 프로젝트 소개
+- PLAIST는 위치 기반 여정 공유 플랫폼 서비스입니다.
+- PLAIST는 PLACE(장소)와 PLAYLIST(재생목록)의 합성어로, "나만의 특별한 장소들을 하나의 플레이리스트처럼 엮어보자"는 의미를 담고 있습니다.
+- PLAIST에서 사용자는 자신만의 코스를 공유하고 아카이빙할 수 있습니다.
+- 마이코스 페이지에서 "코스 생성하기"를 통해 나만의 코스를 손쉽게 생성하고 공유할 수 있습니다.
+- 다양한 유저들의 코스 게시물을 탐방하며, 마음에 드는 게시글에 좋아요를 누르거나 댓글을 작성할 수 있습니다.
+- 좋아요를 누른 게시글은 마이페이지에 아카이빙되어, 원하는 대로 검색하고 열람할 수 있습니다.
+- 모든 게시물은 지역과 카테고리별로 구분하여 탐색할 수 있으며, 검색창을 통한 키워드 검색도 지원합니다.
+
+</br>
+
+## 개발 환경
+
+- FE:
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"><img src="https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white"><img src="https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white"><img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white"><img src="https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB">
+- BE: 제공된 API 활용
+- 버전 관리 및 CI/CD: <img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Github%20Actions-282a2e?style=for-the-badge&logo=githubactions&logoColor=367cfe">
+- 협업 및 스프린트 관리: <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
+- 서비스 배포 환경: <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white">
+- 디자인: <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+- etc: <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"><img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E"><img src="https://img.shields.io/badge/prettier-%23F7B93E.svg?style=for-the-badge&logo=prettier&logoColor=black">
 
 
+</br>
 
-### 📂 프로젝트 폴더 구조
+## 팀원 구성
+
+최민혁 - Team leader, DevOps, FE, PM
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+김예빈 - Deputy team leader, FE
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+최보아 - Design leader, FE, publishing
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+김세빈 - FE, publishing
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+김내현 - FE, publishing, kakao map API
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+임승현 - FE, publishing
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+</br>
+
+## 프로젝트 구조
 ```
-Plaist
+plaist1
+├─ .env
+├─ .git
+├─ .github
+│  ├─ ISSUE_TEMPLATE
+│  │  ├─ ✨-feature.md
+│  │  ├─ 🐞-bug.md
+│  │  ├─ 🚀-deploy.md
+│  │  └─ 🛠️-refactor.md
+│  └─ workflows
+│     └─ deploy-netilfy.yml
 ├─ .gitignore
 ├─ README.md
 ├─ eslint.config.js
@@ -27,23 +112,36 @@ Plaist
 ├─ package.json
 ├─ postcss.config.js
 ├─ public
-│  └─ vite.svg
 ├─ src
 │  ├─ App.tsx
+│  ├─ Router.tsx
 │  ├─ api
-│  │  ├─ api.ts
-│  │  └─ axios.ts
+│  ├─ assets
+│  │  └─ images
+│  ├─ components
+│  │  ├─ FlexibleGlass.tsx
+│  │  ├─ FooterNavLink.tsx
+│  │  ├─ HeaderNavLink.tsx
+│  │  ├─ InputField.tsx
+│  │  ├─ My
+│  │  ├─ Root
+│  │  ├─ category
+│  │  ├─ createMyCourseMain
+│  │  ├─ main
+│  │  ├─ notification
+│  │  ├─ otherUserInfo
+│  │  ├─ postEditor
+│  │  ├─ skeletonUI
+│  │  ├─ utills
+│  │  └─ viewMycourse
 │  ├─ css
-│  │  ├─ index.css
-│  │  └─ tailwind.css
-│  ├─ layoutes
-│  │  └─ RootLayout.tsx
+│  ├─ hooks
+│  ├─ layouts
 │  ├─ main.tsx
 │  ├─ pages
-│  │  ├─ Category.tsx
-│  │  ├─ CreateCourse.tsx
-│  │  ├─ Main.tsx
-│  │  └─ MyPage.tsx
+│  ├─ stores
+│  ├─ types
+│  ├─ utills
 │  └─ vite-env.d.ts
 ├─ tailwind.config.js
 ├─ tsconfig.app.json
@@ -52,3 +150,16 @@ Plaist
 └─ vite.config.ts
 
 ```
+
+</br>
+
+## History
+
+- 0.0.1
+  - 배포: 프로젝트 배포 및 CI/CD 구축
+  - 테스트: CI/CD 무결성 검증
+- 0.1.0
+  - 첫 출시
+- 0.1.1
+  - 작업 진행 중
+
