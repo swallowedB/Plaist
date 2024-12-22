@@ -1,64 +1,81 @@
-# 프로젝트명
+# PLAIST
 
-> 간략한 프로젝트 소개 문구를 작성합니다.
-<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+> play less, play more</br>
+Your Shortcut To Great Days
+</br>
+
+## stacks
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/><img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"><img src="https://img.shields.io/badge/React_Query-FF4154?style=for-the-badge&logo=ReactQuery&logoColor=white"><img src="https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white"><img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white"><img src="https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB">
+
+<img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"><img src="https://img.shields.io/badge/Github%20Actions-282a2e?style=for-the-badge&logo=githubactions&logoColor=367cfe"><img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white"><img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white"><img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E"><img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"><img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 
 한 두 문단으로 프로젝트 소개 글을 작성합니다.
 
 ![](../header.png)
 
-## 설치 방법
-
-    OS X & 리눅스:
-
-    ```sh
-    npm install my-crazy-module --save
-    ```
-
-
-    윈도우:
-
-    ```sh
-    edit autoexec.bat
-    ```
-
-## 사용 예제
-
-스크린 샷과 코드 예제를 통해 사용 방법을 자세히 설명합니다.
-
-_더 많은 예제와 사용법은 [Wiki][wiki]를 참고하세요._
-
-## 개발 환경 설정
-
-모든 개발 의존성 설치 방법과 자동 테스트 슈트 실행 방법을 운영체제 별로 작성합니다.
-
-    ```sh
-    make install
-    npm test
-    ```
 
 ## 업데이트 내역
 
-- 0.2.1
-  - 수정: 문서 업데이트 (모듈 코드 동일)
-- 0.2.0
-  - 수정: `setDefaultXYZ()` 메서드 제거
-  - 추가: `init()` 메서드 추가
-- 0.1.1
-     \* 버그 수정: `baz()` 메서드 호출 시 부팅되지 않는 현상 (@컨트리뷰터 감사합니다!)
+- 0.0.1
+  - 배포: 프로젝트 배포 및 CI/CD 구축
+  - 테스트: CI/CD 무결성 검증
 - 0.1.0
   - 첫 출시
-  - 수정: `foo()` 메서드 네이밍을 `bar()`로 수정
-- 0.0.1
+- 0.1.1
   - 작업 진행 중
 
-## 정보
+## members
 
-이름 – [@트위터 주소](https://twitter.com/dbader_org) – 이메일주소@example.com
+최민혁 - Team leader, DevOps, FE, PM
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
 
-XYZ 라이센스를 준수하며 `LICENSE`에서 자세한 정보를 확인할 수 있습니다.
+김예빈 - Deputy team leader, FE
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+김내현 - FE, publishing, kakao map API
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+최보아 - Design leader, FE, publishing
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+김세빈 - FE, publishing
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+임현승 - FE, publishing
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
