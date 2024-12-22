@@ -11,7 +11,7 @@ export default function BestCourseCardItem({
 }: {
   courseData: Course;
 }) {
-  const { _id, title, image, likes } = courseData;
+  const { _id, title, image, likes, locationObjs } = courseData;
   const doc = JSON.parse(title);
 
   return (
@@ -59,7 +59,21 @@ export default function BestCourseCardItem({
               className="w-4 h-4 mr-1"
             />
             <p className="font-pretendard text-[13px] text-custom-gray">
-              {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
+              {trimStringWithEllipsis(
+                locationObjs
+                  ? Array.from(
+                      new Set(
+                        locationObjs?.map((item: LocationObj) => {
+                          const locationArr = item.locationAddress.split(" ");
+                          if (locationArr[0] === "서울특별시")
+                            return `서울 ${locationArr[1]}`;
+                          else return `${locationArr[0]} ${locationArr[1]}`;
+                        }) || []
+                      )
+                    ).join(", ") || "주소"
+                  : "입력 없음",
+                12
+              )}
             </p>
           </div>
         </div>

@@ -70,6 +70,12 @@ export default function NotificationList() {
       }
     } catch (error) {
       console.error("Error:", (error as Error).message);
+      if (notificationType === "COMMENT" || notificationType === "LIKE") {
+        alert("게시글을 찾을 수 없습니다.");
+      } else if (notificationType === "FOLLOW") {
+        alert("사용자를 찾을 수 없습니다.");
+        navigate("/");
+      }
     }
   };
 

@@ -98,7 +98,7 @@ export default function Feed({ sort }: { sort: Sort }) {
 
   const setPages = (postListLength: number) => {
     if (postListLength > 0) {
-      const POSTS_PER_PAGE = 10;
+      const POSTS_PER_PAGE = 8;
       setTotalPages(Math.ceil(postListLength / POSTS_PER_PAGE));
     } else setTotalPages(1);
   };
@@ -111,7 +111,7 @@ export default function Feed({ sort }: { sort: Sort }) {
     console.log("currentPage:", currentPage, "totalPages:", totalPages);
   };
 
-  //카테고리가 변경되는 경우
+  // 카테고리가 변경되는 경우
   // API 호출 및 페이지 변경
   useEffect(() => {
     if (channelList) {

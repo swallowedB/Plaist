@@ -68,9 +68,16 @@ export default function AllCourseCardItem({
             />
             <p className="font-pretendard text-[13px] text-custom-gray overflow-hidden text-ellipsis whitespace-nowrap">
               {courseDocData.locationObjs
-                ? splitBySpaceUntilIndex1(
-                    courseDocData.locationObjs[0].locationAddress
-                  )
+                ? Array.from(
+                    new Set(
+                      courseDocData.locationObjs?.map((item: LocationObj) => {
+                        const locationArr = item.locationAddress.split(" ");
+                        if (locationArr[0] === "서울특별시")
+                          return `서울 ${locationArr[1]}`;
+                        else return `${locationArr[0]} ${locationArr[1]}`;
+                      }) || []
+                    )
+                  ).join(", ") || "주소"
                 : "입력 없음"}
             </p>
           </div>
