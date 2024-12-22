@@ -1,7 +1,7 @@
 # 프로젝트명
 
 > 간략한 프로젝트 소개 문구를 작성합니다.
-
+<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Downloads Stats][npm-downloads]][npm-url]
