@@ -53,15 +53,6 @@
 <img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
-김내현 - FE, publishing, kakao map API
-</br>
-<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
-  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
-</a>
-<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
-<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
-</a>
-
 최보아 - Design leader, FE, publishing
 </br>
 <a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
@@ -80,7 +71,16 @@
 <img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
-임현승 - FE, publishing
+김내현 - FE, publishing, kakao map API
+</br>
+<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
+</a>
+
+임승현 - FE, publishing
 </br>
 <a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
