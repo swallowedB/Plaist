@@ -7,7 +7,7 @@ export default function MainTitle({ className }: { className: string }) {
         style={{ textShadow: "0px 3px 15px rgba(47, 125, 215, 0.30)" }}
         className=" text-[21px] font-Pretendard font-medium"
       >
-        Your Shortcut to Great Days
+        My Shortcut to Great Days
       </p>
       <div
         style={{ textShadow: "0px 3px 15px rgba(47, 125, 215, 0.30)" }}
