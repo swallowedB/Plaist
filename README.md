@@ -83,9 +83,8 @@
 </br>
 
 ## 프로젝트 구조
-
 ```
-plaist
+plaist1
 ├─ .env
 ├─ .git
 ├─ .github
@@ -94,6 +93,8 @@ plaist
 │  │  ├─ 🐞-bug.md
 │  │  ├─ 🚀-deploy.md
 │  │  └─ 🛠️-refactor.md
+│  └─ workflows
+│     └─ deploy-netilfy.yml
 ├─ .gitignore
 ├─ README.md
 ├─ eslint.config.js
@@ -102,9 +103,6 @@ plaist
 ├─ package.json
 ├─ postcss.config.js
 ├─ public
-│  ├─ _redirects
-│  ├─ mockServiceWorker.js
-│  └─ vite.svg
 ├─ src
 │  ├─ App.tsx
 │  ├─ Router.tsx
@@ -112,17 +110,19 @@ plaist
 │  ├─ assets
 │  │  └─ images
 │  ├─ components
+│  │  ├─ FlexibleGlass.tsx
 │  │  ├─ FooterNavLink.tsx
 │  │  ├─ HeaderNavLink.tsx
 │  │  ├─ InputField.tsx
 │  │  ├─ My
 │  │  ├─ Root
 │  │  ├─ category
-│  │  ├─ createMyCourse
+│  │  ├─ createMyCourseMain
 │  │  ├─ main
 │  │  ├─ notification
 │  │  ├─ otherUserInfo
 │  │  ├─ postEditor
+│  │  ├─ skeletonUI
 │  │  ├─ utills
 │  │  └─ viewMycourse
 │  ├─ css
@@ -133,17 +133,15 @@ plaist
 │  ├─ stores
 │  ├─ types
 │  ├─ utills
-│  │  ├─ Auth
-│  │  ├─ constants
-│  │  ├─ main
-│  │  └─ mycourse
 │  └─ vite-env.d.ts
 ├─ tailwind.config.js
 ├─ tsconfig.app.json
 ├─ tsconfig.json
 ├─ tsconfig.node.json
 └─ vite.config.ts
+
 ```
+
 </br>
 
 ## History
@@ -212,7 +210,7 @@ plaist
 </br>
 
 ### [게시물 상세페이지 - 작성자 프로필]
-
+![상세페이지 - 작성자 프로필](https://github.com/user-attachments/assets/ec0d4340-8660-40f8-b448-da3d5528c4ea)
 </br>
 
 ### [게시물 상세페이지 - 게시물 좋아요]
@@ -224,27 +222,43 @@ plaist
 </br>
 
 ### [카테고리 - 지역별 검색]
-
+![카테고리 - 지역별 검색](https://github.com/user-attachments/assets/e6cc2e6e-a238-47da-a6fb-4da37725ef48)
 </br>
 
 ### [카테고리 - 항목별 검색]
-
+![카테고리 - 항목별 검색](https://github.com/user-attachments/assets/65091d0a-a59a-48d0-ae4b-2b72abe11686)
 </br>
 
 ### [카테고리 - 정렬과 페이지네이션]
-
+![카테고리 - 정렬과 페이지네이션](https://github.com/user-attachments/assets/b6c59165-9cee-481b-b741-36047a65dbe5)
 </br>
 
 ### [마이코스 - 코스생성]
-
+![마이코스 - 코스생성](https://github.com/user-attachments/assets/3d5b300c-03b6-449d-a5ec-562510e78313)
 </br>
 
 ### [마이코스 - 나만의 코스 확인]
-
+![마이코스 -나만의 코스 확인](https://github.com/user-attachments/assets/fad82a05-896e-482d-965b-9064f92890b9)
 </br>
 
+### [마이코스 - 수정]
+![마이코스 - 수정](https://github.com/user-attachments/assets/67a9defb-e02e-4fc2-a22e-0175f782db14)
+</br>
 
+### [마이코스 - 삭제]
+![마이코스 - 삭제](https://github.com/user-attachments/assets/75b5df27-3dad-45d3-a33d-510bb3b10fd2)
+</br>
 
+### [404페이지]
+<img width="766" alt="404페이지" src="https://github.com/user-attachments/assets/2eaddb62-66c1-4aee-9c39-9ca00fd2702b" />
+</br>
 
+### [로그인 토큰 만료 경고창 - 연장함]
+![토큰만료 - 연장함](https://github.com/user-attachments/assets/bfff77cb-c7be-4267-93c5-86c075c135e1)
+</br>
+
+### [로그인 토큰 만료 경고창 - 연장안함]
+![토큰만료 - 연장안함](https://github.com/user-attachments/assets/f13870f7-6f0a-4e79-9d1b-8475b7e60177)
+</br>
 
 
