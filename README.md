@@ -249,6 +249,10 @@ plaist1
 ![마이코스 - 삭제](https://github.com/user-attachments/assets/75b5df27-3dad-45d3-a33d-510bb3b10fd2)
 </br>
 
+### [로그인 토큰 만료 경고창 - 연장안함]
+![토큰만료 - 연장안함](https://github.com/user-attachments/assets/f13870f7-6f0a-4e79-9d1b-8475b7e60177)
+</br>
+
 ### [404페이지]
 <img width="480" alt="404페이지" src="https://github.com/user-attachments/assets/2eaddb62-66c1-4aee-9c39-9ca00fd2702b" />
 </br>
@@ -257,8 +261,6 @@ plaist1
 ![토큰만료 - 연장함](https://github.com/user-attachments/assets/bfff77cb-c7be-4267-93c5-86c075c135e1)
 </br>
 
-### [로그인 토큰 만료 경고창 - 연장안함]
-![토큰만료 - 연장안함](https://github.com/user-attachments/assets/f13870f7-6f0a-4e79-9d1b-8475b7e60177)
+### [마이페이지 - 댓글 삭제]
+![마이페이지 - 댓글 삭제](https://github.com/user-attachments/assets/81a6b56d-d44f-47c0-ab64-7d61f01d54c5)
 </br>
-
-
