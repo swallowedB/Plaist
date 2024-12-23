@@ -39,7 +39,7 @@ export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
 
     try {
       // 댓글 데이터 생성
-      const newComment: Comment = {
+      const newComment: reply = {
         author: { fullName: userInfo.fullName },
         createdAt: new Date().toISOString(),
         comment,

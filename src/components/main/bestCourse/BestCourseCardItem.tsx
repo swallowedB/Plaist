@@ -1,10 +1,7 @@
 import { NavLink } from "react-router";
 
-import {
-  splitBySpaceUntilIndex1,
-  trimStringWithEllipsis,
-} from "../../../utills/main/fomatter";
 import images from "../../../assets/images/importImages";
+import { trimStringWithEllipsis } from "../../../utills/main/fomatter";
 
 export default function BestCourseCardItem({
   courseData,

@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface CommentsState {
-  comments: Comment[];
-  setComments: (data: Comment[]) => void;
+  comments: reply[];
+  setComments: (data: reply[]) => void;
 }
 
 export const useCommentStore = create<CommentsState>((set) => ({
