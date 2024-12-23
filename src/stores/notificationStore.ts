@@ -97,10 +97,10 @@ export const useNotificationStore = create<
   setIsUserActive: () => {
     const updateUserActivity = () => {
       if (document.hidden) {
-        console.log("User is inactive. Stop polling Event.");
+        // console.log("User is inactive. Stop polling Event.");
         set({ isUserActive: false });
       } else {
-        console.log("User is active. Start polling event.");
+        // console.log("User is active. Start polling event.");
         set({ isUserActive: true });
       }
     };
@@ -117,7 +117,7 @@ export const useNotificationStore = create<
         try {
           fetchNotifications();
           setIsUserActive();
-          console.log("startPolling");
+          console.log("Polling");
         } catch (error) {
           console.error("Error during long polling:", error);
         }
