@@ -8,15 +8,17 @@ interface NotificationState {
   notifications: Notification[];
   clickedNotifications: Set<string>;
   isIconActivated: boolean;
+  isUserActive: boolean;
 }
 
 interface NotificationAction {
   fetchNotifications: () => void;
   change2Seen: (notificationId: string) => void;
   deleteAll: () => void;
-  startLongPolling: () => void;
-  stopLongPolling: () => void;
+  startNotification: () => void;
+  stopNotification: () => void;
   setIconActivated: (value: boolean) => void;
+  setIsUserActive: () => void;
 }
 
 // TODO 새로고침시 userId 없어짐
@@ -27,6 +29,7 @@ export const useNotificationStore = create<
   notifications: [],
   clickedNotifications: new Set<string>(),
   isIconActivated: false,
+  isUserActive: true,
 
   fetchNotifications: async () => {
     await useUserStore.getState().setUserId();
@@ -91,14 +94,30 @@ export const useNotificationStore = create<
     set({ isIconActivated: value });
   },
 
-  startLongPolling: async () => {
+  setIsUserActive: () => {
+    const updateUserActivity = () => {
+      if (document.hidden) {
+        console.log("User is inactive. Stop polling Event.");
+        set({ isUserActive: false });
+      } else {
+        console.log("User is active. Start polling event.");
+        set({ isUserActive: true });
+      }
+    };
+
+    // 사용자 활동 이벤트 감지
+    document.addEventListener("visibilitychange", updateUserActivity);
+  },
+  startNotification: () => {
     polling = true;
     const { fetchNotifications } = get();
-
+    const { setIsUserActive, isUserActive } = get();
     const pollingNotifications = async () => {
       while (polling) {
         try {
-          await fetchNotifications();
+          fetchNotifications();
+          setIsUserActive();
+          console.log("startPolling");
         } catch (error) {
           console.error("Error during long polling:", error);
         }
@@ -107,10 +126,13 @@ export const useNotificationStore = create<
       }
     };
 
-    pollingNotifications();
+    setIsUserActive();
+    if (isUserActive) {
+      pollingNotifications();
+    }
   },
 
-  stopLongPolling: () => {
+  stopNotification: () => {
     polling = false;
     set({ isIconActivated: false });
     console.log("Polling stopped.");

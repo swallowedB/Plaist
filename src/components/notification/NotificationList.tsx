@@ -14,8 +14,8 @@ export default function NotificationList() {
     (state) => state.fetchNotifications
   );
   const change2Seen = useNotificationStore((state) => state.change2Seen);
-  const stopNotificationPolling = useNotificationStore(
-    (state) => state.stopLongPolling
+  const stopNotification = useNotificationStore(
+    (state) => state.stopNotification
   );
   const [courseTitles, setCourseTitles] = useState<{ [key: string]: string }>(
     {}
@@ -90,7 +90,7 @@ export default function NotificationList() {
   //TODO
   if (loading) return <></>;
   else if (error) {
-    stopNotificationPolling();
+    stopNotification();
     return <p>에러 발생: {error}</p>;
   } else
     return (
