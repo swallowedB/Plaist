@@ -79,7 +79,7 @@ export const useNotificationStore = create<
   },
 
   deleteAll: async () => {
-    const userId = useUserStore.getState().userId || ""; // 동적으로 userId 가져오기
+    const userId = useUserStore.getState().userId || "";
     try {
       await seenNotification();
       console.log("All notifications marked as seen.");
