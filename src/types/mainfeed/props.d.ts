@@ -39,13 +39,13 @@ interface Like {
   updatedAt: string;
 }
 
-interface Comment {
-  _id: string;
+interface reply {
+  _id?: string;
   comment: string;
-  author: User;
-  post: string;
+  author: { fullName: UserInfo.fullName; _id?: string };
+  post?: string;
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 interface Follower {
