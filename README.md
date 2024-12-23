@@ -154,3 +154,94 @@ plaist1
 - 0.1.1
   - 작업 진행 중
 
+</br>
+
+## 페이지별 기능
+### [메인 화면]
+<img width="480" alt="메인 화면" src="https://github.com/user-attachments/assets/c046deaf-6706-4147-abaa-60443aabff84" />
+</br>
+
+### [회원가입]
+![회원가입](https://github.com/user-attachments/assets/db02e6e8-2ef6-4696-a0bd-4db0454f84de)
+</br>
+
+### [로그인]
+![로그인](https://github.com/user-attachments/assets/cc9d0c69-2202-4c0e-b3c8-a85f4401a9c9)
+</br>
+
+### [회원정보 수정]
+![회원정보 수정](https://github.com/user-attachments/assets/ab41ce3a-b973-431c-a88a-45e5535e162b)
+</br>
+
+### [로그아웃 - 1]
+![로그아웃1](https://github.com/user-attachments/assets/495d1a0f-e39f-4956-991a-f5824afc18b8)
+</br>
+
+### [로그아웃 - 2]
+![로그아웃2](https://github.com/user-attachments/assets/32163b7f-9226-43b0-9fde-e1a4360715be)
+</br>
+
+### [상하단 배너]
+![상하단 배너](https://github.com/user-attachments/assets/06d3ec8e-378a-4d6c-ae01-ccc041852bd9)
+</br>
+
+### [알림창 - 알림 보기]
+![알림창1](https://github.com/user-attachments/assets/852210a5-dc6b-4c6a-b821-bfe588519464)
+</br>
+
+### [알림창 - 알림 삭제]
+![알림 삭제](https://github.com/user-attachments/assets/2de5fa95-6ffe-462e-988e-55bf8a9930f8)
+</br>
+
+### [메인피드 - 검색]
+![메인피드 - 검색](https://github.com/user-attachments/assets/81828d15-3756-4c90-b9b0-9af622416404)
+</br>
+
+### [메인피드 - 페이지네이션]
+![메인피드 - 페이지네이션](https://github.com/user-attachments/assets/cf7611ee-613d-4801-b5bc-64f8c7744733)
+</br>
+
+### [메인피드 - 정렬]
+![메인피드 - 정렬](https://github.com/user-attachments/assets/5e6aaf35-230f-49ac-b3d2-9af1439a57c0)
+</br>
+
+### [게시물 상세페이지]
+![상세페이지](https://github.com/user-attachments/assets/3d41b5aa-f090-43b7-8d9c-06103b0439f1)
+</br>
+
+### [게시물 상세페이지 - 작성자 프로필]
+
+</br>
+
+### [게시물 상세페이지 - 게시물 좋아요]
+![상세페이지 - 게시물 좋아요](https://github.com/user-attachments/assets/dc640c59-063c-46a2-b357-3e21389d9963)
+</br>
+
+### [게시물 상세페이지 - 게시물 댓글 & 정렬]
+![상세페이지 - 게시물 댓글   정렬](https://github.com/user-attachments/assets/726dfe5e-a51b-4123-8602-73c9446f7471)
+</br>
+
+### [카테고리 - 지역별 검색]
+
+</br>
+
+### [카테고리 - 항목별 검색]
+
+</br>
+
+### [카테고리 - 정렬과 페이지네이션]
+
+</br>
+
+### [마이코스 - 코스생성]
+
+</br>
+
+### [마이코스 - 나만의 코스 확인]
+
+</br>
+
+
+
+
+
