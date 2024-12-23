@@ -9,7 +9,7 @@ import {
   convertDateFormatt,
   convertTime,
   formatPrice,
-  splitBySpaceUntilIndex1,
+  // splitBySpaceUntilIndex1,
 } from "../../../utills/main/fomatter";
 import ModifyButton from "../utils/ModifyButton";
 import images from "../../../assets/images/importImages";
@@ -107,7 +107,18 @@ export default function CourseContentDoc({
               className="w-[14.66px] h-4"
             />
             <p className="text-sm leading-5 font-regular text-custom-gray">
-              {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
+              {doc.locationObjs
+                ? Array.from(
+                    new Set(
+                      doc.locationObjs?.map((item: LocationObj) => {
+                        const locationArr = item.locationAddress.split(" ");
+                        if (locationArr[0] === "서울특별시")
+                          return `서울 ${locationArr[1]}`;
+                        else return `${locationArr[0]} ${locationArr[1]}`;
+                      }) || []
+                    )
+                  ).join(", ") || "주소"
+                : "입력 없음"}
             </p>
           </div>
           <div className="flex gap-[14px] h-6 mb-5">

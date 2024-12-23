@@ -40,7 +40,6 @@ export const getUserInfo = async () => {
     setLoginState(false);
   } catch (error) {
     console.error("/users/{id} 호출 중 오류 발생:", error);
-    throw error;
   }
 };
 

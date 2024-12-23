@@ -14,8 +14,8 @@ export default function NotificationList() {
     (state) => state.fetchNotifications
   );
   const change2Seen = useNotificationStore((state) => state.change2Seen);
-  const stopNotificationPolling = useNotificationStore(
-    (state) => state.stopLongPolling
+  const stopNotification = useNotificationStore(
+    (state) => state.stopNotification
   );
   const [courseTitles, setCourseTitles] = useState<{ [key: string]: string }>(
     {}
@@ -70,6 +70,12 @@ export default function NotificationList() {
       }
     } catch (error) {
       console.error("Error:", (error as Error).message);
+      if (notificationType === "COMMENT" || notificationType === "LIKE") {
+        alert("게시글을 찾을 수 없습니다.");
+      } else if (notificationType === "FOLLOW") {
+        alert("사용자를 찾을 수 없습니다.");
+        navigate("/");
+      }
     }
   };
 
@@ -84,7 +90,7 @@ export default function NotificationList() {
   //TODO
   if (loading) return <></>;
   else if (error) {
-    stopNotificationPolling();
+    stopNotification();
     return <p>에러 발생: {error}</p>;
   } else
     return (

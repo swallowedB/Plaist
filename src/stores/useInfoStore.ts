@@ -43,36 +43,36 @@ export const useUserStore = create<UserStore>((set) => ({
   fetchUserInfo: async () => {
     try {
       const data = await getUserInfo();
-
-      if (!data.fullName) {
-        console.warn(
-          "fullname 값이 비어 있습니다. API 응답을 확인하세요:",
-          data
-        );
-      }
-
-      const profilePicUrl = data.image || exprofilImg;
-      let region = "";
-
-      if (data.username) {
-        try {
-          const parsedUsername = JSON.parse(data.username);
-          region = parsedUsername.region || "";
-        } catch (error) {
-          console.warn("username 파싱 실패:", error);
+      if (data) {
+        if (!data.fullName) {
+          console.warn(
+            "fullname 값이 비어 있습니다. API 응답을 확인하세요:",
+            data
+          );
         }
-      }
-      const updatedUserInfo = {
-        fullName: data.fullName || "",
-        email: data.email,
-        region,
-        image: data.image || "",
-      };
+        const profilePicUrl = data.image || exprofilImg;
+        let region = "";
 
-      set(() => ({
-        userInfo: updatedUserInfo,
-        userProfilePic: profilePicUrl,
-      }));
+        if (data.username) {
+          try {
+            const parsedUsername = JSON.parse(data.username);
+            region = parsedUsername.region || "";
+          } catch (error) {
+            console.warn("username 파싱 실패:", error);
+          }
+        }
+        const updatedUserInfo = {
+          fullName: data.fullName || "",
+          email: data.email,
+          region,
+          image: data.image || "",
+        };
+
+        set(() => ({
+          userInfo: updatedUserInfo,
+          userProfilePic: profilePicUrl,
+        }));
+      }
     } catch (error) {
       console.error("사용자 정보 가져오기 오류 발생", error);
       throw error;

@@ -12,73 +12,101 @@ export default function Feed({ sort }: { sort: Sort }) {
   const spot = useChannelStore((state) => state.spot);
   const channelList = useChannelStore((state) => state.channelList);
   const [postList, setPostList] = useState<Course[]>([]);
-
+  const [allPostList, setAllPostList] = useState<Map<string, Course>>(
+    new Map()
+  );
   const getPostList = async () => {
-    let allPostList: Course[] = [];
     let uniquePostList: Course[] = [];
+    const ALL_CHANNEL_ID = "675e6ed26ada400ee6bec120";
 
-    // location filtering
-    // TODO : Use Memo
-    if (location.name === "전국" && spot.name === "전체") {
-      try {
-        const ALL_CHANNEL_ID = "675e6ed26ada400ee6bec120";
-        const Data = await getChannelPostList(ALL_CHANNEL_ID);
-        allPostList = [...Data.flat()];
-        uniquePostList = uniquePostById(allPostList);
-      } catch (error) {
-        console.error(error);
-      }
-    } else if (location.name === "전국") {
-      try {
+    try {
+      const allChannelPostList: Course[] = await getChannelPostList(
+        ALL_CHANNEL_ID
+      );
+
+      // Map으로 변환
+      const postMap = new Map(
+        allChannelPostList.map((post) => {
+          const titleData = JSON.parse(post.title) as Title;
+          const key = JSON.stringify({
+            title: titleData.courseTitle,
+            // description: titleData.courseDescription,
+          });
+          return [key, post];
+        })
+      );
+
+      setAllPostList(postMap); // Map 상태 업데이트
+
+      // location 및 spot 필터링
+      if (location.name === "전국" && spot.name === "전체") {
+        uniquePostList = [...allChannelPostList];
+      } else if (location.name === "전국") {
         const spotData = await getChannelPostList(spot.id);
-        allPostList.push(...spotData.flat());
-        uniquePostList = uniquePostById(allPostList);
-      } catch (error) {
-        console.log(error);
-      }
-    } else if (spot.name === "전체") {
-      try {
+        uniquePostList = uniquePostByTitle(spotData, postMap);
+      } else if (spot.name === "전체") {
         const locationData = await getChannelPostList(location.id);
-        allPostList.push(...locationData.flat());
-        uniquePostList = uniquePostById(allPostList);
-      } catch (error) {
-        console.log(error);
+        uniquePostList = uniquePostByTitle(locationData, postMap);
+      } else {
+        const spotData = await getChannelPostList(spot.id);
+        const locationData = await getChannelPostList(location.id);
+        const locationMap = new Map(
+          locationData.map((post: Course) => {
+            return [post.title, post];
+          }) // title을 키로 설정
+        );
+        const totalPost = spotData.filter((post: Course) =>
+          locationMap.has(post.title)
+        );
+        uniquePostList = uniquePostByTitle(totalPost, postMap);
       }
-    } else {
-      try {
-        const locationData = await Promise.all(
-          channelList.location.map(
-            async (ch) => await getChannelPostList(ch._id)
-          )
-        );
-        const spotData = await Promise.all(
-          channelList.spot.map(async (ch) => await getChannelPostList(ch._id))
-        );
 
-        const locationPostSet = new Set(locationData);
-        allPostList = spotData.filter((post) => locationPostSet.has(post));
-        uniquePostList = uniquePostById(allPostList);
-      } catch (error) {
-        console.log(error);
-      }
+      // 정렬
+      uniquePostList.sort((postA, postB) => sortPages(postA, postB));
+      setPostList(uniquePostList);
+    } catch (error) {
+      console.error(error);
+      setPostList([]);
     }
-
-    uniquePostList.sort((postA, postB) => {
-      return sortPages(postA, postB);
-    });
-
-    setPostList(uniquePostList);
-    setPages(uniquePostList.length);
   };
 
-  // 중복 id 제거
-  const uniquePostById = (arr: Course[]) => {
-    const idMap = new Map();
+  const uniquePostByTitle = (
+    arr: Course[],
+    currentMap: Map<string, Course>
+  ): Course[] => {
+    const seenKeys = new Set<string>();
+    const result: Course[] = [];
     arr.forEach((item) => {
-      idMap.set(item._id, item);
+      try {
+        const titleData = JSON.parse(item.title) as Title;
+        const key = JSON.stringify({
+          title: titleData.courseTitle,
+          // description: titleData.courseDescription,
+        });
+        console.log("item", key);
+        if (!seenKeys.has(key)) {
+          // currentMap에 있으면 반환
+          if (currentMap.has(key)) {
+            result.push(currentMap.get(key)!);
+            seenKeys.add(key); // 해당 키를 seenKeys에 추가
+          }
+          // else {
+          //   console.log("not listed Item", key);
+          //   result.push(item);
+          //   seenKeys.add(key);
+          // }
+        }
+      } catch (error) {
+        // 잘못된 데이터는 제외
+        console.error("Invalid JSON in title:", item.title);
+      }
     });
-    return Array.from(idMap.values());
+    return result;
   };
+
+  useEffect(() => {
+    setPages(postList.length);
+  }, [postList]);
 
   // 포스트 정렬
   const sortPages = (postA: Course, postB: Course) => {
@@ -98,7 +126,7 @@ export default function Feed({ sort }: { sort: Sort }) {
 
   const setPages = (postListLength: number) => {
     if (postListLength > 0) {
-      const POSTS_PER_PAGE = 10;
+      const POSTS_PER_PAGE = 8;
       setTotalPages(Math.ceil(postListLength / POSTS_PER_PAGE));
     } else setTotalPages(1);
   };
@@ -111,7 +139,7 @@ export default function Feed({ sort }: { sort: Sort }) {
     console.log("currentPage:", currentPage, "totalPages:", totalPages);
   };
 
-  //카테고리가 변경되는 경우
+  // 카테고리가 변경되는 경우
   // API 호출 및 페이지 변경
   useEffect(() => {
     if (channelList) {
@@ -135,6 +163,12 @@ export default function Feed({ sort }: { sort: Sort }) {
 
   // 렌더링 반환
   if (!postList) return <p>로딩중...</p>;
+  else if (currentPostList.length === 0)
+    return (
+      <p className="mt-10 text-sm font-medium text-center text-primary-700 font-pretendard">
+        아직 등록된 코스가 없어요 இ௰இ
+      </p>
+    );
   else
     return (
       <>
