@@ -44,6 +44,8 @@ export default function CourseContentDoc({
       setEditButtonVisable(false);
     }
   }, [userId, courseObj.author._id]);
+
+  console.log(doc.courseDescription)
   return (
     <div className="mb-20 font-pretendard text-custom-black">
       <div className="flex justify-between">
@@ -93,7 +95,7 @@ export default function CourseContentDoc({
 
         <div className="mt-[25px] flex flex-col">
           <div className="font-medium leading-6 text-[15px] text-custom-gray mb-[18px]">
-            <p className="w-[580px]">{doc.courseDescription}</p>
+            <p className="w-[580px] whitespace-pre-wrap break-words">{doc.courseDescription}</p>
           </div>
 
           <div className="flex items-center justify-start mb-[10px]">
