@@ -250,7 +250,7 @@ plaist1
 </br>
 
 ### [404페이지]
-<img width="766" alt="404페이지" src="https://github.com/user-attachments/assets/2eaddb62-66c1-4aee-9c39-9ca00fd2702b" />
+<img width="480" alt="404페이지" src="https://github.com/user-attachments/assets/2eaddb62-66c1-4aee-9c39-9ca00fd2702b" />
 </br>
 
 ### [로그인 토큰 만료 경고창 - 연장함]
