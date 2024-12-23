@@ -82,7 +82,7 @@ function showExpirationModal(
     border-radius: 22px;
   `;
   modal.innerHTML = `
-  <div style="height: 126px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div style="height: 126px; display: flex; flex-direction: column; justify-content: center; align-items: center; font-weight:500;">
     <p>
       세션이 <span style="color: #245288;">약 ${Math.round(
         remainingMinutes
@@ -94,16 +94,16 @@ function showExpirationModal(
     </p>
   </div>
 
-  <div style="height: 61px; display: flex; border-top: 1px solid #245288;">
+  <div style="height: 61px; display: flex; border-top: 1px solid rgba(36, 82, 136, 0.5); font-weight:500;">
     <button
       id="extendSession"
-      style="border-right: 1px solid #245288; flex-grow: 1; color: #245288;"
+      style="width: 50%; color: #245288;"
     >
       연장하기
     </button>
     <button
       id="closeModal"
-      style="border-left: 1px solid #245288; flex-grow: 1;"
+      style="border-left: 1px solid rgba(36, 82, 136, 0.5); width: 50%;"
     >
       닫기
     </button>
