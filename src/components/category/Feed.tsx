@@ -12,7 +12,7 @@ export default function Feed({ sort }: { sort: Sort }) {
   const spot = useChannelStore((state) => state.spot);
   const channelList = useChannelStore((state) => state.channelList);
   const [postList, setPostList] = useState<Course[]>([]);
-  const [allPostList, setAllPostList] = useState<Map<string, Course>>(
+  const [_allPostList, setAllPostList] = useState<Map<string, Course>>(
     new Map()
   );
   const getPostList = async () => {

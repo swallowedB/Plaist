@@ -20,7 +20,6 @@ import CreateMyCourse from "./pages/createcourse/CreateMycourse";
 import Login from "./pages/Login";
 import MyPage from "./pages/MyPage";
 import Signup from "./pages/Signup";
-import OtherUserInfo from "./pages/OtherUserInfo";
 
 // 상단바
 import Notification from "./pages/Notification";
@@ -33,6 +32,7 @@ import NotFound from "./pages/NotFound";
 import CourseContent from "./pages/main/CourseContent";
 import UserInfo from "./components/My/userInfo/UserInfo";
 import CourseContentLayout from "./layouts/CourseContentLayout";
+import OtherUserInfo from "./pages/OtherUserInfo";
 
 export default function Router() {
   return (

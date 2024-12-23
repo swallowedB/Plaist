@@ -112,11 +112,8 @@ function showExpirationModal(
 
   modalContainer.appendChild(modal);
   document.body.appendChild(modalContainer);
-
+  const stopNotification = useNotificationStore.getState().stopNotification;
   const autoLogoutTimer = setTimeout(() => {
-    const stopNotification = useNotificationStore(
-      (state) => state.stopNotification
-    );
     modalContainer.remove();
     Cookies.remove(key);
     stopNotification();
@@ -135,6 +132,7 @@ function showExpirationModal(
       clearTimeout(autoLogoutTimer);
       modalContainer.remove();
       Cookies.remove(key);
+      stopNotification();
       navigate("/login");
     }
   });

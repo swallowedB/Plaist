@@ -35,17 +35,26 @@ export const getChannelIdList = (locationObjs: LocationObj[]) => {
   const addressList = locationObjs.map((location) => location.locationAddress);
   const spotList = locationObjs.map((location) => location.locationCategory);
 
-  const selectedAddressChannels = addressList.map((address) => {
-    if (!address || address.length < 2)
-      return toast.error("유효하지 않은 지역 카테고리입니다.");
-    return (
-      addressToChannelMap[address.slice(0, 2)] ||
-      toast.error("유효하지 않은 입력 형식입니다.")
-    );
-  });
+  const selectedAddressChannels: string[] = addressList
+    .map((address) => {
+      if (!address || address.length < 2) {
+        toast.error("유효하지 않은 지역 카테고리입니다.");
+        return "";
+      }
+      const channel = addressToChannelMap[address.slice(0, 2)];
+      if (!channel) {
+        toast.error("유효하지 않은 입력 형식입니다.");
+        return "";
+      }
+      return channel.toString();
+    })
+    .filter(Boolean);
 
   const selectedSpotChannels = spotList.map((spot) => {
-    if (!spot) return toast.error("장소 형식이 입력되지 않았습니다.");
+    if (!spot) {
+      toast.error("장소 형식이 입력되지 않았습니다.");
+      return "";
+    }
     const filteredSpotChannelId = findValueByKeyInString(
       spot,
       spotToChannelMap

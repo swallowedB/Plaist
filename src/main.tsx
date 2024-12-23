@@ -9,10 +9,6 @@ const rootElement = document.getElementById("root");
 if (!rootElement) {
   throw new Error("Root element not found");
 }
-
-// if (process.env.NODE_ENV === "development") {
-//   setupLocatorUI();
-// }
 createRoot(rootElement).render(
   <StrictMode>
     <BrowserRouter>

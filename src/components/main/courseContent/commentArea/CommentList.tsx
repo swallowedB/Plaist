@@ -30,7 +30,7 @@ export default function CommentList() {
           {sortedComments.map((comment, idx) => (
             <CommentListItem
               key={idx}
-              userId={comment.author._id}
+              userId={comment.author._id!}
               userName={comment.author.fullName}
               createdAt={convertDateFormatt(comment.createdAt)}
               comment={comment.comment}
