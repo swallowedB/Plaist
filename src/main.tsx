@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { BrowserRouter } from "react-router";
 import { createRoot } from "react-dom/client";
-import setupLocatorUI from "@locator/runtime";
 
 import "./css/index.css";
 import App from "./App.tsx";
