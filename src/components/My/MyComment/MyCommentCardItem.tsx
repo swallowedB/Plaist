@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+import { Link } from "react-router";
+
+import { deleteComment } from "../../../api/commentApi";
 import images from "../../../assets/images/importImages";
 import { useCommentsStore } from "../../../stores/useCommentsStore";
-import { deleteComment } from "../../../api/commentApi";
-import { Link } from "react-router";
 
 interface CommentType {
   author: string;
@@ -10,22 +11,21 @@ interface CommentType {
   createdAt: string;
   post: string;
   _id: string;
-};
+}
 
 interface MyCommentCardItemProps {
   comment: CommentType;
   courseTitle: string;
   locationNames: string[];
-  likes: number; 
+  likes: number;
 }
 
-export default function MyCommentCardItem({ 
+export default function MyCommentCardItem({
   comment,
   courseTitle,
   locationNames,
   likes,
-
-}:MyCommentCardItemProps) {
+}: MyCommentCardItemProps) {
   const { fetchComments } = useCommentsStore();
 
   useEffect(() => {
@@ -44,14 +44,13 @@ export default function MyCommentCardItem({
 
   return (
     <div className="relative">
-
-    <Link to={`/course-content/${comment.post}`}>
+      <Link to={`/course-content/${comment.post}`}>
         <div
           className={`
           w-[542px] h-[128px] rounded-2xl bg-white shadow-strong
           relative flex flex-col items-center justify-center py-2 px-4
-          `}>
-          
+          `}
+        >
           {/* card contents */}
           <div className="flex flex-col items-center justify-between gap-[10px] w-[480px] h-[93px]">
             {/* contents #1 */}
@@ -66,8 +65,9 @@ export default function MyCommentCardItem({
             <div className="flex items-start w-full">
               {/* 댓글 본문 미리보기 */}
               <p className="w-[419px] font-pretendard font-regular text-xs text-custom-gray">
-                {comment.comment.length > 35 ? `${comment.comment.slice(0,35)}...더보기`
-                : comment.comment  || "내용 없음" }
+                {comment.comment.length > 35
+                  ? `${comment.comment.slice(0, 35)}...더보기`
+                  : comment.comment || "내용 없음"}
               </p>
             </div>
 
@@ -86,7 +86,10 @@ export default function MyCommentCardItem({
                 >
                   <p>{locationNames}</p>
                   <p>|</p>
-                  <p>{new Date(comment.createdAt).toLocaleDateString() || "날짜 없음"}</p>
+                  <p>
+                    {new Date(comment.createdAt).toLocaleDateString() ||
+                      "날짜 없음"}
+                  </p>
                 </div>
               </div>
 
@@ -103,20 +106,18 @@ export default function MyCommentCardItem({
               </div>
             </div>
           </div>
-
-
         </div>
-    </Link>
+      </Link>
 
-    {/* 삭제 버튼 */}
-    <div className="absolute top-[12px] left-[489px]">
-      <button
-        className="font-pretendard font-regular text-xs text-primary-600"
-        onClick={() => handleDelete(comment._id)}
+      {/* 삭제 버튼 */}
+      <div className="absolute top-[12px] left-[489px]">
+        <button
+          className="text-xs font-pretendard font-regular text-primary-600"
+          onClick={() => handleDelete(comment._id)}
         >
-        삭제
-      </button>
+          삭제
+        </button>
+      </div>
     </div>
-  </div>
   );
 }

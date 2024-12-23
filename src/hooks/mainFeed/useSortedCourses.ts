@@ -1,6 +1,9 @@
 import { useMemo } from "react";
-import { sortCoursesByCreatedAt, sortCoursesByLike } from "../../utills/main/fomatter";
 
+import {
+  sortCoursesByCreatedAt,
+  sortCoursesByLike,
+} from "../../utills/main/fomatter";
 
 export function useSortedCourses(
   courseList: Course[],

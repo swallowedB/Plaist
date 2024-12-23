@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
-import { deleteMyCourse } from "../../api/postMyCourse";
+
 import { getChannelPostList } from "../../api/postApi";
+import { deleteMyCourse } from "../../api/postMyCourse";
 
 // 유효한 채널 ID 목록 가져오기
 export const getValidChannelIdList = (

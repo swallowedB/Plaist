@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import InputField from "../components/InputField";
 import { NavLink, useNavigate } from "react-router";
+
 import "../css/font.css";
-import { postSingUp } from "../api/api";
 import "../css/blur.css";
+import { postSingUp } from "../api/api";
+import InputField from "../components/InputField";
 import Validate from "../components/utills/Validate";
 
 export default function Signup() {

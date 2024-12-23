@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useChannelStore } from "../../stores/channelStore";
-import { getChannelPostList } from "../../api/postApi";
+
 import AllCourseCardItem from "../main/allCourse/AllCourseCardItem";
+import { getChannelPostList } from "../../api/postApi";
+import { useChannelStore } from "../../stores/channelStore";
 import Pagenation from "../../components/main/utils/Pagenation";
 
 type Sort = "최신순" | "인기순";

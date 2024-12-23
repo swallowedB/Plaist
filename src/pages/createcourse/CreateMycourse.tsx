@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { useFunnel } from "@use-funnel/react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useFunnel } from "@use-funnel/react-router-dom";
+
 import { postMyCourse } from "../../api/postMyCourse";
 import images from "../../assets/images/importImages";
-import SelectTag from "./SelectTag";
-import SelectCourseMain from "./SelectCourseMain";
-import ExplainCourse from "./ExpainCourse";
-import SucessMyPost from "./SucessMyPost";
-import Mapview from "./MapView";
+import Mapview from "../../components/createMyCourse/MapView";
+import SelectTag from "../../components/createMyCourse/SelectTag";
+import ExplainCourse from "../../components/createMyCourse/ExpainCourse";
+import SuccessMyPost from "../../components/createMyCourse/SucessMyPost";
+import SelectCourseMain from "../../components/createMyCourse/SelectCourseMain";
 
 type ContextByStep = {
   태그입력: InputTagsContext;
@@ -199,7 +200,7 @@ export default function CreateMyCourse() {
             );
           case "완료":
             return (
-              <SucessMyPost
+              <SuccessMyPost
                 onNext={() => {
                   navigate("/"); // 홈으로 이동
                   handlePostCourseResult();

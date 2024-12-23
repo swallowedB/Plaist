@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { allCourseChannelId } from "../../utills/constants/channelId";
-import { getChannelPostList } from "../../api/postApi";
 
+import { getChannelPostList } from "../../api/postApi";
 import Loader from "../../components/skeletonUI/Loader";
 import MainTitle from "../../components/main/MainTitle";
 import MainBestCourse from "../../components/main/MainBestCourse";
 import MainAllCourse from "../../components/main/MainAllCourse";
+import { allCourseChannelId } from "../../utills/constants/channelId";
 
 export default function Main() {
   const { data: courseList, isLoading: isPostListLoading } = useQuery({
@@ -16,7 +16,6 @@ export default function Main() {
       }
       return getChannelPostList(allCourseChannelId);
     },
-
   });
 
   return (

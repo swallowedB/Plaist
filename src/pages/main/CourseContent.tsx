@@ -1,21 +1,23 @@
-import { useNavigate, useParams } from "react-router";
-import CourseContentDoc from "../../components/main/courseContent/CourseContentDoc";
-import { useQuery } from "@tanstack/react-query";
-import { getCourses } from "../../api/react-query/courseApi";
-import Loader from "../../components/skeletonUI/Loader";
 import { useEffect, useState } from "react";
-import { useCommentStore } from "../../stores/main/comment/useCommentStore";
-import LikeButton from "../../components/main/courseContent/LikeButton";
-import images from "../../assets/images/importImages";
-import PostEditor from "./../PostEditor";
-import { useUserStore } from "../../stores/useInfoStore";
-import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
+import { useNavigate, useParams } from "react-router";
+import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+
 import {
   deletePosts,
   fetchPostIdsFromChannels,
   getValidChannelIdList,
 } from "./handleDeletePost";
+import PostEditor from "./../PostEditor";
+import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
+
+import images from "../../assets/images/importImages";
+import Loader from "../../components/skeletonUI/Loader";
+import { useUserStore } from "../../stores/useInfoStore";
+import { getCourses } from "../../api/react-query/courseApi";
+import LikeButton from "../../components/main/courseContent/LikeButton";
+import { useCommentStore } from "../../stores/main/comment/useCommentStore";
+import CourseContentDoc from "../../components/main/courseContent/CourseContentDoc";
 
 export default function CourseContent() {
   const navigate = useNavigate();

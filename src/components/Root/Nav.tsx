@@ -1,10 +1,10 @@
-import { useCookie } from "../../hooks/useCookie";
-import FooterNavLink from "../FooterNavLink";
-import { useLocation } from "react-router";
 import { useEffect } from "react";
-import { useNotificationStore } from "../../stores/notificationStore";
+import { useLocation } from "react-router";
 
+import FooterNavLink from "../FooterNavLink";
+import { useCookie } from "../../hooks/useCookie";
 import images from "../../assets/images/importImages";
+import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function Nav() {
   let isLoggedIn = useCookie();

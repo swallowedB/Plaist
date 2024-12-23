@@ -1,8 +1,10 @@
-import { useUserStore } from "../../../stores/useInfoStore";
-import UserInfoForm from "./UserInfoForm";
-import { updateUserInfo } from "../../../api/userApi";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+
+import UserInfoForm from "./UserInfoForm";
+
+import { updateUserInfo } from "../../../api/userApi";
+import { useUserStore } from "../../../stores/useInfoStore";
 
 export default function UserInfoUpdate() {
   const { userInfo, fetchUserInfo } = useUserStore();
@@ -25,7 +27,6 @@ export default function UserInfoUpdate() {
       throw error;
     }
   };
-
 
   return (
     <div>

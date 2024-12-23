@@ -1,5 +1,5 @@
-import { getToken } from "../../utills/Auth/getTokenWithCloser";
 import { axiosInstance } from "../axios";
+import { getToken } from "../../utills/Auth/getTokenWithCloser";
 
 const token = getToken();
 
@@ -17,19 +17,19 @@ export const postLikes = async (postId: string) => {
     return response.data;
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
-    throw error
+    throw error;
   }
 };
 
 export const deleteLikes = async (likeId: string) => {
   try {
     const response = await axiosInstance.delete(`/likes/delete`, {
-      data: { id:likeId },
+      data: { id: likeId },
       headers,
     });
     return response.data;
   } catch (error) {
     console.error("API 호출 중 오류 발생:", error);
-    throw error
+    throw error;
   }
 };
