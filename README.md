@@ -37,7 +37,7 @@
 
 최민혁 - Team leader, DevOps, FE, PM
 </br>
-<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+<a href="https://github.com/lactofreee">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
 <a href="https://velog.io/@lactofreee/posts">
@@ -46,47 +46,38 @@
 
 김예빈 - Deputy team leader, FE
 </br>
-<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+<a href="https://github.com/engsal-bin">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
-<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<a href="https://velog.io/@imaria0218/series">
 <img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
 최보아 - Design leader, FE, publishing
 </br>
-<a href="https://velog.io/@swallowed_o0/posts">
+<a href="https://github.com/swallowedB">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
 </a>
-<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
+<a href="https://velog.io/@swallowed_o0/posts">
 <img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
 김세빈 - FE, publishing
 </br>
-<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+<a href="https://github.com/nirii00">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
-</a>
-<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
-<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
 김내현 - FE, publishing, kakao map API
 </br>
-<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+<a href="https://github.com/kimnaehyun">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
-</a>
-<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
-<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
 임승현 - FE, publishing
 </br>
-<a href="[https://velog.io/@lactofreee/posts](https://github.com/lactofreee)">
+<a href="https://github.com/SeungHyeon-web">
   <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
-</a>
-<a href="[https://velog.io/@yeoonnii](https://velog.io/@lactofreee/posts)">
-<img src="https://img.shields.io/badge/Velog-20C997?style=flat-square&logo=Velog&logoColor=white"/>
 </a>
 
 </br>
