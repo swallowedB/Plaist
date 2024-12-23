@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
-import images from "../../../../assets/images/importImages";
 import { toast } from "react-toastify";
+
+import SearchResultOfCreateMyItems from "./SearchResultOfCreateMyItems";
+
+import images from "../../../../assets/images/importImages";
 
 export default function MapDisplay({
   onNext,

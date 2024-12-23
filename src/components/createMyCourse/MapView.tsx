@@ -1,5 +1,5 @@
-import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
-import MapDisplay from "./../../components/createMyCourseMain/flow2/mapview/MapDisplay";
+import PostingGuideTitle from "../../components/createMyCourse/PostingGuideTitle";
+import MapDisplay from "../../components/createMyCourse/flow2/mapview/MapDisplay";
 
 export default function Mapview({ onNext }: MapviewProps) {
   return (

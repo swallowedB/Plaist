@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 
-import TitleInputField from "./../../components/postEditor/TitleInputField";
 import TagDisplay from "./../../components/postEditor/TagDisplay";
-import CourseDetailDisplay from "../../components/postEditor/CourseDetailDisplay";
-import DescriptionInputField from "../../components/postEditor/DescriptionInputField";
-import useImageUpload from "../../hooks/useImageUpload";
+import TitleInputField from "./../../components/postEditor/TitleInputField";
 import ImageUpLoadField from "./../../components/postEditor/ImageUpLoadField";
 import SelectedLocationsDisplay from "./../../components/postEditor/SelectedLocationsDisplay";
-import CreateMyCourseFlowButton from "./../../components/createMyCourseMain/CreateMyCourseFlowButton";
+import CreateMyCourseFlowButton from "../../components/createMyCourse/CreateMyCourseFlowButton";
+
+import useImageUpload from "../../hooks/useImageUpload";
+import CourseDetailDisplay from "../../components/postEditor/CourseDetailDisplay";
+import DescriptionInputField from "../../components/postEditor/DescriptionInputField";
 
 export default function ExplainCourse({
   locationObjs,
