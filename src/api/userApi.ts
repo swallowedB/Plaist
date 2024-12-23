@@ -1,7 +1,9 @@
-import { useIsLoginStore } from "../stores/login/useIsLoginStore";
-import { getCookie } from "../utills/Auth/getCookie";
-import { axiosInstance } from "./axios";
 import { jwtDecode } from "jwt-decode";
+
+import { axiosInstance } from "./axios";
+
+import { getCookie } from "../utills/Auth/getCookie";
+import { useIsLoginStore } from "../stores/login/useIsLoginStore";
 
 type JwtPayload = {
   user: {

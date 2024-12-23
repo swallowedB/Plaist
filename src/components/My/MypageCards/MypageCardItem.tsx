@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+
 import images from "../../../assets/images/importImages";
 
 type CardData = {
@@ -15,7 +16,6 @@ type MypageCardItemProps = {
 };
 
 export default function MypageCardItem({ data }: MypageCardItemProps) {
-  
   return (
     <Link to={`/course-content/${data.id}`}>
       <div

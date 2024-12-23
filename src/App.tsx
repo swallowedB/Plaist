@@ -1,15 +1,14 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import ScrollToTop from "./layouts/utils/ScrollToTop";
-import Router from "./Router";
 import { useEffect, useState } from "react";
-
-import { getUserIdFromToken } from "./api/userApi";
-import { startExpirationCheck } from "./utills/Auth/setCookie";
 import { useNavigate } from "react-router";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import Router from "./Router";
+import { getUserIdFromToken } from "./api/userApi";
+import ScrollToTop from "./layouts/utils/ScrollToTop";
+import { startExpirationCheck } from "./utills/Auth/setCookie";
 
 export default function App() {
   const navigate = useNavigate();

@@ -1,12 +1,11 @@
-import "../css/index.css";
-import { useParams } from "react-router";
-import { getUserById } from "../api/userApi";
-import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";
 import { useEffect, useState } from "react";
-import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
-import defaultImage from "../assets/images/default.png";
+import { useParams } from "react-router";
 
-// test Page : http://localhost:5173/other-user-info/675fd765c8bfa141c295e5c1
+import "../css/index.css";
+import { getUserById } from "../api/userApi";
+import defaultImage from "../assets/images/default.png";
+import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";
+import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
 
 export default function OtherUserInfo() {
   const { userId } = useParams();

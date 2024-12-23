@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { getChannelList, setChannel } from "../api/channelApi";
 import { toast } from "react-toastify";
+
+import { getChannelList, setChannel } from "../api/channelApi";
 
 const CreateChannel = () => {
   const [channelList] = useState<ChannelType[]>([]);

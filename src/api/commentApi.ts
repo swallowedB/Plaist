@@ -1,5 +1,7 @@
 import { AxiosRequestConfig } from "axios";
+
 import { axiosInstance } from "./axios";
+
 import { getToken } from "../utills/Auth/getTokenWithCloser";
 
 const token = getToken();
@@ -34,6 +36,5 @@ export const deleteComment = async (id: string) => {
     console.log(response);
   } catch (error) {
     console.error("댓글 삭제 중 오류:", error);
-    
   }
 };

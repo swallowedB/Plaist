@@ -1,12 +1,14 @@
 import { useMemo } from "react";
-import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
-import { useSortStore } from "../../../../stores/main/comment/useSortStore";
+
+import CommentListItem from "./CommentListItem";
+
 import {
   convertDateFormatt,
   sortByCreatedAtDesc,
   sortByCreatedAtIncre,
 } from "../../../../utills/main/fomatter";
-import CommentListItem from "./CommentListItem";
+import { useSortStore } from "../../../../stores/main/comment/useSortStore";
+import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
 
 export default function CommentList() {
   const { comments } = useCommentStore();
@@ -36,7 +38,9 @@ export default function CommentList() {
           ))}
         </>
       ) : (
-        <p className="text-base text-custom-gray font-pretendard">아직 댓글이 없습니다.</p>
+        <p className="text-base text-custom-gray font-pretendard">
+          아직 댓글이 없습니다.
+        </p>
       )}
     </ul>
   );

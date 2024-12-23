@@ -1,6 +1,8 @@
-import CourseLocationCardItem from "./CourseLocationCardItem";
-import styles from "../../../../pages/createcourse/CourseEditor.module.css";
 import { twMerge } from "tailwind-merge";
+
+import CourseLocationCardItem from "./CourseLocationCardItem";
+
+import styles from "../../../../components/createMyCourse/SelectCourseMain.module.css";
 
 export default function CourseLocationCards({ doc }: { doc: Title }) {
   return (

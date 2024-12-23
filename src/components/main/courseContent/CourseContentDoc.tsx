@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
-import images from "../../../assets/images/importImages";
 import { NavLink } from "react-router";
-import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
+
+import CourseBadge from "./CourseBadge";
 import CourseLocationCards from "./locationCardArea/CourseLocationCards";
+import CourseContentCommentArea from "./commentArea/courseContentCommentArea";
+
 import {
   convertDateFormatt,
   convertTime,
   formatPrice,
   splitBySpaceUntilIndex1,
 } from "../../../utills/main/fomatter";
-import CourseBadge from "./CourseBadge";
 import ModifyButton from "../utils/ModifyButton";
+import images from "../../../assets/images/importImages";
 
 export default function CourseContentDoc({
   courseObj,
@@ -138,7 +140,7 @@ export default function CourseContentDoc({
           <CourseBadge target={doc.style} />
         </div>
       </div>
-      
+
       <CourseLocationCards doc={doc} />
       <CourseContentCommentArea courseObj={courseObj} />
     </div>

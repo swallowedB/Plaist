@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { getCourseObj } from "../../api/postApi";
 import { useNavigate } from "react-router-dom";
-import { useNotificationStore } from "../../stores/notificationStore";
+
+import { getCourseObj } from "../../api/postApi";
 import defaultProfile from "../../assets/images/exProfileImg.svg";
+import { useNotificationStore } from "../../stores/notificationStore";
 
 type NotificationType = "COMMENT" | "LIKE" | "FOLLOW" | "NULL";
 

@@ -1,5 +1,6 @@
-import "../css/index.css";
 import { useState } from "react";
+
+import "../css/index.css";
 import Menu from "../components/category/Menu";
 import Feed from "../components/category/Feed";
 
@@ -10,7 +11,7 @@ export default function Category() {
   return (
     <div className="relative w-[767px] flex flex-col items-center h-screen mx-auto mb-[100px]">
       <div className="absolute blur-bg-center" />
-      <section className="absolute grid place-items-center z-30">
+      <section className="absolute z-30 grid place-items-center">
         <header className="text-white grid place-items-center mt-[103px] z-10">
           <h2
             style={{ textShadow: "0px 3px 15px rgba(47, 125, 215, 0.30)" }}

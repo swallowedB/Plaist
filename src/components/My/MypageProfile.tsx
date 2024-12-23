@@ -1,7 +1,8 @@
-import { Link } from "react-router";
-import profileICon from "../../assets/images/profile_icon.svg";
-import { useUserStore } from "../../stores/useInfoStore";
 import { useEffect } from "react";
+import { Link } from "react-router";
+
+import { useUserStore } from "../../stores/useInfoStore";
+import profileICon from "../../assets/images/profile_icon.svg";
 
 export default function MypageProfile() {
   const { userProfilePic, userInfo, fetchUserInfo } = useUserStore();

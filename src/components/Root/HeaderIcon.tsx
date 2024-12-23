@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useCookie } from "../../hooks/useCookie";
-import HeaderIconLink from "../HeaderNavLink";
 import { useLocation } from "react-router";
+
+import HeaderIconLink from "../HeaderNavLink";
+import { useCookie } from "../../hooks/useCookie";
 // 알림 상태 업데이트
 import { useNotificationStore } from "../../stores/notificationStore";
 

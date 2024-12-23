@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom"; // 'react-router-dom'으로 수정
+import { NavLink } from "react-router-dom";
+
 import images from "../../assets/images/importImages";
 
 export default function FixedCreateButton() {
   return (
     <button className="fixed bottom-[100px] left-1/2 transform -translate-x-[calc(50%-324px)] z-[999]">
-      {/* 'CreateMyCourse' 페이지로 이동하도록 수정 */}
       <NavLink
         to="/my-course-builder"
         className="flex items-center justify-center"

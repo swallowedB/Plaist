@@ -1,8 +1,9 @@
 import AllCourseCardItem from "./AllCourseCardItem";
-import { useSortMainStore } from "../../../stores/main/comment/useSortStore";
+
 import Pagenation from "../utils/Pagenation";
-import { useSortedCourses } from "../../../hooks/mainFeed/useSortedCourses";
 import { usePagination } from "../../../hooks/mainFeed/usePagenation";
+import { useSortedCourses } from "../../../hooks/mainFeed/useSortedCourses";
+import { useSortMainStore } from "../../../stores/main/comment/useSortStore";
 
 export default function AllCourseCards({
   courseList,
@@ -27,5 +28,5 @@ export default function AllCourseCards({
         onPageChange={handlePageChange}
       />
     </div>
-  ); 
+  );
 }

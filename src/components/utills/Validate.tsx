@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+
 import InputField from "../InputField";
-import typePassword from "../../assets/images/password_icon_password.png";
 import typeText from "../../assets/images/password_icon_text.png";
+import typePassword from "../../assets/images/password_icon_password.png";
 
 export default function Validate({
   children,

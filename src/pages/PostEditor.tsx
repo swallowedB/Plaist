@@ -1,14 +1,15 @@
-import CreateMyCourseFlowButton from "../components/createMyCourseMain/CreateMyCourseFlowButton";
-import TitleInputField from "../components/postEditor/TitleInputField";
+import { useEffect, useState } from "react";
+
+import { editMyCourse } from "../api/postMyCourse";
+import useImageUpload from "../hooks/useImageUpload";
 import TagDisplay from "../components/postEditor/TagDisplay";
-import CourseDetailDisplay from "../components/postEditor/CourseDetailDisplay";
+import { getChannelIdList } from "../utills/mycourse/setPostTitle";
+import TitleInputField from "../components/postEditor/TitleInputField";
 import ImageUpLoadField from "../components/postEditor/ImageUpLoadField";
+import CourseDetailDisplay from "../components/postEditor/CourseDetailDisplay";
 import DescriptionInputField from "../components/postEditor/DescriptionInputField";
 import SelectedLocationsDisplay from "../components/postEditor/SelectedLocationsDisplay";
-import useImageUpload from "../hooks/useImageUpload";
-import { useEffect, useState } from "react";
-import { editMyCourse } from "../api/postMyCourse";
-import { getChannelIdList } from "../utills/mycourse/setPostTitle";
+import CreateMyCourseFlowButton from "../components/createMyCourse/CreateMyCourseFlowButton";
 
 export default function PostEditor({
   isEditorOpened,
@@ -81,7 +82,7 @@ export default function PostEditor({
               })
         )
       );
-      console.log("results: ",results);
+      console.log("results: ", results);
       results.forEach((result: any, index: number) => {
         if (result.status === "fulfilled") {
           console.log(

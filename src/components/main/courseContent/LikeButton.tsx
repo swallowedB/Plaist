@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 import images from "../../../assets/images/importImages";
-import { deleteLikes, postLikes } from "../../../api/react-query/likeApi";
 import { getUserIdFromToken } from "../../../api/userApi";
 import { createNotification } from "../../../api/notificationApi";
-import { toast } from "react-toastify";
+import { deleteLikes, postLikes } from "../../../api/react-query/likeApi";
 
 type ResponseType = {
   createdAt: string;

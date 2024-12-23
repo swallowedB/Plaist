@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { useCommentsStore } from "../../stores/useCommentsStore";
+
 import MyCommentCards from "./MyComment/MyCommentCards";
+
 import SearchBar from "../utills/SearchBar";
-
-
+import { useCommentsStore } from "../../stores/useCommentsStore";
 interface CommentType {
   author: string;
   comment: string;
@@ -28,7 +28,7 @@ export default function MyComment() {
     comments.forEach((comment) => {
       fetchPostById(comment.post);
     });
-  }, [comments, fetchPostById])
+  }, [comments, fetchPostById]);
 
   const handleSearch = (result: CommentType[]) => {
     setFilteredData(result);
@@ -40,7 +40,7 @@ export default function MyComment() {
       return {
         ...comment,
         courseTitle: post?.courseTitle || "제목 없음",
-        locationName: post?.locationObjs?.[0]?.locationName || "위치 정보 없음", 
+        locationName: post?.locationObjs?.[0]?.locationName || "위치 정보 없음",
       };
     });
   }, [comments, posts]);
@@ -50,23 +50,24 @@ export default function MyComment() {
       {/* 검색바 */}
       <SearchBar
         data={commentCardData}
-        searchKey={["comment","author","post"]}
+        searchKey={["comment", "author", "post"]}
         onSearch={handleSearch}
         placeholder="내가 남긴 흔적 찾아보기 (oﾟvﾟ)ノ"
       />
 
-    {/* 댓글 목록 카드 */}
-    <div className={`mt-11`} >
-      {comments && comments.length > 0 ? (
-        <MyCommentCards 
-          data={filteredData.length > 0 ? filteredData : comments} 
-          postTitles={posts} />
-      ) : (
-        <div className="mt-7 text-center font-pretendard font-medium text-primary-700 text-sm">
-          아직 댓글이 없네요 o(TヘTo)
-        </div>
-      )}
-    </div>
+      {/* 댓글 목록 카드 */}
+      <div className={`mt-11`}>
+        {comments && comments.length > 0 ? (
+          <MyCommentCards
+            data={filteredData.length > 0 ? filteredData : comments}
+            postTitles={posts}
+          />
+        ) : (
+          <div className="text-sm font-medium text-center mt-7 font-pretendard text-primary-700">
+            아직 댓글이 없네요 o(TヘTo)
+          </div>
+        )}
+      </div>
     </div>
   );
 }
