@@ -4,11 +4,11 @@ import { useFunnel } from "@use-funnel/react-router-dom";
 
 import { postMyCourse } from "../../api/postMyCourse";
 import images from "../../assets/images/importImages";
-import Mapview from "../../components/createMyCourse/MapView";
 import SelectTag from "../../components/createMyCourse/SelectTag";
-import ExplainCourse from "../../components/createMyCourse/ExpainCourse";
-import SuccessMyPost from "../../components/createMyCourse/SucessMyPost";
 import SelectCourseMain from "../../components/createMyCourse/SelectCourseMain";
+import ExplainCourse from "../../components/createMyCourse/ExpainCourse";
+import SucessMyPost from "../../components/createMyCourse/SucessMyPost";
+import Mapview from "../../components/createMyCourse/MapView";
 
 type ContextByStep = {
   태그입력: InputTagsContext;
@@ -206,10 +206,8 @@ export default function CreateMyCourse() {
               <SuccessMyPost
                 onNext={() => {
                   handlePostCourseResult();
-                  if (postId.length > 0)
-                    navigate(
-                      `/course-content/${postId}`
-                    ); // 생성된 페이지로 이동
+                  if (postId.length > 0) navigate(`/course-content/${postId}`);
+                  // 생성된 페이지로 이동
                   else navigate("/"); // 홈으로 이동
                 }}
               />
