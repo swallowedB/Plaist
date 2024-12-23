@@ -83,8 +83,9 @@
 </br>
 
 ## 프로젝트 구조
+
 ```
-plaist1
+plaist
 ├─ .env
 ├─ .git
 ├─ .github
@@ -93,8 +94,6 @@ plaist1
 │  │  ├─ 🐞-bug.md
 │  │  ├─ 🚀-deploy.md
 │  │  └─ 🛠️-refactor.md
-│  └─ workflows
-│     └─ deploy-netilfy.yml
 ├─ .gitignore
 ├─ README.md
 ├─ eslint.config.js
@@ -103,6 +102,9 @@ plaist1
 ├─ package.json
 ├─ postcss.config.js
 ├─ public
+│  ├─ _redirects
+│  ├─ mockServiceWorker.js
+│  └─ vite.svg
 ├─ src
 │  ├─ App.tsx
 │  ├─ Router.tsx
@@ -110,19 +112,17 @@ plaist1
 │  ├─ assets
 │  │  └─ images
 │  ├─ components
-│  │  ├─ FlexibleGlass.tsx
 │  │  ├─ FooterNavLink.tsx
 │  │  ├─ HeaderNavLink.tsx
 │  │  ├─ InputField.tsx
 │  │  ├─ My
 │  │  ├─ Root
 │  │  ├─ category
-│  │  ├─ createMyCourseMain
+│  │  ├─ createMyCourse
 │  │  ├─ main
 │  │  ├─ notification
 │  │  ├─ otherUserInfo
 │  │  ├─ postEditor
-│  │  ├─ skeletonUI
 │  │  ├─ utills
 │  │  └─ viewMycourse
 │  ├─ css
@@ -133,15 +133,17 @@ plaist1
 │  ├─ stores
 │  ├─ types
 │  ├─ utills
+│  │  ├─ Auth
+│  │  ├─ constants
+│  │  ├─ main
+│  │  └─ mycourse
 │  └─ vite-env.d.ts
 ├─ tailwind.config.js
 ├─ tsconfig.app.json
 ├─ tsconfig.json
 ├─ tsconfig.node.json
 └─ vite.config.ts
-
 ```
-
 </br>
 
 ## History
@@ -240,6 +242,7 @@ plaist1
 ### [마이코스 - 나만의 코스 확인]
 
 </br>
+
 
 
 
