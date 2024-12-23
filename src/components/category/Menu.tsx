@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
+
+import { getChannelList } from "../../api/channelApi";
+import { useChannelStore } from "../../stores/channelStore";
 import arrowIcon from "../../assets/images/uparrow_icon.svg";
 import positionIcon from "../../assets/images/position_icon.svg";
-import { useChannelStore } from "../../stores/channelStore";
-import { getChannelList } from "../../api/channelApi";
-import { useState, useEffect } from "react";
 
 export default function Menu() {
   // local state

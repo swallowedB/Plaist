@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+
 import Nav from "../components/Root/Nav";
 import HeaderIcon from "../components/Root/HeaderIcon";
 

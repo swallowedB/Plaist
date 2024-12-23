@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+
 import InputField from "../InputField";
-import typePassword from "../../assets/images/password_icon_password.png";
 import typeText from "../../assets/images/password_icon_text.png";
+import typePassword from "../../assets/images/password_icon_password.png";
 
 export default function Validate({
   children,
@@ -31,7 +32,7 @@ export default function Validate({
     changeEmail(value);
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(email)) {
-      setEmailError("Please enter a valid email address");
+      setEmailError("유효한 이메일 주소를 작성해주세요");
     } else {
       setEmailError("");
     }

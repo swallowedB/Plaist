@@ -1,9 +1,10 @@
-import "../css/blur.css";
-import NotificationList from "../components/notification/NotificationList";
-import { useNotificationStore } from "../stores/notificationStore";
-import { useCookie } from "../hooks/useCookie";
-import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
+
+import "../css/blur.css";
+import { useCookie } from "../hooks/useCookie";
+import { useNotificationStore } from "../stores/notificationStore";
+import NotificationList from "../components/notification/NotificationList";
 
 const Notification = () => {
   const deleteAll = useNotificationStore((state) => state.deleteAll);
@@ -17,7 +18,7 @@ const Notification = () => {
   }, []);
 
   return (
-    <div className="relative font-pretendard flex flex-col items-center">
+    <div className="relative flex flex-col items-center font-pretendard">
       <div className="absolute blur-bg-center h-[100vh]" /* 필요하면 조정 */ />
       <div
         className={`

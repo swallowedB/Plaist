@@ -1,7 +1,8 @@
-import { useSliderStore } from "../../../../../stores/sliderStore";
-import SliderDisplay from "./SliderDisplay";
 import RangeSlider from "./RangeSlider";
 import SliderLabel from "./SliderLabel";
+import SliderDisplay from "./SliderDisplay";
+
+import { useSliderStore } from "../../../../../stores/sliderStore";
 
 export default function SelectDuration() {
   const { estimatedTime, setEstimatedTime } = useSliderStore();

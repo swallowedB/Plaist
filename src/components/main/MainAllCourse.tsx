@@ -1,7 +1,9 @@
 import { useState } from "react";
-import SearchBar from "../utills/SearchBar";
+
 import AllCourseCards from "./allCourse/AllCourseCards";
 import CourseAllCourseSortToggle from "./utils/CourseAllCourseSortToggle";
+
+import SearchBar from "../utills/SearchBar";
 
 export default function MainAllCourse({
   courseList,

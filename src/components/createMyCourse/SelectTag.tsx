@@ -1,9 +1,10 @@
-import { usePostStore } from "../../stores/postStore";
-import PostingGuideTitle from "../../components/createMyCourseMain/PostingGuideTitle";
-import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
-import { useCookie } from "../../hooks/useCookie";
-import { useNavigate } from "react-router";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
+
+import { useCookie } from "../../hooks/useCookie";
+import { usePostStore } from "../../stores/postStore";
+import PostingGuideTitle from "../../components/createMyCourse/PostingGuideTitle";
+import CreateMyCourseFlowButton from "../../components/createMyCourse/CreateMyCourseFlowButton";
 
 export default function SelectTag({ onNext }: { onNext: OnNextInputTags }) {
   const isLoggedIn = useCookie();

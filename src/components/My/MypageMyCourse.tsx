@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import SearchBar from "../utills/SearchBar";
+
 import MypageCards from "./MypageCards/MypageCards";
+
+import SearchBar from "../utills/SearchBar";
 import { useUserStore } from "../../stores/useInfoStore";
 import { useMyCourseStore } from "../../stores/useMyCourseStore";
 
@@ -36,7 +38,7 @@ export default function MypageMyCourse() {
       {/* 검색바 */}
       <SearchBar
         data={myCourseList}
-        searchKey={["courseTitle","courseDescription", "locationAddress"]}
+        searchKey={["courseTitle", "courseDescription", "locationAddress"]}
         onSearch={handleSearch}
         placeholder="무엇이든 검색해보세요 (oﾟvﾟ)ノ"
       />

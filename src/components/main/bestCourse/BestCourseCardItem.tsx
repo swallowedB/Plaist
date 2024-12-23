@@ -1,9 +1,10 @@
 import { NavLink } from "react-router";
-import images from "../../../assets/images/importImages";
+
 import {
   splitBySpaceUntilIndex1,
   trimStringWithEllipsis,
 } from "../../../utills/main/fomatter";
+import images from "../../../assets/images/importImages";
 
 export default function BestCourseCardItem({
   courseData,
@@ -12,7 +13,7 @@ export default function BestCourseCardItem({
 }) {
   const { _id, title, image, likes } = courseData;
   const doc = JSON.parse(title);
-
+  console.log(doc.locationObjs);
   return (
     <div
       className="min-w-[205px] h-[298px] bg-white rounded-3xl shadow-blue relative flex flex-col items-center hover:scale-105 hover:shadow-strong
@@ -58,7 +59,21 @@ export default function BestCourseCardItem({
               className="w-4 h-4 mr-1"
             />
             <p className="font-pretendard text-[13px] text-custom-gray">
-              {splitBySpaceUntilIndex1(doc.locationObjs[0].locationAddress)}
+              {trimStringWithEllipsis(
+                doc.locationObjs
+                  ? Array.from(
+                      new Set(
+                        doc.locationObjs?.map((item: LocationObj) => {
+                          const locationArr = item.locationAddress.split(" ");
+                          if (locationArr[0] === "서울특별시")
+                            return `서울 ${locationArr[1]}`;
+                          else return `${locationArr[0]} ${locationArr[1]}`;
+                        }) || []
+                      )
+                    ).join(", ") || "주소"
+                  : "입력 없음",
+                12
+              )}
             </p>
           </div>
         </div>

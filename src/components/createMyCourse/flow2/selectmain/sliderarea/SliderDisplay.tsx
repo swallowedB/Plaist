@@ -1,5 +1,3 @@
-// import CourseDataInput from "./CourseDataInput";
-
 type SliderDisplayProps = {
   question: string;
   calculatedValue: string;

@@ -7,7 +7,7 @@ export default function TagDisplay({ tags }: { tags: string[] }) {
       {tags.map((tag, index) => (
         <li
           key={index}
-          className="w-[72px] h-[31px] text-[14px] rounded-[30px] border-2 font-medium text-primary-600 border-primary-600 font-pretendard text-center flex items-center justify-center"
+          className="min-w-[52px] h-[31px] text-[14px] rounded-[30px] border-2 font-medium text-primary-600 border-primary-600 font-pretendard text-center flex items-center justify-center px-[10px]"
         >
           {tag}
         </li>

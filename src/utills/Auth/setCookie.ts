@@ -114,12 +114,12 @@ function showExpirationModal(
   document.body.appendChild(modalContainer);
 
   const autoLogoutTimer = setTimeout(() => {
-    const stopLongPolling = useNotificationStore(
-      (state) => state.stopLongPolling
+    const stopNotification = useNotificationStore(
+      (state) => state.stopNotification
     );
     modalContainer.remove();
     Cookies.remove(key);
-    stopLongPolling();
+    stopNotification();
     navigate("/login");
   }, remainingMinutes * 60000);
 

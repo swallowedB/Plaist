@@ -1,8 +1,8 @@
-import images from "../../../../assets/images/importImages";
-import CourseCommentSortToggle from "../../utils/CourseCommentSortToggle";
-
-import CommentInputArea from "./CommentInputArea";
 import CommentList from "./CommentList";
+import CommentInputArea from "./CommentInputArea";
+
+import CourseCommentSortToggle from "../../utils/CourseCommentSortToggle";
+import images from "../../../../assets/images/importImages";
 
 export default function CourseContentCommentArea({
   courseObj,

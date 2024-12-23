@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import images from "../../../../assets/images/importImages";
-import { postComment } from "../../../../api/commentApi";
-import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
-import { useUserStore } from "../../../../stores/useInfoStore";
 import { toast } from "react-toastify";
-import { useIsLoginStore } from "../../../../stores/login/useIsLoginStore";
+
+import { postComment } from "../../../../api/commentApi";
+import images from "../../../../assets/images/importImages";
+import { useUserStore } from "../../../../stores/useInfoStore";
 import { createNotification } from "../../../../api/notificationApi";
+import { useIsLoginStore } from "../../../../stores/login/useIsLoginStore";
+import { useCommentStore } from "../../../../stores/main/comment/useCommentStore";
 
 export default function CommentInputArea({ courseObj }: { courseObj: Course }) {
   const { comments, setComments } = useCommentStore();

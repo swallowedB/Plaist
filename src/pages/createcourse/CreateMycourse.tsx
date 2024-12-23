@@ -1,13 +1,14 @@
 import { useEffect } from "react";
-import { useFunnel } from "@use-funnel/react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useFunnel } from "@use-funnel/react-router-dom";
+
 import { postMyCourse } from "../../api/postMyCourse";
 import images from "../../assets/images/importImages";
-import SelectTag from "./SelectTag";
-import SelectCourseMain from "./SelectCourseMain";
-import ExplainCourse from "./ExpainCourse";
-import SucessMyPost from "./SucessMyPost";
-import Mapview from "./MapView";
+import SelectTag from "../../components/createMyCourse/SelectTag";
+import SelectCourseMain from "../../components/createMyCourse/SelectCourseMain";
+import ExplainCourse from "../../components/createMyCourse/ExpainCourse";
+import SucessMyPost from "../../components/createMyCourse/SucessMyPost";
+import Mapview from "../../components/createMyCourse/MapView";
 
 type ContextByStep = {
   태그입력: InputTagsContext;
@@ -19,6 +20,7 @@ type ContextByStep = {
 
 export default function CreateMyCourse() {
   const navigate = useNavigate();
+  let postId = "";
   const getProgressBarImage = (step: keyof ContextByStep) => {
     const stepNumber = {
       태그입력: 1,
@@ -92,6 +94,8 @@ export default function CreateMyCourse() {
             image,
             channelId,
           });
+          const ALL_CHANNEL_ID = "675e6ed26ada400ee6bec120";
+          if (channelId === ALL_CHANNEL_ID) postId = response._id;
           console.log(
             `Sucess for Channel ID: ${channelId}, Response:`,
             response
@@ -199,10 +203,12 @@ export default function CreateMyCourse() {
             );
           case "완료":
             return (
-              <SucessMyPost
+              <SuccessMyPost
                 onNext={() => {
-                  navigate("/"); // 홈으로 이동
                   handlePostCourseResult();
+                  if (postId.length > 0) navigate(`/course-content/${postId}`);
+                  // 생성된 페이지로 이동
+                  else navigate("/"); // 홈으로 이동
                 }}
               />
             );

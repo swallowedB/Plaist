@@ -1,10 +1,10 @@
-import { useCookie } from "../../hooks/useCookie";
-import FooterNavLink from "../FooterNavLink";
-import { useLocation } from "react-router";
 import { useEffect } from "react";
-import { useNotificationStore } from "../../stores/notificationStore";
+import { useLocation } from "react-router";
 
+import FooterNavLink from "../FooterNavLink";
+import { useCookie } from "../../hooks/useCookie";
 import images from "../../assets/images/importImages";
+import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function Nav() {
   let isLoggedIn = useCookie();
@@ -14,8 +14,12 @@ export default function Nav() {
   const hiddenPaths = ["/my-course-builder"];
   const shouldHideFooter = hiddenPaths.includes(location.pathname);
 
-  const startPolling = useNotificationStore((state) => state.startLongPolling);
-  const stopPolling = useNotificationStore((state) => state.stopLongPolling);
+  const startNotification = useNotificationStore(
+    (state) => state.startNotification
+  );
+  const stopNotification = useNotificationStore(
+    (state) => state.stopNotification
+  );
 
   const getIcon = (
     path: string,
@@ -29,9 +33,9 @@ export default function Nav() {
   useEffect(() => {
     const isLoggedIn = useCookie();
     if (isLoggedIn) {
-      startPolling();
+      startNotification();
     } else {
-      stopPolling();
+      stopNotification();
     }
   }, [useCookie()]);
 

@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
-import styles from "./CourseEditor.module.css";
-import PostingGuideTitle from "./../../components/createMyCourseMain/PostingGuideTitle";
-import AddedCoursebox from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddedCoursebox";
-import AddNewMyCourseButton from "../../components/createMyCourseMain/flow2/selectmain/addcoursearea/AddNewMyCourseButton";
-import SliderBox from "../../components/createMyCourseMain/flow2/selectmain/sliderarea/SliderBox";
-import CreateMyCourseFlowButton from "../../components/createMyCourseMain/CreateMyCourseFlowButton";
+
+import styles from "./SelectCourseMain.module.css";
 import { useSliderStore } from "./../../stores/sliderStore";
 import { getChannelIdList } from "./../../utills/mycourse/setPostTitle";
+import PostingGuideTitle from "../../components/createMyCourse/PostingGuideTitle";
+
+import SliderBox from "../../components/createMyCourse/flow2/selectmain/sliderarea/SliderBox";
+import CreateMyCourseFlowButton from "../../components/createMyCourse/CreateMyCourseFlowButton";
+import AddedCoursebox from "../../components/createMyCourse/flow2/selectmain/addcoursearea/AddedCoursebox";
+import AddNewMyCourseButton from "../../components/createMyCourse/flow2/selectmain/addcoursearea/AddNewMyCourseButton";
 
 export default function SelectCourseMain({
   locationObjs,

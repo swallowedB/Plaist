@@ -1,32 +1,33 @@
-import "../css/index.css";
-import { useParams } from "react-router";
-import { getUserById } from "../api/userApi";
-import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";
 import { useEffect, useState } from "react";
-import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
+import { useNavigate, useParams } from "react-router";
+import "../css/index.css";
+import { getUserById } from "../api/userApi";
 import defaultImage from "../assets/images/default.png";
-
+import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";
+import OtherUserCourse from "../components/otherUserInfo/OtherUserCourse";
 // test Page : http://localhost:5173/other-user-info/675fd765c8bfa141c295e5c1
 
 export default function OtherUserInfo() {
   const { userId } = useParams();
   const [userInfo, setUserInfo] = useState<User | null>(null);
   const [cardsData, setCardsData] = useState<CardData[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const cardMap = new Map();
     const fetchData = async () => {
       try {
         const userData = await getUserById(`${userId}`);
         setUserInfo(userData);
-
+        console.log("userInfo", userData, userInfo);
         if (Array.isArray(userData?.posts)) {
-          const data = userData.posts.map((post: Course) => {
+          userData.posts.forEach((post: Course) => {
             const titleData: Title = JSON.parse(post?.title || "{}");
             const location =
               Array.from(
                 new Set(
                   titleData.locationObjs?.map((item: LocationObj) => {
-                    const locationArr = item.locationAddress.split(" ");
+                    const locationArr = item.locationAddress?.split(" ") || [];
                     if (locationArr[0] === "서울특별시")
                       return `서울 ${locationArr[1]}`;
                     else return `${locationArr[0]} ${locationArr[1]}`;
@@ -34,7 +35,7 @@ export default function OtherUserInfo() {
                 )
               ).join(", ") || "주소";
 
-            return {
+            const result = {
               id: post?._id || "",
               courseTitle: titleData.courseTitle || "제목",
               courseDescription: titleData.courseDescription || "",
@@ -42,13 +43,18 @@ export default function OtherUserInfo() {
               locationAddress: location,
               image: post.image || defaultImage,
             } as CardData;
-          });
 
-          setCardsData(
-            data.filter((item: CardData): item is CardData => item !== null)
-          );
+            const uniqueKey = JSON.stringify(result.courseTitle);
+            const ALL_CHANNEL_ID = "675e6ed26ada400ee6bec120";
+
+            if (!cardMap.has(uniqueKey) && post.channel === ALL_CHANNEL_ID) {
+              // 중복이 없고, 전체 채널에 있는 것만 추가
+              cardMap.set(uniqueKey, result);
+            }
+          });
+          setCardsData(Array.from(cardMap.values()));
         } else {
-          console.warn("Posts is not an array or undefined:", userData?.posts);
+          // post가 없는 경우
           setCardsData([]);
         }
       } catch (error) {
@@ -56,7 +62,6 @@ export default function OtherUserInfo() {
         setCardsData([]);
       }
     };
-
     fetchData();
   }, []);
 
@@ -77,7 +82,7 @@ export default function OtherUserInfo() {
               <div className="relative flex flex-col items-center mt-[35px] h-full w-[555px]">
                 {/* 프로필 요소 */}
                 <OtherUserHeader
-                  profileImg={userInfo.coverImage}
+                  profileImg={userInfo.image}
                   userName={userInfo.fullName}
                   userEmail={userInfo.email}
                 />
@@ -111,7 +116,5 @@ export default function OtherUserInfo() {
         </div>
       </>
     );
-  }
-
-  return null; // 로딩 상태나 404 페이지 추가 가능
+  } else return navigate("/404");
 }
