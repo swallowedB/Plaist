@@ -7,15 +7,20 @@ import { postLogout } from "../../api/api";
 import onLogin from "../../assets/images/onLogout.svg";
 import offLogin from "../../assets/images/offLogout.svg";
 import { useUserStore } from "../../stores/useInfoStore";
+import { useNotificationStore } from "../../stores/notificationStore";
 
 export default function MypageContents() {
   const navigate = useNavigate();
   const { logout } = useUserStore();
+  const stopNotification = useNotificationStore(
+    (state) => state.stopNotification
+  );
 
   const handleLogout = async () => {
     try {
       await postLogout(navigate);
       logout();
+      stopNotification();
     } catch (error) {
       console.error("logout error:", error);
     }

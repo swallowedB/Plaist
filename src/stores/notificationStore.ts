@@ -100,7 +100,6 @@ export const useNotificationStore = create<
         // console.log("User is inactive. Stop polling Event.");
         set({ isUserActive: false });
       } else {
-        // console.log("User is active. Start polling event.");
         set({ isUserActive: true });
       }
     };
