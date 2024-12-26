@@ -204,7 +204,7 @@ plaist
 
 | 상하단 네비 |
 |:-------:|
-| ㅤ<img src="https://github.com/user-attachments/assets/2de64f48-15b2-4d74-bc95-57d5f1230946"  />   |
+| ㅤ<img src="https://github.com/user-attachments/assets/2de64f48-15b2-4d74-bc95-57d5f1230946" width=70%   />   |
 
 | 404 페이지 |
 |:-------:|
