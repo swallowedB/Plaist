@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import "../css/index.css";
+import "../styles/index.css";
 import { getUserById } from "../api/userApi";
 import defaultImage from "../assets/images/default.png";
 import OtherUserHeader from "../components/otherUserInfo/OtherUserHeader";

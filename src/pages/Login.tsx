@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate, useSearchParams } from "react-router";
 
-import "../css/tailwind.css";
+import "../styles/index.css";
 import { postLogin } from "../api/api";
 import Validate from "../components/utills/Validate";
 

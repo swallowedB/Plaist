@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import "../css/index.css";
+import "../styles/index.css";
 import Menu from "../components/category/Menu";
 import Feed from "../components/category/Feed";
 

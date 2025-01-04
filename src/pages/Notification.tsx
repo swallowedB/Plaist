@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import "../css/blur.css";
+import "../styles/index.css";
 import { useCookie } from "../hooks/useCookie";
 import { useNotificationStore } from "../stores/notificationStore";
 import NotificationList from "../components/notification/NotificationList";

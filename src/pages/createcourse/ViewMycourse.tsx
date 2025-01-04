@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
-import "../../css/index.css";
+import "../../styles/index.css";
 import { useCookie } from "../../hooks/useCookie";
 import ViewMyAllCourse from "../../components/viewMycourse/ViewMyAllCourse";
 import FixedCreateButton from "../../components/viewMycourse/FixedCreateButton";

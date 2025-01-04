@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router";
 
-import "../css/font.css";
-import "../css/blur.css";
+import "../styles/index.css";
 import { postSingUp } from "../api/api";
 import InputField from "../components/InputField";
 import Validate from "../components/utills/Validate";
